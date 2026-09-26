@@ -32,6 +32,7 @@ test("placeholder storefront url is not treated as live", () => {
   delete process.env.SHOP_STOREFRONT_URL;
   try {
     assert.equal(resolveStorefrontUrl("https://harbour-run-demo.myshopify.com"), null);
+    assert.equal(resolveStorefrontUrl("https://YOUR-STORE.myshopify.com"), null);
     assert.equal(resolveStorefrontUrl(null), null);
     assert.equal(resolveStorefrontUrl("http://127.0.0.1:44741"), "http://127.0.0.1:44741");
   } finally {
@@ -95,7 +96,7 @@ test("enqueue respects pause, cap 3, and in-flight", async () => {
 test("playwright walks the dawn path and cites the AgentRun", { timeout: 180_000 }, async () => {
   const edgesBefore = await prisma.graphEdge.count({ where: { shopId } });
   const confidenceBefore = await prisma.confidenceScore.findMany({ orderBy: { eventCandidateId: "asc" } });
-  const stub = await startStub(44741);
+  const stub = await startStub();
   const previousUrl = process.env.SHOP_STOREFRONT_URL;
   const previousHeaded = process.env.AGENTS_HEADED;
   process.env.SHOP_STOREFRONT_URL = stub.url;
@@ -116,13 +117,40 @@ test("playwright walks the dawn path and cites the AgentRun", { timeout: 180_000
     assert.equal(run.outcome, "checkout_started");
     assert.equal(run.id.includes("mock"), false);
 
-    const card = await prisma.recommendation.findFirstOrThrow({ where: { runId } });
+    const card = await prisma.recommendation.findFirstOrThrow({
+      where: { runId, targetRef: "kids-youth-run-tee" },
+    });
     assert.equal(card.provenanceLabelsJson.includes("MOCK"), false);
     assert.match(card.provenanceLabelsJson, /OBSERVED/);
+    const shellCard = await prisma.recommendation.findFirstOrThrow({
+      where: { runId, targetRef: "race-kits" },
+    });
+    assert.match(shellCard.title, /Race Kits/i);
+    assert.equal(shellCard.runId, runId);
     const affordance = await prisma.affordanceScore.findFirstOrThrow({ where: { runId } });
     assert.equal(affordance.runId, runId);
     const insight = await prisma.insightScore.findFirstOrThrow({ where: { runId } });
     assert.equal(insight.insightKind, "sizing");
+    const shellInsight = await prisma.insightScore.findFirstOrThrow({
+      where: { runId, targetRef: "race-kits" },
+    });
+    assert.equal(shellInsight.insightKind, "dead_end");
+    const missingXl = await prisma.insightScore.findFirstOrThrow({
+      where: { runId, insightKind: "missing_variant" },
+    });
+    assert.equal(missingXl.targetRef, "race-tee-unisex");
+    const weakCopy = await prisma.insightScore.findFirstOrThrow({
+      where: { runId, insightKind: "weak_copy" },
+    });
+    assert.equal(weakCopy.targetRef, "race-tee-unisex");
+    const priceShock = await prisma.insightScore.findFirstOrThrow({
+      where: { runId, insightKind: "price_shock" },
+    });
+    assert.equal(priceShock.targetRef, "checkout");
+    const trust = await prisma.insightScore.findFirstOrThrow({
+      where: { runId, insightKind: "trust" },
+    });
+    assert.equal(trust.targetRef, "race-tee-unisex");
 
     assert.equal(stub.hits().some((path) => path.includes("/payment")), false);
     assert.equal(await prisma.graphEdge.count({ where: { shopId } }), edgesBefore);

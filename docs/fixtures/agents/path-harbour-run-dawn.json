@@ -41,9 +41,10 @@
     {
       "id": "nav_race_kits",
       "action": "click",
-      "selectorHint": "role=link[name=Race Kits]",
+      "selectorHint": "a[href*='/collections/race-kits']",
       "fallbackHints": [
-        "a[href*='/collections/race-kits']",
+        "role=link[name=Race Kits]",
+        "#HeaderMenu-race-kits",
         "text=Race Kits",
         "[data-syndicate=nav-race-kits]"
       ],
@@ -52,9 +53,10 @@
     {
       "id": "open_tee",
       "action": "click",
-      "selectorHint": "text=Race Tee \u2014 Unisex",
+      "selectorHint": "a[href*='/products/race-tee-unisex']",
       "fallbackHints": [
         "text=Race Tee",
+        "text=Race Tee — Unisex",
         "[data-syndicate-handle=race-tee-unisex]"
       ],
       "expect": "PDP"
@@ -145,7 +147,31 @@
     {
       "id": "note_race_kits_excludes_shell",
       "action": "observe",
-      "note": "Optional P1: Race Kits collection does not list Waterproof Shell \u2014 filter friction",
+      "note": "Optional P1: Race Kits collection does not list Waterproof Shell \u2014 dead_end",
+      "optional": true
+    },
+    {
+      "id": "note_missing_xl",
+      "action": "observe",
+      "note": "Race tee size options omit XL \u2014 missing_variant",
+      "optional": true
+    },
+    {
+      "id": "note_weak_race_copy",
+      "action": "observe",
+      "note": "PDP lacks race/weather occasion copy \u2014 weak_copy",
+      "optional": true
+    },
+    {
+      "id": "note_trust_reviews",
+      "action": "observe",
+      "note": "No reviews / stars on PDP \u2014 trust",
+      "optional": true
+    },
+    {
+      "id": "note_ux_cookie",
+      "action": "observe",
+      "note": "Cookie / consent banner if present \u2014 ux_trap",
       "optional": true
     },
     {
@@ -173,6 +199,12 @@
         "[data-syndicate=checkout-start]"
       ],
       "outcome": "checkout_started"
+    },
+    {
+      "id": "note_price_shock_shipping",
+      "action": "observe",
+      "note": "Shipping amount first seen at checkout \u2014 price_shock",
+      "optional": true
     },
     {
       "id": "stop",

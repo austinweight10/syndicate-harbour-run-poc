@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import prisma from "../db.server";
 import { FIXTURE_ACCESS_TOKEN } from "../fixture-token";
 import { FIXTURE_FILES, fixturePath } from "../fixtures/paths";
-import { MVP_SCOPES, assertExactScopes } from "../scopes";
+import { MVP_SCOPES, assertExactScopes, normalizeScopes } from "../scopes";
 import { DEMO_SHOP_DOMAIN } from "../fixtures/seed";
 import { PIPELINE_STAGE_LABELS, pipelineEnqueue, type PipelineStage } from "./pipeline.server";
 
@@ -132,10 +132,12 @@ type LiveSession = { shop: string; accessToken: string; scope?: string | null };
 
 async function ensureLiveShop(session: LiveSession): Promise<ShellData> {
   const domain = session.shop;
-  const scopes = session.scope && session.scope.length > 0 ? session.scope : MVP_SCOPES;
-  assertExactScopes(scopes);
+  const rawScopes = session.scope && session.scope.length > 0 ? session.scope : MVP_SCOPES;
+  assertExactScopes(rawScopes);
+  const scopes = normalizeScopes(rawScopes);
 
   const existing = await prisma.shop.findUnique({ where: { myshopifyDomain: domain } });
+  const storefrontFromEnv = process.env.SHOP_STOREFRONT_URL?.trim() || null;
   await prisma.shop.upsert({
     where: { myshopifyDomain: domain },
     create: {
@@ -147,11 +149,13 @@ async function ensureLiveShop(session: LiveSession): Promise<ShellData> {
       primaryLocale: "en-GB",
       currencyCode: "GBP",
       timezone: "Europe/London",
+      storefrontUrl: storefrontFromEnv,
     },
     update: {
       accessToken: session.accessToken,
       scopes,
       uninstalledAt: null,
+      ...(storefrontFromEnv ? { storefrontUrl: storefrontFromEnv } : {}),
     },
   });
   await prisma.shopSettings.upsert({

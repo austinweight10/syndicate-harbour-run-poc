@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs } from "react-router";
-import { MVP_SCOPES } from "../scopes";
+import { APP_SCOPES, MVP_SCOPES } from "../scopes";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
@@ -9,7 +9,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return Response.json({
     ok: true,
     demo: process.env.DEMO_FIXTURE_SHOP === "1",
-    scopes: MVP_SCOPES,
+    scopes: process.env.DEMO_FIXTURE_SHOP === "1" ? MVP_SCOPES : process.env.SCOPES || APP_SCOPES,
     shop: process.env.DEMO_FIXTURE_SHOP === "1" ? "harbour-run-demo.myshopify.com" : null,
   });
 };
