@@ -14,13 +14,17 @@ IMPORTANT
   script. Do NOT add write_* to the Syndicate app.
 
 Required env:
-  SHOPIFY_STORE_DOMAIN   e.g. harbour-run-demo.myshopify.com
-  SHOPIFY_SEED_ADMIN_TOKEN  Admin API access token from the seed custom app
+  SHOPIFY_STORE_DOMAIN   e.g. syndicate-4ghkumor.myshopify.com
+  Either:
+    SEED_CLIENT_ID + SEED_CLIENT_SECRET  (client_credentials → access token)
+    or SHOPIFY_SEED_ADMIN_TOKEN          (static Admin token from seed custom app)
 
 Optional:
   ORDERS_SEED_PATH       default: ../data/orders-seed.json relative to this file
   DRY_RUN=1              print payloads, do not POST
   LIMIT=N                seed only first N orders
+
+Loads docs/live-demo-store/.env automatically if present.
 
 Seed-app scopes (document for Austin):
   write_orders, write_customers, read_products
@@ -38,6 +42,7 @@ import os
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -164,17 +169,85 @@ def build_order_input(order: dict, variant_ids: dict) -> dict:
     }
 
 
-def main() -> None:
-    domain = os.environ.get("SHOPIFY_STORE_DOMAIN", "").strip()
+def load_dotenv() -> None:
+    """Load docs/live-demo-store/.env into os.environ if present (no overwrite)."""
+    env_path = ROOT / ".env"
+    if not env_path.exists():
+        return
+    for line in env_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip("'").strip('"')
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+def client_credentials_token(domain: str, client_id: str, client_secret: str) -> str:
+    """Exchange SEED_CLIENT_ID/SECRET for a short-lived Admin access token."""
+    url = f"https://{domain}/admin/oauth/access_token"
+    body = urllib.parse.urlencode(
+        {
+            "grant_type": "client_credentials",
+            "client_id": client_id,
+            "client_secret": client_secret,
+        }
+    ).encode("utf-8")
+    req = urllib.request.Request(
+        url,
+        data=body,
+        headers={"Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            payload = json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", errors="replace")
+        die(f"client_credentials HTTP {e.code}: {detail}")
+    token = payload.get("access_token")
+    if not token:
+        die(f"client_credentials response missing access_token: {payload}")
+    scopes = payload.get("scope", "")
+    expires = payload.get("expires_in")
+    print(f"Got access token via client_credentials (scopes={scopes or '?'} expires_in={expires})")
+    return token
+
+
+def resolve_seed_token(domain: str) -> str:
     token = os.environ.get("SHOPIFY_SEED_ADMIN_TOKEN", "").strip()
+    if token:
+        return token
+    client_id = (
+        os.environ.get("SEED_CLIENT_ID", "").strip()
+        or os.environ.get("SHOPIFY_SEED_CLIENT_ID", "").strip()
+    )
+    client_secret = (
+        os.environ.get("SEED_CLIENT_SECRET", "").strip()
+        or os.environ.get("SHOPIFY_SEED_CLIENT_SECRET", "").strip()
+    )
+    if client_id and client_secret:
+        return client_credentials_token(domain, client_id, client_secret)
+    die(
+        "Set SEED_CLIENT_ID + SEED_CLIENT_SECRET (client_credentials), "
+        "or SHOPIFY_SEED_ADMIN_TOKEN (seed custom app — not Syndicate)"
+    )
+
+
+def main() -> None:
+    load_dotenv()
+    domain = os.environ.get("SHOPIFY_STORE_DOMAIN", "").strip()
     dry = os.environ.get("DRY_RUN", "").strip() in ("1", "true", "TRUE", "yes")
     limit = os.environ.get("LIMIT", "").strip()
     seed_path = Path(os.environ.get("ORDERS_SEED_PATH", str(DEFAULT_SEED)))
+    if not seed_path.is_absolute():
+        seed_path = (ROOT / seed_path).resolve()
 
     if not domain:
-        die("Set SHOPIFY_STORE_DOMAIN (e.g. harbour-run-demo.myshopify.com)")
-    if not token and not dry:
-        die("Set SHOPIFY_SEED_ADMIN_TOKEN (seed custom app — not Syndicate)")
+        die("Set SHOPIFY_STORE_DOMAIN (e.g. syndicate-4ghkumor.myshopify.com)")
+    token = "" if dry else resolve_seed_token(domain)
 
     if not seed_path.exists():
         die(f"Seed file not found: {seed_path}")

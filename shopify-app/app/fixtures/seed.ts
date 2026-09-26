@@ -76,21 +76,240 @@ export type SeedCounts = {
   recommendations: number;
 };
 
-export type CatalogueCounts = {
-  catalogueEvents: number;
-  hashtags: number;
-  socialTrends: number;
-  virtualEvents: number;
-  challenges: number;
-};
+export async function seedFixtures(
+  prisma: PrismaClient,
+  options: { shopId?: string; preserveCredentials?: boolean } = {},
+): Promise<SeedCounts> {
+  const issues = validateFixtures();
+  if (issues.length > 0) {
+    const detail = issues.map((issue) => `${issue.file}: ${issue.message}`).join("\n");
+    throw new Error(`Fixture validation failed\n${detail}`);
+  }
 
-/**
- * Curated / MOCK catalogue rows shared by every shop: race calendar, hashtag
- * watchlist, social trends, virtual events, activity challenges. Upserts on
- * natural keys, so it is safe to call from the demo seed and from the live
- * pipeline's catalogue_refresh stage.
- */
-export async function seedCatalogue(prisma: PrismaClient, now = new Date()): Promise<CatalogueCounts> {
+  const sessionDoc = readJson(FIXTURE_FILES.session);
+  const shopDoc = sessionDoc.shop as Json;
+  const connection = sessionDoc.connection as Json;
+  const flags = sessionDoc.flags as Json;
+  const scopes = (connection.scopes as string[]).join(",");
+  assertExactScopes(scopes);
+
+  const shopId = options.shopId ?? DEMO_SHOP_DOMAIN;
+  const preserve = options.preserveCredentials === true;
+  const existing = preserve
+    ? await prisma.shop.findUnique({ where: { myshopifyDomain: shopId } })
+    : null;
+  const accessToken = preserve && existing?.accessToken ? existing.accessToken : FIXTURE_ACCESS_TOKEN;
+  const now = new Date();
+
+  await prisma.shop.upsert({
+    where: { myshopifyDomain: shopId },
+    create: {
+      id: shopId,
+      myshopifyDomain: shopId,
+      name: existing?.name ?? asString(shopDoc.name, "Harbour Run"),
+      accessToken,
+      scopes: existing?.scopes ?? scopes,
+      primaryLocale: "en-GB",
+      currencyCode: asString(shopDoc.currencyCode, "GBP"),
+      timezone: asString(shopDoc.ianaTimezone, "Europe/London"),
+      storefrontUrl: process.env.SHOP_STOREFRONT_URL?.trim() || existing?.storefrontUrl || null,
+    },
+    update: {
+      name: existing?.name ?? asString(shopDoc.name, "Harbour Run"),
+      ...(preserve ? {} : { accessToken: FIXTURE_ACCESS_TOKEN }),
+      scopes: existing?.scopes ?? scopes,
+      currencyCode: asString(shopDoc.currencyCode, "GBP"),
+      timezone: asString(shopDoc.ianaTimezone, "Europe/London"),
+      ...(process.env.SHOP_STOREFRONT_URL?.trim()
+        ? { storefrontUrl: process.env.SHOP_STOREFRONT_URL.trim() }
+        : {}),
+      uninstalledAt: null,
+    },
+  });
+
+  await prisma.shopSettings.upsert({
+    where: { shopId },
+    create: {
+      shopId,
+      agentsAutoRun: flags.agentsAutoRun === true,
+      modeOverride: preserve ? "live" : "demo",
+    },
+    update: {
+      ...(preserve
+        ? {}
+        : {
+            agentsAutoRun: flags.agentsAutoRun === true,
+            modeOverride: "demo",
+          }),
+    },
+  });
+
+  if (!preserve) {
+    await prisma.session.upsert({
+      where: { id: `offline_${shopId}` },
+      create: {
+        id: `offline_${shopId}`,
+        shop: shopId,
+        state: "fixture",
+        isOnline: false,
+        scope: scopes,
+        accessToken: FIXTURE_ACCESS_TOKEN,
+        accountOwner: false,
+        locale: "en-GB",
+      },
+      update: {
+        scope: scopes,
+        accessToken: FIXTURE_ACCESS_TOKEN,
+        state: "fixture",
+      },
+    });
+  }
+
+  await prisma.affordanceScore.deleteMany({ where: { shopId } });
+  await prisma.insightScore.deleteMany({ where: { shopId } });
+  await prisma.recommendation.deleteMany({ where: { shopId } });
+  await prisma.agentRun.deleteMany({ where: { shopId } });
+  await prisma.graphEdge.deleteMany({ where: { shopId } });
+  const priorEvents = await prisma.eventCandidate.findMany({
+    where: { shopId },
+    select: { id: true },
+  });
+  if (priorEvents.length > 0) {
+    await prisma.confidenceScore.deleteMany({
+      where: { eventCandidateId: { in: priorEvents.map((row) => row.id) } },
+    });
+  }
+  await prisma.eventCandidate.deleteMany({ where: { shopId } });
+  await prisma.storeMakeupSnapshot.deleteMany({ where: { shopId } });
+  await prisma.pipelineRun.deleteMany({ where: { shopId } });
+  await prisma.persona.deleteMany({ where: { shopId } });
+  await prisma.lineItemRow.deleteMany({ where: { shopId } });
+  await prisma.orderRow.deleteMany({ where: { shopId } });
+  await prisma.productRow.deleteMany({ where: { shopId } });
+  await prisma.collectionRow.deleteMany({ where: { shopId } });
+  await prisma.geo.deleteMany({ where: { shopId } });
+
+  const productsDoc = readJson(FIXTURE_FILES.products);
+  const products = productsDoc.products as Json[];
+  const collections = productsDoc.collections as Json[];
+  const productByHandle = new Map<string, Json>();
+
+  for (const collection of collections) {
+    await prisma.collectionRow.create({
+      data: {
+        id: asString(collection.id),
+        shopId,
+        title: asString(collection.title),
+        handle: asString(collection.handle),
+      },
+    });
+  }
+
+  for (const product of products) {
+    const handle = asString(product.handle);
+    productByHandle.set(handle, product);
+    const tags = Array.isArray(product.tags) ? (product.tags as string[]).join(",") : null;
+    await prisma.productRow.create({
+      data: {
+        id: asString(product.id),
+        shopId,
+        title: asString(product.title),
+        handle,
+        productType: asString(product.productType) || null,
+        vendor: asString(product.vendor, "Harbour Run"),
+        tags,
+        status: "ACTIVE",
+        updatedAt: now,
+      },
+    });
+  }
+
+  const ordersDoc = readJson(FIXTURE_FILES.orders);
+  const orders = ordersDoc.orders as Json[];
+  const geoIds = new Set<string>();
+  let lineItems = 0;
+
+  for (const order of orders) {
+    const shipping = (order.shipping ?? {}) as Json;
+    const geo = (order.geo ?? {}) as Json;
+    const city = asString(shipping.city) || null;
+    const countryCode = asString(shipping.country_code, "GB");
+    const postalSector = asString(shipping.postal_sector) || null;
+    const province = asString(shipping.province) || null;
+    const geoKey = [shopId, countryCode, city ?? "", postalSector ?? ""].join("|");
+    const geoId = sha(geoKey).slice(0, 32);
+    if (!geoIds.has(geoId)) {
+      geoIds.add(geoId);
+      await prisma.geo.create({
+        data: {
+          id: geoId,
+          shopId,
+          city,
+          provinceCode: province,
+          countryCode,
+          postalSector,
+          lat: typeof geo.lat === "number" ? geo.lat : null,
+          lng: typeof geo.lng === "number" ? geo.lng : null,
+          provenance: "MOCK",
+        },
+      });
+    }
+
+    const email = asString(order.customer_email);
+    const createdAt = dateOr(order.created_at, now);
+    const subtotal = money(order.subtotal);
+    const tags = Array.isArray(order.tags) ? (order.tags as string[]).join(",") : null;
+
+    await prisma.orderRow.create({
+      data: {
+        id: asString(order.id),
+        shopId,
+        name: asString(order.name) || null,
+        processedAt: createdAt,
+        createdAt,
+        currencyCode: asString(order.currency, "GBP"),
+        subtotalAmount: subtotal,
+        totalAmount: subtotal,
+        totalShipping: null,
+        displayFinancialStatus: asString(order.financial_status) || null,
+        displayFulfillmentStatus: asString(order.fulfillment_status) || null,
+        sourceName: asString(order.source_name) || null,
+        tags,
+        test: false,
+        customerHash: email ? sha(email) : null,
+        geoId,
+      },
+    });
+
+    const lines = (order.line_items as Json[]) ?? [];
+    for (const [index, line] of lines.entries()) {
+      const handle = asString(line.handle);
+      const product = productByHandle.get(handle);
+      const quantity = asNumber(line.quantity, 1);
+      const unit = asNumber(line.price, 0);
+      const productTags = product && Array.isArray(product.tags) ? product.tags : [];
+      await prisma.lineItemRow.create({
+        data: {
+          id: `${asString(order.id)}:${asString(line.sku)}:${index}`,
+          orderId: asString(order.id),
+          shopId,
+          productId: product ? asString(product.id) : null,
+          variantId: null,
+          sku: asString(line.sku),
+          title: asString(line.title),
+          variantTitle: asString(line.variantTitle) || null,
+          vendor: product ? asString(product.vendor, "Harbour Run") : "Harbour Run",
+          quantity,
+          unitPrice: unit.toFixed(2),
+          lineTotal: (unit * quantity).toFixed(2),
+          productType: product ? asString(product.productType) || null : null,
+          tagsJson: JSON.stringify(productTags),
+        },
+      });
+      lineItems += 1;
+    }
+  }
+
   const sports = readJson(FIXTURE_FILES.sports);
   let catalogueEvents = 0;
   for (const event of sports.events as Json[]) {
@@ -294,238 +513,29 @@ export async function seedCatalogue(prisma: PrismaClient, now = new Date()): Pro
     challenges += 1;
   }
 
-  return { catalogueEvents, hashtags: hashtagCount, socialTrends, virtualEvents, challenges };
-}
-
-export async function seedFixtures(prisma: PrismaClient): Promise<SeedCounts> {
-  const issues = validateFixtures();
-  if (issues.length > 0) {
-    const detail = issues.map((issue) => `${issue.file}: ${issue.message}`).join("\n");
-    throw new Error(`Fixture validation failed\n${detail}`);
-  }
-
-  const sessionDoc = readJson(FIXTURE_FILES.session);
-  const shopDoc = sessionDoc.shop as Json;
-  const connection = sessionDoc.connection as Json;
-  const flags = sessionDoc.flags as Json;
-  const scopes = (connection.scopes as string[]).join(",");
-  assertExactScopes(scopes);
-
-  const shopId = DEMO_SHOP_DOMAIN;
-  const now = new Date();
-
-  await prisma.shop.upsert({
-    where: { myshopifyDomain: shopId },
-    create: {
-      id: shopId,
-      myshopifyDomain: shopId,
-      name: asString(shopDoc.name, "Harbour Run"),
-      accessToken: FIXTURE_ACCESS_TOKEN,
-      scopes,
-      primaryLocale: "en-GB",
-      currencyCode: asString(shopDoc.currencyCode, "GBP"),
-      timezone: asString(shopDoc.ianaTimezone, "Europe/London"),
-      storefrontUrl: process.env.SHOP_STOREFRONT_URL?.trim() || null,
-    },
-    update: {
-      name: asString(shopDoc.name, "Harbour Run"),
-      accessToken: FIXTURE_ACCESS_TOKEN,
-      scopes,
-      currencyCode: asString(shopDoc.currencyCode, "GBP"),
-      timezone: asString(shopDoc.ianaTimezone, "Europe/London"),
-      ...(process.env.SHOP_STOREFRONT_URL?.trim()
-        ? { storefrontUrl: process.env.SHOP_STOREFRONT_URL.trim() }
-        : {}),
-      uninstalledAt: null,
-    },
-  });
-
-  await prisma.shopSettings.upsert({
-    where: { shopId },
-    create: {
-      shopId,
-      agentsAutoRun: flags.agentsAutoRun === true,
-      modeOverride: "demo",
-    },
-    update: {
-      agentsAutoRun: flags.agentsAutoRun === true,
-      modeOverride: "demo",
-    },
-  });
-
-  await prisma.session.upsert({
-    where: { id: `offline_${shopId}` },
-    create: {
-      id: `offline_${shopId}`,
-      shop: shopId,
-      state: "fixture",
-      isOnline: false,
-      scope: scopes,
-      accessToken: FIXTURE_ACCESS_TOKEN,
-      accountOwner: false,
-      locale: "en-GB",
-    },
-    update: {
-      scope: scopes,
-      accessToken: FIXTURE_ACCESS_TOKEN,
-      state: "fixture",
-    },
-  });
-
-  await prisma.affordanceScore.deleteMany({ where: { shopId } });
-  await prisma.insightScore.deleteMany({ where: { shopId } });
-  await prisma.recommendation.deleteMany({ where: { shopId } });
-  await prisma.agentRun.deleteMany({ where: { shopId } });
-  await prisma.graphEdge.deleteMany({ where: { shopId } });
-  const priorEvents = await prisma.eventCandidate.findMany({
-    where: { shopId },
-    select: { id: true },
-  });
-  if (priorEvents.length > 0) {
-    await prisma.confidenceScore.deleteMany({
-      where: { eventCandidateId: { in: priorEvents.map((row) => row.id) } },
-    });
-  }
-  await prisma.eventCandidate.deleteMany({ where: { shopId } });
-  await prisma.storeMakeupSnapshot.deleteMany({ where: { shopId } });
-  await prisma.pipelineRun.deleteMany({ where: { shopId } });
-  await prisma.persona.deleteMany({ where: { shopId } });
-  await prisma.lineItemRow.deleteMany({ where: { shopId } });
-  await prisma.orderRow.deleteMany({ where: { shopId } });
-  await prisma.productRow.deleteMany({ where: { shopId } });
-  await prisma.collectionRow.deleteMany({ where: { shopId } });
-  await prisma.geo.deleteMany({ where: { shopId } });
-
-  const productsDoc = readJson(FIXTURE_FILES.products);
-  const products = productsDoc.products as Json[];
-  const collections = productsDoc.collections as Json[];
-  const productByHandle = new Map<string, Json>();
-
-  for (const collection of collections) {
-    await prisma.collectionRow.create({
-      data: {
-        id: asString(collection.id),
-        shopId,
-        title: asString(collection.title),
-        handle: asString(collection.handle),
-      },
-    });
-  }
-
-  for (const product of products) {
-    const handle = asString(product.handle);
-    productByHandle.set(handle, product);
-    const tags = Array.isArray(product.tags) ? (product.tags as string[]).join(",") : null;
-    await prisma.productRow.create({
-      data: {
-        id: asString(product.id),
-        shopId,
-        title: asString(product.title),
-        handle,
-        productType: asString(product.productType) || null,
-        vendor: asString(product.vendor, "Harbour Run"),
-        tags,
-        status: "ACTIVE",
-        updatedAt: now,
-      },
-    });
-  }
-
-  const ordersDoc = readJson(FIXTURE_FILES.orders);
-  const orders = ordersDoc.orders as Json[];
-  const geoIds = new Set<string>();
-  let lineItems = 0;
-
-  for (const order of orders) {
-    const shipping = (order.shipping ?? {}) as Json;
-    const geo = (order.geo ?? {}) as Json;
-    const city = asString(shipping.city) || null;
-    const countryCode = asString(shipping.country_code, "GB");
-    const postalSector = asString(shipping.postal_sector) || null;
-    const province = asString(shipping.province) || null;
-    const geoKey = [shopId, countryCode, city ?? "", postalSector ?? ""].join("|");
-    const geoId = sha(geoKey).slice(0, 32);
-    if (!geoIds.has(geoId)) {
-      geoIds.add(geoId);
-      await prisma.geo.create({
-        data: {
-          id: geoId,
-          shopId,
-          city,
-          provinceCode: province,
-          countryCode,
-          postalSector,
-          lat: typeof geo.lat === "number" ? geo.lat : null,
-          lng: typeof geo.lng === "number" ? geo.lng : null,
-          provenance: "MOCK",
-        },
-      });
-    }
-
-    const email = asString(order.customer_email);
-    const createdAt = dateOr(order.created_at, now);
-    const subtotal = money(order.subtotal);
-    const tags = Array.isArray(order.tags) ? (order.tags as string[]).join(",") : null;
-
-    await prisma.orderRow.create({
-      data: {
-        id: asString(order.id),
-        shopId,
-        name: asString(order.name) || null,
-        processedAt: createdAt,
-        createdAt,
-        currencyCode: asString(order.currency, "GBP"),
-        subtotalAmount: subtotal,
-        totalAmount: subtotal,
-        totalShipping: null,
-        displayFinancialStatus: asString(order.financial_status) || null,
-        displayFulfillmentStatus: asString(order.fulfillment_status) || null,
-        sourceName: asString(order.source_name) || null,
-        tags,
-        test: false,
-        customerHash: email ? sha(email) : null,
-        geoId,
-      },
-    });
-
-    const lines = (order.line_items as Json[]) ?? [];
-    for (const [index, line] of lines.entries()) {
-      const handle = asString(line.handle);
-      const product = productByHandle.get(handle);
-      const quantity = asNumber(line.quantity, 1);
-      const unit = asNumber(line.price, 0);
-      const productTags = product && Array.isArray(product.tags) ? product.tags : [];
-      await prisma.lineItemRow.create({
-        data: {
-          id: `${asString(order.id)}:${asString(line.sku)}:${index}`,
-          orderId: asString(order.id),
-          shopId,
-          productId: product ? asString(product.id) : null,
-          variantId: null,
-          sku: asString(line.sku),
-          title: asString(line.title),
-          variantTitle: asString(line.variantTitle) || null,
-          vendor: product ? asString(product.vendor, "Harbour Run") : "Harbour Run",
-          quantity,
-          unitPrice: unit.toFixed(2),
-          lineTotal: (unit * quantity).toFixed(2),
-          productType: product ? asString(product.productType) || null : null,
-          tagsJson: JSON.stringify(productTags),
-        },
-      });
-      lineItems += 1;
-    }
-  }
-
-  const { catalogueEvents, hashtags: hashtagCount, socialTrends, virtualEvents, challenges } =
-    await seedCatalogue(prisma, now);
-
   const personasDoc = readJson(FIXTURE_FILES.personas);
   let personas = 0;
   for (const row of personasDoc.personas as Json[]) {
-    await prisma.persona.create({
-      data: {
+    await prisma.persona.upsert({
+      where: { id: asString(row.id) },
+      create: {
         id: asString(row.id),
+        shopId,
+        name: asString(row.name),
+        status: asString(row.status, "draft"),
+        vertical: asString(row.vertical, "running"),
+        goalsJson: JSON.stringify(row.goals ?? []),
+        budgetMin: money(row.budgetMin),
+        budgetMax: money(row.budgetMax),
+        currencyCode: asString(row.currencyCode, "GBP"),
+        constraintsJson: JSON.stringify(row.constraints ?? {}),
+        behaviouralJson: JSON.stringify(row.behavioural ?? {}),
+        locationProxy: asString(row.locationProxy) || null,
+        mockFlagsJson: JSON.stringify(row.mockFlags ?? []),
+        successCriteriaJson: JSON.stringify(row.successCriteria ?? {}),
+        avatarInitials: asString(row.avatarInitials) || null,
+      },
+      update: {
         shopId,
         name: asString(row.name),
         status: asString(row.status, "draft"),

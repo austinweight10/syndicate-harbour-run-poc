@@ -16,9 +16,20 @@ const STAGES = [
   "agents_queue",
 ] as const;
 
-export async function runDemoPipeline(prisma: PrismaClient) {
-  const seed = await seedFixtures(prisma);
-  const shopId = DEMO_SHOP_DOMAIN;
+/**
+ * Seed Harbour Run fixture orders/catalogue into a shop and score.
+ * For a live Connected shop, pass that domain with preserveCredentials so
+ * the OAuth access token is not wiped (hybrid until Admin ingest lands).
+ */
+export async function runDemoPipeline(
+  prisma: PrismaClient,
+  options: { shopId?: string; preserveCredentials?: boolean } = {},
+) {
+  const shopId = options.shopId ?? DEMO_SHOP_DOMAIN;
+  const preserveCredentials =
+    options.preserveCredentials ?? (shopId !== DEMO_SHOP_DOMAIN);
+
+  const seed = await seedFixtures(prisma, { shopId, preserveCredentials });
   const stages = STAGES.map((stage) => ({
     stage,
     status: "success",
@@ -28,13 +39,13 @@ export async function runDemoPipeline(prisma: PrismaClient) {
   const pipeline = await prisma.pipelineRun.create({
     data: {
       shopId,
-      mode: "demo",
+      mode: preserveCredentials ? "live" : "demo",
       trigger: "manual_refresh",
       status: "running",
       currentStage: "store_makeup",
       stagesJson: JSON.stringify(stages.map((stage) => ({ ...stage, status: "pending" }))),
       agentsAutoRunSnapshot: false,
-      idempotencyKey: `${shopId}:demo:${Date.now()}`,
+      idempotencyKey: `${shopId}:seed:${Date.now()}`,
     },
   });
 

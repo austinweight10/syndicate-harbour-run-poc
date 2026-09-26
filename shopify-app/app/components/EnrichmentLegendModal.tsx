@@ -2,20 +2,24 @@ import { useEffect, useRef } from "react";
 
 const ROWS = [
   {
-    term: "Observed",
-    body: "Shop orders and catalogue, for example home-kit SKUs sold on Saturday.",
+    term: "Seen",
+    kind: "observed",
+    body: "From your shop orders or catalogue — for example kit SKUs sold on race weekend.",
   },
   {
-    term: "Aggregate proxy",
-    body: "Open-Meteo city weather, postcode-sector geo, and hashtag watchlist buzz.",
+    term: "Proxy",
+    kind: "aggregate_proxy",
+    body: "An external signal such as city weather, postcode area, or hashtag buzz.",
   },
   {
-    term: "Model hypothesis",
-    body: "Confidence residual, or a name polished by a template. Marked Hyp.",
+    term: "Estimate",
+    kind: "model_hypothesis",
+    body: "A model guess (confidence residual or a polished name) — not a direct observation.",
   },
   {
-    term: "Mock",
-    body: "Seeded stand-ins such as a parkrun-shaped race, a virtual challenge, or a Hyrox meet.",
+    term: "Demo",
+    kind: "mock",
+    body: "Seeded stand-in data for the demo, such as a parkrun-shaped race.",
   },
 ] as const;
 
@@ -46,19 +50,20 @@ export function EnrichmentLegendModal({
 
   return (
     <div className="modal">
-      <button type="button" className="modal-backdrop" aria-label="Close enrichment labels" onClick={onClose} />
+      <button type="button" className="modal-backdrop" aria-label="Close evidence labels" onClick={onClose} />
       <div className="modal-panel" role="dialog" aria-modal="true" aria-labelledby="enrichment-title">
-        <h2 id="enrichment-title">Enrichment labels</h2>
+        <h2 id="enrichment-title">Evidence labels</h2>
+        <p className="muted">Every signal is tagged with where it came from, so you know what to trust.</p>
         <ul className="legend-list">
           {ROWS.map((row) => (
             <li key={row.term}>
-              <strong>{row.term}</strong>
+              <span className={`prov prov-${row.kind}`}>{row.term}</span>
               <span>{row.body}</span>
             </li>
           ))}
         </ul>
-        <p className="muted">Social buzz on its own is never labelled as observed demand.</p>
-        <button type="button" className="button button-quiet" ref={closeRef} onClick={onClose}>
+        <p className="muted modal-foot">Social buzz alone is never labelled as seen demand.</p>
+        <button type="button" className="button" ref={closeRef} onClick={onClose}>
           Close
         </button>
       </div>

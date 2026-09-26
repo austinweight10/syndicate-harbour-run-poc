@@ -1,0 +1,143 @@
+/* Harbour Run — storefront refine (Dawn overlay) */
+
+:root {
+  --hr-ink: #15201a;
+  --hr-mist: #eef2ef;
+  --hr-volt: #c8f542;
+  --hr-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Atmosphere on the canvas — cool mist, not flat white */
+body {
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgba(42, 107, 90, 0.08), transparent 55%),
+    radial-gradient(900px 500px at 88% 0%, rgba(200, 245, 66, 0.06), transparent 50%),
+    rgb(var(--color-background));
+}
+
+/* Header wordmark weight */
+.header__heading-link .h2 {
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.announcement-bar__message {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+/* Hero — full-bleed presence + soft rise-in */
+.banner {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(28rem, 72vh, 52rem);
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(160deg, rgba(21, 32, 26, 0.92) 0%, rgba(21, 32, 26, 0.55) 48%, rgba(42, 107, 90, 0.35) 100%),
+    repeating-linear-gradient(
+      -18deg,
+      transparent,
+      transparent 14px,
+      rgba(255, 255, 255, 0.03) 14px,
+      rgba(255, 255, 255, 0.03) 15px
+    );
+}
+
+.banner .banner__content,
+.banner .banner__box {
+  position: relative;
+  z-index: 1;
+}
+
+.banner__box {
+  max-width: 42rem;
+  padding-block: 2.4rem;
+}
+
+.banner__heading {
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  margin-bottom: 1.2rem;
+  animation: hr-rise 700ms var(--hr-ease) both;
+}
+
+.banner__text {
+  max-width: 28rem;
+  margin-inline: auto;
+  opacity: 0.92;
+  animation: hr-rise 700ms var(--hr-ease) 80ms both;
+}
+
+.banner__buttons {
+  animation: hr-rise 700ms var(--hr-ease) 140ms both;
+}
+
+.banner .button--secondary {
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.banner .button:not(.button--secondary) {
+  background: var(--hr-volt);
+  color: var(--hr-ink);
+  border-color: var(--hr-volt);
+}
+
+.banner .button:not(.button--secondary):hover {
+  background: #d6ff6a;
+  border-color: #d6ff6a;
+}
+
+/* Product grid — quieter cards, clearer type */
+.card-wrapper .card__heading {
+  letter-spacing: -0.02em;
+}
+
+.card-wrapper .card__media {
+  transition: transform 320ms var(--hr-ease);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card-wrapper:hover .card__media {
+    transform: scale(1.03);
+  }
+}
+
+.collection__title .title,
+.title-wrapper-with-link .title {
+  letter-spacing: -0.03em;
+}
+
+/* Footer calm */
+.footer__content-top {
+  border-top: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+@keyframes hr-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner__heading,
+  .banner__text,
+  .banner__buttons,
+  .card-wrapper .card__media {
+    animation: none;
+    transition: none;
+  }
+}

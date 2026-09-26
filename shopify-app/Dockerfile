@@ -19,17 +19,17 @@ RUN npx prisma generate && npm run build
 FROM node:22-bookworm-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production \
-    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 \
-    DEMO_FIXTURE_SHOP=1 \
     SCOPES=read_orders,read_products,read_customers \
     DATABASE_URL=file:/data/dev.db \
     PORT=8080 \
-    HOST=0.0.0.0
+    HOST=0.0.0.0 \
+    AGENTS_HEADED=0 \
+    PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends openssl ca-certificates \
   && rm -rf /var/lib/apt/lists/* \
-  && mkdir -p /data
+  && mkdir -p /data /ms-playwright
 
 COPY --from=build /app/package.json /app/package-lock.json ./
 COPY --from=build /app/node_modules ./node_modules
@@ -46,7 +46,8 @@ COPY --from=build /london-runner-demo /london-runner-demo
 COPY --from=build /london-runner-demo /app/london-runner-demo
 COPY shopify-app/docker-entrypoint.sh /app/docker-entrypoint.sh
 RUN chmod +x /app/docker-entrypoint.sh \
-  && npx prisma generate
+  && npx prisma generate \
+  && npx playwright install --with-deps chromium
 
 EXPOSE 8080
 VOLUME ["/data"]

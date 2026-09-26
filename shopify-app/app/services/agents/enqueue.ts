@@ -63,7 +63,12 @@ export async function enqueueAgentRuns(input: {
         progressPct: 0,
         startedAt: new Date(),
         storefrontUrl: url,
-        timelineJson: JSON.stringify({ pathId: path.pathId, headed: false, steps: [] }),
+        timelineJson: JSON.stringify({
+          pathId: path.pathId,
+          headed: false,
+          forceHeaded: Boolean(input.forceHeadedDemo),
+          steps: [],
+        }),
       },
     });
     created.push({ id, personaName: persona.name });

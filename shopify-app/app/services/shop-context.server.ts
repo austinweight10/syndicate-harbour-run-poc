@@ -2,10 +2,9 @@ import { readFileSync } from "node:fs";
 import prisma from "../db.server";
 import { FIXTURE_ACCESS_TOKEN } from "../fixture-token";
 import { FIXTURE_FILES, fixturePath } from "../fixtures/paths";
-import { MVP_SCOPES, assertExactScopes } from "../scopes";
+import { MVP_SCOPES, assertExactScopes, normalizeScopes } from "../scopes";
 import { DEMO_SHOP_DOMAIN } from "../fixtures/seed";
 import { PIPELINE_STAGE_LABELS, pipelineEnqueue, type PipelineStage } from "./pipeline.server";
-import { kickPipelineWorker } from "./pipeline/worker.server";
 
 export async function currentShopId(request?: Request): Promise<string> {
   if (process.env.DEMO_FIXTURE_SHOP === "1") return DEMO_SHOP_DOMAIN;
@@ -133,11 +132,12 @@ type LiveSession = { shop: string; accessToken: string; scope?: string | null };
 
 async function ensureLiveShop(session: LiveSession): Promise<ShellData> {
   const domain = session.shop;
-  assertExactScopes(session.scope && session.scope.length > 0 ? session.scope : MVP_SCOPES);
-  // Store the canonical order; Shopify returns scopes sorted alphabetically.
-  const scopes = MVP_SCOPES;
+  const rawScopes = session.scope && session.scope.length > 0 ? session.scope : MVP_SCOPES;
+  assertExactScopes(rawScopes);
+  const scopes = normalizeScopes(rawScopes);
 
   const existing = await prisma.shop.findUnique({ where: { myshopifyDomain: domain } });
+  const storefrontFromEnv = process.env.SHOP_STOREFRONT_URL?.trim() || null;
   await prisma.shop.upsert({
     where: { myshopifyDomain: domain },
     create: {
@@ -149,11 +149,13 @@ async function ensureLiveShop(session: LiveSession): Promise<ShellData> {
       primaryLocale: "en-GB",
       currencyCode: "GBP",
       timezone: "Europe/London",
+      storefrontUrl: storefrontFromEnv,
     },
     update: {
       accessToken: session.accessToken,
       scopes,
       uninstalledAt: null,
+      ...(storefrontFromEnv ? { storefrontUrl: storefrontFromEnv } : {}),
     },
   });
   await prisma.shopSettings.upsert({
@@ -175,11 +177,6 @@ async function ensureLiveShop(session: LiveSession): Promise<ShellData> {
       if (!installed) await pipelineEnqueue(domain, "install");
     }
   }
-
-  const pending = await prisma.pipelineRun.findFirst({
-    where: { shopId: domain, mode: "live", status: "pending" },
-  });
-  if (pending) kickPipelineWorker();
 
   const shop = await prisma.shop.findUnique({ where: { id: domain } });
   return {
