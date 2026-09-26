@@ -69,7 +69,11 @@ export function ContentPackPanel({
         <div className="action-head">
           <p className="eyebrow" style={{ margin: 0 }}>
             <Icon name={applied ? "check" : "sparkles"} size={13} />{" "}
-            {applied ? "Marketing pack live" : "Marketing pack"}
+            {applied
+              ? pack.simulated
+                ? "Pack saved in Syndicate"
+                : "Marketing pack live on Shopify"
+              : "Marketing pack"}
           </p>
           <span className="prov prov-mock" title="Template pack — British English Harbour Run copy">
             Template
@@ -126,8 +130,22 @@ export function ContentPackPanel({
         {applied ? (
           <div className="action-row">
             <span className={`pill ${pack.simulated ? "pill-warn" : "pill-success"}`}>
-              {pack.simulated ? "Simulated — demo shop" : "Live in Shopify"}
+              {pack.simulated ? "Simulated — not on storefront yet" : "Live on Shopify"}
             </span>
+            {pack.simulated ? (
+              <fetcher.Form method="post">
+                <input type="hidden" name="intent" value="apply_pack" />
+                <input type="hidden" name="packId" value={pack.id} />
+                <button className="button" type="submit" disabled={busy} data-apply-pack>
+                  {pendingIntent === "apply_pack" ? (
+                    <span className="spinner spinner-light" aria-hidden="true" />
+                  ) : (
+                    <Icon name="zap" size={14} />
+                  )}
+                  {pendingIntent === "apply_pack" ? "Publishing…" : "Publish to Shopify for real"}
+                </button>
+              </fetcher.Form>
+            ) : null}
             <fetcher.Form method="post">
               <input type="hidden" name="intent" value="undo_pack" />
               <input type="hidden" name="packId" value={pack.id} />
@@ -168,7 +186,10 @@ export function ContentPackPanel({
           </div>
         )}
         {applied && pack.simulated && pack.resultMessage ? (
-          <p className="action-note muted">{pack.resultMessage}</p>
+          <p className="action-note muted">
+            {pack.resultMessage} Click <strong>Publish to Shopify for real</strong> — Shopify will ask you to approve
+            page and segment access, then the storefront URL will work.
+          </p>
         ) : null}
         {error ? (
           <p className="action-error" role="alert">

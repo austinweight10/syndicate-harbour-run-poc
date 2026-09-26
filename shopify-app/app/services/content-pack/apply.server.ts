@@ -56,22 +56,41 @@ async function resolveTarget(shopId: string): Promise<Target | { error: string }
   }
 
   if (!hasMarketingWriteScopes(shop.scopes)) {
-    // Don't 401 the merchant — record the pack and explain what's needed for live.
     return {
-      mode: "simulated",
-      reason:
-        "Pack saved in Syndicate. Live publish needs write_content and write_customers on the app install — those optional scopes aren’t granted yet.",
+      error:
+        "Syndicate needs permission to create pages, blogs and customer segments. Click Publish again — Shopify will ask you to approve write access.",
     };
   }
   return { mode: "shopify", domain: shop.myshopifyDomain, token: shop.accessToken };
 }
 
 export async function applyPack(shopId: string, packId: string): Promise<PackApplyResult> {
-  const claimed = await prisma.contentPack.updateMany({
-    where: { id: packId, shopId, status: { in: ["proposed", "failed", "reverted"] } },
-    data: { status: "applying", errorMessage: null },
-  });
-  if (claimed.count !== 1) return { ok: false, message: "This pack is already applied or in progress." };
+  const existing = await prisma.contentPack.findFirst({ where: { id: packId, shopId } });
+  if (!existing) return { ok: false, message: "Pack not found." };
+
+  // Allow a second Publish after a simulated save so the merchant can go live
+  // once write_content / write_customers are granted.
+  let simulatedPrior = false;
+  if (existing.status === "applied" && existing.resultJson) {
+    try {
+      simulatedPrior = Boolean((JSON.parse(existing.resultJson) as { simulated?: boolean }).simulated);
+    } catch {
+      simulatedPrior = false;
+    }
+  }
+  const rePublish = existing.status === "applied" && simulatedPrior;
+  if (!rePublish) {
+    const claimed = await prisma.contentPack.updateMany({
+      where: { id: packId, shopId, status: { in: ["proposed", "failed", "reverted"] } },
+      data: { status: "applying", errorMessage: null },
+    });
+    if (claimed.count !== 1) return { ok: false, message: "This pack is already applied or in progress." };
+  } else {
+    await prisma.contentPack.update({
+      where: { id: packId },
+      data: { status: "applying", errorMessage: null },
+    });
+  }
   const pack = await prisma.contentPack.findUniqueOrThrow({ where: { id: packId } });
   const assets = parseAssets(pack.assetsJson);
 

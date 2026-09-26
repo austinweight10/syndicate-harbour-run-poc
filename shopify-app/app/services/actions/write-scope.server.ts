@@ -1,9 +1,11 @@
 import prisma from "../../db.server";
 import {
+  MARKETING_WRITE_SCOPES,
   WRITE_SCOPE,
   assertExactScopes,
   hasMarketingWriteScopes,
   hasWriteScope,
+  missingMarketingWriteScopes,
   normalizeScopes,
 } from "../../scopes";
 
@@ -38,12 +40,9 @@ export async function ensureWriteProducts(request: Request, shopId: string): Pro
 }
 
 /**
- * Sync granted scopes before a marketing pack publish.
- *
- * Only escalate `write_products` via scopes.request — that optional scope is
- * already registered on the Partner app. Requesting `write_content` /
- * `write_customers` before they are registered returns a blank 401 page.
- * applyPack simulates when those scopes are still missing.
+ * Sync / escalate scopes before a marketing pack publish.
+ * Requests write_products, write_content, and write_customers when missing
+ * (registered as optional_scopes on the Partner app).
  */
 export async function ensureMarketingWrites(request: Request, shopId: string): Promise<void> {
   if (process.env.DEMO_FIXTURE_SHOP === "1") return;
@@ -59,7 +58,7 @@ export async function ensureMarketingWrites(request: Request, shopId: string): P
         : "";
 
     if (!granted) {
-      await scopes.request([WRITE_SCOPE]);
+      await scopes.request([...MARKETING_WRITE_SCOPES]);
       return;
     }
 
@@ -67,6 +66,8 @@ export async function ensureMarketingWrites(request: Request, shopId: string): P
       assertExactScopes(granted);
     } catch {
       console.warn("content_pack.scopes_unexpected", granted);
+      // Still try to request marketing writes — Partner may have updated.
+      await scopes.request([...MARKETING_WRITE_SCOPES]);
       return;
     }
 
@@ -77,9 +78,9 @@ export async function ensureMarketingWrites(request: Request, shopId: string): P
     });
 
     if (hasMarketingWriteScopes(normalized)) return;
-    if (!hasWriteScope(normalized)) await scopes.request([WRITE_SCOPE]);
+    const missing = missingMarketingWriteScopes(normalized);
+    await scopes.request(missing.length ? missing : [...MARKETING_WRITE_SCOPES]);
   } catch (error) {
-    // Consent redirects must bubble. Auth / scope HTTP errors must not wipe the UI.
     if (error instanceof Response && error.status >= 300 && error.status < 400) throw error;
     console.warn(
       "content_pack.ensure_scopes_failed",
