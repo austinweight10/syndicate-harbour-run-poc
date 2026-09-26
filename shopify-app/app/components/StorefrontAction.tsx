@@ -4,7 +4,15 @@ import { Icon } from "./Icon";
 
 type Result = { ok: boolean; message: string; simulated?: boolean };
 
-export function StorefrontActionPanel({ cardId, action }: { cardId: string; action: ActionView | undefined }) {
+export function StorefrontActionPanel({
+  cardId,
+  action,
+  drafting = false,
+}: {
+  cardId: string;
+  action: ActionView | undefined;
+  drafting?: boolean;
+}) {
   const fetcher = useFetcher<Result>();
   const busy = fetcher.state !== "idle";
   const pendingIntent = busy ? String(fetcher.formData?.get("intent") ?? "") : "";
@@ -12,8 +20,14 @@ export function StorefrontActionPanel({ cardId, action }: { cardId: string; acti
   if (!action) {
     return (
       <div className="action-panel action-panel-empty">
-        <span className="spinner" aria-hidden="true" />
-        <span className="muted">Drafting a fix…</span>
+        {drafting ? (
+          <>
+            <span className="spinner" aria-hidden="true" />
+            <span className="muted">Drafting a fix…</span>
+          </>
+        ) : (
+          <span className="muted">Already in place on the storefront — nothing to deploy.</span>
+        )}
       </div>
     );
   }

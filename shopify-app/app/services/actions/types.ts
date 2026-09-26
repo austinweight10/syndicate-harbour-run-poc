@@ -64,6 +64,9 @@ export function validateDraft(draft: ActionDraft, catalogue: CatalogueSnapshot):
     const member = collection.productHandles.includes(params.productHandle);
     if (params.type === "collection_add_product" && member) return "Product is already in that collection.";
     if (params.type === "collection_feature_product" && !member) return "Product is not in that collection.";
+    if (params.type === "collection_feature_product" && collection.productHandles[0] === params.productHandle) {
+      return "Product is already first in that collection.";
+    }
   }
   if (params.type === "product_append_size_guide") {
     const html = params.sizeGuideHtml.trim();

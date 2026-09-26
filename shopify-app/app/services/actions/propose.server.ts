@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import prisma from "../../db.server";
+import { orderCollectionHandles } from "../catalogue/collections";
 import {
   ACTION_TYPES,
   validateDraft,
@@ -116,14 +117,17 @@ export async function loadCatalogue(shopId: string): Promise<CatalogueSnapshot> 
       })),
     collections: collections
       .filter((row) => row.handle)
-      .map((row) => ({
-        handle: row.handle as string,
-        title: row.title,
-        productHandles: links
+      .map((row) => {
+        const handles = links
           .filter((link) => link.collectionId === row.id)
           .map((link) => handleById.get(link.productId) ?? "")
-          .filter(Boolean),
-      })),
+          .filter(Boolean);
+        return {
+          handle: row.handle as string,
+          title: row.title,
+          productHandles: orderCollectionHandles(row.handle as string, handles),
+        };
+      }),
   };
 }
 
@@ -138,7 +142,7 @@ Available changes (all reversible):
 
 Rules:
 - Use only product and collection handles that appear in the catalogue. Never invent handles.
-- collection_add_product only when the product is not already in that collection; collection_feature_product only when it is.
+- collection_add_product only when the product is not already in that collection; collection_feature_product only when it is AND it is not already first in that collection (never propose a no-op pin).
 - Set fields that do not apply to null (or an empty tags list).
 - headline: an imperative button label under 70 characters naming the product and where it goes, e.g. "Add Waterproof Shell Jacket to Race Kits".
 - rationale: one or two sentences in British English, merchant voice, tying the change to the card's evidence. No hype, no invented numbers.
@@ -323,13 +327,25 @@ export function templateDraft(card: ActionCardInput, catalogue: CatalogueSnapsho
       (/wet|rain|shell|waterproof/.test(text) && collection("wet-weather-training")) ||
       (/race|kit|tee/.test(text) && collection("race-kits")) ||
       home;
-    if (target && preferred?.productHandles.includes(target.handle)) {
+    const alreadyLeading = preferred?.productHandles[0] === target?.handle;
+    if (target && preferred?.productHandles.includes(target.handle) && !alreadyLeading) {
       candidates.push({
         cardId: card.cardId,
         params: { type: "collection_feature_product", collectionHandle: preferred.handle, productHandle: target.handle },
         headline: `Pin ${target.title} to the top of ${preferred.title}`,
         rationale: `${card.eventName ?? "The coming occasion"} points shoppers at ${target.title}. Lead ${preferred.title} with it so it is the first thing they see.`,
       });
+    } else if (target && preferred && alreadyLeading) {
+      // Affordance path: already first — don't propose a no-op pin.
+      const leadTag = `lead-${preferred.handle}`.slice(0, 40);
+      if (!target.tags.includes(leadTag)) {
+        candidates.push({
+          cardId: card.cardId,
+          params: { type: "product_add_tags", productHandle: target.handle, tags: [leadTag] },
+          headline: `${target.title} already leads ${preferred.title}`,
+          rationale: `No pin needed — ${target.title} is already first in ${preferred.title}. A lead tag keeps search and automated collections aligned.`,
+        });
+      }
     }
     if (target && card.eventName) {
       const tag = card.eventName

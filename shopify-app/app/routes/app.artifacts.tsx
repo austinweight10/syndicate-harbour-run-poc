@@ -94,7 +94,9 @@ export default function InsightsBoard() {
             {board.insights.length === 0 ? (
               <p className="muted">No opportunities yet.</p>
             ) : (
-              board.insights.map((card) => <CardView key={card.id} card={card} action={actions.byCard[card.id]} />)
+              board.insights.map((card) => (
+                <CardView key={card.id} card={card} action={actions.byCard[card.id]} drafting={actions.drafting} />
+              ))
             )}
           </section>
           <section>
@@ -103,7 +105,9 @@ export default function InsightsBoard() {
             {board.frictions.length === 0 ? (
               <p className="muted">No blockers found yet.</p>
             ) : (
-              board.frictions.map((card) => <CardView key={card.id} card={card} action={actions.byCard[card.id]} />)
+              board.frictions.map((card) => (
+                <CardView key={card.id} card={card} action={actions.byCard[card.id]} drafting={actions.drafting} />
+              ))
             )}
           </section>
         </div>
@@ -112,7 +116,15 @@ export default function InsightsBoard() {
   );
 }
 
-function CardView({ card, action }: { card: BoardCard; action: ActionView | undefined }) {
+function CardView({
+  card,
+  action,
+  drafting,
+}: {
+  card: BoardCard;
+  action: ActionView | undefined;
+  drafting: boolean;
+}) {
   return (
     <article className="card">
       <div className="card-body">
@@ -144,7 +156,7 @@ function CardView({ card, action }: { card: BoardCard; action: ActionView | unde
           <p className="muted">From the order graph — not from a storefront browse.</p>
         )}
       </div>
-      <StorefrontActionPanel cardId={card.id} action={action} />
+      <StorefrontActionPanel cardId={card.id} action={action} drafting={drafting} />
     </article>
   );
 }

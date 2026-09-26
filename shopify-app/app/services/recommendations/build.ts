@@ -14,9 +14,11 @@ export async function buildRecommendations(
   const race = scored.find((event) => event.name.startsWith("Race weekend — London")) ?? scored[0];
   const wet = scored.find((event) => event.name.startsWith("Wet weekend"));
 
-  await prisma.affordanceScore.deleteMany({ where: { shopId } });
-  await prisma.insightScore.deleteMany({ where: { shopId } });
-  await prisma.recommendation.deleteMany({ where: { shopId } });
+  // Only clear pipeline merch/collection cards. Agent affordances + insight
+  // blockers are written by Playwright with a runId — Refresh must not wipe them.
+  await prisma.recommendation.deleteMany({
+    where: { shopId, runId: null, kind: { in: ["collection", "merch"] } },
+  });
 
   const cards: {
     kind: string;
