@@ -4,9 +4,10 @@
    Red / amber are reserved for warnings and blockers
    ───────────────────────────────────────────────────────────────────────── */
 
+/* Latin subset of the brand pack's Manrope variable font (wght 200–800). SIL OFL 1.1: /fonts/Manrope-OFL.txt */
 @font-face {
   font-family: "Manrope";
-  src: url("/fonts/Manrope.ttf") format("truetype");
+  src: url("/fonts/manrope-latin-var.woff2") format("woff2");
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;
@@ -118,7 +119,9 @@ code { font-family: var(--mono); font-size: 12px; }
 
 .brand-symbol { color: var(--brand-cream); display: block; transition: transform 0.4s var(--ease); }
 .topbar-brand:hover .brand-symbol { transform: rotate(120deg); }
-.brand-wordmark { display: block; height: 22px; width: auto; }
+/* Symbol and wordmark follow the identity v1.1 lockup: wordmark ink 0.77× the hexagon's height,
+   8.4px from it (0.33×), and 1.25px below centre so the lettering sits optically level. */
+.brand-wordmark { display: block; height: 22px; width: auto; margin-left: -6px; transform: translateY(1.25px); }
 
 .brand-tag {
   font-size: 11px;

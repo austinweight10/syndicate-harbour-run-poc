@@ -41,7 +41,7 @@ export default function Index() {
         <BrandPattern tones={DARK_TONES} scale={0.5} />
       </div>
       <main className="landing">
-        <img src="/brand/syndicate-lockup-white.svg" alt="Syndicate" className="landing-lockup" width={220} height={44} />
+        <img src="/brand/syndicate-lockup-cream.svg" alt="Syndicate" className="landing-lockup" width={220} height={53} />
         <h1>Occasion intelligence for your Shopify store</h1>
         <p>See what's driving demand, then watch your store shop itself.</p>
         <ul className="landing-points">

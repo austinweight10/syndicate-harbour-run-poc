@@ -39,8 +39,8 @@ export function AppShell({
     <div className="app-shell">
       <header className="topbar">
         <Link to="/app" className="topbar-brand" aria-label="Syndicate overview">
-          <BrandSymbol size={26} seam="#252522" className="brand-symbol" />
-          <img src="/brand/syndicate-wordmark-white.svg" alt="Syndicate" className="brand-wordmark" width={98} height={22} />
+          <BrandSymbol size={28} seam="#252522" className="brand-symbol" />
+          <img src="/brand/syndicate-wordmark-cream.svg" alt="Syndicate" className="brand-wordmark" width={98} height={22} />
           <span className="brand-tag">Occasion intelligence</span>
         </Link>
         <div className="topbar-shop">
