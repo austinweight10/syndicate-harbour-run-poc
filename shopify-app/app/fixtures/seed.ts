@@ -76,7 +76,10 @@ export type SeedCounts = {
   recommendations: number;
 };
 
-export async function seedFixtures(prisma: PrismaClient): Promise<SeedCounts> {
+export async function seedFixtures(
+  prisma: PrismaClient,
+  options: { shopId?: string; preserveCredentials?: boolean } = {},
+): Promise<SeedCounts> {
   const issues = validateFixtures();
   if (issues.length > 0) {
     const detail = issues.map((issue) => `${issue.file}: ${issue.message}`).join("\n");
@@ -90,7 +93,12 @@ export async function seedFixtures(prisma: PrismaClient): Promise<SeedCounts> {
   const scopes = (connection.scopes as string[]).join(",");
   assertExactScopes(scopes);
 
-  const shopId = DEMO_SHOP_DOMAIN;
+  const shopId = options.shopId ?? DEMO_SHOP_DOMAIN;
+  const preserve = options.preserveCredentials === true;
+  const existing = preserve
+    ? await prisma.shop.findUnique({ where: { myshopifyDomain: shopId } })
+    : null;
+  const accessToken = preserve && existing?.accessToken ? existing.accessToken : FIXTURE_ACCESS_TOKEN;
   const now = new Date();
 
   await prisma.shop.upsert({
@@ -98,18 +106,18 @@ export async function seedFixtures(prisma: PrismaClient): Promise<SeedCounts> {
     create: {
       id: shopId,
       myshopifyDomain: shopId,
-      name: asString(shopDoc.name, "Harbour Run"),
-      accessToken: FIXTURE_ACCESS_TOKEN,
-      scopes,
+      name: existing?.name ?? asString(shopDoc.name, "Harbour Run"),
+      accessToken,
+      scopes: existing?.scopes ?? scopes,
       primaryLocale: "en-GB",
       currencyCode: asString(shopDoc.currencyCode, "GBP"),
       timezone: asString(shopDoc.ianaTimezone, "Europe/London"),
-      storefrontUrl: process.env.SHOP_STOREFRONT_URL?.trim() || null,
+      storefrontUrl: process.env.SHOP_STOREFRONT_URL?.trim() || existing?.storefrontUrl || null,
     },
     update: {
-      name: asString(shopDoc.name, "Harbour Run"),
-      accessToken: FIXTURE_ACCESS_TOKEN,
-      scopes,
+      name: existing?.name ?? asString(shopDoc.name, "Harbour Run"),
+      ...(preserve ? {} : { accessToken: FIXTURE_ACCESS_TOKEN }),
+      scopes: existing?.scopes ?? scopes,
       currencyCode: asString(shopDoc.currencyCode, "GBP"),
       timezone: asString(shopDoc.ianaTimezone, "Europe/London"),
       ...(process.env.SHOP_STOREFRONT_URL?.trim()
@@ -124,32 +132,38 @@ export async function seedFixtures(prisma: PrismaClient): Promise<SeedCounts> {
     create: {
       shopId,
       agentsAutoRun: flags.agentsAutoRun === true,
-      modeOverride: "demo",
+      modeOverride: preserve ? "live" : "demo",
     },
     update: {
-      agentsAutoRun: flags.agentsAutoRun === true,
-      modeOverride: "demo",
+      ...(preserve
+        ? {}
+        : {
+            agentsAutoRun: flags.agentsAutoRun === true,
+            modeOverride: "demo",
+          }),
     },
   });
 
-  await prisma.session.upsert({
-    where: { id: `offline_${shopId}` },
-    create: {
-      id: `offline_${shopId}`,
-      shop: shopId,
-      state: "fixture",
-      isOnline: false,
-      scope: scopes,
-      accessToken: FIXTURE_ACCESS_TOKEN,
-      accountOwner: false,
-      locale: "en-GB",
-    },
-    update: {
-      scope: scopes,
-      accessToken: FIXTURE_ACCESS_TOKEN,
-      state: "fixture",
-    },
-  });
+  if (!preserve) {
+    await prisma.session.upsert({
+      where: { id: `offline_${shopId}` },
+      create: {
+        id: `offline_${shopId}`,
+        shop: shopId,
+        state: "fixture",
+        isOnline: false,
+        scope: scopes,
+        accessToken: FIXTURE_ACCESS_TOKEN,
+        accountOwner: false,
+        locale: "en-GB",
+      },
+      update: {
+        scope: scopes,
+        accessToken: FIXTURE_ACCESS_TOKEN,
+        state: "fixture",
+      },
+    });
+  }
 
   await prisma.affordanceScore.deleteMany({ where: { shopId } });
   await prisma.insightScore.deleteMany({ where: { shopId } });
@@ -502,9 +516,26 @@ export async function seedFixtures(prisma: PrismaClient): Promise<SeedCounts> {
   const personasDoc = readJson(FIXTURE_FILES.personas);
   let personas = 0;
   for (const row of personasDoc.personas as Json[]) {
-    await prisma.persona.create({
-      data: {
+    await prisma.persona.upsert({
+      where: { id: asString(row.id) },
+      create: {
         id: asString(row.id),
+        shopId,
+        name: asString(row.name),
+        status: asString(row.status, "draft"),
+        vertical: asString(row.vertical, "running"),
+        goalsJson: JSON.stringify(row.goals ?? []),
+        budgetMin: money(row.budgetMin),
+        budgetMax: money(row.budgetMax),
+        currencyCode: asString(row.currencyCode, "GBP"),
+        constraintsJson: JSON.stringify(row.constraints ?? {}),
+        behaviouralJson: JSON.stringify(row.behavioural ?? {}),
+        locationProxy: asString(row.locationProxy) || null,
+        mockFlagsJson: JSON.stringify(row.mockFlags ?? []),
+        successCriteriaJson: JSON.stringify(row.successCriteria ?? {}),
+        avatarInitials: asString(row.avatarInitials) || null,
+      },
+      update: {
         shopId,
         name: asString(row.name),
         status: asString(row.status, "draft"),

@@ -9,7 +9,7 @@ process.env.DEMO_FIXTURE_SHOP = "1";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const { validateFixtures } = await import("../app/fixtures/validate");
 const { seedFixtures, DEMO_SHOP_DOMAIN } = await import("../app/fixtures/seed");
-const { MVP_SCOPES } = await import("../app/scopes");
+const { MVP_SCOPES, APP_SCOPES } = await import("../app/scopes");
 const { FIXTURE_ACCESS_TOKEN } = await import("../app/fixture-token");
 const { default: prisma } = await import("../app/db.server");
 const { loadShell } = await import("../app/services/shop-context.server");
@@ -28,12 +28,15 @@ test("fixtures parse and golden score schema is valid", () => {
   assert.match(golden, /Match-day home kit rush/);
 });
 
-test("shopify.app.toml scopes are exact and read-only", () => {
+test("shopify.app.toml scopes are exact — reads plus write_products only", () => {
   const toml = readFileSync(path.join(root, "shopify.app.toml"), "utf8");
   const match = toml.match(/scopes\s*=\s*"([^"]+)"/);
   assert.ok(match);
-  assert.equal(match[1], MVP_SCOPES);
-  assert.equal(match[1].includes("write_"), false);
+  assert.equal(match[1], APP_SCOPES);
+  assert.deepEqual(
+    match[1].split(",").filter((scope) => scope.startsWith("write_")),
+    ["write_products"],
+  );
 });
 
 test("app source does not fetch twitter or parkrun", () => {

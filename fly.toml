@@ -15,12 +15,13 @@ primary_region = "lhr"
   dockerfile = "shopify-app/Dockerfile"
 
 [env]
-  DEMO_FIXTURE_SHOP = "1"
   DATABASE_URL = "file:/data/dev.db"
   PORT = "8080"
   HOST = "0.0.0.0"
-  SCOPES = "read_orders,read_products,read_customers"
+  SCOPES = "read_orders,read_products,read_customers,write_products"
   NODE_ENV = "production"
+  SHOPIFY_APP_URL = "https://syndicate-harbour-run.fly.dev"
+  DEMO_FIXTURE_SHOP = "0"
 
 [http_service]
   internal_port = 8080
@@ -43,5 +44,5 @@ primary_region = "lhr"
   initial_size = "1gb"
 
 [[vm]]
-  size = "shared-cpu-1x"
-  memory = "1024mb"
+  size = "shared-cpu-2x"
+  memory = "4096mb"

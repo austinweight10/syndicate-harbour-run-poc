@@ -13,6 +13,11 @@ type Findings = {
   shellMissingFromRaceKits: boolean;
   addedTee: boolean;
   reachedCheckout: boolean;
+  missingVariantXl: boolean;
+  weakRaceCopy: boolean;
+  priceShockShipping: boolean;
+  trustThinReviews: boolean;
+  uxTrapCookie: boolean;
 };
 
 const EMPTY: Findings = {
@@ -20,6 +25,11 @@ const EMPTY: Findings = {
   shellMissingFromRaceKits: false,
   addedTee: false,
   reachedCheckout: false,
+  missingVariantXl: false,
+  weakRaceCopy: false,
+  priceShockShipping: false,
+  trustThinReviews: false,
+  uxTrapCookie: false,
 };
 
 export class DeniedClickError extends Error {
@@ -59,7 +69,14 @@ export async function executeAgentRun(runId: string, client: PrismaClient = pris
   const shop = await client.shop.findUnique({ where: { id: run.shopId } });
   const storefront = resolveStorefrontUrl(run.storefrontUrl || shop?.storefrontUrl);
   const path = loadDawnPath();
-  const headed = resolveHeaded();
+  let forceHeaded = false;
+  try {
+    const prior = JSON.parse(run.timelineJson || "{}") as { forceHeaded?: boolean };
+    forceHeaded = prior.forceHeaded === true;
+  } catch {
+    forceHeaded = false;
+  }
+  const headed = resolveHeaded(forceHeaded);
   const steps: StepLog[] = [];
   const findings: Findings = { ...EMPTY };
   let sawRaceKits = false;
@@ -69,6 +86,7 @@ export async function executeAgentRun(runId: string, client: PrismaClient = pris
     JSON.stringify({
       pathId: path.pathId,
       headed,
+      forceHeaded,
       browser: browserMeta,
       steps,
     });
@@ -120,8 +138,15 @@ export async function executeAgentRun(runId: string, client: PrismaClient = pris
       const password = page.locator("input[name=password]");
       if (await password.count()) {
         await password.fill(process.env.SHOP_STOREFRONT_PASSWORD);
-        const enter = page.getByText("Enter", { exact: false });
-        if (await enter.count()) await enter.first().click();
+        const submit = page.locator('button[type=submit], input[type=submit]').first();
+        if (await submit.count()) {
+          await submit.click();
+        } else {
+          await password.press("Enter");
+        }
+        await page.waitForURL((url) => !url.pathname.includes("/password"), {
+          timeout: 15_000,
+        }).catch(() => undefined);
         log("password_gate", true, "Storefront password only. Not a customer account.");
       }
     }
@@ -215,12 +240,43 @@ async function runStep(
   }
   if (step.action === "observe") {
     const body = await page.locator("body").innerText();
+    const lower = body.toLowerCase();
     if (step.assertMissingText?.length) {
-      const present = step.assertMissingText.some((text) => body.toLowerCase().includes(text.toLowerCase()));
+      const present = step.assertMissingText.some((text) => lower.includes(text.toLowerCase()));
       findings.sizeGuideMissing = !present;
     }
     if (step.id === "note_race_kits_excludes_shell") {
-      findings.shellMissingFromRaceKits = sawRaceKits ? findings.shellMissingFromRaceKits : !/waterproof shell/i.test(body);
+      findings.shellMissingFromRaceKits = sawRaceKits
+        ? findings.shellMissingFromRaceKits
+        : !/waterproof shell/i.test(body);
+    }
+    if (step.id === "note_missing_xl" || step.id === "select_size_l") {
+      const hasXl =
+        (await page.getByRole("radio", { name: "XL", exact: true }).count()) > 0 ||
+        (await page.locator("label", { hasText: /^XL$/i }).count()) > 0 ||
+        /\bXL\b/.test(body);
+      if (!hasXl) findings.missingVariantXl = true;
+    }
+    if (step.id === "note_weak_race_copy") {
+      if (!/(race day|race weekend|marathon|parkrun|wet weather|london marathon)/i.test(body)) {
+        findings.weakRaceCopy = true;
+      }
+    }
+    if (step.id === "note_trust_reviews") {
+      if (!/(review|reviews|★|stars)/i.test(body)) findings.trustThinReviews = true;
+    }
+    if (step.id === "note_price_shock_shipping" || step.id === "checkout_start") {
+      if (
+        /shipping/i.test(body) &&
+        /(£\s*\d|\$\s*\d|calculated at|at checkout)/i.test(body)
+      ) {
+        findings.priceShockShipping = true;
+      }
+    }
+    if (step.id === "note_ux_cookie") {
+      if (/(accept (all )?cookies|cookie (settings|preferences)|we use cookies)/i.test(body)) {
+        findings.uxTrapCookie = true;
+      }
     }
     return;
   }
@@ -230,7 +286,26 @@ async function runStep(
     try {
       await clickHint(page, hint);
       if (step.id === "atc_tee") findings.addedTee = true;
-      if (step.id === "checkout_start") findings.reachedCheckout = true;
+      if (step.id === "checkout_start") {
+        findings.reachedCheckout = true;
+        const body = await page.locator("body").innerText();
+        findings.priceShockShipping =
+          /shipping/i.test(body) &&
+          /(£\s*\d|\$\s*\d|calculated at|at checkout)/i.test(body);
+      }
+      if (step.id === "select_size_l" || step.id === "open_tee") {
+        const body = await page.locator("body").innerText();
+        const hasXl =
+          (await page.getByRole("radio", { name: "XL", exact: true }).count()) > 0 ||
+          /\bXL\b/.test(body);
+        findings.missingVariantXl = !hasXl;
+        if (step.id === "open_tee") {
+          findings.weakRaceCopy = !/(race day|race weekend|marathon|parkrun|wet weather|london marathon)/i.test(
+            body,
+          );
+          findings.trustThinReviews = !/(review|reviews|★|stars)/i.test(body);
+        }
+      }
       if (page.url().includes("/collections/race-kits")) {
         markRaceKits();
         const body = await page.locator("body").innerText();
@@ -241,6 +316,36 @@ async function runStep(
       if (error instanceof DeniedClickError) throw error;
       last = error instanceof Error ? error.message : "click failed";
     }
+  }
+  // Live Dawn without menu hooks: jump straight to the collection URL.
+  if (step.id === "nav_race_kits") {
+    await page.goto(`${storefront}/collections/race-kits`, { waitUntil: "domcontentloaded" });
+    markRaceKits();
+    const body = await page.locator("body").innerText();
+    findings.shellMissingFromRaceKits = !/waterproof shell/i.test(body);
+    return;
+  }
+  if (step.id === "open_tee") {
+    await page.goto(`${storefront}/products/race-tee-unisex`, { waitUntil: "domcontentloaded" });
+    const body = await page.locator("body").innerText();
+    findings.missingVariantXl =
+      (await page.getByRole("radio", { name: "XL", exact: true }).count()) === 0 && !/\bXL\b/.test(body);
+    findings.weakRaceCopy = !/(race day|race weekend|marathon|parkrun|wet weather|london marathon)/i.test(
+      body,
+    );
+    findings.trustThinReviews = !/(review|reviews|★|stars)/i.test(body);
+    findings.uxTrapCookie = /(accept (all )?cookies|cookie (settings|preferences)|we use cookies)/i.test(
+      body,
+    );
+    return;
+  }
+  if (step.id === "open_shorts") {
+    await page.goto(`${storefront}/products/running-shorts`, { waitUntil: "domcontentloaded" });
+    return;
+  }
+  if (step.id === "open_youth_tee") {
+    await page.goto(`${storefront}/products/kids-youth-run-tee`, { waitUntil: "domcontentloaded" });
+    return;
   }
   throw new Error(last);
 }
@@ -258,6 +363,87 @@ async function clickHint(page: import("playwright").Page, hint: string) {
   if (isCardField(hint) || isCardField(label)) throw new DeniedClickError(label);
   if (isDeniedTarget(label, href)) throw new DeniedClickError(label);
   await locator.click({ timeout: 8000 });
+}
+
+async function writeInsight(
+  client: PrismaClient,
+  input: {
+    shopId: string;
+    personaId: string;
+    runId: string;
+    eventId: string | null;
+    targetType: string;
+    targetRef: string;
+    title: string;
+    body: string;
+    notes: string;
+    insightKind: string;
+    score: number;
+    priority: "P0" | "P1" | "P2";
+  },
+) {
+  const labels = ["OBSERVED"];
+  const id = recId(input.shopId, "insight", input.targetRef, input.title);
+  const insightId = `ins_${id}`;
+  await client.insightScore.upsert({
+    where: { id: insightId },
+    create: {
+      id: insightId,
+      shopId: input.shopId,
+      personaId: input.personaId,
+      runId: input.runId,
+      targetType: input.targetType,
+      targetRef: input.targetRef,
+      score: input.score,
+      insightKind: input.insightKind,
+      evidenceJson: JSON.stringify({
+        title: input.title,
+        provenanceLabels: labels,
+        agentRunId: input.runId,
+      }),
+      notes: input.notes,
+    },
+    update: {
+      runId: input.runId,
+      personaId: input.personaId,
+      insightKind: input.insightKind,
+      score: input.score,
+      evidenceJson: JSON.stringify({
+        title: input.title,
+        provenanceLabels: labels,
+        agentRunId: input.runId,
+      }),
+      notes: input.notes,
+    },
+  });
+  await client.recommendation.upsert({
+    where: { id },
+    create: {
+      id,
+      shopId: input.shopId,
+      kind: "insight",
+      priority: input.priority,
+      title: input.title,
+      body: input.body,
+      personaId: input.personaId,
+      eventId: input.eventId,
+      runId: input.runId,
+      targetType: input.targetType,
+      targetRef: input.targetRef,
+      provenanceLabelsJson: JSON.stringify(labels),
+      confidence: input.score,
+      status: "open",
+    },
+    update: {
+      runId: input.runId,
+      personaId: input.personaId,
+      eventId: input.eventId,
+      priority: input.priority,
+      body: input.body,
+      provenanceLabelsJson: JSON.stringify(labels),
+      confidence: input.score,
+    },
+  });
 }
 
 async function writeFindings(
@@ -304,55 +490,122 @@ async function writeFindings(
   }
 
   if (findings.sizeGuideMissing) {
-    const title = "Youth run tee has no size guide";
-    const id = recId(shopId, "insight", "kids-youth-run-tee", title);
-    const labels = ["OBSERVED"];
-    const insightId = `ins_${id}`;
-    await client.insightScore.upsert({
-      where: { id: insightId },
-      create: {
-        id: insightId,
-        shopId,
-        personaId,
-        runId,
-        targetType: "product",
-        targetRef: "kids-youth-run-tee",
-        score: 0.9,
-        insightKind: "sizing",
-        evidenceJson: JSON.stringify({ title, provenanceLabels: labels, agentRunId: runId }),
-        notes: "The youth tee page had no size guide. Guest path. Stopped before payment.",
-      },
-      update: {
-        runId,
-        personaId,
-        evidenceJson: JSON.stringify({ title, provenanceLabels: labels, agentRunId: runId }),
-      },
+    await writeInsight(client, {
+      shopId,
+      personaId,
+      runId,
+      eventId,
+      targetType: "product",
+      targetRef: "kids-youth-run-tee",
+      title: "Youth run tee has no size guide",
+      body: "The shopper opened Kids / Youth Run Tee and the page has no size guide. This is from the Playwright run. No payment was taken.",
+      notes: "The youth tee page had no size guide. Guest path. Stopped before payment.",
+      insightKind: "sizing",
+      score: 0.9,
+      priority: "P0",
     });
-    await client.recommendation.upsert({
-      where: { id },
-      create: {
-        id,
-        shopId,
-        kind: "insight",
-        priority: "P0",
-        title,
-        body: "The shopper opened Kids / Youth Run Tee and the page has no size guide. This is from the Playwright run. No payment was taken.",
-        personaId,
-        eventId,
-        runId,
-        targetType: "product",
-        targetRef: "kids-youth-run-tee",
-        provenanceLabelsJson: JSON.stringify(labels),
-        confidence: 0.9,
-        status: "open",
-      },
-      update: {
-        runId,
-        personaId,
-        eventId,
-        body: "The shopper opened Kids / Youth Run Tee and the page has no size guide. This is from the Playwright run. No payment was taken.",
-        provenanceLabelsJson: JSON.stringify(labels),
-      },
+  }
+
+  if (findings.shellMissingFromRaceKits) {
+    await writeInsight(client, {
+      shopId,
+      personaId,
+      runId,
+      eventId,
+      targetType: "collection",
+      targetRef: "race-kits",
+      title: "Race Kits is missing the waterproof shell",
+      body: "The shopper opened Race Kits and the waterproof shell was not in that collection. This is from the Playwright run. No payment was taken.",
+      notes: "Race Kits had no waterproof shell on the storefront walk. Guest path. Stopped before payment.",
+      insightKind: "dead_end",
+      score: 0.8,
+      priority: "P1",
+    });
+  }
+
+  if (findings.missingVariantXl) {
+    await writeInsight(client, {
+      shopId,
+      personaId,
+      runId,
+      eventId,
+      targetType: "product",
+      targetRef: "race-tee-unisex",
+      title: "Race tee has no XL size",
+      body: "The shopper opened Race Tee and could not find an XL option. This is from the Playwright run. No payment was taken.",
+      notes: "Size XL was absent on the race tee PDP. Guest path.",
+      insightKind: "missing_variant",
+      score: 0.75,
+      priority: "P0",
+    });
+  }
+
+  if (findings.weakRaceCopy) {
+    await writeInsight(client, {
+      shopId,
+      personaId,
+      runId,
+      eventId,
+      targetType: "copy",
+      targetRef: "race-tee-unisex",
+      title: "Race tee copy misses the race occasion",
+      body: "The race tee PDP does not mention race day, weather, or a London race story. Shoppers shopping for a race weekend get little occasion cue.",
+      notes: "No race/weather occasion copy on the PDP body.",
+      insightKind: "weak_copy",
+      score: 0.65,
+      priority: "P1",
+    });
+  }
+
+  if (findings.priceShockShipping) {
+    await writeInsight(client, {
+      shopId,
+      personaId,
+      runId,
+      eventId,
+      targetType: "page",
+      targetRef: "checkout",
+      title: "Shipping cost only appears at checkout",
+      body: "The shopper only saw a shipping charge once checkout started. Surfacing delivery cost earlier reduces late drop-off.",
+      notes: "Shipping amount observed on the checkout step, not earlier in the path.",
+      insightKind: "price_shock",
+      score: 0.7,
+      priority: "P1",
+    });
+  }
+
+  if (findings.trustThinReviews) {
+    await writeInsight(client, {
+      shopId,
+      personaId,
+      runId,
+      eventId,
+      targetType: "product",
+      targetRef: "race-tee-unisex",
+      title: "Race tee has no visible reviews",
+      body: "The race tee page showed no reviews or star ratings. Race-day shoppers look for fit proof before they commit.",
+      notes: "No review or star signals on the PDP.",
+      insightKind: "trust",
+      score: 0.55,
+      priority: "P2",
+    });
+  }
+
+  if (findings.uxTrapCookie) {
+    await writeInsight(client, {
+      shopId,
+      personaId,
+      runId,
+      eventId,
+      targetType: "page",
+      targetRef: "home",
+      title: "Cookie banner interrupts the browse path",
+      body: "A cookie or consent banner competed with the shopping path. Keep it dismissible and off the critical race-kit clicks.",
+      notes: "Cookie / consent copy was visible during the storefront walk.",
+      insightKind: "ux_trap",
+      score: 0.5,
+      priority: "P2",
     });
   }
 }
+
