@@ -1,0 +1,123 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English (e.g. colour, organise, labelled, centre).",
+    "provenance": "CURATED",
+    "purpose": "P0 HashtagWatch seed for social.hashtagTrends path (a)",
+    "epic": "03"
+  },
+  "watchlist": [
+    {
+      "tag": "#MUFC",
+      "geoHint": "Manchester",
+      "affinity": [
+        "home_kit",
+        "scarf",
+        "kids_kit"
+      ],
+      "priority": 1
+    },
+    {
+      "tag": "#LFC",
+      "geoHint": "Liverpool",
+      "affinity": [
+        "home_kit",
+        "scarf"
+      ],
+      "priority": 1
+    },
+    {
+      "tag": "#Arsenal",
+      "geoHint": "London",
+      "affinity": [
+        "home_kit",
+        "jersey"
+      ],
+      "priority": 1
+    },
+    {
+      "tag": "#CFC",
+      "geoHint": "London",
+      "affinity": [
+        "home_kit",
+        "away_kit"
+      ],
+      "priority": 2
+    },
+    {
+      "tag": "#Spurs",
+      "geoHint": "London",
+      "affinity": [
+        "home_kit"
+      ],
+      "priority": 2
+    },
+    {
+      "tag": "#LondonMarathon",
+      "geoHint": "London",
+      "affinity": [
+        "trainers",
+        "race_day",
+        "layers"
+      ],
+      "priority": 1
+    },
+    {
+      "tag": "#GreatNorthRun",
+      "geoHint": "Newcastle",
+      "affinity": [
+        "trainers",
+        "race_day"
+      ],
+      "priority": 2
+    },
+    {
+      "tag": "#parkrun",
+      "geoHint": null,
+      "affinity": [
+        "trainers",
+        "recovery"
+      ],
+      "priority": 2
+    },
+    {
+      "tag": "#HYROX",
+      "geoHint": null,
+      "affinity": [
+        "grips",
+        "shorts",
+        "lifting_shoes"
+      ],
+      "priority": 1
+    },
+    {
+      "tag": "#MatchDay",
+      "geoHint": null,
+      "affinity": [
+        "home_kit",
+        "scarf",
+        "layers"
+      ],
+      "priority": 1
+    },
+    {
+      "tag": "#SofaTo5K",
+      "geoHint": null,
+      "affinity": [
+        "trainers",
+        "recovery"
+      ],
+      "priority": 2
+    },
+    {
+      "tag": "#Athleisure",
+      "geoHint": null,
+      "affinity": [
+        "leggings",
+        "layers"
+      ],
+      "priority": 3
+    }
+  ]
+}

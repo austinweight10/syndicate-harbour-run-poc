@@ -1,0 +1,22 @@
+# Syndicate — do not invent client_id. Link with `shopify app config link` when Austin has a Partner app.
+name = "Syndicate"
+client_id = ""
+application_url = "http://127.0.0.1:44731"
+embedded = true
+
+[access_scopes]
+scopes = "read_orders,read_products,read_customers"
+
+[auth]
+redirect_urls = [ "http://127.0.0.1:44731/auth/callback" ]
+
+[webhooks]
+api_version = "2025-10"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/uninstalled"]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = ["shop/update"]
+  uri = "/webhooks/shop/update"

@@ -1,0 +1,183 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English.",
+    "provenance": "CURATED",
+    "purpose": "Scripted Playwright path for live Harbour Run Dawn store",
+    "epic": "06",
+    "theme": "Dawn",
+    "storeStory": "Harbour Run",
+    "pack": "live-demo-store",
+    "vertical": "running"
+  },
+  "personaId": "pers_race_day_taper",
+  "storefrontHint": "harbour-run-demo.myshopify.com",
+  "storefrontEnv": "SHOP_STOREFRONT_URL",
+  "stopPolicy": "checkout_start_only",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "denyList": [
+    "/checkouts/*/payment",
+    "complete_purchase",
+    "Buy with Shop Pay submit",
+    "Pay now",
+    "Complete order"
+  ],
+  "passwordGate": {
+    "enabledIfEnv": "SHOP_STOREFRONT_PASSWORD",
+    "selectorHint": "input[name=password]",
+    "submitHint": "text=Enter"
+  },
+  "steps": [
+    {
+      "id": "home",
+      "action": "goto",
+      "target": "/",
+      "expect": "Race Kits"
+    },
+    {
+      "id": "nav_race_kits",
+      "action": "click",
+      "selectorHint": "role=link[name=Race Kits]",
+      "fallbackHints": [
+        "a[href*='/collections/race-kits']",
+        "text=Race Kits",
+        "[data-syndicate=nav-race-kits]"
+      ],
+      "expect": "collection"
+    },
+    {
+      "id": "open_tee",
+      "action": "click",
+      "selectorHint": "text=Race Tee \u2014 Unisex",
+      "fallbackHints": [
+        "text=Race Tee",
+        "[data-syndicate-handle=race-tee-unisex]"
+      ],
+      "expect": "PDP"
+    },
+    {
+      "id": "select_size_l",
+      "action": "click",
+      "selectorHint": "role=radio[name=L]",
+      "fallbackHints": [
+        "fieldset >> text=L",
+        "label:text-is('L')",
+        "text=L"
+      ],
+      "optional": false
+    },
+    {
+      "id": "atc_tee",
+      "action": "click",
+      "selectorHint": "role=button[name=Add to cart]",
+      "fallbackHints": [
+        "text=Add to cart",
+        "[data-syndicate=atc]"
+      ]
+    },
+    {
+      "id": "continue_shopping",
+      "action": "click",
+      "selectorHint": "text=Continue shopping",
+      "optional": true
+    },
+    {
+      "id": "open_shorts",
+      "action": "click",
+      "selectorHint": "text=Running Shorts",
+      "fallbackHints": [
+        "a[href*='/products/running-shorts']",
+        "[data-syndicate-handle=running-shorts]"
+      ],
+      "expect": "PDP",
+      "optional": true,
+      "note": "Prefer stay in Race Kits; else goto /products/running-shorts"
+    },
+    {
+      "id": "select_size_l_shorts",
+      "action": "click",
+      "selectorHint": "role=radio[name=L]",
+      "fallbackHints": [
+        "fieldset >> text=L",
+        "label:text-is('L')"
+      ],
+      "optional": true
+    },
+    {
+      "id": "atc_shorts",
+      "action": "click",
+      "selectorHint": "role=button[name=Add to cart]",
+      "fallbackHints": [
+        "text=Add to cart",
+        "[data-syndicate=atc]"
+      ],
+      "optional": true
+    },
+    {
+      "id": "kids_collection",
+      "action": "goto",
+      "target": "/collections/kids-youth",
+      "expect": "Kids"
+    },
+    {
+      "id": "open_youth_tee",
+      "action": "click",
+      "selectorHint": "text=Kids / Youth Run Tee",
+      "fallbackHints": [
+        "text=Youth Run Tee",
+        "[data-syndicate-handle=kids-youth-run-tee]"
+      ],
+      "expect": "PDP"
+    },
+    {
+      "id": "note_size_guide_missing",
+      "action": "observe",
+      "note": "Kids / Youth Run Tee PDP has no size guide \u2014 emit InsightScore sizing/ux_trap",
+      "assertMissingText": [
+        "Size guide",
+        "Size Guide"
+      ]
+    },
+    {
+      "id": "note_race_kits_excludes_shell",
+      "action": "observe",
+      "note": "Optional P1: Race Kits collection does not list Waterproof Shell \u2014 filter friction",
+      "optional": true
+    },
+    {
+      "id": "atc_youth_optional",
+      "action": "click",
+      "selectorHint": "role=button[name=Add to cart]",
+      "fallbackHints": [
+        "text=Add to cart",
+        "[data-syndicate=atc]"
+      ],
+      "optional": true
+    },
+    {
+      "id": "cart",
+      "action": "goto",
+      "target": "/cart"
+    },
+    {
+      "id": "checkout_start",
+      "action": "click",
+      "selectorHint": "role=button[name=Check out]",
+      "fallbackHints": [
+        "text=Check out",
+        "text=Checkout",
+        "[data-syndicate=checkout-start]"
+      ],
+      "outcome": "checkout_started"
+    },
+    {
+      "id": "stop",
+      "action": "stop",
+      "reason": "stop_before_payment"
+    }
+  ]
+}

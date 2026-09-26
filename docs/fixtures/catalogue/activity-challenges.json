@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English (e.g. colour, organise, labelled, centre).",
+    "provenance": "MOCK",
+    "purpose": "P0 ActivityChallenge curated/MOCK Strava-shaped",
+    "epic": "03"
+  },
+  "challenges": [
+    {
+      "naturalKey": "act:sep-100k:2026",
+      "title": "September 100K challenge — UK runners",
+      "platform": "mock",
+      "mode": "virtual",
+      "window": {
+        "start": "2026-09-01",
+        "end": "2026-09-30"
+      },
+      "affinity": [
+        "run_shoes",
+        "kits",
+        "recovery"
+      ],
+      "volumeProxy": 0.72,
+      "provenance": "MOCK"
+    },
+    {
+      "naturalKey": "act:club:harbour-weekly",
+      "title": "Harbour Athletic public club — weekly distance",
+      "platform": "strava",
+      "mode": "virtual",
+      "window": {
+        "start": "2026-09-22",
+        "end": "2026-09-28"
+      },
+      "affinity": [
+        "run_shoes",
+        "layers"
+      ],
+      "volumeProxy": 0.55,
+      "provenance": "MOCK",
+      "notes": "Strava-shaped shape only; no private athlete data"
+    },
+    {
+      "naturalKey": "act:zwift-climb:oct",
+      "title": "Virtual climb month (Zwift-shaped)",
+      "platform": "zwift",
+      "mode": "virtual",
+      "window": {
+        "start": "2026-10-01",
+        "end": "2026-10-31"
+      },
+      "affinity": [
+        "cycling_kit",
+        "hydration"
+      ],
+      "volumeProxy": 0.48,
+      "provenance": "MOCK"
+    }
+  ]
+}

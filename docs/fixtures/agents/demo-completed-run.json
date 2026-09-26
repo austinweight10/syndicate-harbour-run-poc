@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "purpose": "Emergency MOCK hydrate for Harbour Run \u2014 must show MOCK badge on stage",
+    "epic": "06",
+    "mode": "MOCK",
+    "shopStory": "Harbour Run"
+  },
+  "agentRun": {
+    "id": "run_mock_harbour_run_001",
+    "personaId": "pers_race_day_taper",
+    "status": "completed",
+    "outcome": "checkout_started",
+    "mode": "MOCK",
+    "pathId": "path-harbour-run-dawn",
+    "storefrontUrl": "https://harbour-run-demo.myshopify.com",
+    "startedAt": "2026-09-24T10:15:00+01:00",
+    "finishedAt": "2026-09-24T10:17:42+01:00",
+    "timeline": [
+      {
+        "step": "home",
+        "ok": true
+      },
+      {
+        "step": "nav_race_kits",
+        "ok": true
+      },
+      {
+        "step": "open_race_tee",
+        "ok": true
+      },
+      {
+        "step": "select_size_l",
+        "ok": true
+      },
+      {
+        "step": "atc_tee",
+        "ok": true
+      },
+      {
+        "step": "open_shorts",
+        "ok": true
+      },
+      {
+        "step": "atc_shorts",
+        "ok": true
+      },
+      {
+        "step": "kids_youth_pdp",
+        "ok": true,
+        "note": "size guide missing"
+      },
+      {
+        "step": "cart",
+        "ok": true
+      },
+      {
+        "step": "checkout_start",
+        "ok": true,
+        "outcome": "checkout_started"
+      },
+      {
+        "step": "stop",
+        "ok": true,
+        "reason": "stop_before_payment"
+      }
+    ],
+    "insightsEmitted": [
+      "ins_youth_size_guide",
+      "ins_race_kits_no_shell"
+    ]
+  }
+}

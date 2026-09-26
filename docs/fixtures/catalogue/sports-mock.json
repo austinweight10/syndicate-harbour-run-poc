@@ -1,0 +1,233 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "provenance": "AGGREGATE_PROXY",
+    "purpose": "Demo event catalogue \u2014 RUNNING primary for Harbour Run; other sports secondary",
+    "epic": "03",
+    "note": "Orders remain OBSERVED; these events are PROXY demand drivers. football-data rows optional/secondary."
+  },
+  "events": [
+    {
+      "id": "evt_hyde_park_5k_10k",
+      "title": "Hyde Park 5K & 10K (RunThrough)",
+      "sport": "running",
+      "startsAt": "2026-09-26T09:30:00+01:00",
+      "venue": "Hyde Park Bandstand, W2",
+      "mode": "physical",
+      "affinityTags": [
+        "race_day",
+        "trainers",
+        "hydration",
+        "layers"
+      ],
+      "provenance": "AGGREGATE_PROXY",
+      "sourceUrl": "https://findarace.com/events/hyde-park-5k-10k",
+      "demoPrimary": true
+    },
+    {
+      "id": "evt_battersea_park",
+      "title": "Battersea Park 5k, 10k & Half Marathon",
+      "sport": "running",
+      "startsAt": "2026-09-26T10:30:00+01:00",
+      "venue": "Battersea Park, SW11",
+      "mode": "physical",
+      "affinityTags": [
+        "race_day",
+        "trainers",
+        "recovery",
+        "hydration"
+      ],
+      "provenance": "AGGREGATE_PROXY",
+      "sourceUrl": "https://findarace.com/events/battersea-park-10k-half-marathon",
+      "demoPrimary": true
+    },
+    {
+      "id": "evt_clapham_common",
+      "title": "Clapham Common 5k, 10k & Half Marathon",
+      "sport": "running",
+      "startsAt": "2026-09-27T09:00:00+01:00",
+      "venue": "Clapham Common, SW4",
+      "mode": "physical",
+      "affinityTags": [
+        "race_day",
+        "trainers",
+        "layers",
+        "hydration"
+      ],
+      "provenance": "AGGREGATE_PROXY",
+      "sourceUrl": "https://findarace.com/events/clapham-common-5k-10k",
+      "demoPrimary": true
+    },
+    {
+      "id": "evt_victoria_park",
+      "title": "Victoria Park Half Marathon, 10k & 5k",
+      "sport": "running",
+      "startsAt": "2026-10-03T09:30:00+01:00",
+      "venue": "Victoria Park, Hackney E9",
+      "mode": "physical",
+      "affinityTags": [
+        "race_day",
+        "trainers",
+        "recovery",
+        "hydration"
+      ],
+      "provenance": "AGGREGATE_PROXY",
+      "sourceUrl": "https://www.challengechasers.com/events/908ca59c-efae-4b96-9ee6-122bf9dff84e",
+      "demoPrimary": true
+    },
+    {
+      "id": "evt_hackney_parkrun",
+      "title": "Hackney Marshes parkrun",
+      "sport": "running",
+      "startsAt": "2026-09-27T09:00:00+01:00",
+      "venue": "Hackney Marshes Centre, E9",
+      "mode": "physical",
+      "affinityTags": [
+        "trainers",
+        "layers",
+        "recovery",
+        "hydration"
+      ],
+      "provenance": "AGGREGATE_PROXY",
+      "sourceUrl": "https://www.parkrun.org.uk/hackneymarshes/",
+      "recurring": "weekly_saturday",
+      "demoPrimary": true
+    },
+    {
+      "id": "evt_kingston_half",
+      "title": "Kingston Half Marathon",
+      "sport": "running",
+      "startsAt": "2026-10-04T08:30:00+01:00",
+      "venue": "Kingston Market Place \u2192 Hampton Court",
+      "mode": "physical",
+      "affinityTags": [
+        "race_day",
+        "trainers",
+        "hydration",
+        "layers",
+        "recovery"
+      ],
+      "provenance": "AGGREGATE_PROXY",
+      "sourceUrl": "https://findarace.com/events/the-royal-borough-of-kingston-half-marathon",
+      "demoPrimary": false
+    },
+    {
+      "id": "evt_royal_parks_half",
+      "title": "Oysho Royal Parks Half Marathon",
+      "sport": "running",
+      "startsAt": "2026-10-11T09:00:00+01:00",
+      "venue": "Hyde / Green / St James's / Kensington Gardens",
+      "mode": "physical",
+      "affinityTags": [
+        "race_day",
+        "layers",
+        "hydration",
+        "recovery",
+        "trainers"
+      ],
+      "provenance": "AGGREGATE_PROXY",
+      "sourceUrl": "https://www.royalparks.org.uk/whats-on/royal-parks-half-marathon",
+      "demoPrimary": false
+    },
+    {
+      "naturalKey": "mock:pl:arsenal-chelsea:2026-09-26",
+      "title": "Arsenal vs Chelsea",
+      "category": "team_fixture",
+      "mode": "physical",
+      "startAt": "2026-09-26T15:00:00+01:00",
+      "venueCity": "London",
+      "audienceTags": [
+        "fan_spectator",
+        "home_kit"
+      ],
+      "provenance": "MOCK",
+      "sourceType": "mock_json",
+      "demoPrimary": false,
+      "demoRole": "secondary"
+    },
+    {
+      "naturalKey": "mock:pl:mufc-liverpool:2026-09-27",
+      "title": "Manchester United vs Liverpool",
+      "category": "team_fixture",
+      "mode": "physical",
+      "startAt": "2026-09-27T16:30:00+01:00",
+      "venueCity": "Manchester",
+      "audienceTags": [
+        "fan_spectator",
+        "home_kit",
+        "kids"
+      ],
+      "provenance": "MOCK",
+      "sourceType": "mock_json",
+      "demoPrimary": false,
+      "demoRole": "secondary"
+    },
+    {
+      "naturalKey": "mock:race:gm-10k:2026-10-04",
+      "title": "Greater Manchester 10K",
+      "category": "race_running",
+      "mode": "physical",
+      "startAt": "2026-10-04T09:30:00+01:00",
+      "venueCity": "Manchester",
+      "audienceTags": [
+        "runner",
+        "race_day"
+      ],
+      "provenance": "MOCK",
+      "sourceType": "mock_json",
+      "demoPrimary": false,
+      "demoRole": "secondary"
+    },
+    {
+      "naturalKey": "mock:hyrox:london:2026-10-11",
+      "title": "Hyrox-style city meet (London)",
+      "category": "crossfit_functional",
+      "mode": "physical",
+      "startAt": "2026-10-11T08:00:00+01:00",
+      "venueCity": "London",
+      "audienceTags": [
+        "hyrox",
+        "functional"
+      ],
+      "provenance": "MOCK",
+      "sourceType": "mock_json",
+      "demoPrimary": false,
+      "demoRole": "secondary"
+    },
+    {
+      "naturalKey": "mock:virtual:sofa5k:series",
+      "title": "Sofa-to-5K virtual series",
+      "category": "virtual_challenge",
+      "mode": "virtual",
+      "startAt": "2026-09-22T00:00:00+01:00",
+      "endAt": "2026-10-20T23:59:59+01:00",
+      "venueCity": null,
+      "audienceTags": [
+        "online_only",
+        "runner"
+      ],
+      "provenance": "MOCK",
+      "sourceType": "mock_json",
+      "demoPrimary": false,
+      "demoRole": "secondary"
+    },
+    {
+      "naturalKey": "mock:season:athleisure-drop:aut26",
+      "title": "Autumn athleisure drop week",
+      "category": "season_drop_calendar",
+      "mode": "hybrid",
+      "startAt": "2026-09-28T00:00:00+01:00",
+      "endAt": "2026-10-05T23:59:59+01:00",
+      "venueCity": null,
+      "audienceTags": [
+        "athleisure",
+        "layers"
+      ],
+      "provenance": "MOCK",
+      "sourceType": "mock_json",
+      "demoPrimary": false,
+      "demoRole": "secondary"
+    }
+  ]
+}

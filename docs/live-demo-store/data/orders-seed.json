@@ -1,0 +1,2223 @@
+{
+  "_meta": {
+    "version": "2026-09-24-running-pivot",
+    "locale": "en-GB",
+    "shop_story": "Harbour Run",
+    "suggested_domain": "harbour-run-demo.myshopify.com",
+    "currency": "GBP",
+    "timezone": "Europe/London",
+    "purpose": "Live demo seed orders \u2014 heuristic clusters for persona derivation (NOT ML); vertical = London running",
+    "order_count": 48,
+    "window_days": 45,
+    "anchor_date": "2026-09-24",
+    "cohort_counts": {
+      "race_day_taper": 18,
+      "wet_weather_trainer": 12,
+      "club_social": 10,
+      "wx_athleisure": 8
+    },
+    "saturday_order_count": 30,
+    "race_tee_saturday": 19,
+    "race_tee_weekday": 8,
+    "proxy_events_note": "Hyde Park / Battersea / parkrun / Open-Meteo are AGGREGATE_PROXY demand drivers \u2014 orders remain OBSERVED shop data",
+    "notes": "Seed app uses write_orders separately from Syndicate read-only app. Old harbour-athletic-demo / football kit seed superseded 2026-09-24."
+  },
+  "orders": [
+    {
+      "id": "ord_seed_001",
+      "name": "#1001",
+      "created_at": "2026-08-15T09:05:00+01:00",
+      "customer_email": "james.wright1@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "80.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W2 2UH",
+        "postal_sector": "W2",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "12 Queensway"
+      },
+      "geo": {
+        "lat": 51.51,
+        "lng": -0.17
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-L",
+          "title": "Running Shorts \u2014 L",
+          "handle": "running-shorts",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "42.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_002",
+      "name": "#1002",
+      "created_at": "2026-08-22T10:08:00+01:00",
+      "customer_email": "sarah.patel2@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "56.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW11 4NJ",
+        "postal_sector": "SW11",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "44 Battersea Park Road"
+      },
+      "geo": {
+        "lat": 51.48,
+        "lng": -0.16
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-M",
+          "title": "Race Tee \u2014 Unisex \u2014 M",
+          "handle": "race-tee-unisex",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-PS-3",
+          "title": "Performance Socks \u2014 3-pack",
+          "handle": "performance-socks",
+          "variantTitle": "3-pack",
+          "quantity": 1,
+          "price": "18.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_003",
+      "name": "#1003",
+      "created_at": "2026-08-29T11:11:00+01:00",
+      "customer_email": "tom.hughes3@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "96.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E9 5HP",
+        "postal_sector": "E9",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "8 Victoria Park Road"
+      },
+      "geo": {
+        "lat": 51.54,
+        "lng": -0.04
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-M",
+          "title": "Running Shorts \u2014 M",
+          "handle": "running-shorts",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "42.00"
+        },
+        {
+          "sku": "HR-SF-500",
+          "title": "Soft Flask 500 ml",
+          "handle": "soft-flask",
+          "variantTitle": "500 ml",
+          "quantity": 1,
+          "price": "16.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_004",
+      "name": "#1004",
+      "created_at": "2026-09-05T12:14:00+01:00",
+      "customer_email": "emma.khan4@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "66.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W2 1AE",
+        "postal_sector": "W2",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "3 Praed Street"
+      },
+      "geo": {
+        "lat": 51.52,
+        "lng": -0.18
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-PS-5",
+          "title": "Performance Socks \u2014 5-pack",
+          "handle": "performance-socks",
+          "variantTitle": "5-pack",
+          "quantity": 1,
+          "price": "28.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_005",
+      "name": "#1005",
+      "created_at": "2026-09-12T09:17:00+01:00",
+      "customer_email": "oliver.walsh5@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "80.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW11 1RE",
+        "postal_sector": "SW11",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "22 Northcote Road"
+      },
+      "geo": {
+        "lat": 51.46,
+        "lng": -0.17
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-M",
+          "title": "Race Tee \u2014 Unisex \u2014 M",
+          "handle": "race-tee-unisex",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-M",
+          "title": "Running Shorts \u2014 M",
+          "handle": "running-shorts",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "42.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_006",
+      "name": "#1006",
+      "created_at": "2026-09-19T10:20:00+01:00",
+      "customer_email": "chloe.murphy6@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "80.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E9 7HD",
+        "postal_sector": "E9",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "15 Well Street"
+      },
+      "geo": {
+        "lat": 51.54,
+        "lng": -0.05
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-L",
+          "title": "Running Shorts \u2014 L",
+          "handle": "running-shorts",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "42.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_007",
+      "name": "#1007",
+      "created_at": "2026-08-15T11:23:00+01:00",
+      "customer_email": "harry.singh7@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "56.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "N1 9GU",
+        "postal_sector": "N1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "7 Caledonian Road"
+      },
+      "geo": {
+        "lat": 51.53,
+        "lng": -0.12
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-XL",
+          "title": "Race Tee \u2014 Unisex \u2014 XL",
+          "handle": "race-tee-unisex",
+          "variantTitle": "XL",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-PS-3",
+          "title": "Performance Socks \u2014 3-pack",
+          "handle": "performance-socks",
+          "variantTitle": "3-pack",
+          "quantity": 1,
+          "price": "18.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_008",
+      "name": "#1008",
+      "created_at": "2026-08-22T12:26:00+01:00",
+      "customer_email": "amelia.clarke8@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "76.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SE1 9SG",
+        "postal_sector": "SE1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "19 Borough High Street"
+      },
+      "geo": {
+        "lat": 51.5,
+        "lng": -0.09
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-SF-500",
+          "title": "Soft Flask 500 ml",
+          "handle": "soft-flask",
+          "variantTitle": "500 ml",
+          "quantity": 1,
+          "price": "16.00"
+        },
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_009",
+      "name": "#1009",
+      "created_at": "2026-08-29T09:29:00+01:00",
+      "customer_email": "jack.evans9@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "80.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW4 7AA",
+        "postal_sector": "SW4",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "5 Clapham High Street"
+      },
+      "geo": {
+        "lat": 51.46,
+        "lng": -0.14
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-M",
+          "title": "Race Tee \u2014 Unisex \u2014 M",
+          "handle": "race-tee-unisex",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-S",
+          "title": "Running Shorts \u2014 S",
+          "handle": "running-shorts",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "42.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_010",
+      "name": "#1010",
+      "created_at": "2026-09-05T10:32:00+01:00",
+      "customer_email": "sophie.roberts10@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "98.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E1 6AN",
+        "postal_sector": "E1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "31 Brick Lane"
+      },
+      "geo": {
+        "lat": 51.52,
+        "lng": -0.07
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-L",
+          "title": "Running Shorts \u2014 L",
+          "handle": "running-shorts",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "42.00"
+        },
+        {
+          "sku": "HR-PS-3",
+          "title": "Performance Socks \u2014 3-pack",
+          "handle": "performance-socks",
+          "variantTitle": "3-pack",
+          "quantity": 1,
+          "price": "18.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_011",
+      "name": "#1011",
+      "created_at": "2026-09-12T11:35:00+01:00",
+      "customer_email": "james.wright1@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "56.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W2 2UH",
+        "postal_sector": "W2",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "12 Queensway"
+      },
+      "geo": {
+        "lat": 51.51,
+        "lng": -0.17
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-PS-3",
+          "title": "Performance Socks \u2014 3-pack",
+          "handle": "performance-socks",
+          "variantTitle": "3-pack",
+          "quantity": 1,
+          "price": "18.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_012",
+      "name": "#1012",
+      "created_at": "2026-09-19T12:38:00+01:00",
+      "customer_email": "sarah.patel2@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "80.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW11 4NJ",
+        "postal_sector": "SW11",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "44 Battersea Park Road"
+      },
+      "geo": {
+        "lat": 51.48,
+        "lng": -0.16
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-M",
+          "title": "Race Tee \u2014 Unisex \u2014 M",
+          "handle": "race-tee-unisex",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-M",
+          "title": "Running Shorts \u2014 M",
+          "handle": "running-shorts",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "42.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_013",
+      "name": "#1013",
+      "created_at": "2026-08-15T09:41:00+01:00",
+      "customer_email": "tom.hughes3@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "80.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E9 5HP",
+        "postal_sector": "E9",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "8 Victoria Park Road"
+      },
+      "geo": {
+        "lat": 51.54,
+        "lng": -0.04
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-L",
+          "title": "Running Shorts \u2014 L",
+          "handle": "running-shorts",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "42.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_014",
+      "name": "#1014",
+      "created_at": "2026-08-22T10:44:00+01:00",
+      "customer_email": "emma.khan4@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "66.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W2 1AE",
+        "postal_sector": "W2",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "3 Praed Street"
+      },
+      "geo": {
+        "lat": 51.52,
+        "lng": -0.18
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-S",
+          "title": "Race Tee \u2014 Unisex \u2014 S",
+          "handle": "race-tee-unisex",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-PS-5",
+          "title": "Performance Socks \u2014 5-pack",
+          "handle": "performance-socks",
+          "variantTitle": "5-pack",
+          "quantity": 1,
+          "price": "28.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_015",
+      "name": "#1015",
+      "created_at": "2026-08-29T11:47:00+01:00",
+      "customer_email": "oliver.walsh5@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "54.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW11 1RE",
+        "postal_sector": "SW11",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "22 Northcote Road"
+      },
+      "geo": {
+        "lat": 51.46,
+        "lng": -0.17
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-SF-500",
+          "title": "Soft Flask 500 ml",
+          "handle": "soft-flask",
+          "variantTitle": "500 ml",
+          "quantity": 1,
+          "price": "16.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_016",
+      "name": "#1016",
+      "created_at": "2026-09-05T12:50:00+01:00",
+      "customer_email": "chloe.murphy6@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "80.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E9 7HD",
+        "postal_sector": "E9",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "15 Well Street"
+      },
+      "geo": {
+        "lat": 51.54,
+        "lng": -0.05
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-M",
+          "title": "Race Tee \u2014 Unisex \u2014 M",
+          "handle": "race-tee-unisex",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-L",
+          "title": "Running Shorts \u2014 L",
+          "handle": "running-shorts",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "42.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_017",
+      "name": "#1017",
+      "created_at": "2026-09-12T09:53:00+01:00",
+      "customer_email": "harry.singh7@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "80.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "N1 9GU",
+        "postal_sector": "N1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "7 Caledonian Road"
+      },
+      "geo": {
+        "lat": 51.53,
+        "lng": -0.12
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-RS-M",
+          "title": "Running Shorts \u2014 M",
+          "handle": "running-shorts",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "42.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_018",
+      "name": "#1018",
+      "created_at": "2026-09-19T10:06:00+01:00",
+      "customer_email": "amelia.clarke8@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "78.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SE1 9SG",
+        "postal_sector": "SE1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "19 Borough High Street"
+      },
+      "geo": {
+        "lat": 51.5,
+        "lng": -0.09
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-PS-3",
+          "title": "Performance Socks \u2014 3-pack",
+          "handle": "performance-socks",
+          "variantTitle": "3-pack",
+          "quantity": 1,
+          "price": "18.00"
+        },
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        }
+      ],
+      "cohort_hint": "race_day_taper",
+      "tags": [
+        "race_day_taper",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_019",
+      "name": "#1019",
+      "created_at": "2026-08-18T18:10:00+01:00",
+      "customer_email": "noah.davies11@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "103.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W2 3AH",
+        "postal_sector": "W2",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "9 Westbourne Grove"
+      },
+      "geo": {
+        "lat": 51.51,
+        "lng": -0.18
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-L",
+          "title": "Waterproof Shell Jacket \u2014 L",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "65.00"
+        },
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_020",
+      "name": "#1020",
+      "created_at": "2026-08-25T19:15:00+01:00",
+      "customer_email": "mia.wilson12@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "65.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW11 3BY",
+        "postal_sector": "SW11",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "18 Falcon Road"
+      },
+      "geo": {
+        "lat": 51.47,
+        "lng": -0.17
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-M",
+          "title": "Waterproof Shell Jacket \u2014 M",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "65.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_021",
+      "name": "#1021",
+      "created_at": "2026-09-01T20:20:00+01:00",
+      "customer_email": "leo.thompson13@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "120.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E9 1AA",
+        "postal_sector": "E9",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "2 Homerton High Street"
+      },
+      "geo": {
+        "lat": 51.55,
+        "lng": -0.04
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-L",
+          "title": "Waterproof Shell Jacket \u2014 L",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "65.00"
+        },
+        {
+          "sku": "HR-HZ-M",
+          "title": "Half-Zip Midlayer \u2014 M",
+          "handle": "half-zip-midlayer",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "55.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_022",
+      "name": "#1022",
+      "created_at": "2026-09-08T18:25:00+01:00",
+      "customer_email": "isla.brown14@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "103.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "N1 1AA",
+        "postal_sector": "N1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "14 Upper Street"
+      },
+      "geo": {
+        "lat": 51.54,
+        "lng": -0.1
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-S",
+          "title": "Waterproof Shell Jacket \u2014 S",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "65.00"
+        },
+        {
+          "sku": "HR-RT-M",
+          "title": "Race Tee \u2014 Unisex \u2014 M",
+          "handle": "race-tee-unisex",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "38.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_023",
+      "name": "#1023",
+      "created_at": "2026-09-15T19:30:00+01:00",
+      "customer_email": "ethan.taylor15@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "65.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SE1 2AA",
+        "postal_sector": "SE1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "27 Tooley Street"
+      },
+      "geo": {
+        "lat": 51.5,
+        "lng": -0.08
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-L",
+          "title": "Waterproof Shell Jacket \u2014 L",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "65.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_024",
+      "name": "#1024",
+      "created_at": "2026-09-22T20:35:00+01:00",
+      "customer_email": "grace.anderson16@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "103.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW1A 1AA",
+        "postal_sector": "SW1A",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "1 The Mall"
+      },
+      "geo": {
+        "lat": 51.5,
+        "lng": -0.14
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-M",
+          "title": "Waterproof Shell Jacket \u2014 M",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "65.00"
+        },
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_025",
+      "name": "#1025",
+      "created_at": "2026-08-20T18:40:00+01:00",
+      "customer_email": "noah.davies11@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "120.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W2 3AH",
+        "postal_sector": "W2",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "9 Westbourne Grove"
+      },
+      "geo": {
+        "lat": 51.51,
+        "lng": -0.18
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-XL",
+          "title": "Waterproof Shell Jacket \u2014 XL",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "XL",
+          "quantity": 1,
+          "price": "65.00"
+        },
+        {
+          "sku": "HR-HZ-L",
+          "title": "Half-Zip Midlayer \u2014 L",
+          "handle": "half-zip-midlayer",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "55.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_026",
+      "name": "#1026",
+      "created_at": "2026-09-03T19:45:00+01:00",
+      "customer_email": "mia.wilson12@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "103.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW11 3BY",
+        "postal_sector": "SW11",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "18 Falcon Road"
+      },
+      "geo": {
+        "lat": 51.47,
+        "lng": -0.17
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-L",
+          "title": "Waterproof Shell Jacket \u2014 L",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "65.00"
+        },
+        {
+          "sku": "HR-RT-S",
+          "title": "Race Tee \u2014 Unisex \u2014 S",
+          "handle": "race-tee-unisex",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "38.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_027",
+      "name": "#1027",
+      "created_at": "2026-09-10T20:10:00+01:00",
+      "customer_email": "leo.thompson13@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "65.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E9 1AA",
+        "postal_sector": "E9",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "2 Homerton High Street"
+      },
+      "geo": {
+        "lat": 51.55,
+        "lng": -0.04
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-M",
+          "title": "Waterproof Shell Jacket \u2014 M",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "65.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_028",
+      "name": "#1028",
+      "created_at": "2026-09-17T18:15:00+01:00",
+      "customer_email": "isla.brown14@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "103.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "N1 1AA",
+        "postal_sector": "N1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "14 Upper Street"
+      },
+      "geo": {
+        "lat": 51.54,
+        "lng": -0.1
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-L",
+          "title": "Waterproof Shell Jacket \u2014 L",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "65.00"
+        },
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_029",
+      "name": "#1029",
+      "created_at": "2026-08-18T19:20:00+01:00",
+      "customer_email": "ethan.taylor15@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "120.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SE1 2AA",
+        "postal_sector": "SE1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "27 Tooley Street"
+      },
+      "geo": {
+        "lat": 51.5,
+        "lng": -0.08
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-S",
+          "title": "Waterproof Shell Jacket \u2014 S",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "65.00"
+        },
+        {
+          "sku": "HR-HZ-S",
+          "title": "Half-Zip Midlayer \u2014 S",
+          "handle": "half-zip-midlayer",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "55.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_030",
+      "name": "#1030",
+      "created_at": "2026-08-25T20:25:00+01:00",
+      "customer_email": "grace.anderson16@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "65.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW1A 1AA",
+        "postal_sector": "SW1A",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "1 The Mall"
+      },
+      "geo": {
+        "lat": 51.5,
+        "lng": -0.14
+      },
+      "line_items": [
+        {
+          "sku": "HR-WSJ-L",
+          "title": "Waterproof Shell Jacket \u2014 L",
+          "handle": "waterproof-shell-jacket",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "65.00"
+        }
+      ],
+      "cohort_hint": "wet_weather_trainer",
+      "tags": [
+        "wet_weather_trainer",
+        "seed",
+        "wx_proxy_narrative"
+      ]
+    },
+    {
+      "id": "ord_seed_031",
+      "name": "#1031",
+      "created_at": "2026-08-15T10:15:00+01:00",
+      "customer_email": "lucas.thomas17@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "70.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "EC2A 4BX",
+        "postal_sector": "EC2A",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "6 Curtain Road"
+      },
+      "geo": {
+        "lat": 51.52,
+        "lng": -0.08
+      },
+      "line_items": [
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        },
+        {
+          "sku": "HR-RJ-M",
+          "title": "Recovery Joggers \u2014 M",
+          "handle": "recovery-joggers",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "48.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_032",
+      "name": "#1032",
+      "created_at": "2026-08-22T10:16:00+01:00",
+      "customer_email": "ava.jackson18@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "77.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W1U 6AG",
+        "postal_sector": "W1U",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "25 Chiltern Street"
+      },
+      "geo": {
+        "lat": 51.52,
+        "lng": -0.15
+      },
+      "line_items": [
+        {
+          "sku": "HR-HZ-M",
+          "title": "Half-Zip Midlayer \u2014 M",
+          "handle": "half-zip-midlayer",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "55.00"
+        },
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_033",
+      "name": "#1033",
+      "created_at": "2026-08-29T10:17:00+01:00",
+      "customer_email": "mason.white19@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "66.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E8 3SA",
+        "postal_sector": "E8",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "11 Mare Street"
+      },
+      "geo": {
+        "lat": 51.54,
+        "lng": -0.06
+      },
+      "line_items": [
+        {
+          "sku": "HR-RJ-L",
+          "title": "Recovery Joggers \u2014 L",
+          "handle": "recovery-joggers",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "48.00"
+        },
+        {
+          "sku": "HR-PS-3",
+          "title": "Performance Socks \u2014 3-pack",
+          "handle": "performance-socks",
+          "variantTitle": "3-pack",
+          "quantity": 1,
+          "price": "18.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_034",
+      "name": "#1034",
+      "created_at": "2026-09-05T10:18:00+01:00",
+      "customer_email": "lily.harris20@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "60.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "NW1 4NR",
+        "postal_sector": "NW1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "4 Outer Circle"
+      },
+      "geo": {
+        "lat": 51.53,
+        "lng": -0.15
+      },
+      "line_items": [
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        },
+        {
+          "sku": "HR-RT-M",
+          "title": "Race Tee \u2014 Unisex \u2014 M",
+          "handle": "race-tee-unisex",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "38.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_035",
+      "name": "#1035",
+      "created_at": "2026-09-12T10:19:00+01:00",
+      "customer_email": "logan.martin21@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "103.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW3 4EE",
+        "postal_sector": "SW3",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "8 King's Road"
+      },
+      "geo": {
+        "lat": 51.49,
+        "lng": -0.16
+      },
+      "line_items": [
+        {
+          "sku": "HR-RJ-M",
+          "title": "Recovery Joggers \u2014 M",
+          "handle": "recovery-joggers",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "48.00"
+        },
+        {
+          "sku": "HR-HZ-S",
+          "title": "Half-Zip Midlayer \u2014 S",
+          "handle": "half-zip-midlayer",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "55.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_036",
+      "name": "#1036",
+      "created_at": "2026-09-19T10:20:00+01:00",
+      "customer_email": "lucas.thomas17@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "38.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "EC2A 4BX",
+        "postal_sector": "EC2A",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "6 Curtain Road"
+      },
+      "geo": {
+        "lat": 51.52,
+        "lng": -0.08
+      },
+      "line_items": [
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        },
+        {
+          "sku": "HR-SF-500",
+          "title": "Soft Flask 500 ml",
+          "handle": "soft-flask",
+          "variantTitle": "500 ml",
+          "quantity": 1,
+          "price": "16.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_037",
+      "name": "#1037",
+      "created_at": "2026-08-15T10:21:00+01:00",
+      "customer_email": "ava.jackson18@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "48.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W1U 6AG",
+        "postal_sector": "W1U",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "25 Chiltern Street"
+      },
+      "geo": {
+        "lat": 51.52,
+        "lng": -0.15
+      },
+      "line_items": [
+        {
+          "sku": "HR-RJ-L",
+          "title": "Recovery Joggers \u2014 L",
+          "handle": "recovery-joggers",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "48.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_038",
+      "name": "#1038",
+      "created_at": "2026-08-22T10:22:00+01:00",
+      "customer_email": "mason.white19@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "77.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E8 3SA",
+        "postal_sector": "E8",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "11 Mare Street"
+      },
+      "geo": {
+        "lat": 51.54,
+        "lng": -0.06
+      },
+      "line_items": [
+        {
+          "sku": "HR-HZ-L",
+          "title": "Half-Zip Midlayer \u2014 L",
+          "handle": "half-zip-midlayer",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "55.00"
+        },
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_039",
+      "name": "#1039",
+      "created_at": "2026-09-10T19:23:00+01:00",
+      "customer_email": "lily.harris20@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "60.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "NW1 4NR",
+        "postal_sector": "NW1",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "4 Outer Circle"
+      },
+      "geo": {
+        "lat": 51.53,
+        "lng": -0.15
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-S",
+          "title": "Race Tee \u2014 Unisex \u2014 S",
+          "handle": "race-tee-unisex",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_040",
+      "name": "#1040",
+      "created_at": "2026-09-17T19:24:00+01:00",
+      "customer_email": "logan.martin21@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "66.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SW3 4EE",
+        "postal_sector": "SW3",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "8 King's Road"
+      },
+      "geo": {
+        "lat": 51.49,
+        "lng": -0.16
+      },
+      "line_items": [
+        {
+          "sku": "HR-RJ-S",
+          "title": "Recovery Joggers \u2014 S",
+          "handle": "recovery-joggers",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "48.00"
+        },
+        {
+          "sku": "HR-PS-3",
+          "title": "Performance Socks \u2014 3-pack",
+          "handle": "performance-socks",
+          "variantTitle": "3-pack",
+          "quantity": 1,
+          "price": "18.00"
+        }
+      ],
+      "cohort_hint": "club_social",
+      "tags": [
+        "club_social",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_041",
+      "name": "#1041",
+      "created_at": "2026-08-15T12:20:00+01:00",
+      "customer_email": "ella.thompson22@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "70.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "N16 8EA",
+        "postal_sector": "N16",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "16 Stoke Newington High Street"
+      },
+      "geo": {
+        "lat": 51.56,
+        "lng": -0.07
+      },
+      "line_items": [
+        {
+          "sku": "HR-RJ-M",
+          "title": "Recovery Joggers \u2014 M",
+          "handle": "recovery-joggers",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "48.00"
+        },
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        }
+      ],
+      "cohort_hint": "wx_athleisure",
+      "tags": [
+        "wx_athleisure",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_042",
+      "name": "#1042",
+      "created_at": "2026-08-25T13:21:00+01:00",
+      "customer_email": "henry.garcia23@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "55.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SE16 7AA",
+        "postal_sector": "SE16",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "20 Rotherhithe Street"
+      },
+      "geo": {
+        "lat": 51.49,
+        "lng": -0.05
+      },
+      "line_items": [
+        {
+          "sku": "HR-HZ-M",
+          "title": "Half-Zip Midlayer \u2014 M",
+          "handle": "half-zip-midlayer",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "55.00"
+        }
+      ],
+      "cohort_hint": "wx_athleisure",
+      "tags": [
+        "wx_athleisure",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_043",
+      "name": "#1043",
+      "created_at": "2026-08-29T14:22:00+01:00",
+      "customer_email": "scarlett.martinez24@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "48.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W11 2BQ",
+        "postal_sector": "W11",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "13 Portobello Road"
+      },
+      "geo": {
+        "lat": 51.51,
+        "lng": -0.2
+      },
+      "line_items": [
+        {
+          "sku": "HR-RJ-L",
+          "title": "Recovery Joggers \u2014 L",
+          "handle": "recovery-joggers",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "48.00"
+        }
+      ],
+      "cohort_hint": "wx_athleisure",
+      "tags": [
+        "wx_athleisure",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_044",
+      "name": "#1044",
+      "created_at": "2026-09-08T15:23:00+01:00",
+      "customer_email": "oscar.robinson25@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "60.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E2 8AA",
+        "postal_sector": "E2",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "9 Hackney Road"
+      },
+      "geo": {
+        "lat": 51.53,
+        "lng": -0.07
+      },
+      "line_items": [
+        {
+          "sku": "HR-RT-M",
+          "title": "Race Tee \u2014 Unisex \u2014 M",
+          "handle": "race-tee-unisex",
+          "variantTitle": "M",
+          "quantity": 1,
+          "price": "38.00"
+        },
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        }
+      ],
+      "cohort_hint": "wx_athleisure",
+      "tags": [
+        "wx_athleisure",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_045",
+      "name": "#1045",
+      "created_at": "2026-09-12T16:24:00+01:00",
+      "customer_email": "ella.thompson22@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "44.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "N16 8EA",
+        "postal_sector": "N16",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "16 Stoke Newington High Street"
+      },
+      "geo": {
+        "lat": 51.56,
+        "lng": -0.07
+      },
+      "line_items": [
+        {
+          "sku": "HR-PS-5",
+          "title": "Performance Socks \u2014 5-pack",
+          "handle": "performance-socks",
+          "variantTitle": "5-pack",
+          "quantity": 1,
+          "price": "28.00"
+        },
+        {
+          "sku": "HR-SF-500",
+          "title": "Soft Flask 500 ml",
+          "handle": "soft-flask",
+          "variantTitle": "500 ml",
+          "quantity": 1,
+          "price": "16.00"
+        }
+      ],
+      "cohort_hint": "wx_athleisure",
+      "tags": [
+        "wx_athleisure",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_046",
+      "name": "#1046",
+      "created_at": "2026-09-22T12:25:00+01:00",
+      "customer_email": "henry.garcia23@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "66.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "SE16 7AA",
+        "postal_sector": "SE16",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "20 Rotherhithe Street"
+      },
+      "geo": {
+        "lat": 51.49,
+        "lng": -0.05
+      },
+      "line_items": [
+        {
+          "sku": "HR-RJ-S",
+          "title": "Recovery Joggers \u2014 S",
+          "handle": "recovery-joggers",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "48.00"
+        },
+        {
+          "sku": "HR-PS-3",
+          "title": "Performance Socks \u2014 3-pack",
+          "handle": "performance-socks",
+          "variantTitle": "3-pack",
+          "quantity": 1,
+          "price": "18.00"
+        }
+      ],
+      "cohort_hint": "wx_athleisure",
+      "tags": [
+        "wx_athleisure",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_047",
+      "name": "#1047",
+      "created_at": "2026-08-15T13:26:00+01:00",
+      "customer_email": "scarlett.martinez24@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "77.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "W11 2BQ",
+        "postal_sector": "W11",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "13 Portobello Road"
+      },
+      "geo": {
+        "lat": 51.51,
+        "lng": -0.2
+      },
+      "line_items": [
+        {
+          "sku": "HR-HZ-S",
+          "title": "Half-Zip Midlayer \u2014 S",
+          "handle": "half-zip-midlayer",
+          "variantTitle": "S",
+          "quantity": 1,
+          "price": "55.00"
+        },
+        {
+          "sku": "HR-CAP-1",
+          "title": "Trail / Road Cap",
+          "handle": "trail-or-road-cap",
+          "variantTitle": "One size",
+          "quantity": 1,
+          "price": "22.00"
+        }
+      ],
+      "cohort_hint": "wx_athleisure",
+      "tags": [
+        "wx_athleisure",
+        "seed"
+      ]
+    },
+    {
+      "id": "ord_seed_048",
+      "name": "#1048",
+      "created_at": "2026-09-03T14:27:00+01:00",
+      "customer_email": "oscar.robinson25@harbour-run-demo.test",
+      "currency": "GBP",
+      "subtotal": "66.00",
+      "financial_status": "paid",
+      "fulfillment_status": "fulfilled",
+      "source_name": "web",
+      "shipping": {
+        "city": "London",
+        "zip": "E2 8AA",
+        "postal_sector": "E2",
+        "country_code": "GB",
+        "province": "England",
+        "address1": "9 Hackney Road"
+      },
+      "geo": {
+        "lat": 51.53,
+        "lng": -0.07
+      },
+      "line_items": [
+        {
+          "sku": "HR-KYT-YM",
+          "title": "Kids / Youth Run Tee \u2014 YM",
+          "handle": "kids-youth-run-tee",
+          "variantTitle": "YM",
+          "quantity": 1,
+          "price": "28.00"
+        },
+        {
+          "sku": "HR-RT-L",
+          "title": "Race Tee \u2014 Unisex \u2014 L",
+          "handle": "race-tee-unisex",
+          "variantTitle": "L",
+          "quantity": 1,
+          "price": "38.00"
+        }
+      ],
+      "cohort_hint": "wx_athleisure",
+      "tags": [
+        "wx_athleisure",
+        "seed"
+      ]
+    }
+  ]
+}

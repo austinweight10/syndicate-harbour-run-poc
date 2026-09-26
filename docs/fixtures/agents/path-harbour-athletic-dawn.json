@@ -1,0 +1,141 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English.",
+    "provenance": "CURATED",
+    "purpose": "Scripted Playwright path for live Harbour Athletic Dawn store",
+    "epic": "06",
+    "theme": "Dawn",
+    "storeStory": "Harbour Athletic",
+    "pack": "live-demo-store",
+    "deprecated": true,
+    "deprecatedNote": "DEPRECATED 2026-09-24 \u2014 use path-harbour-run-dawn.json (Harbour Run / running). Football kit path kept for history only."
+  },
+  "personaId": "pers_away_day_dad",
+  "storefrontHint": "harbour-athletic-demo.myshopify.com",
+  "storefrontEnv": "SHOP_STOREFRONT_URL",
+  "stopPolicy": "checkout_start_only",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "denyList": [
+    "/checkouts/*/payment",
+    "complete_purchase",
+    "Buy with Shop Pay submit",
+    "Pay now",
+    "Complete order"
+  ],
+  "passwordGate": {
+    "enabledIfEnv": "SHOP_STOREFRONT_PASSWORD",
+    "selectorHint": "input[name=password]",
+    "submitHint": "text=Enter"
+  },
+  "steps": [
+    {
+      "id": "home",
+      "action": "goto",
+      "target": "/",
+      "expect": "Home Kits"
+    },
+    {
+      "id": "nav_home_kits",
+      "action": "click",
+      "selectorHint": "role=link[name=Home Kits]",
+      "fallbackHints": [
+        "a[href*='/collections/home-kits']",
+        "text=Home Kits",
+        "[data-syndicate=nav-home-kits]"
+      ],
+      "expect": "collection"
+    },
+    {
+      "id": "open_shirt",
+      "action": "click",
+      "selectorHint": "text=Home Shirt 25/26",
+      "fallbackHints": [
+        "text=Home Shirt",
+        "[data-syndicate-handle=home-shirt-2526]"
+      ],
+      "expect": "PDP"
+    },
+    {
+      "id": "select_size_l",
+      "action": "click",
+      "selectorHint": "role=radio[name=L]",
+      "fallbackHints": [
+        "fieldset >> text=L",
+        "label:text-is('L')",
+        "text=L"
+      ],
+      "optional": false
+    },
+    {
+      "id": "atc_shirt",
+      "action": "click",
+      "selectorHint": "role=button[name=Add to cart]",
+      "fallbackHints": [
+        "text=Add to cart",
+        "[data-syndicate=atc]"
+      ]
+    },
+    {
+      "id": "continue_shopping",
+      "action": "click",
+      "selectorHint": "text=Continue shopping",
+      "optional": true
+    },
+    {
+      "id": "kids_collection",
+      "action": "goto",
+      "target": "/collections/kids-juniors",
+      "expect": "Kids"
+    },
+    {
+      "id": "open_scarf",
+      "action": "click",
+      "selectorHint": "text=Kids Scarf",
+      "expect": "PDP"
+    },
+    {
+      "id": "note_size_guide_missing",
+      "action": "observe",
+      "note": "Kids Scarf PDP has no size guide \u2014 emit InsightScore sizing/ux_trap",
+      "assertMissingText": [
+        "Size guide",
+        "Size Guide"
+      ]
+    },
+    {
+      "id": "atc_scarf",
+      "action": "click",
+      "selectorHint": "role=button[name=Add to cart]",
+      "fallbackHints": [
+        "text=Add to cart",
+        "[data-syndicate=atc]"
+      ]
+    },
+    {
+      "id": "cart",
+      "action": "goto",
+      "target": "/cart"
+    },
+    {
+      "id": "checkout_start",
+      "action": "click",
+      "selectorHint": "role=button[name=Check out]",
+      "fallbackHints": [
+        "text=Check out",
+        "text=Checkout",
+        "[data-syndicate=checkout-start]"
+      ],
+      "outcome": "checkout_started"
+    },
+    {
+      "id": "stop",
+      "action": "stop",
+      "reason": "stop_before_payment"
+    }
+  ]
+}

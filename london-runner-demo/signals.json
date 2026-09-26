@@ -1,0 +1,327 @@
+{
+  "meta": {
+    "title": "London Runner Demo — LIVE Public Web Signals",
+    "researchedAt": "2026-09-24T09:58:00+01:00",
+    "timezone": "Europe/London",
+    "locale": "en-GB",
+    "personaId": "london-taper-social-runner",
+    "notes": "AGGREGATE_PROXY only; never OBSERVED demand without shop orders. No Twitter/X scrape. No invented URLs."
+  },
+  "events": [
+    {
+      "title": "Hyde Park 5K & 10K (RunThrough)",
+      "dateTime": "2026-09-26T09:30:00+01:00",
+      "venueArea": "Hyde Park Bandstand, London W2",
+      "mode": "physical",
+      "sourceUrl": "https://findarace.com/events/hyde-park-5k-10k",
+      "whyRunnerCares": "Flat, fast central PB shot this weekend; race-day kit urgency.",
+      "catalogueAffinity": [
+        "race-day",
+        "trainers",
+        "hydration",
+        "layers"
+      ],
+      "provenance": "AGGREGATE_PROXY"
+    },
+    {
+      "title": "Battersea Park 5k, 10k & Half Marathon",
+      "dateTime": "2026-09-26T10:30:00+01:00",
+      "venueArea": "Battersea Park, SW11",
+      "mode": "physical",
+      "sourceUrl": "https://findarace.com/events/battersea-park-10k-half-marathon",
+      "whyRunnerCares": "Multi-distance park loops; half-taper or sharpener before autumn A-races.",
+      "catalogueAffinity": [
+        "race-day",
+        "trainers",
+        "recovery",
+        "hydration"
+      ],
+      "provenance": "AGGREGATE_PROXY"
+    },
+    {
+      "title": "Clapham Common 5k, 10k & Half Marathon",
+      "dateTime": "2026-09-27T09:00:00+01:00",
+      "venueArea": "Clapham Common, SW4",
+      "mode": "physical",
+      "sourceUrl": "https://findarace.com/events/clapham-common-5k-10k",
+      "whyRunnerCares": "South London social race weekend; easy logistics for Wandsworth/Lambeth runners.",
+      "catalogueAffinity": [
+        "race-day",
+        "trainers",
+        "layers",
+        "hydration"
+      ],
+      "provenance": "AGGREGATE_PROXY"
+    },
+    {
+      "title": "Victoria Park Half Marathon, 10k & 5k",
+      "dateTime": "2026-10-03T09:30:00+01:00",
+      "venueArea": "Victoria Park, Hackney E9",
+      "mode": "physical",
+      "sourceUrl": "https://www.challengechasers.com/events/908ca59c-efae-4b96-9ee6-122bf9dff84e",
+      "whyRunnerCares": "East London staple; Hackney social + PB-friendly park course.",
+      "catalogueAffinity": [
+        "race-day",
+        "trainers",
+        "recovery",
+        "hydration"
+      ],
+      "provenance": "AGGREGATE_PROXY"
+    },
+    {
+      "title": "Kingston Half Marathon",
+      "dateTime": "2026-10-04T08:30:00+01:00",
+      "venueArea": "Kingston upon Thames / Hampton Court",
+      "mode": "physical",
+      "sourceUrl": "https://findarace.com/events/the-royal-borough-of-kingston-half-marathon",
+      "whyRunnerCares": "Flat riverside half; classic autumn goal race or long-run dress rehearsal.",
+      "catalogueAffinity": [
+        "race-day",
+        "trainers",
+        "hydration",
+        "layers",
+        "recovery"
+      ],
+      "provenance": "AGGREGATE_PROXY"
+    },
+    {
+      "title": "Oysho Royal Parks Half Marathon",
+      "dateTime": "2026-10-11",
+      "venueArea": "Hyde Park, The Green Park, St James's Park, Kensington Gardens",
+      "mode": "physical",
+      "sourceUrl": "https://www.royalparks.org.uk/whats-on/royal-parks-half-marathon",
+      "whyRunnerCares": "Marquee closed-road half through four Royal Parks; charity and festival energy.",
+      "catalogueAffinity": [
+        "race-day",
+        "layers",
+        "hydration",
+        "recovery",
+        "trainers"
+      ],
+      "provenance": "AGGREGATE_PROXY"
+    },
+    {
+      "title": "Battersea Park Running Festival (Half & Marathon)",
+      "dateTime": "2026-10-24",
+      "venueArea": "Battersea Park / Millennium Arena",
+      "mode": "physical",
+      "sourceUrl": "https://www.battersearunningfestival.com/",
+      "whyRunnerCares": "World-flattest PB festival with marathon option and event-village energy.",
+      "catalogueAffinity": [
+        "race-day",
+        "hydration",
+        "recovery",
+        "trainers"
+      ],
+      "provenance": "AGGREGATE_PROXY"
+    },
+    {
+      "title": "Hackney Marshes parkrun (weekly)",
+      "dateTime": "weekly Saturdays ~09:00 Europe/London",
+      "venueArea": "Hackney Marshes Centre, E9",
+      "mode": "physical",
+      "sourceUrl": "https://www.parkrun.org.uk/hackneymarshes/",
+      "whyRunnerCares": "Free weekly 5k habit; East London social baseline between paid races.",
+      "catalogueAffinity": [
+        "trainers",
+        "layers",
+        "recovery",
+        "hydration"
+      ],
+      "provenance": "AGGREGATE_PROXY"
+    }
+  ],
+  "cafesAndClubs": [
+    {
+      "name": "Tracksmith London Trackhouse — Morning Miles / weekly club",
+      "neighbourhood": "Marylebone",
+      "url": "https://makeitmarylebone.co.uk/event/tracksmith-weekly-run-club/",
+      "typicalMeetDay": "Friday ~07:15 (also Wed speed, Sun long run)",
+      "proxyNote": "AGGREGATE_PROXY — premium run-hub + post-run coffee ritual as local driver; never OBSERVED demand"
+    },
+    {
+      "name": "Running Late Coffee Run Club",
+      "neighbourhood": "Hackney (Mare Street)",
+      "url": "https://runninglate.uk/pages/run-club-east-london",
+      "typicalMeetDay": "Wednesday 07:00 5k; Saturday 09:00 5k/10k",
+      "proxyNote": "AGGREGATE_PROXY — café-native East London crew; never OBSERVED demand"
+    },
+    {
+      "name": "Founders Running Club :: London",
+      "neighbourhood": "Regent's Park",
+      "url": "https://www.meetup.com/founders-running-club-london/events/mlnpstyjcmbjc/",
+      "typicalMeetDay": "Saturday 09:30",
+      "proxyNote": "AGGREGATE_PROXY — startup/social Saturday ritual; never OBSERVED demand"
+    },
+    {
+      "name": "London Social Runners — Saturday Run & Social Brunch",
+      "neighbourhood": "Kensington Gardens / Hyde Park → High Street Kensington",
+      "url": "https://www.meetup.com/londonsocialrunners/events/rvbnptyjcmbjc/",
+      "typicalMeetDay": "Saturday 10:00",
+      "proxyNote": "AGGREGATE_PROXY — run-then-café social loop; never OBSERVED demand"
+    },
+    {
+      "name": "Bonne London (community run meetups)",
+      "neighbourhood": "London-wide (often East / Shoreditch-adjacent activations)",
+      "url": "https://www.bonnelondon.com/about",
+      "typicalMeetDay": "Event-led (check Bonne events / Instagram for next meetup)",
+      "proxyNote": "AGGREGATE_PROXY — brand-community run culture; never OBSERVED demand"
+    },
+    {
+      "name": "On Run Club — London Regent Street",
+      "neighbourhood": "Regent Street / Royal Parks routes",
+      "url": "https://onrunclub-londonregentst.events.on.com/",
+      "typicalMeetDay": "Sunday morning (weekly club listing)",
+      "proxyNote": "AGGREGATE_PROXY — flagship-store run club as geo driver; never OBSERVED demand"
+    },
+    {
+      "name": "Serpentine Running & Triathlon Club (directory listing)",
+      "neighbourhood": "Hyde Park / Serpentine area",
+      "url": "https://www.runchums.com/run-clubs/london",
+      "typicalMeetDay": "Wednesday evening + Saturday morning (per directory)",
+      "proxyNote": "AGGREGATE_PROXY — established central club via public directory; never OBSERVED demand"
+    }
+  ],
+  "weather": {
+    "provider": "Open-Meteo",
+    "apiUrl": "https://api.open-meteo.com/v1/forecast?latitude=51.5074&longitude=-0.1278&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,weathercode&timezone=Europe%2FLondon&forecast_days=7",
+    "fetchedAt": "2026-09-24T09:58:00+01:00",
+    "location": {
+      "latitude": 51.51147,
+      "longitude": -0.13078,
+      "timezone": "Europe/London"
+    },
+    "daily": [
+      {
+        "date": "2026-09-24",
+        "tempMaxC": 22.3,
+        "tempMinC": 12.7,
+        "precipMm": 0.0,
+        "precipProbMaxPct": 0,
+        "weathercode": 3
+      },
+      {
+        "date": "2026-09-25",
+        "tempMaxC": 23.2,
+        "tempMinC": 15.2,
+        "precipMm": 0.1,
+        "precipProbMaxPct": 3,
+        "weathercode": 51
+      },
+      {
+        "date": "2026-09-26",
+        "tempMaxC": 19.1,
+        "tempMinC": 13.5,
+        "precipMm": 0.0,
+        "precipProbMaxPct": 8,
+        "weathercode": 3
+      },
+      {
+        "date": "2026-09-27",
+        "tempMaxC": 22.4,
+        "tempMinC": 13.8,
+        "precipMm": 3.7,
+        "precipProbMaxPct": 27,
+        "weathercode": 61
+      },
+      {
+        "date": "2026-09-28",
+        "tempMaxC": 19.6,
+        "tempMinC": 14.0,
+        "precipMm": 4.4,
+        "precipProbMaxPct": 37,
+        "weathercode": 61
+      },
+      {
+        "date": "2026-09-29",
+        "tempMaxC": 24.5,
+        "tempMinC": 16.1,
+        "precipMm": 0.3,
+        "precipProbMaxPct": 24,
+        "weathercode": 51
+      },
+      {
+        "date": "2026-09-30",
+        "tempMaxC": 23.5,
+        "tempMinC": 20.0,
+        "precipMm": 3.6,
+        "precipProbMaxPct": 37,
+        "weathercode": 53
+      }
+    ],
+    "affinityTakeaway": "Sun–Mon and Wed precip bumps drive shell/layers; weekend race cluster drives race-day, trainers, hydration."
+  },
+  "persona": {
+    "name": "London taper / social runner",
+    "goals": [
+      "Stay race-ready for autumn halves (Kingston / Royal Parks)",
+      "Keep weekly parkrun or café-run streak",
+      "Look good in club kit without full elite spend"
+    ],
+    "geoBoroughs": [
+      "Hackney",
+      "Islington",
+      "Tower Hamlets",
+      "Westminster",
+      "Kensington and Chelsea",
+      "Wandsworth",
+      "Camden"
+    ],
+    "budgetBand": "Mid-premium athleisure — £80–£160 trainers; £40–£120 layers/shells; impulse recovery/hydration under £40",
+    "likelyEvents": [
+      "Hyde Park 5K & 10K",
+      "Battersea / Clapham weekend races",
+      "Victoria Park 3 Oct",
+      "Kingston Half or Royal Parks Half",
+      "Hackney Marshes parkrun"
+    ],
+    "likelyCafes": [
+      "Running Late Coffee",
+      "Tracksmith Morning Miles",
+      "London Social Runners",
+      "Founders Running Club"
+    ]
+  },
+  "graphJoinStory": [
+    {
+      "edge": "CafeMeetup(Running Late) --VENUE_IN--> Geo(Hackney)",
+      "type": "VENUE_IN"
+    },
+    {
+      "edge": "CafeMeetup(Tracksmith Morning Miles) --VENUE_IN--> Geo(Marylebone/Westminster)",
+      "type": "VENUE_IN"
+    },
+    {
+      "edge": "CafeMeetup(Founders RC) --VENUE_IN--> Geo(Regent's Park/Camden)",
+      "type": "VENUE_IN"
+    },
+    {
+      "edge": "CafeMeetup(London Social Runners) --VENUE_IN--> Geo(Kensington/Hyde Park)",
+      "type": "VENUE_IN"
+    },
+    {
+      "edge": "Event(Hyde Park 5K/10K) --AFFINITY--> SKU(race-day, trainers, hydration, layers)",
+      "type": "AFFINITY"
+    },
+    {
+      "edge": "Event(Royal Parks Half) --AFFINITY--> SKU(race-day, layers, hydration, recovery, trainers)",
+      "type": "AFFINITY"
+    },
+    {
+      "edge": "Event(Hackney Marshes parkrun) --AFFINITY--> SKU(trainers, layers, recovery)",
+      "type": "AFFINITY"
+    },
+    {
+      "edge": "Weather(London 7d precip bump) --AFFINITY--> SKU(shell, layers)",
+      "type": "AFFINITY"
+    },
+    {
+      "edge": "SocialTrend/hashtags (#parkrun, #RoyalParksHalf, café tags) --MENTIONS--> Event/CafeMeetup (still PROXY)",
+      "type": "SOCIAL_TREND"
+    },
+    {
+      "edge": "EXPLICIT: these are NOT OBSERVED demand without shop orders; provenance remains AGGREGATE_PROXY",
+      "type": "GUARDRAIL"
+    }
+  ]
+}

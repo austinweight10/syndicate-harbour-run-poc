@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "shop_id": "shop_harbour_run_demo",
+    "shop_label": "Harbour Run",
+    "generated_at": "2026-09-24T20:26:41.188240+01:00",
+    "generated_at_label": "24 Sep 2026 · 20:26 BST",
+    "counts": {
+      "nodes": 131,
+      "edges": 395,
+      "events": 7,
+      "synthesised_nodes": 1
+    }
+  },
+  "top_events": [
+    {
+      "id": "ec_257f33655586dd05",
+      "name": "Match-day home kit rush",
+      "archetype": "match_day",
+      "value": 0.8737262113093776,
+      "Lt": 1.0,
+      "G": 1.0,
+      "A": 0.78,
+      "Y": 0.5,
+      "R": 0.7872621130937746,
+      "n_orders": 48,
+      "provenance_labels": [
+        "OBSERVED orders",
+        "MOCK fixtures",
+        "Y=0.5 prior-year neutral",
+        "AGGREGATE_PROXY hashtag buzz"
+      ]
+    },
+    {
+      "id": "ec_800f6f3674120a58",
+      "name": "Race weekend — London 10K",
+      "archetype": "race_weekend",
+      "value": 0.8070988465532354,
+      "Lt": 1.0,
+      "G": 1.0,
+      "A": 0.4966666666666667,
+      "Y": 0.5,
+      "R": 0.8293217988656859,
+      "n_orders": 5,
+      "provenance_labels": [
+        "MOCK race calendar",
+        "OBSERVED orders",
+        "Y=0.5 prior-year neutral"
+      ]
+    },
+    {
+      "id": "ec_24f5e9de20c5b013",
+      "name": "Wet weekend layers",
+      "archetype": "weather",
+      "value": 0.5775,
+      "Lt": 0.6,
+      "G": 0.5,
+      "A": 0.55,
+      "Y": 0.5,
+      "R": 0.85,
+      "n_orders": 8,
+      "provenance_labels": [
+        "AGGREGATE_PROXY weather driver",
+        "MOCK synthetic driver",
+        "OBSERVED orders",
+        "Y=0.5 prior-year neutral"
+      ]
+    },
+    {
+      "id": "ec_985374c4df5016a6",
+      "name": "Hyrox-style meet",
+      "archetype": "functional_meet",
+      "value": 0.47363636363636363,
+      "Lt": 0.5,
+      "G": 0.3,
+      "A": 0.45454545454545453,
+      "Y": 0.5,
+      "R": 0.85,
+      "n_orders": 10,
+      "provenance_labels": [
+        "MOCK catalogue",
+        "AGGREGATE_PROXY hashtag buzz",
+        "Y=0.5 prior-year neutral"
+      ]
+    },
+    {
+      "id": "ec_9bd1afe1914b05dd",
+      "name": "Sofa-to-5K virtual",
+      "archetype": "virtual",
+      "value": 0.38,
+      "Lt": 0.0,
+      "G": 0.35,
+      "A": 0.4,
+      "Y": 0.5,
+      "R": 0.85,
+      "n_orders": 2,
+      "provenance_labels": [
+        "MOCK virtual calendar",
+        "MODEL_HYPOTHESIS",
+        "Y=0.5 prior-year neutral",
+        "AGGREGATE_PROXY hashtag buzz",
+        "MODEL HYPOTHESIS (low n)"
+      ]
+    }
+  ],
+  "relation_histogram": {
+    "CONTAINS": 159,
+    "AFFINITY": 130,
+    "SHIPPED_TO": 48,
+    "VENUE_IN": 17,
+    "AMPLIFIES": 11,
+    "GOALS_INCLUDE": 9,
+    "TRENDING_IN": 9,
+    "TEMPORAL_LIFT": 7,
+    "GEO_OVERLAP": 4,
+    "DRIVEN_BY": 1
+  },
+  "provenance_histogram": {
+    "OBSERVED": 222,
+    "MOCK": 136,
+    "AGGREGATE_PROXY": 37
+  },
+  "node_type_histogram": {
+    "Order": 48,
+    "SKU": 20,
+    "Event": 14,
+    "HashtagWatch": 12,
+    "EventCandidate": 7,
+    "Geo": 7,
+    "SocialTrend": 6,
+    "VirtualEvent": 5,
+    "Collection": 4,
+    "ActivityChallenge": 3,
+    "Persona": 3,
+    "Driver": 1,
+    "Shop": 1
+  },
+  "matchday_path": {
+    "event_candidate_id": "ec_257f33655586dd05",
+    "name": "Match-day home kit rush",
+    "relations": [
+      "SHIPPED_TO",
+      "VENUE_IN",
+      "TEMPORAL_LIFT",
+      "GEO_OVERLAP",
+      "AFFINITY",
+      "AMPLIFIES",
+      "PERSONA_OF"
+    ],
+    "seed_node_ids": [
+      "ec_257f33655586dd05",
+      "geo_5aa4302a16bb606d",
+      "mock:pl:arsenal-chelsea:2026-09-26",
+      "mock:pl:mufc-liverpool:2026-09-27",
+      "st_8f1ea3ad3dc03ea0"
+    ],
+    "notes": "Order → Geo ← Event plus TEMPORAL_LIFT / AFFINITY / AMPLIFIES / PERSONA_OF around top Match-day EC"
+  }
+}

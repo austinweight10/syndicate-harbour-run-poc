@@ -1,0 +1,34 @@
+{
+  "name": "syndicate",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "dev:shopify": "npm --prefix shopify-app run dev:demo",
+    "db:setup": "npm --prefix shopify-app run setup",
+    "db:seed": "npm --prefix shopify-app run db:seed",
+    "fixtures:validate": "npm --prefix shopify-app run fixtures:validate",
+    "smoke": "npm --prefix shopify-app run smoke"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@shopify/polaris": "^13.9.5",
+    "@shopify/polaris-icons": "^9.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.9.4"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^18.3.24",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}

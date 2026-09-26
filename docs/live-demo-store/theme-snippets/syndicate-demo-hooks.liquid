@@ -1,0 +1,39 @@
+{% comment %}
+  Syndicate demo hooks (OPTIONAL stretch) — Harbour Run / Dawn
+  -----------------------------------------------------------------
+  Paste into Dawn where noted, or add as a snippet and render from
+  theme.liquid / main-product.liquid / main-cart.liquid.
+
+  Purpose: stable data-syndicate attributes for Playwright without
+  relying on brittle CSS classes. Safe for a development store only.
+
+  After demo: remove or leave — attributes are inert for shoppers.
+{% endcomment %}
+
+{% comment %} === Cart / ATC — paste near product form ATC button (main-product.liquid) === {% endcomment %}
+{% comment %}
+  On the existing ATC button element, add:
+    data-syndicate="atc"
+    data-syndicate-product="{{ product.handle }}"
+{% endcomment %}
+
+{% comment %} === Collection product card link === {% endcomment %}
+{% comment %}
+  On card product title link, add:
+    data-syndicate="product-card"
+    data-syndicate-handle="{{ card_product.handle }}"
+{% endcomment %}
+
+{% comment %} === Checkout button on cart === {% endcomment %}
+{% comment %}
+  On cart checkout button, add:
+    data-syndicate="checkout-start"
+{% endcomment %}
+
+{% comment %} === Nav Race Kits === {% endcomment %}
+{% comment %}
+  Prefer matching by link text "Race Kits". If editing header nav link:
+    data-syndicate="nav-race-kits"
+{% endcomment %}
+
+<div id="syndicate-demo-hooks-marker" data-syndicate="hooks-present" hidden></div>

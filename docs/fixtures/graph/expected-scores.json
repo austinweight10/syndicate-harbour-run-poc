@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English.",
+    "provenance": "GOLDEN",
+    "purpose": "Golden confidence bands for graph.buildAndScore asserts",
+    "epic": "04",
+    "status": "SUPERSEDED",
+    "supersededNote": "SUPERSEDED 26 Sep 2026 for primary Harbour Run demo. Weekend golden SoT = fixtures/graph/expected-scores-running.json (copied from syndicate-graph-lab/expected-scores-running.proposed.json). This football-era file remains for optional secondary / historical asserts only.",
+    "weekendGolden": "fixtures/graph/expected-scores-running.json"
+  },
+  "bands": [
+    {
+      "name": "Match-day home kit rush",
+      "eventNaturalKeyHint": "mufc|arsenal|team_fixture",
+      "confidenceMin": 0.72,
+      "confidenceMax": 0.92,
+      "provenanceMustInclude": [
+        "OBSERVED"
+      ],
+      "components": {
+        "Lt": [
+          0.5,
+          1.0
+        ],
+        "G": [
+          0.4,
+          1.0
+        ],
+        "A": [
+          0.6,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "Wet weekend layers",
+      "eventNaturalKeyHint": "weather|wet",
+      "confidenceMin": 0.45,
+      "confidenceMax": 0.75,
+      "provenanceMustInclude": [
+        "AGGREGATE_PROXY"
+      ],
+      "components": {
+        "A": [
+          0.5,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "Sofa-to-5K virtual",
+      "eventNaturalKeyHint": "sofa5k|virtual",
+      "confidenceMin": 0.35,
+      "confidenceMax": 0.65,
+      "provenanceMustInclude": [
+        "MOCK"
+      ],
+      "components": {
+        "G": [
+          0.2,
+          0.6
+        ]
+      }
+    },
+    {
+      "name": "Hyrox-style meet",
+      "eventNaturalKeyHint": "hyrox",
+      "confidenceMin": 0.3,
+      "confidenceMax": 0.6,
+      "provenanceMustInclude": [
+        "MOCK"
+      ]
+    }
+  ],
+  "assertRules": [
+    "Social alone never upgrades demand provenance to OBSERVED",
+    "Activity buzz alone never OBSERVED demand",
+    "Prior-year Y defaults to 0.5 within 60d window"
+  ]
+}

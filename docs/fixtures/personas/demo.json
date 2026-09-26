@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English.",
+    "provenance": "MIXED",
+    "purpose": "A6 locked: two full personas + fashion stub; Club social optional stretch NOT required",
+    "epic": "05",
+    "vertical": "running",
+    "shopStory": "Harbour Run"
+  },
+  "personas": [
+    {
+      "id": "pers_race_day_taper",
+      "name": "Race-day taper",
+      "status": "ready",
+      "vertical": "running",
+      "avatarInitials": "RT",
+      "goals": [
+        "Race tee (adult L)",
+        "Shorts or socks under \u00a345"
+      ],
+      "budgetMin": 50,
+      "budgetMax": 100,
+      "currencyCode": "GBP",
+      "constraints": {
+        "sizes": [
+          "L"
+        ],
+        "colours": [
+          "navy",
+          "race"
+        ],
+        "mobileFirst": true,
+        "timePressure": true,
+        "deliveryBy": "race-morning"
+      },
+      "behavioural": {
+        "impulseVsDeliberate": "impulse",
+        "collectionFirstVsSearch": "collection"
+      },
+      "locationProxy": "London \u2014 Hyde Park / Battersea / Hackney",
+      "mockFlags": [
+        "time_pressure_hypothesis"
+      ],
+      "successCriteria": {
+        "minGoalsInCart": 2,
+        "reachCheckout": true
+      },
+      "brief": "Shops on mobile the morning of a London 5K/10K. Wants adult L race tee plus shorts or socks. Time-pressured \u2014 will abandon if youth size guide is buried when buying for family.",
+      "evidenceOrderCount": 18,
+      "tags": [
+        "Race-day",
+        "Geo: London W2/SW11/E9",
+        "Affinity: Race Kits",
+        "Wx-aware"
+      ],
+      "provenanceLabels": [
+        "OBSERVED",
+        "MODEL_HYPOTHESIS"
+      ]
+    },
+    {
+      "id": "pers_wet_weather_trainer",
+      "name": "Wet-weather trainer",
+      "status": "ready",
+      "vertical": "running",
+      "avatarInitials": "WW",
+      "goals": [
+        "Waterproof shell",
+        "Optional race tee or midlayer"
+      ],
+      "budgetMin": 60,
+      "budgetMax": 130,
+      "currencyCode": "GBP",
+      "constraints": {
+        "sizes": [
+          "M",
+          "L"
+        ],
+        "mobileFirst": true,
+        "timePressure": false
+      },
+      "behavioural": {
+        "impulseVsDeliberate": "deliberate",
+        "collectionFirstVsSearch": "search"
+      },
+      "locationProxy": "London metro",
+      "mockFlags": [
+        "weather_proxy_narrative"
+      ],
+      "successCriteria": {
+        "minGoalsInCart": 1,
+        "reachCheckout": true
+      },
+      "brief": "Midweek London rain. Buys packable shell (\u00b1 tee). Weather is PROXY for Insights narrative \u2014 orders remain OBSERVED.",
+      "evidenceOrderCount": 12,
+      "tags": [
+        "Wet-weather",
+        "Geo: London",
+        "Affinity: Shell \u00b7 layers"
+      ],
+      "provenanceLabels": [
+        "OBSERVED",
+        "AGGREGATE_PROXY"
+      ],
+      "notes": "Open-Meteo precip bump colours Insights; do not claim weather caused purchase without PROXY label."
+    },
+    {
+      "id": "pers_anniversary_stub",
+      "name": "Anniversary night-out",
+      "status": "stub",
+      "vertical": "fashion_stub",
+      "avatarInitials": "AN",
+      "goals": [],
+      "budgetMin": null,
+      "budgetMax": null,
+      "brief": "Parked for this running demo \u2014 roadmap vertical.",
+      "tags": [
+        "Not in demo"
+      ],
+      "provenanceLabels": [
+        "MODEL_HYPOTHESIS"
+      ]
+    },
+    {
+      "id": "pers_club_social_stretch",
+      "name": "Club social",
+      "status": "stretch_optional",
+      "vertical": "running",
+      "avatarInitials": "CS",
+      "goals": [
+        "Cap or joggers after easy Saturday"
+      ],
+      "budgetMin": 40,
+      "budgetMax": 90,
+      "currencyCode": "GBP",
+      "brief": "OPTIONAL STRETCH \u2014 tagged cohort for insights; not required for MVP DoD (A6 locked two + stub).",
+      "tags": [
+        "Stretch",
+        "Club"
+      ],
+      "provenanceLabels": [
+        "OBSERVED"
+      ],
+      "includeInDoD": false
+    }
+  ]
+}

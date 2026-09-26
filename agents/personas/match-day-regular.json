@@ -1,0 +1,21 @@
+{
+  "id": "per_match_day_regular",
+  "name": "Match-day regular",
+  "nameEvidence": "model_hypothesis",
+  "eventId": "evt_match_day_home",
+  "goals": [
+    "Find the 2026/27 home shirt in an adult size",
+    "Check the size guide before adding it",
+    "Add a name print if it is easy to find"
+  ],
+  "budgetMin": 55,
+  "budgetMax": 95,
+  "currency": "GBP",
+  "viewport": "mobile",
+  "locale": "en-GB",
+  "constraints": {
+    "sizes": ["adult M", "adult L"],
+    "stopBeforePayment": true
+  },
+  "mockFlags": []
+}

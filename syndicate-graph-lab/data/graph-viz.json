@@ -1,0 +1,6132 @@
+{
+  "meta": {
+    "shop_id": "shop_harbour_run_demo",
+    "shop_label": "Harbour Run",
+    "generated_at": "2026-09-24T20:26:41.188240+01:00",
+    "generated_at_label": "24 Sep 2026 · 20:26 BST",
+    "counts": {
+      "nodes": 131,
+      "edges": 395,
+      "events": 7,
+      "synthesised_nodes": 1
+    },
+    "node_types": {
+      "Order": 48,
+      "SKU": 20,
+      "Event": 14,
+      "HashtagWatch": 12,
+      "EventCandidate": 7,
+      "Geo": 7,
+      "SocialTrend": 6,
+      "VirtualEvent": 5,
+      "Collection": 4,
+      "ActivityChallenge": 3,
+      "Persona": 3,
+      "Driver": 1,
+      "Shop": 1
+    },
+    "relations": {
+      "CONTAINS": 159,
+      "AFFINITY": 130,
+      "SHIPPED_TO": 48,
+      "VENUE_IN": 17,
+      "AMPLIFIES": 11,
+      "GOALS_INCLUDE": 9,
+      "TRENDING_IN": 9,
+      "TEMPORAL_LIFT": 7,
+      "GEO_OVERLAP": 4,
+      "DRIVEN_BY": 1
+    },
+    "provenances": {
+      "OBSERVED": 222,
+      "MOCK": 136,
+      "AGGREGATE_PROXY": 37
+    },
+    "matchday_path": {
+      "event_candidate_id": "ec_257f33655586dd05",
+      "name": "Match-day home kit rush",
+      "relations": [
+        "SHIPPED_TO",
+        "VENUE_IN",
+        "TEMPORAL_LIFT",
+        "GEO_OVERLAP",
+        "AFFINITY",
+        "AMPLIFIES",
+        "PERSONA_OF"
+      ],
+      "seed_node_ids": [
+        "ec_257f33655586dd05",
+        "geo_5aa4302a16bb606d",
+        "mock:pl:arsenal-chelsea:2026-09-26",
+        "mock:pl:mufc-liverpool:2026-09-27",
+        "st_8f1ea3ad3dc03ea0"
+      ],
+      "notes": "Order → Geo ← Event plus TEMPORAL_LIFT / AFFINITY / AMPLIFIES / PERSONA_OF around top Match-day EC"
+    },
+    "source_db": "syndicate-graph-lab/data/graph.sqlite"
+  },
+  "nodes": [
+    {
+      "id": "act:club:harbour-weekly",
+      "type": "ActivityChallenge",
+      "label": "Harbour Athletic public club — weekly distance",
+      "payload": {
+        "naturalKey": "act:club:harbour-weekly",
+        "title": "Harbour Athletic public club — weekly distance",
+        "platform": "strava",
+        "mode": "virtual",
+        "window": {
+          "start": "2026-09-22",
+          "end": "2026-09-28"
+        },
+        "affinity": [
+          "run_shoes",
+          "layers"
+        ],
+        "volumeProxy": 0.55,
+        "provenance": "MOCK",
+        "notes": "Strava-shaped shape only; no private athlete data"
+      }
+    },
+    {
+      "id": "act:sep-100k:2026",
+      "type": "ActivityChallenge",
+      "label": "September 100K challenge — UK runners",
+      "payload": {
+        "naturalKey": "act:sep-100k:2026",
+        "title": "September 100K challenge — UK runners",
+        "platform": "mock",
+        "mode": "virtual",
+        "window": {
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "affinity": [
+          "run_shoes",
+          "kits",
+          "recovery"
+        ],
+        "volumeProxy": 0.72,
+        "provenance": "MOCK"
+      }
+    },
+    {
+      "id": "act:zwift-climb:oct",
+      "type": "ActivityChallenge",
+      "label": "Virtual climb month (Zwift-shaped)",
+      "payload": {
+        "naturalKey": "act:zwift-climb:oct",
+        "title": "Virtual climb month (Zwift-shaped)",
+        "platform": "zwift",
+        "mode": "virtual",
+        "window": {
+          "start": "2026-10-01",
+          "end": "2026-10-31"
+        },
+        "affinity": [
+          "cycling_kit",
+          "hydration"
+        ],
+        "volumeProxy": 0.48,
+        "provenance": "MOCK"
+      }
+    },
+    {
+      "id": "col_kids",
+      "type": "Collection",
+      "label": "Kids & Youth",
+      "payload": {
+        "id": "col_kids",
+        "title": "Kids & Youth",
+        "handle": "kids-youth"
+      }
+    },
+    {
+      "id": "col_race_kits",
+      "type": "Collection",
+      "label": "Race Kits",
+      "payload": {
+        "id": "col_race_kits",
+        "title": "Race Kits",
+        "handle": "race-kits"
+      }
+    },
+    {
+      "id": "col_race_day",
+      "type": "Collection",
+      "label": "Race-day essentials",
+      "payload": {
+        "id": "col_race_day",
+        "title": "Race-day essentials",
+        "handle": "race-day-essentials"
+      }
+    },
+    {
+      "id": "col_wet",
+      "type": "Collection",
+      "label": "Wet-weather training",
+      "payload": {
+        "id": "col_wet",
+        "title": "Wet-weather training",
+        "handle": "wet-weather-training"
+      }
+    },
+    {
+      "id": "driver:wet_weekend:demo",
+      "type": "Driver",
+      "label": "Wet weekend layers (synthetic MOCK)",
+      "payload": {
+        "kind": "weather_driver",
+        "synthetic": true
+      }
+    },
+    {
+      "id": "mock:pl:arsenal-chelsea:2026-09-26",
+      "type": "Event",
+      "label": "Arsenal vs Chelsea",
+      "payload": {
+        "naturalKey": "mock:pl:arsenal-chelsea:2026-09-26",
+        "title": "Arsenal vs Chelsea",
+        "category": "team_fixture",
+        "mode": "physical",
+        "startAt": "2026-09-26T15:00:00+01:00",
+        "venueCity": "London",
+        "audienceTags": [
+          "fan_spectator",
+          "home_kit"
+        ],
+        "provenance": "MOCK",
+        "sourceType": "mock_json",
+        "demoPrimary": false,
+        "demoRole": "secondary"
+      }
+    },
+    {
+      "id": "mock:season:athleisure-drop:aut26",
+      "type": "Event",
+      "label": "Autumn athleisure drop week",
+      "payload": {
+        "naturalKey": "mock:season:athleisure-drop:aut26",
+        "title": "Autumn athleisure drop week",
+        "category": "season_drop_calendar",
+        "mode": "hybrid",
+        "startAt": "2026-09-28T00:00:00+01:00",
+        "endAt": "2026-10-05T23:59:59+01:00",
+        "venueCity": null,
+        "audienceTags": [
+          "athleisure",
+          "layers"
+        ],
+        "provenance": "MOCK",
+        "sourceType": "mock_json",
+        "demoPrimary": false,
+        "demoRole": "secondary"
+      }
+    },
+    {
+      "id": "evt_battersea_park",
+      "type": "Event",
+      "label": "Battersea Park 5k, 10k & Half Marathon",
+      "payload": {
+        "id": "evt_battersea_park",
+        "title": "Battersea Park 5k, 10k & Half Marathon",
+        "sport": "running",
+        "startsAt": "2026-09-26T10:30:00+01:00",
+        "venue": "Battersea Park, SW11",
+        "mode": "physical",
+        "affinityTags": [
+          "race_day",
+          "trainers",
+          "recovery",
+          "hydration"
+        ],
+        "provenance": "AGGREGATE_PROXY",
+        "sourceUrl": "https://findarace.com/events/battersea-park-10k-half-marathon",
+        "demoPrimary": true,
+        "naturalKey": "evt_battersea_park",
+        "startAt": "2026-09-26T10:30:00+01:00",
+        "venueCity": "London",
+        "category": "race_running",
+        "audienceTags": [
+          "race_day",
+          "trainers",
+          "recovery",
+          "hydration"
+        ]
+      }
+    },
+    {
+      "id": "evt_clapham_common",
+      "type": "Event",
+      "label": "Clapham Common 5k, 10k & Half Marathon",
+      "payload": {
+        "id": "evt_clapham_common",
+        "title": "Clapham Common 5k, 10k & Half Marathon",
+        "sport": "running",
+        "startsAt": "2026-09-27T09:00:00+01:00",
+        "venue": "Clapham Common, SW4",
+        "mode": "physical",
+        "affinityTags": [
+          "race_day",
+          "trainers",
+          "layers",
+          "hydration"
+        ],
+        "provenance": "AGGREGATE_PROXY",
+        "sourceUrl": "https://findarace.com/events/clapham-common-5k-10k",
+        "demoPrimary": true,
+        "naturalKey": "evt_clapham_common",
+        "startAt": "2026-09-27T09:00:00+01:00",
+        "venueCity": "London",
+        "category": "race_running",
+        "audienceTags": [
+          "race_day",
+          "trainers",
+          "layers",
+          "hydration"
+        ]
+      }
+    },
+    {
+      "id": "mock:race:gm-10k:2026-10-04",
+      "type": "Event",
+      "label": "Greater Manchester 10K",
+      "payload": {
+        "naturalKey": "mock:race:gm-10k:2026-10-04",
+        "title": "Greater Manchester 10K",
+        "category": "race_running",
+        "mode": "physical",
+        "startAt": "2026-10-04T09:30:00+01:00",
+        "venueCity": "Manchester",
+        "audienceTags": [
+          "runner",
+          "race_day"
+        ],
+        "provenance": "MOCK",
+        "sourceType": "mock_json",
+        "demoPrimary": false,
+        "demoRole": "secondary"
+      }
+    },
+    {
+      "id": "evt_hackney_parkrun",
+      "type": "Event",
+      "label": "Hackney Marshes parkrun",
+      "payload": {
+        "id": "evt_hackney_parkrun",
+        "title": "Hackney Marshes parkrun",
+        "sport": "running",
+        "startsAt": "2026-09-27T09:00:00+01:00",
+        "venue": "Hackney Marshes Centre, E9",
+        "mode": "physical",
+        "affinityTags": [
+          "trainers",
+          "layers",
+          "recovery",
+          "hydration"
+        ],
+        "provenance": "AGGREGATE_PROXY",
+        "sourceUrl": "https://www.parkrun.org.uk/hackneymarshes/",
+        "recurring": "weekly_saturday",
+        "demoPrimary": true,
+        "naturalKey": "evt_hackney_parkrun",
+        "startAt": "2026-09-27T09:00:00+01:00",
+        "venueCity": "London",
+        "category": "race_running",
+        "audienceTags": [
+          "trainers",
+          "layers",
+          "recovery",
+          "hydration"
+        ]
+      }
+    },
+    {
+      "id": "evt_hyde_park_5k_10k",
+      "type": "Event",
+      "label": "Hyde Park 5K & 10K (RunThrough)",
+      "payload": {
+        "id": "evt_hyde_park_5k_10k",
+        "title": "Hyde Park 5K & 10K (RunThrough)",
+        "sport": "running",
+        "startsAt": "2026-09-26T09:30:00+01:00",
+        "venue": "Hyde Park Bandstand, W2",
+        "mode": "physical",
+        "affinityTags": [
+          "race_day",
+          "trainers",
+          "hydration",
+          "layers"
+        ],
+        "provenance": "AGGREGATE_PROXY",
+        "sourceUrl": "https://findarace.com/events/hyde-park-5k-10k",
+        "demoPrimary": true,
+        "naturalKey": "evt_hyde_park_5k_10k",
+        "startAt": "2026-09-26T09:30:00+01:00",
+        "venueCity": "London",
+        "category": "race_running",
+        "audienceTags": [
+          "race_day",
+          "trainers",
+          "hydration",
+          "layers"
+        ]
+      }
+    },
+    {
+      "id": "mock:hyrox:london:2026-10-11",
+      "type": "Event",
+      "label": "Hyrox-style city meet (London)",
+      "payload": {
+        "naturalKey": "mock:hyrox:london:2026-10-11",
+        "title": "Hyrox-style city meet (London)",
+        "category": "crossfit_functional",
+        "mode": "physical",
+        "startAt": "2026-10-11T08:00:00+01:00",
+        "venueCity": "London",
+        "audienceTags": [
+          "hyrox",
+          "functional"
+        ],
+        "provenance": "MOCK",
+        "sourceType": "mock_json",
+        "demoPrimary": false,
+        "demoRole": "secondary"
+      }
+    },
+    {
+      "id": "evt_kingston_half",
+      "type": "Event",
+      "label": "Kingston Half Marathon",
+      "payload": {
+        "id": "evt_kingston_half",
+        "title": "Kingston Half Marathon",
+        "sport": "running",
+        "startsAt": "2026-10-04T08:30:00+01:00",
+        "venue": "Kingston Market Place → Hampton Court",
+        "mode": "physical",
+        "affinityTags": [
+          "race_day",
+          "trainers",
+          "hydration",
+          "layers",
+          "recovery"
+        ],
+        "provenance": "AGGREGATE_PROXY",
+        "sourceUrl": "https://findarace.com/events/the-royal-borough-of-kingston-half-marathon",
+        "demoPrimary": false,
+        "naturalKey": "evt_kingston_half",
+        "startAt": "2026-10-04T08:30:00+01:00",
+        "venueCity": "London",
+        "category": "race_running",
+        "audienceTags": [
+          "race_day",
+          "trainers",
+          "hydration",
+          "layers",
+          "recovery"
+        ]
+      }
+    },
+    {
+      "id": "mock:pl:mufc-liverpool:2026-09-27",
+      "type": "Event",
+      "label": "Manchester United vs Liverpool",
+      "payload": {
+        "naturalKey": "mock:pl:mufc-liverpool:2026-09-27",
+        "title": "Manchester United vs Liverpool",
+        "category": "team_fixture",
+        "mode": "physical",
+        "startAt": "2026-09-27T16:30:00+01:00",
+        "venueCity": "Manchester",
+        "audienceTags": [
+          "fan_spectator",
+          "home_kit",
+          "kids"
+        ],
+        "provenance": "MOCK",
+        "sourceType": "mock_json",
+        "demoPrimary": false,
+        "demoRole": "secondary"
+      }
+    },
+    {
+      "id": "evt_royal_parks_half",
+      "type": "Event",
+      "label": "Oysho Royal Parks Half Marathon",
+      "payload": {
+        "id": "evt_royal_parks_half",
+        "title": "Oysho Royal Parks Half Marathon",
+        "sport": "running",
+        "startsAt": "2026-10-11T09:00:00+01:00",
+        "venue": "Hyde / Green / St James's / Kensington Gardens",
+        "mode": "physical",
+        "affinityTags": [
+          "race_day",
+          "layers",
+          "hydration",
+          "recovery",
+          "trainers"
+        ],
+        "provenance": "AGGREGATE_PROXY",
+        "sourceUrl": "https://www.royalparks.org.uk/whats-on/royal-parks-half-marathon",
+        "demoPrimary": false,
+        "naturalKey": "evt_royal_parks_half",
+        "startAt": "2026-10-11T09:00:00+01:00",
+        "venueCity": "London",
+        "category": "race_running",
+        "audienceTags": [
+          "race_day",
+          "layers",
+          "hydration",
+          "recovery",
+          "trainers"
+        ]
+      }
+    },
+    {
+      "id": "mock:virtual:sofa5k:series",
+      "type": "Event",
+      "label": "Sofa-to-5K virtual series",
+      "payload": {
+        "naturalKey": "mock:virtual:sofa5k:series",
+        "title": "Sofa-to-5K virtual series",
+        "category": "virtual_challenge",
+        "mode": "virtual",
+        "startAt": "2026-09-22T00:00:00+01:00",
+        "endAt": "2026-10-20T23:59:59+01:00",
+        "venueCity": null,
+        "audienceTags": [
+          "online_only",
+          "runner"
+        ],
+        "provenance": "MOCK",
+        "sourceType": "mock_json",
+        "demoPrimary": false,
+        "demoRole": "secondary"
+      }
+    },
+    {
+      "id": "evt_victoria_park",
+      "type": "Event",
+      "label": "Victoria Park Half Marathon, 10k & 5k",
+      "payload": {
+        "id": "evt_victoria_park",
+        "title": "Victoria Park Half Marathon, 10k & 5k",
+        "sport": "running",
+        "startsAt": "2026-10-03T09:30:00+01:00",
+        "venue": "Victoria Park, Hackney E9",
+        "mode": "physical",
+        "affinityTags": [
+          "race_day",
+          "trainers",
+          "recovery",
+          "hydration"
+        ],
+        "provenance": "AGGREGATE_PROXY",
+        "sourceUrl": "https://www.challengechasers.com/events/908ca59c-efae-4b96-9ee6-122bf9dff84e",
+        "demoPrimary": true,
+        "naturalKey": "evt_victoria_park",
+        "startAt": "2026-10-03T09:30:00+01:00",
+        "venueCity": "London",
+        "category": "race_running",
+        "audienceTags": [
+          "race_day",
+          "trainers",
+          "recovery",
+          "hydration"
+        ]
+      }
+    },
+    {
+      "id": "ec_c13d333a0fc2941a",
+      "type": "EventCandidate",
+      "label": "Autumn athleisure drop",
+      "payload": {
+        "archetype": "seasonal_drop"
+      }
+    },
+    {
+      "id": "ec_985374c4df5016a6",
+      "type": "EventCandidate",
+      "label": "Hyrox-style meet",
+      "payload": {
+        "archetype": "functional_meet"
+      }
+    },
+    {
+      "id": "ec_257f33655586dd05",
+      "type": "EventCandidate",
+      "label": "Match-day home kit rush",
+      "payload": {
+        "archetype": "match_day"
+      }
+    },
+    {
+      "id": "ec_800f6f3674120a58",
+      "type": "EventCandidate",
+      "label": "Race weekend — London 10K",
+      "payload": {
+        "archetype": "race_weekend"
+      }
+    },
+    {
+      "id": "ec_769979e76bed363c",
+      "type": "EventCandidate",
+      "label": "Race weekend — Manchester 10K",
+      "payload": {
+        "archetype": "race_weekend"
+      }
+    },
+    {
+      "id": "ec_9bd1afe1914b05dd",
+      "type": "EventCandidate",
+      "label": "Sofa-to-5K virtual",
+      "payload": {
+        "archetype": "virtual"
+      }
+    },
+    {
+      "id": "ec_24f5e9de20c5b013",
+      "type": "EventCandidate",
+      "label": "Wet weekend layers",
+      "payload": {
+        "archetype": "weather"
+      }
+    },
+    {
+      "id": "geo_ffb3f9141907327d",
+      "type": "Geo",
+      "label": "Birmingham",
+      "payload": {
+        "city": "Birmingham",
+        "country": "GB",
+        "lat": 52.48,
+        "lng": -1.9
+      }
+    },
+    {
+      "id": "geo_2808023ae8a57f56",
+      "type": "Geo",
+      "label": "Leeds",
+      "payload": {
+        "city": "Leeds",
+        "country": "GB",
+        "lat": 53.8,
+        "lng": -1.55
+      }
+    },
+    {
+      "id": "geo_1b899a36ff7f1087",
+      "type": "Geo",
+      "label": "Liverpool",
+      "payload": {
+        "city": "Liverpool",
+        "country": "GB",
+        "lat": 53.41,
+        "lng": -2.99
+      }
+    },
+    {
+      "id": "geo_5aa4302a16bb606d",
+      "type": "Geo",
+      "label": "London",
+      "payload": {
+        "city": "London",
+        "country": "GB",
+        "lat": 51.51,
+        "lng": -0.13
+      }
+    },
+    {
+      "id": "geo_f18f2c5f55fce82b",
+      "type": "Geo",
+      "label": "Manchester",
+      "payload": {
+        "city": "Manchester",
+        "country": "GB",
+        "lat": 53.48,
+        "lng": -2.24
+      }
+    },
+    {
+      "id": "geo_a2dcfe603505c7d6",
+      "type": "Geo",
+      "label": "Newcastle",
+      "payload": {
+        "city": "Newcastle",
+        "country": "GB",
+        "lat": 54.98,
+        "lng": -1.61
+      }
+    },
+    {
+      "id": "geo_dfe2365b2e8ade4a",
+      "type": "Geo",
+      "label": "global/virtual",
+      "payload": {
+        "key": "global/virtual"
+      }
+    },
+    {
+      "id": "hw_a36efd25af0862b3",
+      "type": "HashtagWatch",
+      "label": "#Arsenal",
+      "payload": {
+        "tag": "#Arsenal",
+        "geoHint": "London",
+        "affinity": [
+          "home_kit",
+          "jersey"
+        ],
+        "priority": 1
+      }
+    },
+    {
+      "id": "hw_eb1e1d0ef30966df",
+      "type": "HashtagWatch",
+      "label": "#Athleisure",
+      "payload": {
+        "tag": "#Athleisure",
+        "geoHint": null,
+        "affinity": [
+          "leggings",
+          "layers"
+        ],
+        "priority": 3
+      }
+    },
+    {
+      "id": "hw_4c9a545bf736e5cd",
+      "type": "HashtagWatch",
+      "label": "#CFC",
+      "payload": {
+        "tag": "#CFC",
+        "geoHint": "London",
+        "affinity": [
+          "home_kit",
+          "away_kit"
+        ],
+        "priority": 2
+      }
+    },
+    {
+      "id": "hw_5f873ac05ede7a46",
+      "type": "HashtagWatch",
+      "label": "#GreatNorthRun",
+      "payload": {
+        "tag": "#GreatNorthRun",
+        "geoHint": "Newcastle",
+        "affinity": [
+          "trainers",
+          "race_day"
+        ],
+        "priority": 2
+      }
+    },
+    {
+      "id": "hw_d8456936da60a14a",
+      "type": "HashtagWatch",
+      "label": "#HYROX",
+      "payload": {
+        "tag": "#HYROX",
+        "geoHint": null,
+        "affinity": [
+          "grips",
+          "shorts",
+          "lifting_shoes"
+        ],
+        "priority": 1
+      }
+    },
+    {
+      "id": "hw_0dca8440d0d6bb89",
+      "type": "HashtagWatch",
+      "label": "#LFC",
+      "payload": {
+        "tag": "#LFC",
+        "geoHint": "Liverpool",
+        "affinity": [
+          "home_kit",
+          "scarf"
+        ],
+        "priority": 1
+      }
+    },
+    {
+      "id": "hw_0b739620a78cf116",
+      "type": "HashtagWatch",
+      "label": "#LondonMarathon",
+      "payload": {
+        "tag": "#LondonMarathon",
+        "geoHint": "London",
+        "affinity": [
+          "trainers",
+          "race_day",
+          "layers"
+        ],
+        "priority": 1
+      }
+    },
+    {
+      "id": "hw_081a3e93431eb042",
+      "type": "HashtagWatch",
+      "label": "#MUFC",
+      "payload": {
+        "tag": "#MUFC",
+        "geoHint": "Manchester",
+        "affinity": [
+          "home_kit",
+          "scarf",
+          "kids_kit"
+        ],
+        "priority": 1
+      }
+    },
+    {
+      "id": "hw_42db652e13a37708",
+      "type": "HashtagWatch",
+      "label": "#MatchDay",
+      "payload": {
+        "tag": "#MatchDay",
+        "geoHint": null,
+        "affinity": [
+          "home_kit",
+          "scarf",
+          "layers"
+        ],
+        "priority": 1
+      }
+    },
+    {
+      "id": "hw_e2086f3f17fdf2d9",
+      "type": "HashtagWatch",
+      "label": "#SofaTo5K",
+      "payload": {
+        "tag": "#SofaTo5K",
+        "geoHint": null,
+        "affinity": [
+          "trainers",
+          "recovery"
+        ],
+        "priority": 2
+      }
+    },
+    {
+      "id": "hw_8a2f4f8dd39878df",
+      "type": "HashtagWatch",
+      "label": "#Spurs",
+      "payload": {
+        "tag": "#Spurs",
+        "geoHint": "London",
+        "affinity": [
+          "home_kit"
+        ],
+        "priority": 2
+      }
+    },
+    {
+      "id": "hw_8e0a0a9dd5a93e3e",
+      "type": "HashtagWatch",
+      "label": "#parkrun",
+      "payload": {
+        "tag": "#parkrun",
+        "geoHint": null,
+        "affinity": [
+          "trainers",
+          "recovery"
+        ],
+        "priority": 2
+      }
+    },
+    {
+      "id": "ord_seed_001",
+      "type": "Order",
+      "label": "#1001",
+      "payload": {
+        "createdAt": "2026-08-15T09:05:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_002",
+      "type": "Order",
+      "label": "#1002",
+      "payload": {
+        "createdAt": "2026-08-22T10:08:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_003",
+      "type": "Order",
+      "label": "#1003",
+      "payload": {
+        "createdAt": "2026-08-29T11:11:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_004",
+      "type": "Order",
+      "label": "#1004",
+      "payload": {
+        "createdAt": "2026-09-05T12:14:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_005",
+      "type": "Order",
+      "label": "#1005",
+      "payload": {
+        "createdAt": "2026-09-12T09:17:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_006",
+      "type": "Order",
+      "label": "#1006",
+      "payload": {
+        "createdAt": "2026-09-19T10:20:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_007",
+      "type": "Order",
+      "label": "#1007",
+      "payload": {
+        "createdAt": "2026-08-15T11:23:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_008",
+      "type": "Order",
+      "label": "#1008",
+      "payload": {
+        "createdAt": "2026-08-22T12:26:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_009",
+      "type": "Order",
+      "label": "#1009",
+      "payload": {
+        "createdAt": "2026-08-29T09:29:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_010",
+      "type": "Order",
+      "label": "#1010",
+      "payload": {
+        "createdAt": "2026-09-05T10:32:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_011",
+      "type": "Order",
+      "label": "#1011",
+      "payload": {
+        "createdAt": "2026-09-12T11:35:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_012",
+      "type": "Order",
+      "label": "#1012",
+      "payload": {
+        "createdAt": "2026-09-19T12:38:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_013",
+      "type": "Order",
+      "label": "#1013",
+      "payload": {
+        "createdAt": "2026-08-15T09:41:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_014",
+      "type": "Order",
+      "label": "#1014",
+      "payload": {
+        "createdAt": "2026-08-22T10:44:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_015",
+      "type": "Order",
+      "label": "#1015",
+      "payload": {
+        "createdAt": "2026-08-29T11:47:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_016",
+      "type": "Order",
+      "label": "#1016",
+      "payload": {
+        "createdAt": "2026-09-05T12:50:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_017",
+      "type": "Order",
+      "label": "#1017",
+      "payload": {
+        "createdAt": "2026-09-12T09:53:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_018",
+      "type": "Order",
+      "label": "#1018",
+      "payload": {
+        "createdAt": "2026-09-19T10:06:00+01:00",
+        "city": "London",
+        "cohortHint": "race_day_taper"
+      }
+    },
+    {
+      "id": "ord_seed_019",
+      "type": "Order",
+      "label": "#1019",
+      "payload": {
+        "createdAt": "2026-08-18T18:10:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_020",
+      "type": "Order",
+      "label": "#1020",
+      "payload": {
+        "createdAt": "2026-08-25T19:15:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_021",
+      "type": "Order",
+      "label": "#1021",
+      "payload": {
+        "createdAt": "2026-09-01T20:20:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_022",
+      "type": "Order",
+      "label": "#1022",
+      "payload": {
+        "createdAt": "2026-09-08T18:25:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_023",
+      "type": "Order",
+      "label": "#1023",
+      "payload": {
+        "createdAt": "2026-09-15T19:30:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_024",
+      "type": "Order",
+      "label": "#1024",
+      "payload": {
+        "createdAt": "2026-09-22T20:35:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_025",
+      "type": "Order",
+      "label": "#1025",
+      "payload": {
+        "createdAt": "2026-08-20T18:40:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_026",
+      "type": "Order",
+      "label": "#1026",
+      "payload": {
+        "createdAt": "2026-09-03T19:45:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_027",
+      "type": "Order",
+      "label": "#1027",
+      "payload": {
+        "createdAt": "2026-09-10T20:10:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_028",
+      "type": "Order",
+      "label": "#1028",
+      "payload": {
+        "createdAt": "2026-09-17T18:15:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_029",
+      "type": "Order",
+      "label": "#1029",
+      "payload": {
+        "createdAt": "2026-08-18T19:20:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_030",
+      "type": "Order",
+      "label": "#1030",
+      "payload": {
+        "createdAt": "2026-08-25T20:25:00+01:00",
+        "city": "London",
+        "cohortHint": "wet_weather_trainer"
+      }
+    },
+    {
+      "id": "ord_seed_031",
+      "type": "Order",
+      "label": "#1031",
+      "payload": {
+        "createdAt": "2026-08-15T10:15:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_032",
+      "type": "Order",
+      "label": "#1032",
+      "payload": {
+        "createdAt": "2026-08-22T10:16:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_033",
+      "type": "Order",
+      "label": "#1033",
+      "payload": {
+        "createdAt": "2026-08-29T10:17:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_034",
+      "type": "Order",
+      "label": "#1034",
+      "payload": {
+        "createdAt": "2026-09-05T10:18:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_035",
+      "type": "Order",
+      "label": "#1035",
+      "payload": {
+        "createdAt": "2026-09-12T10:19:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_036",
+      "type": "Order",
+      "label": "#1036",
+      "payload": {
+        "createdAt": "2026-09-19T10:20:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_037",
+      "type": "Order",
+      "label": "#1037",
+      "payload": {
+        "createdAt": "2026-08-15T10:21:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_038",
+      "type": "Order",
+      "label": "#1038",
+      "payload": {
+        "createdAt": "2026-08-22T10:22:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_039",
+      "type": "Order",
+      "label": "#1039",
+      "payload": {
+        "createdAt": "2026-09-10T19:23:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_040",
+      "type": "Order",
+      "label": "#1040",
+      "payload": {
+        "createdAt": "2026-09-17T19:24:00+01:00",
+        "city": "London",
+        "cohortHint": "club_social"
+      }
+    },
+    {
+      "id": "ord_seed_041",
+      "type": "Order",
+      "label": "#1041",
+      "payload": {
+        "createdAt": "2026-08-15T12:20:00+01:00",
+        "city": "London",
+        "cohortHint": "wx_athleisure"
+      }
+    },
+    {
+      "id": "ord_seed_042",
+      "type": "Order",
+      "label": "#1042",
+      "payload": {
+        "createdAt": "2026-08-25T13:21:00+01:00",
+        "city": "London",
+        "cohortHint": "wx_athleisure"
+      }
+    },
+    {
+      "id": "ord_seed_043",
+      "type": "Order",
+      "label": "#1043",
+      "payload": {
+        "createdAt": "2026-08-29T14:22:00+01:00",
+        "city": "London",
+        "cohortHint": "wx_athleisure"
+      }
+    },
+    {
+      "id": "ord_seed_044",
+      "type": "Order",
+      "label": "#1044",
+      "payload": {
+        "createdAt": "2026-09-08T15:23:00+01:00",
+        "city": "London",
+        "cohortHint": "wx_athleisure"
+      }
+    },
+    {
+      "id": "ord_seed_045",
+      "type": "Order",
+      "label": "#1045",
+      "payload": {
+        "createdAt": "2026-09-12T16:24:00+01:00",
+        "city": "London",
+        "cohortHint": "wx_athleisure"
+      }
+    },
+    {
+      "id": "ord_seed_046",
+      "type": "Order",
+      "label": "#1046",
+      "payload": {
+        "createdAt": "2026-09-22T12:25:00+01:00",
+        "city": "London",
+        "cohortHint": "wx_athleisure"
+      }
+    },
+    {
+      "id": "ord_seed_047",
+      "type": "Order",
+      "label": "#1047",
+      "payload": {
+        "createdAt": "2026-08-15T13:26:00+01:00",
+        "city": "London",
+        "cohortHint": "wx_athleisure"
+      }
+    },
+    {
+      "id": "ord_seed_048",
+      "type": "Order",
+      "label": "#1048",
+      "payload": {
+        "createdAt": "2026-09-03T14:27:00+01:00",
+        "city": "London",
+        "cohortHint": "wx_athleisure"
+      }
+    },
+    {
+      "id": "pers_club_social_stretch",
+      "type": "Persona",
+      "label": "Club social",
+      "payload": {
+        "id": "pers_club_social_stretch",
+        "name": "Club social",
+        "status": "stretch_optional",
+        "vertical": "running",
+        "avatarInitials": "CS",
+        "goals": [
+          "Cap or joggers after easy Saturday"
+        ],
+        "budgetMin": 40,
+        "budgetMax": 90,
+        "currencyCode": "GBP",
+        "brief": "OPTIONAL STRETCH — tagged cohort for insights; not required for MVP DoD (A6 locked two + stub).",
+        "tags": [
+          "Stretch",
+          "Club"
+        ],
+        "provenanceLabels": [
+          "OBSERVED"
+        ],
+        "includeInDoD": false
+      }
+    },
+    {
+      "id": "pers_race_day_taper",
+      "type": "Persona",
+      "label": "Race-day taper",
+      "payload": {
+        "id": "pers_race_day_taper",
+        "name": "Race-day taper",
+        "status": "ready",
+        "vertical": "running",
+        "avatarInitials": "RT",
+        "goals": [
+          "Race tee (adult L)",
+          "Shorts or socks under £45"
+        ],
+        "budgetMin": 50,
+        "budgetMax": 100,
+        "currencyCode": "GBP",
+        "constraints": {
+          "sizes": [
+            "L"
+          ],
+          "colours": [
+            "navy",
+            "race"
+          ],
+          "mobileFirst": true,
+          "timePressure": true,
+          "deliveryBy": "race-morning"
+        },
+        "behavioural": {
+          "impulseVsDeliberate": "impulse",
+          "collectionFirstVsSearch": "collection"
+        },
+        "locationProxy": "London — Hyde Park / Battersea / Hackney",
+        "mockFlags": [
+          "time_pressure_hypothesis"
+        ],
+        "successCriteria": {
+          "minGoalsInCart": 2,
+          "reachCheckout": true
+        },
+        "brief": "Shops on mobile the morning of a London 5K/10K. Wants adult L race tee plus shorts or socks. Time-pressured — will abandon if youth size guide is buried when buying for family.",
+        "evidenceOrderCount": 18,
+        "tags": [
+          "Race-day",
+          "Geo: London W2/SW11/E9",
+          "Affinity: Race Kits",
+          "Wx-aware"
+        ],
+        "provenanceLabels": [
+          "OBSERVED",
+          "MODEL_HYPOTHESIS"
+        ]
+      }
+    },
+    {
+      "id": "pers_wet_weather_trainer",
+      "type": "Persona",
+      "label": "Wet-weather trainer",
+      "payload": {
+        "id": "pers_wet_weather_trainer",
+        "name": "Wet-weather trainer",
+        "status": "ready",
+        "vertical": "running",
+        "avatarInitials": "WW",
+        "goals": [
+          "Waterproof shell",
+          "Optional race tee or midlayer"
+        ],
+        "budgetMin": 60,
+        "budgetMax": 130,
+        "currencyCode": "GBP",
+        "constraints": {
+          "sizes": [
+            "M",
+            "L"
+          ],
+          "mobileFirst": true,
+          "timePressure": false
+        },
+        "behavioural": {
+          "impulseVsDeliberate": "deliberate",
+          "collectionFirstVsSearch": "search"
+        },
+        "locationProxy": "London metro",
+        "mockFlags": [
+          "weather_proxy_narrative"
+        ],
+        "successCriteria": {
+          "minGoalsInCart": 1,
+          "reachCheckout": true
+        },
+        "brief": "Midweek London rain. Buys packable shell (± tee). Weather is PROXY for Insights narrative — orders remain OBSERVED.",
+        "evidenceOrderCount": 12,
+        "tags": [
+          "Wet-weather",
+          "Geo: London",
+          "Affinity: Shell · layers"
+        ],
+        "provenanceLabels": [
+          "OBSERVED",
+          "AGGREGATE_PROXY"
+        ],
+        "notes": "Open-Meteo precip bump colours Insights; do not claim weather caused purchase without PROXY label."
+      }
+    },
+    {
+      "id": "prod_hz",
+      "type": "SKU",
+      "label": "Half-Zip Midlayer",
+      "payload": {
+        "productType": "Apparel",
+        "tags": [
+          "layers",
+          "wet_weather",
+          "adult_size"
+        ],
+        "bag": [
+          "adult_size",
+          "apparel",
+          "layer",
+          "layers",
+          "wet_weather"
+        ]
+      }
+    },
+    {
+      "id": "var_hz_m",
+      "type": "SKU",
+      "label": "Half-Zip Midlayer · M",
+      "payload": {
+        "sku": "HR-HZ-M",
+        "productId": "prod_hz"
+      }
+    },
+    {
+      "id": "prod_kyt",
+      "type": "SKU",
+      "label": "Kids / Youth Run Tee",
+      "payload": {
+        "productType": "Apparel",
+        "tags": [
+          "kids",
+          "youth",
+          "race_day"
+        ],
+        "bag": [
+          "apparel",
+          "kids",
+          "race_day",
+          "youth"
+        ]
+      }
+    },
+    {
+      "id": "var_kyt_ym",
+      "type": "SKU",
+      "label": "Kids / Youth Run Tee · YM",
+      "payload": {
+        "sku": "HR-KYT-YM",
+        "productId": "prod_kyt"
+      }
+    },
+    {
+      "id": "prod_socks",
+      "type": "SKU",
+      "label": "Performance Socks",
+      "payload": {
+        "productType": "Accessories",
+        "tags": [
+          "race_day",
+          "race_kit",
+          "socks"
+        ],
+        "bag": [
+          "accessories",
+          "race_day",
+          "race_kit",
+          "socks"
+        ]
+      }
+    },
+    {
+      "id": "var_ps_3",
+      "type": "SKU",
+      "label": "Performance Socks · 3-pack",
+      "payload": {
+        "sku": "HR-PS-3",
+        "productId": "prod_socks"
+      }
+    },
+    {
+      "id": "prod_race_tee",
+      "type": "SKU",
+      "label": "Race Tee — Unisex",
+      "payload": {
+        "productType": "Apparel",
+        "tags": [
+          "race_day",
+          "race_kit",
+          "adult_size"
+        ],
+        "bag": [
+          "adult_size",
+          "apparel",
+          "race_day",
+          "race_kit"
+        ]
+      }
+    },
+    {
+      "id": "var_rt_l",
+      "type": "SKU",
+      "label": "Race Tee — Unisex · L",
+      "payload": {
+        "sku": "HR-RT-L",
+        "productId": "prod_race_tee"
+      }
+    },
+    {
+      "id": "var_rt_m",
+      "type": "SKU",
+      "label": "Race Tee — Unisex · M",
+      "payload": {
+        "sku": "HR-RT-M",
+        "productId": "prod_race_tee"
+      }
+    },
+    {
+      "id": "var_rt_xl",
+      "type": "SKU",
+      "label": "Race Tee — Unisex · XL",
+      "payload": {
+        "sku": "HR-RT-XL",
+        "productId": "prod_race_tee"
+      }
+    },
+    {
+      "id": "prod_joggers",
+      "type": "SKU",
+      "label": "Recovery Joggers",
+      "payload": {
+        "productType": "Apparel",
+        "tags": [
+          "recovery",
+          "club_social",
+          "adult_size"
+        ],
+        "bag": [
+          "adult_size",
+          "apparel",
+          "club_social",
+          "recovery"
+        ]
+      }
+    },
+    {
+      "id": "var_rj_m",
+      "type": "SKU",
+      "label": "Recovery Joggers · M",
+      "payload": {
+        "sku": "HR-RJ-M",
+        "productId": "prod_joggers"
+      }
+    },
+    {
+      "id": "prod_shorts",
+      "type": "SKU",
+      "label": "Running Shorts",
+      "payload": {
+        "productType": "Shorts",
+        "tags": [
+          "race_day",
+          "race_kit",
+          "adult_size"
+        ],
+        "bag": [
+          "adult_size",
+          "race_day",
+          "race_kit",
+          "shorts"
+        ]
+      }
+    },
+    {
+      "id": "var_rs_l",
+      "type": "SKU",
+      "label": "Running Shorts · L",
+      "payload": {
+        "sku": "HR-RS-L",
+        "productId": "prod_shorts"
+      }
+    },
+    {
+      "id": "prod_flask",
+      "type": "SKU",
+      "label": "Soft Flask 500 ml",
+      "payload": {
+        "productType": "Hydration",
+        "tags": [
+          "race_day",
+          "race_kit",
+          "hydration"
+        ],
+        "bag": [
+          "hydration",
+          "race_day",
+          "race_kit"
+        ]
+      }
+    },
+    {
+      "id": "var_sf",
+      "type": "SKU",
+      "label": "Soft Flask 500 ml · 500 ml",
+      "payload": {
+        "sku": "HR-SF-500",
+        "productId": "prod_flask"
+      }
+    },
+    {
+      "id": "prod_cap",
+      "type": "SKU",
+      "label": "Trail / Road Cap",
+      "payload": {
+        "productType": "Accessories",
+        "tags": [
+          "race_day",
+          "cap",
+          "club_social"
+        ],
+        "bag": [
+          "accessories",
+          "cap",
+          "club_social",
+          "race_day"
+        ]
+      }
+    },
+    {
+      "id": "var_cap",
+      "type": "SKU",
+      "label": "Trail / Road Cap · One size",
+      "payload": {
+        "sku": "HR-CAP-1",
+        "productId": "prod_cap"
+      }
+    },
+    {
+      "id": "prod_shell",
+      "type": "SKU",
+      "label": "Waterproof Shell Jacket",
+      "payload": {
+        "productType": "Outerwear",
+        "tags": [
+          "waterproof",
+          "wx_aware",
+          "wet_weather",
+          "adult_size"
+        ],
+        "bag": [
+          "adult_size",
+          "outerwear",
+          "shell",
+          "waterproof",
+          "wet_weather",
+          "wx_aware"
+        ]
+      }
+    },
+    {
+      "id": "var_wsj_l",
+      "type": "SKU",
+      "label": "Waterproof Shell Jacket · L",
+      "payload": {
+        "sku": "HR-WSJ-L",
+        "productId": "prod_shell"
+      }
+    },
+    {
+      "id": "shop_harbour_run_demo",
+      "type": "Shop",
+      "label": "Harbour Run",
+      "payload": {
+        "domain": "harbour-run-demo.myshopify.com"
+      }
+    },
+    {
+      "id": "st_0010b20035bb064d",
+      "type": "SocialTrend",
+      "label": "#Arsenal",
+      "payload": {
+        "tag": "#Arsenal",
+        "geoHint": "London",
+        "score": 0.69,
+        "timeBucket": "2026-09-26T14:00:00+01:00",
+        "volumeProxy": 4800,
+        "provenance": "MOCK",
+        "affinity": [
+          "home_kit",
+          "jersey"
+        ]
+      }
+    },
+    {
+      "id": "st_da7b30ee2d5b14f7",
+      "type": "SocialTrend",
+      "label": "#HYROX",
+      "payload": {
+        "tag": "#HYROX",
+        "geoHint": null,
+        "score": 0.58,
+        "timeBucket": "2026-09-23T18:00:00+01:00",
+        "volumeProxy": 2100,
+        "provenance": "MOCK",
+        "affinity": [
+          "grips",
+          "shorts"
+        ]
+      }
+    },
+    {
+      "id": "st_35663d91f528e2e9",
+      "type": "SocialTrend",
+      "label": "#LondonMarathon",
+      "payload": {
+        "tag": "#LondonMarathon",
+        "geoHint": "London",
+        "score": 0.64,
+        "timeBucket": "2026-09-24T08:00:00+01:00",
+        "volumeProxy": 3100,
+        "provenance": "MOCK",
+        "affinity": [
+          "trainers",
+          "race_day"
+        ]
+      }
+    },
+    {
+      "id": "st_9725feff37903973",
+      "type": "SocialTrend",
+      "label": "#MUFC",
+      "payload": {
+        "tag": "#MUFC",
+        "geoHint": "Manchester",
+        "score": 0.78,
+        "timeBucket": "2026-09-27T12:00:00+01:00",
+        "volumeProxy": 8200,
+        "provenance": "MOCK",
+        "affinity": [
+          "home_kit",
+          "scarf",
+          "kids_kit"
+        ]
+      }
+    },
+    {
+      "id": "st_8f1ea3ad3dc03ea0",
+      "type": "SocialTrend",
+      "label": "#MatchDay",
+      "payload": {
+        "tag": "#MatchDay",
+        "geoHint": "London",
+        "score": 0.71,
+        "timeBucket": "2026-09-26T10:00:00+01:00",
+        "volumeProxy": 5400,
+        "provenance": "MOCK",
+        "affinity": [
+          "home_kit",
+          "layers"
+        ]
+      }
+    },
+    {
+      "id": "st_d2ae0a162c65d447",
+      "type": "SocialTrend",
+      "label": "#SofaTo5K",
+      "payload": {
+        "tag": "#SofaTo5K",
+        "geoHint": null,
+        "score": 0.52,
+        "timeBucket": "2026-09-22T09:00:00+01:00",
+        "volumeProxy": 1400,
+        "provenance": "MOCK",
+        "affinity": [
+          "trainers",
+          "recovery"
+        ]
+      }
+    },
+    {
+      "id": "virt:watch-party:mufc",
+      "type": "VirtualEvent",
+      "label": "Match-day watch party (stream)",
+      "payload": {
+        "naturalKey": "virt:watch-party:mufc",
+        "title": "Match-day watch party (stream)",
+        "category": "team_fixture",
+        "mode": "virtual",
+        "streamOrAppHint": "livestream",
+        "affinity": [
+          "home_kit",
+          "layers",
+          "scarf"
+        ],
+        "window": {
+          "start": "2026-09-27T16:00:00+01:00",
+          "end": "2026-09-27T19:00:00+01:00"
+        },
+        "audienceTags": [
+          "fan_spectator",
+          "online_only"
+        ],
+        "provenance": "MOCK"
+      }
+    },
+    {
+      "id": "virt:hyrox-qualifier:online",
+      "type": "VirtualEvent",
+      "label": "Online Hyrox qualifier window",
+      "payload": {
+        "naturalKey": "virt:hyrox-qualifier:online",
+        "title": "Online Hyrox qualifier window",
+        "category": "crossfit_functional",
+        "mode": "hybrid",
+        "streamOrAppHint": "app_qualifier",
+        "affinity": [
+          "grips",
+          "lifting_shoes",
+          "shorts"
+        ],
+        "window": {
+          "start": "2026-10-01",
+          "end": "2026-10-14"
+        },
+        "provenance": "MOCK"
+      }
+    },
+    {
+      "id": "virt:sofa5k:2026-q3",
+      "type": "VirtualEvent",
+      "label": "Sofa-to-5K virtual series",
+      "payload": {
+        "naturalKey": "virt:sofa5k:2026-q3",
+        "title": "Sofa-to-5K virtual series",
+        "category": "virtual_challenge",
+        "mode": "virtual",
+        "streamOrAppHint": "app_race",
+        "affinity": [
+          "trainers",
+          "recovery",
+          "finishers_merch"
+        ],
+        "window": {
+          "start": "2026-09-22",
+          "end": "2026-10-20"
+        },
+        "provenance": "MOCK"
+      }
+    },
+    {
+      "id": "virt:class-drop:week",
+      "type": "VirtualEvent",
+      "label": "Studio class drop week",
+      "payload": {
+        "naturalKey": "virt:class-drop:week",
+        "title": "Studio class drop week",
+        "category": "season_drop_calendar",
+        "mode": "virtual",
+        "streamOrAppHint": "class_calendar",
+        "affinity": [
+          "leggings",
+          "bras",
+          "layers"
+        ],
+        "window": {
+          "start": "2026-09-28",
+          "end": "2026-10-04"
+        },
+        "provenance": "MOCK"
+      }
+    },
+    {
+      "id": "virt:zwift-ride:weekend",
+      "type": "VirtualEvent",
+      "label": "Zwift-style virtual ride weekend",
+      "payload": {
+        "naturalKey": "virt:zwift-ride:weekend",
+        "title": "Zwift-style virtual ride weekend",
+        "category": "virtual_challenge",
+        "mode": "virtual",
+        "streamOrAppHint": "zwift",
+        "affinity": [
+          "cycling_kit",
+          "hydration",
+          "trainers"
+        ],
+        "window": {
+          "start": "2026-09-26",
+          "end": "2026-09-27"
+        },
+        "provenance": "MOCK"
+      }
+    },
+    {
+      "id": "mock:weather:wet_weekend:demo",
+      "type": "Event",
+      "label": "Weather Wet Weekend (synthesised)",
+      "payload": {
+        "synthesised": true,
+        "reason": "edge endpoint missing from nodes table"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "ge_03d23d339b18d685",
+      "source": "st_35663d91f528e2e9",
+      "target": "prod_hz",
+      "relation": "AFFINITY",
+      "weight": 0.21333333333333332,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_04d69e28b8da34f5",
+      "source": "prod_cap",
+      "target": "virt:zwift-ride:weekend",
+      "relation": "AFFINITY",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_06d415f76fd1f62c",
+      "source": "hw_8e0a0a9dd5a93e3e",
+      "target": "prod_race_tee",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_06f34fafe6c66f5c",
+      "source": "col_race_kits",
+      "target": "evt_hackney_parkrun",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_08be7c1e79c5faef",
+      "source": "col_race_kits",
+      "target": "mock:virtual:sofa5k:series",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_0c7c40ee7015dacb",
+      "source": "col_race_day",
+      "target": "evt_victoria_park",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_0cb5de9afabccebd",
+      "source": "act:sep-100k:2026",
+      "target": "prod_cap",
+      "relation": "AFFINITY",
+      "weight": 0.36,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_0e23afca1ae01457",
+      "source": "st_d2ae0a162c65d447",
+      "target": "prod_socks",
+      "relation": "AFFINITY",
+      "weight": 0.26,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_0e32a5cbdeb93df3",
+      "source": "hw_5f873ac05ede7a46",
+      "target": "prod_cap",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_0ec19dd08c510183",
+      "source": "act:club:harbour-weekly",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_11ddc64f6fa5c187",
+      "source": "prod_race_tee",
+      "target": "virt:sofa5k:2026-q3",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_11e0c287c773fa71",
+      "source": "col_race_day",
+      "target": "evt_kingston_half",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_13ef5cb807259177",
+      "source": "col_race_day",
+      "target": "mock:hyrox:london:2026-10-11",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_17a5754fe4f6e3ed",
+      "source": "hw_0b739620a78cf116",
+      "target": "prod_cap",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_188b6cfa9f4ef68d",
+      "source": "col_race_kits",
+      "target": "mock:pl:mufc-liverpool:2026-09-27",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_18c2b90c32795a54",
+      "source": "hw_eb1e1d0ef30966df",
+      "target": "prod_shell",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1b8be2c42bf25fd3",
+      "source": "st_35663d91f528e2e9",
+      "target": "prod_race_tee",
+      "relation": "AFFINITY",
+      "weight": 0.21333333333333332,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1e46655bf24da63c",
+      "source": "st_35663d91f528e2e9",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.21333333333333332,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_21dd74044f068801",
+      "source": "act:club:harbour-weekly",
+      "target": "prod_race_tee",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_2200ab1a93997bae",
+      "source": "prod_shorts",
+      "target": "virt:hyrox-qualifier:online",
+      "relation": "AFFINITY",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_241496d96189b5ba",
+      "source": "act:sep-100k:2026",
+      "target": "prod_socks",
+      "relation": "AFFINITY",
+      "weight": 0.36,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_24ff6db8583b6c1c",
+      "source": "st_d2ae0a162c65d447",
+      "target": "prod_flask",
+      "relation": "AFFINITY",
+      "weight": 0.26,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_2607014916e730a9",
+      "source": "prod_flask",
+      "target": "mock:virtual:sofa5k:series",
+      "relation": "AFFINITY",
+      "weight": 0.2857142857142857,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_26319be4ef78cd2a",
+      "source": "hw_0b739620a78cf116",
+      "target": "prod_shell",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_2e2942b74bfda205",
+      "source": "act:club:harbour-weekly",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_2f33f5fe817ce0a9",
+      "source": "st_35663d91f528e2e9",
+      "target": "prod_cap",
+      "relation": "AFFINITY",
+      "weight": 0.21333333333333332,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_30765d6705e76637",
+      "source": "hw_8e0a0a9dd5a93e3e",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_3309d2bd2e88c4dd",
+      "source": "col_race_day",
+      "target": "mock:race:gm-10k:2026-10-04",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_339d614898a31a38",
+      "source": "st_8f1ea3ad3dc03ea0",
+      "target": "prod_hz",
+      "relation": "AFFINITY",
+      "weight": 0.23666666666666664,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_3460ed565d2093e1",
+      "source": "col_kids",
+      "target": "mock:pl:mufc-liverpool:2026-09-27",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_3891c9f12303f13d",
+      "source": "act:club:harbour-weekly",
+      "target": "prod_cap",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_39d740a6757b84c1",
+      "source": "prod_kyt",
+      "target": "virt:sofa5k:2026-q3",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_3bc3f0db82713cab",
+      "source": "hw_e2086f3f17fdf2d9",
+      "target": "prod_flask",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_3ed7609da88ee823",
+      "source": "prod_kyt",
+      "target": "virt:watch-party:mufc",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_409a7eeee3f86c84",
+      "source": "prod_flask",
+      "target": "evt_battersea_park",
+      "relation": "AFFINITY",
+      "weight": 0.2857142857142857,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_414a1e54520135cd",
+      "source": "col_race_kits",
+      "target": "mock:season:athleisure-drop:aut26",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_41cc8b6a4f14c0b7",
+      "source": "hw_8e0a0a9dd5a93e3e",
+      "target": "prod_cap",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_4342c8048102b114",
+      "source": "prod_joggers",
+      "target": "virt:zwift-ride:weekend",
+      "relation": "AFFINITY",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_43e8000bd1cd02a7",
+      "source": "act:club:harbour-weekly",
+      "target": "prod_shell",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_461f82070096871f",
+      "source": "act:sep-100k:2026",
+      "target": "prod_race_tee",
+      "relation": "AFFINITY",
+      "weight": 0.36,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_46d2189fd98df96a",
+      "source": "hw_0b739620a78cf116",
+      "target": "prod_socks",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_4bb2781253ed32a6",
+      "source": "col_race_day",
+      "target": "evt_clapham_common",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_4f1cdc1bbea7fbea",
+      "source": "hw_5f873ac05ede7a46",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_4f9105bd20797c76",
+      "source": "act:sep-100k:2026",
+      "target": "prod_flask",
+      "relation": "AFFINITY",
+      "weight": 0.36,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_52d89a351e0ea236",
+      "source": "act:sep-100k:2026",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.36,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_5452ee7d910346de",
+      "source": "hw_5f873ac05ede7a46",
+      "target": "prod_race_tee",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_5470c72f0f102de5",
+      "source": "hw_8e0a0a9dd5a93e3e",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_55180ed276ed2ac2",
+      "source": "col_race_kits",
+      "target": "evt_hyde_park_5k_10k",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_551e1a1da31d8121",
+      "source": "act:zwift-climb:oct",
+      "target": "prod_flask",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_567fc7df865a9f30",
+      "source": "prod_flask",
+      "target": "virt:zwift-ride:weekend",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_573b97d88ef62a61",
+      "source": "col_race_kits",
+      "target": "evt_kingston_half",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_5e1cfb21139c62ac",
+      "source": "prod_hz",
+      "target": "virt:watch-party:mufc",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_6243ffc9dea65396",
+      "source": "prod_flask",
+      "target": "evt_victoria_park",
+      "relation": "AFFINITY",
+      "weight": 0.2857142857142857,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_62f75d741fa98ec9",
+      "source": "prod_hz",
+      "target": "driver:wet_weekend:demo",
+      "relation": "AFFINITY",
+      "weight": 0.7,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Driver"
+    },
+    {
+      "id": "ge_644b7ba652febe04",
+      "source": "hw_e2086f3f17fdf2d9",
+      "target": "prod_joggers",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_64626737959c3cc8",
+      "source": "col_race_day",
+      "target": "evt_royal_parks_half",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_6819cef315b20d80",
+      "source": "prod_kyt",
+      "target": "virt:zwift-ride:weekend",
+      "relation": "AFFINITY",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_68c0a1a746aa4c3e",
+      "source": "col_race_day",
+      "target": "mock:pl:arsenal-chelsea:2026-09-26",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_68e6862fea9c9b5f",
+      "source": "st_35663d91f528e2e9",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.21333333333333332,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_6db197cc9f31e390",
+      "source": "act:club:harbour-weekly",
+      "target": "prod_socks",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_7175186664d1bbfe",
+      "source": "prod_joggers",
+      "target": "virt:sofa5k:2026-q3",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_73c84a61bd57bb49",
+      "source": "hw_e2086f3f17fdf2d9",
+      "target": "prod_race_tee",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_747b17c68766bb11",
+      "source": "st_da7b30ee2d5b14f7",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.1933333333333333,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_75740e1d20fa5add",
+      "source": "hw_8e0a0a9dd5a93e3e",
+      "target": "prod_joggers",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_76335732d10f3530",
+      "source": "col_race_kits",
+      "target": "mock:pl:arsenal-chelsea:2026-09-26",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_77399ffe7085ab53",
+      "source": "prod_shell",
+      "target": "driver:wet_weekend:demo",
+      "relation": "AFFINITY",
+      "weight": 0.7,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Driver"
+    },
+    {
+      "id": "ge_776a01e981c81536",
+      "source": "hw_081a3e93431eb042",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_79541db773301e02",
+      "source": "prod_shorts",
+      "target": "mock:hyrox:london:2026-10-11",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_79decd0f0e38f61e",
+      "source": "prod_hz",
+      "target": "mock:season:athleisure-drop:aut26",
+      "relation": "AFFINITY",
+      "weight": 0.25,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_7c84ae80c4279184",
+      "source": "hw_d8456936da60a14a",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_85a0e64475cca4e4",
+      "source": "prod_shell",
+      "target": "mock:season:athleisure-drop:aut26",
+      "relation": "AFFINITY",
+      "weight": 0.25,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_85fb19425d6bc22b",
+      "source": "prod_shell",
+      "target": "virt:class-drop:week",
+      "relation": "AFFINITY",
+      "weight": 0.25,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_8733ed60a03efdaf",
+      "source": "prod_flask",
+      "target": "evt_royal_parks_half",
+      "relation": "AFFINITY",
+      "weight": 0.2857142857142857,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_8750d49b8500ba32",
+      "source": "hw_8e0a0a9dd5a93e3e",
+      "target": "prod_flask",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_89d1b819bab5d778",
+      "source": "col_race_day",
+      "target": "evt_hackney_parkrun",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_8cb8b8ff939a272a",
+      "source": "hw_5f873ac05ede7a46",
+      "target": "prod_socks",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_9219f06307ed3a3e",
+      "source": "hw_e2086f3f17fdf2d9",
+      "target": "prod_cap",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_93a862a94582ce40",
+      "source": "col_race_kits",
+      "target": "mock:race:gm-10k:2026-10-04",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_95068169b2c612ec",
+      "source": "prod_flask",
+      "target": "evt_kingston_half",
+      "relation": "AFFINITY",
+      "weight": 0.2857142857142857,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_9d79466f068e8bde",
+      "source": "col_race_day",
+      "target": "evt_battersea_park",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_9e125465546ea2ca",
+      "source": "st_35663d91f528e2e9",
+      "target": "prod_shell",
+      "relation": "AFFINITY",
+      "weight": 0.21333333333333332,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_a1bc946a88e194a0",
+      "source": "col_kids",
+      "target": "mock:pl:arsenal-chelsea:2026-09-26",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_a2396bdc0e5c2be3",
+      "source": "col_race_kits",
+      "target": "evt_clapham_common",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_a362674db6c21049",
+      "source": "hw_0b739620a78cf116",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_a491ba077d5e7963",
+      "source": "prod_hz",
+      "target": "virt:class-drop:week",
+      "relation": "AFFINITY",
+      "weight": 0.25,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_a775ee3b55956b2f",
+      "source": "hw_0b739620a78cf116",
+      "target": "prod_flask",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_a7815c0824248287",
+      "source": "hw_eb1e1d0ef30966df",
+      "target": "prod_hz",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_a8405f72607420a3",
+      "source": "prod_shell",
+      "target": "virt:watch-party:mufc",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_aa5ed8ad47aab0c6",
+      "source": "prod_shorts",
+      "target": "virt:zwift-ride:weekend",
+      "relation": "AFFINITY",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_b29a3c75a77c10f2",
+      "source": "st_d2ae0a162c65d447",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.26,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_b6cd82ce51ae84d3",
+      "source": "prod_socks",
+      "target": "virt:sofa5k:2026-q3",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_b7372bccf9a3409d",
+      "source": "col_race_kits",
+      "target": "mock:hyrox:london:2026-10-11",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_b7d4962773ea1e2a",
+      "source": "act:sep-100k:2026",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.36,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_bc2b65e3b25d35d2",
+      "source": "prod_flask",
+      "target": "evt_hyde_park_5k_10k",
+      "relation": "AFFINITY",
+      "weight": 0.2857142857142857,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_bd5a02fc387cba1c",
+      "source": "hw_e2086f3f17fdf2d9",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_bd6761b474b53713",
+      "source": "hw_e2086f3f17fdf2d9",
+      "target": "prod_socks",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_bdff877b71de496a",
+      "source": "act:club:harbour-weekly",
+      "target": "prod_flask",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c0315a1963501ac2",
+      "source": "st_35663d91f528e2e9",
+      "target": "prod_socks",
+      "relation": "AFFINITY",
+      "weight": 0.21333333333333332,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c4b52a4dc1ced05f",
+      "source": "col_race_kits",
+      "target": "evt_royal_parks_half",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_c6ac9aac78325574",
+      "source": "st_d2ae0a162c65d447",
+      "target": "prod_cap",
+      "relation": "AFFINITY",
+      "weight": 0.26,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c77e0c685ad78cd3",
+      "source": "prod_flask",
+      "target": "evt_clapham_common",
+      "relation": "AFFINITY",
+      "weight": 0.2857142857142857,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_c78b5050c9505489",
+      "source": "prod_race_tee",
+      "target": "virt:zwift-ride:weekend",
+      "relation": "AFFINITY",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_c7ed5eebd4cecdf4",
+      "source": "act:sep-100k:2026",
+      "target": "prod_joggers",
+      "relation": "AFFINITY",
+      "weight": 0.36,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c885d3d49e8a708c",
+      "source": "prod_flask",
+      "target": "virt:sofa5k:2026-q3",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_c94eafcc7c69e757",
+      "source": "hw_8e0a0a9dd5a93e3e",
+      "target": "prod_socks",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_cbd28df823bb4c3c",
+      "source": "col_race_day",
+      "target": "mock:pl:mufc-liverpool:2026-09-27",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_cedcde1fda8391e8",
+      "source": "col_race_day",
+      "target": "mock:virtual:sofa5k:series",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_cf979abf740383d1",
+      "source": "prod_shorts",
+      "target": "virt:sofa5k:2026-q3",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_cfa9cdc16c27c7a9",
+      "source": "col_race_kits",
+      "target": "evt_battersea_park",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_cfe9257bf8f01e90",
+      "source": "st_d2ae0a162c65d447",
+      "target": "prod_joggers",
+      "relation": "AFFINITY",
+      "weight": 0.26,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_d19031c6a593553b",
+      "source": "prod_cap",
+      "target": "virt:sofa5k:2026-q3",
+      "relation": "AFFINITY",
+      "weight": 0.16666666666666666,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_d3cb28f9751b57a4",
+      "source": "hw_0b739620a78cf116",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_d42a05bd8f66c1f8",
+      "source": "prod_socks",
+      "target": "virt:zwift-ride:weekend",
+      "relation": "AFFINITY",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_d710c33e888e18ce",
+      "source": "col_race_day",
+      "target": "evt_hyde_park_5k_10k",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_d88800c5d3faa442",
+      "source": "st_9725feff37903973",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.26,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_df606e8800ef72f2",
+      "source": "hw_5f873ac05ede7a46",
+      "target": "prod_flask",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_e71ef863b0f15e01",
+      "source": "hw_0b739620a78cf116",
+      "target": "prod_race_tee",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_ea27b3978015c0e3",
+      "source": "prod_flask",
+      "target": "evt_hackney_parkrun",
+      "relation": "AFFINITY",
+      "weight": 0.2857142857142857,
+      "provenance": "MOCK",
+      "from_type": "SKU",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_ec97377ecf373c71",
+      "source": "col_race_day",
+      "target": "mock:season:athleisure-drop:aut26",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_ed82e854750d7d8b",
+      "source": "st_35663d91f528e2e9",
+      "target": "prod_flask",
+      "relation": "AFFINITY",
+      "weight": 0.21333333333333332,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_ef1270ae5e5186a2",
+      "source": "hw_0b739620a78cf116",
+      "target": "prod_hz",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_ef12971bb1ced3c4",
+      "source": "st_8f1ea3ad3dc03ea0",
+      "target": "prod_shell",
+      "relation": "AFFINITY",
+      "weight": 0.23666666666666664,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f109ae1ecc740916",
+      "source": "st_d2ae0a162c65d447",
+      "target": "prod_shorts",
+      "relation": "AFFINITY",
+      "weight": 0.26,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f1462a5afd10e760",
+      "source": "hw_5f873ac05ede7a46",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f24c1b3e048b03b6",
+      "source": "act:club:harbour-weekly",
+      "target": "prod_hz",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f274c9ab1bf7e37d",
+      "source": "col_race_kits",
+      "target": "evt_victoria_park",
+      "relation": "AFFINITY",
+      "weight": 0.4,
+      "provenance": "MOCK",
+      "from_type": "Collection",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_f2b726c79ec119e8",
+      "source": "st_d2ae0a162c65d447",
+      "target": "prod_race_tee",
+      "relation": "AFFINITY",
+      "weight": 0.26,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f6e7a8bf22278678",
+      "source": "hw_e2086f3f17fdf2d9",
+      "target": "prod_kyt",
+      "relation": "AFFINITY",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fce45a7d41efa8e8",
+      "source": "hw_42db652e13a37708",
+      "target": "prod_hz",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fed9806ae6d9973a",
+      "source": "hw_42db652e13a37708",
+      "target": "prod_shell",
+      "relation": "AFFINITY",
+      "weight": 0.3333333333333333,
+      "provenance": "MOCK",
+      "from_type": "HashtagWatch",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1b1ee06b2ceff4e1",
+      "source": "st_9725feff37903973",
+      "target": "mock:pl:mufc-liverpool:2026-09-27",
+      "relation": "AMPLIFIES",
+      "weight": 0.78,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_1efe8f8ba6059d2f",
+      "source": "act:sep-100k:2026",
+      "target": "virt:sofa5k:2026-q3",
+      "relation": "AMPLIFIES",
+      "weight": 0.72,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_227f27e28123f868",
+      "source": "act:club:harbour-weekly",
+      "target": "virt:class-drop:week",
+      "relation": "AMPLIFIES",
+      "weight": 0.55,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_3fb4e6fab64b7185",
+      "source": "act:club:harbour-weekly",
+      "target": "virt:watch-party:mufc",
+      "relation": "AMPLIFIES",
+      "weight": 0.55,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_5cf980b2aa1fab78",
+      "source": "st_8f1ea3ad3dc03ea0",
+      "target": "mock:pl:arsenal-chelsea:2026-09-26",
+      "relation": "AMPLIFIES",
+      "weight": 0.71,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_61bb31597ce9af69",
+      "source": "act:zwift-climb:oct",
+      "target": "virt:zwift-ride:weekend",
+      "relation": "AMPLIFIES",
+      "weight": 0.48,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "VirtualEvent"
+    },
+    {
+      "id": "ge_8674230727f9927e",
+      "source": "st_da7b30ee2d5b14f7",
+      "target": "mock:hyrox:london:2026-10-11",
+      "relation": "AMPLIFIES",
+      "weight": 0.58,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_b497e3bd156c15cb",
+      "source": "st_d2ae0a162c65d447",
+      "target": "mock:virtual:sofa5k:series",
+      "relation": "AMPLIFIES",
+      "weight": 0.52,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_c57c30ce1307fb42",
+      "source": "driver:wet_weekend:demo",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "AMPLIFIES",
+      "weight": 0.55,
+      "provenance": "MOCK",
+      "from_type": "Driver",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_d67e0a34d1a9301a",
+      "source": "st_0010b20035bb064d",
+      "target": "mock:pl:arsenal-chelsea:2026-09-26",
+      "relation": "AMPLIFIES",
+      "weight": 0.69,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_f27042b16f5d2744",
+      "source": "driver:wet_weekend:demo",
+      "target": "geo_f18f2c5f55fce82b",
+      "relation": "AMPLIFIES",
+      "weight": 0.55,
+      "provenance": "MOCK",
+      "from_type": "Driver",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_00bd4844f69a37b7",
+      "source": "ord_seed_011",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_0317ffb2ebfd8bb1",
+      "source": "ord_seed_028",
+      "target": "var_wsj_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_033aeab7e4325f79",
+      "source": "ord_seed_019",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_03b22def527c6b33",
+      "source": "ord_seed_007",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_048ceb6b3714351f",
+      "source": "ord_seed_046",
+      "target": "prod_joggers",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_07840f0d87532261",
+      "source": "ord_seed_046",
+      "target": "var_ps_3",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_0b0a0ac33c6fff90",
+      "source": "ord_seed_040",
+      "target": "prod_joggers",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_0c1bb3ec50554363",
+      "source": "ord_seed_044",
+      "target": "var_rt_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_0d375b037b26dc5f",
+      "source": "ord_seed_033",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_0d909672734e806b",
+      "source": "ord_seed_009",
+      "target": "var_rt_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_0fcb0709c1ba06f7",
+      "source": "ord_seed_033",
+      "target": "var_ps_3",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_116d278ea822d5d0",
+      "source": "ord_seed_007",
+      "target": "var_ps_3",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_14ece432d4930b12",
+      "source": "ord_seed_042",
+      "target": "prod_hz",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_199139a8130ed550",
+      "source": "ord_seed_029",
+      "target": "prod_hz",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_19b48e83144b0f9b",
+      "source": "ord_seed_008",
+      "target": "prod_flask",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1a43106b17db49ef",
+      "source": "ord_seed_039",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1c44022cd07a4c13",
+      "source": "ord_seed_025",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1ca18112401f12d8",
+      "source": "ord_seed_043",
+      "target": "prod_joggers",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1ce1c9fcf4975da5",
+      "source": "ord_seed_009",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1e011b9a2cf89a24",
+      "source": "ord_seed_035",
+      "target": "prod_hz",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1e1390682222e979",
+      "source": "ord_seed_002",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_1fb88cce0c4908e6",
+      "source": "ord_seed_010",
+      "target": "var_ps_3",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_20240d72c46e3710",
+      "source": "ord_seed_031",
+      "target": "var_rj_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_21ad12c633acb5b3",
+      "source": "ord_seed_018",
+      "target": "var_ps_3",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_22d79ffc146aeb71",
+      "source": "ord_seed_005",
+      "target": "var_rt_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_22e44f9a8d1f5171",
+      "source": "ord_seed_010",
+      "target": "var_rs_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_24fe61c78f93a535",
+      "source": "ord_seed_048",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_2590e9aa5c35d0b1",
+      "source": "ord_seed_048",
+      "target": "var_kyt_ym",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_25af7dc886c6b2e0",
+      "source": "ord_seed_013",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_27f74bff8a7b20f6",
+      "source": "ord_seed_006",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_29d512e3644a2dcf",
+      "source": "ord_seed_031",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_2a027f238828aa6f",
+      "source": "ord_seed_002",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_2cf45cdc608b99c5",
+      "source": "ord_seed_032",
+      "target": "prod_hz",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_2e7001c49f5eab47",
+      "source": "ord_seed_026",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_32dda041eb337901",
+      "source": "ord_seed_025",
+      "target": "prod_hz",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_368249833ab55ae5",
+      "source": "ord_seed_018",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_36ff1437fdbebe73",
+      "source": "ord_seed_016",
+      "target": "var_rs_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_38e29b0d6e208a0a",
+      "source": "ord_seed_032",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_41ee5d94ba591f07",
+      "source": "ord_seed_039",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_459082d831eb27d9",
+      "source": "ord_seed_022",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_48cef6a2789a7394",
+      "source": "ord_seed_045",
+      "target": "prod_flask",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_4bd1a97f42b30ba2",
+      "source": "ord_seed_024",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_4c8c2609021996dc",
+      "source": "ord_seed_036",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_4e3d3d817b4444ac",
+      "source": "ord_seed_017",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_4e4278626f1d5ab5",
+      "source": "ord_seed_018",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_510088d02115f8c1",
+      "source": "ord_seed_028",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_52a2726f78c6ded5",
+      "source": "ord_seed_021",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_5531d4d3741ac1e0",
+      "source": "ord_seed_018",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_588e5aac74a01ca5",
+      "source": "ord_seed_032",
+      "target": "var_hz_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_5902cc69abc39e2a",
+      "source": "ord_seed_003",
+      "target": "prod_flask",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_594a87200660bd10",
+      "source": "ord_seed_021",
+      "target": "var_hz_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_59f0a0e9570d195a",
+      "source": "ord_seed_008",
+      "target": "var_sf",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_5c04e9a076848626",
+      "source": "ord_seed_040",
+      "target": "var_ps_3",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_5c8ef1bdf34e9839",
+      "source": "ord_seed_009",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_5d5bed8efaba4fc7",
+      "source": "ord_seed_001",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_6152e3babb499d51",
+      "source": "ord_seed_008",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_61cc9fba91d718b6",
+      "source": "ord_seed_045",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_62460bc80061de6c",
+      "source": "ord_seed_041",
+      "target": "prod_joggers",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_6392b264be3da296",
+      "source": "ord_seed_002",
+      "target": "var_rt_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_6477ac0c35dec254",
+      "source": "ord_seed_021",
+      "target": "var_wsj_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_6530130d4f8d5860",
+      "source": "ord_seed_013",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_6b5c9bf4ab50a9ca",
+      "source": "ord_seed_005",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_6dd40314103b0fd2",
+      "source": "ord_seed_029",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_70313bc45659c818",
+      "source": "ord_seed_034",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_75bd6635b4e05c0a",
+      "source": "ord_seed_018",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_7af974c83a3098c0",
+      "source": "ord_seed_026",
+      "target": "var_wsj_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_7c23fee7526e254b",
+      "source": "ord_seed_013",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_7ca017aff92ff907",
+      "source": "ord_seed_034",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_7d797d73c500820e",
+      "source": "ord_seed_014",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_7eae8b0b63b894d3",
+      "source": "ord_seed_035",
+      "target": "var_rj_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_7ed848ca0cfaf91f",
+      "source": "ord_seed_017",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_7f885d00dfb4e897",
+      "source": "ord_seed_012",
+      "target": "var_rt_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_80f0b513c1757da5",
+      "source": "ord_seed_038",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_81124c14fabd67f2",
+      "source": "ord_seed_017",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_818878157437ba6f",
+      "source": "ord_seed_041",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_8521189bfc11078d",
+      "source": "ord_seed_041",
+      "target": "var_rj_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_865d81ed76c8137f",
+      "source": "ord_seed_042",
+      "target": "var_hz_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_87bad152e988a398",
+      "source": "ord_seed_002",
+      "target": "var_ps_3",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_88384056ca8fd1ac",
+      "source": "ord_seed_016",
+      "target": "var_rt_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_88507a2104d39e2f",
+      "source": "ord_seed_044",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_899e038886d8084f",
+      "source": "ord_seed_045",
+      "target": "var_sf",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_8a015642e7012a14",
+      "source": "ord_seed_003",
+      "target": "var_sf",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_8ab2da4c223d64c0",
+      "source": "ord_seed_004",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_8bfb12ddd0fd7daa",
+      "source": "ord_seed_030",
+      "target": "var_wsj_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_912801e7a73d6966",
+      "source": "ord_seed_040",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_91f7f3ce13094f6d",
+      "source": "ord_seed_036",
+      "target": "prod_flask",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_920ff57559a69869",
+      "source": "ord_seed_038",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_928f2c11e9b193d4",
+      "source": "ord_seed_028",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_953dc63aa5d64f5c",
+      "source": "ord_seed_007",
+      "target": "var_rt_xl",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_975448a1d626558d",
+      "source": "ord_seed_041",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_999da23372a33baf",
+      "source": "ord_seed_039",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_9bfa260fdb965894",
+      "source": "ord_seed_031",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_9d7fd0f6e0a99734",
+      "source": "ord_seed_037",
+      "target": "prod_joggers",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_9dae61cdc438fd7a",
+      "source": "ord_seed_046",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_9de6efeed20ff791",
+      "source": "ord_seed_023",
+      "target": "var_wsj_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_9f84210eff75d5bf",
+      "source": "ord_seed_047",
+      "target": "prod_hz",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_a4c6e105540ff019",
+      "source": "ord_seed_012",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_a4e058769576e47b",
+      "source": "ord_seed_015",
+      "target": "prod_flask",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_ad9940f9bf4f9622",
+      "source": "ord_seed_022",
+      "target": "var_rt_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_af055698dc0bd9df",
+      "source": "ord_seed_010",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_af51c0b50e48e508",
+      "source": "ord_seed_010",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_b5a5907175a0079b",
+      "source": "ord_seed_016",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_b5b92653f51544c6",
+      "source": "ord_seed_018",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_b5ecca47ebcd1e32",
+      "source": "ord_seed_019",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_bcf618f995df58cb",
+      "source": "ord_seed_015",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_bde37fd1c3ba14d5",
+      "source": "ord_seed_005",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_be017c20fe90db32",
+      "source": "ord_seed_021",
+      "target": "prod_hz",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_be037d91988544c4",
+      "source": "ord_seed_015",
+      "target": "var_sf",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_be0a6f52424dd3b5",
+      "source": "ord_seed_012",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c5bb27a801b11209",
+      "source": "ord_seed_003",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c62290a79354f667",
+      "source": "ord_seed_019",
+      "target": "var_wsj_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c6629638954a91bc",
+      "source": "ord_seed_008",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c6ec1d62040c2044",
+      "source": "ord_seed_034",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c7c31a7b974af9f1",
+      "source": "ord_seed_048",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c90d4773e5672d8f",
+      "source": "ord_seed_023",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_cdcb57a7fb947562",
+      "source": "ord_seed_001",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_ce533723ef0f95e4",
+      "source": "ord_seed_004",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_ce77cc8ea4a820ac",
+      "source": "ord_seed_010",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_cee5227350fa733d",
+      "source": "ord_seed_008",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_cf0b424b750971d3",
+      "source": "ord_seed_024",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_d063992001c1aaec",
+      "source": "ord_seed_010",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_d55c4cdcbba96c66",
+      "source": "ord_seed_006",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_d6d6c7c76002b10d",
+      "source": "ord_seed_036",
+      "target": "var_sf",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_d713f8511f673ba0",
+      "source": "ord_seed_006",
+      "target": "var_rs_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_d8dac10322fd82d4",
+      "source": "ord_seed_044",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_d9ead20c81487105",
+      "source": "ord_seed_047",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_da0a46bb77e89cef",
+      "source": "ord_seed_034",
+      "target": "var_rt_m",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_da0a7177468e05f2",
+      "source": "ord_seed_038",
+      "target": "prod_hz",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_da4e98bf4ecf027a",
+      "source": "ord_seed_020",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_dba8f8dfa9e64e09",
+      "source": "ord_seed_047",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_dd4c5a1675a1ebf7",
+      "source": "ord_seed_033",
+      "target": "prod_joggers",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_ddd31b42ed2dcc95",
+      "source": "ord_seed_001",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_de54e0fec4d5e5b8",
+      "source": "ord_seed_011",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_df664b649d8fa8d9",
+      "source": "ord_seed_028",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_e45079829eecf331",
+      "source": "ord_seed_036",
+      "target": "var_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_e5667bfbd2765aaa",
+      "source": "ord_seed_022",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_e6f07d5da5154535",
+      "source": "ord_seed_013",
+      "target": "var_rs_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_e6fdbfa97bb97ea1",
+      "source": "ord_seed_007",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_ee7eef44719371e8",
+      "source": "ord_seed_011",
+      "target": "var_ps_3",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_eec0a5624d8be392",
+      "source": "ord_seed_031",
+      "target": "prod_joggers",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_efdc0a88d1cd3666",
+      "source": "ord_seed_024",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f0134c5a2b5d03bd",
+      "source": "ord_seed_044",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f1f42832a8a7e43e",
+      "source": "ord_seed_030",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f2e8af8d8421f66d",
+      "source": "ord_seed_015",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f3b898e84da67a7a",
+      "source": "ord_seed_032",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f4886a3e53c2a5aa",
+      "source": "ord_seed_011",
+      "target": "prod_socks",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f4b96f40b8a7429e",
+      "source": "ord_seed_016",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f5e02cb290ac043d",
+      "source": "ord_seed_001",
+      "target": "var_rs_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f6a3b7c86798d283",
+      "source": "ord_seed_004",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_f77156f708d2d990",
+      "source": "ord_seed_003",
+      "target": "prod_shorts",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fa81f6665c5cbf0a",
+      "source": "ord_seed_048",
+      "target": "prod_kyt",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fae1692122995d22",
+      "source": "ord_seed_019",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fb14280b033bc487",
+      "source": "ord_seed_003",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fc6f3d305ce21802",
+      "source": "ord_seed_006",
+      "target": "var_rt_l",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fcded0c1a072c0aa",
+      "source": "ord_seed_014",
+      "target": "prod_race_tee",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fd5794473be6254a",
+      "source": "ord_seed_035",
+      "target": "prod_joggers",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fe6153c42f1dce06",
+      "source": "ord_seed_008",
+      "target": "prod_cap",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_fe9d39b3db70896c",
+      "source": "ord_seed_027",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_ff0175987f0917bb",
+      "source": "ord_seed_026",
+      "target": "prod_shell",
+      "relation": "CONTAINS",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_3e6ce2e1f94bb91f",
+      "source": "driver:wet_weekend:demo",
+      "target": "ec_24f5e9de20c5b013",
+      "relation": "DRIVEN_BY",
+      "weight": 0.6,
+      "provenance": "MOCK",
+      "from_type": "Driver",
+      "to_type": "EventCandidate"
+    },
+    {
+      "id": "ge_313bea811746edca",
+      "source": "ec_257f33655586dd05",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "GEO_OVERLAP",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "EventCandidate",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_7892721701d78d10",
+      "source": "ec_24f5e9de20c5b013",
+      "target": "geo_f18f2c5f55fce82b",
+      "relation": "GEO_OVERLAP",
+      "weight": 0.5,
+      "provenance": "OBSERVED",
+      "from_type": "EventCandidate",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_d60dd04b2e5820a6",
+      "source": "ec_769979e76bed363c",
+      "target": "geo_f18f2c5f55fce82b",
+      "relation": "GEO_OVERLAP",
+      "weight": 0.20000000000000004,
+      "provenance": "MOCK",
+      "from_type": "EventCandidate",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_f85d2135305556cb",
+      "source": "ec_800f6f3674120a58",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "GEO_OVERLAP",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "EventCandidate",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_2933137771fa7beb",
+      "source": "pers_race_day_taper",
+      "target": "prod_shorts",
+      "relation": "GOALS_INCLUDE",
+      "weight": 0.4,
+      "provenance": "OBSERVED",
+      "from_type": "Persona",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_4dec614b44627e48",
+      "source": "pers_race_day_taper",
+      "target": "prod_kyt",
+      "relation": "GOALS_INCLUDE",
+      "weight": 0.4,
+      "provenance": "OBSERVED",
+      "from_type": "Persona",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_63326bd9a1e9f3ee",
+      "source": "pers_race_day_taper",
+      "target": "prod_race_tee",
+      "relation": "GOALS_INCLUDE",
+      "weight": 0.4,
+      "provenance": "OBSERVED",
+      "from_type": "Persona",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_909c3e24859f935b",
+      "source": "pers_wet_weather_trainer",
+      "target": "prod_shell",
+      "relation": "GOALS_INCLUDE",
+      "weight": 0.5,
+      "provenance": "OBSERVED",
+      "from_type": "Persona",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_941795135f1951e9",
+      "source": "pers_race_day_taper",
+      "target": "prod_flask",
+      "relation": "GOALS_INCLUDE",
+      "weight": 0.4,
+      "provenance": "OBSERVED",
+      "from_type": "Persona",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_a54e972cce029dba",
+      "source": "pers_wet_weather_trainer",
+      "target": "prod_hz",
+      "relation": "GOALS_INCLUDE",
+      "weight": 0.4,
+      "provenance": "OBSERVED",
+      "from_type": "Persona",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_b3501f90a1ce25f3",
+      "source": "pers_race_day_taper",
+      "target": "prod_socks",
+      "relation": "GOALS_INCLUDE",
+      "weight": 0.4,
+      "provenance": "OBSERVED",
+      "from_type": "Persona",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_c2691283c65fc075",
+      "source": "pers_race_day_taper",
+      "target": "prod_shell",
+      "relation": "GOALS_INCLUDE",
+      "weight": 0.4,
+      "provenance": "OBSERVED",
+      "from_type": "Persona",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_dafb40e3ad43cb56",
+      "source": "pers_race_day_taper",
+      "target": "prod_cap",
+      "relation": "GOALS_INCLUDE",
+      "weight": 0.4,
+      "provenance": "OBSERVED",
+      "from_type": "Persona",
+      "to_type": "SKU"
+    },
+    {
+      "id": "ge_05c81959d0ae0d17",
+      "source": "ord_seed_033",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_066b130d8214cda3",
+      "source": "ord_seed_027",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_0ccbd4ffbe082cc4",
+      "source": "ord_seed_010",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_0cdb7711e9bc953e",
+      "source": "ord_seed_003",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_1508b0fb06a19e0a",
+      "source": "ord_seed_007",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_1a4d5640022bd22b",
+      "source": "ord_seed_035",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_269ad22ab6855e31",
+      "source": "ord_seed_043",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_290990d9c8f8a524",
+      "source": "ord_seed_016",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_2a7b6116d20e526e",
+      "source": "ord_seed_008",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_2ab80a49459b14fc",
+      "source": "ord_seed_006",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_2af02cd6468f9bd2",
+      "source": "ord_seed_018",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_2fbcb6f8021b3236",
+      "source": "ord_seed_047",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_3409de888f9a734c",
+      "source": "ord_seed_031",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_37b7603df9c621d0",
+      "source": "ord_seed_028",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_3cd9b23639f64629",
+      "source": "ord_seed_020",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_3fe4aae1d2d453e5",
+      "source": "ord_seed_041",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_40eececc3155b53b",
+      "source": "ord_seed_038",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_47c3358f8979199c",
+      "source": "ord_seed_013",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_489af251666b1c0c",
+      "source": "ord_seed_030",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_51c4222cf0f76d69",
+      "source": "ord_seed_011",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_54bf64948a6ac920",
+      "source": "ord_seed_032",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_5b68607ca06b0943",
+      "source": "ord_seed_001",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_5b852caa6d4ebc70",
+      "source": "ord_seed_034",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_5cb734405ddd507f",
+      "source": "ord_seed_039",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_68777cf13d639a6e",
+      "source": "ord_seed_023",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_70ba902a6d0daa22",
+      "source": "ord_seed_026",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_7cf4fc0bf81523e2",
+      "source": "ord_seed_037",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_8fe593a97a9649f3",
+      "source": "ord_seed_021",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_9175ef786bb77a35",
+      "source": "ord_seed_004",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_96eb4de198136739",
+      "source": "ord_seed_044",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_977e7f5aecb71ea9",
+      "source": "ord_seed_046",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_9b0924214f6db4a5",
+      "source": "ord_seed_029",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_9d0d8b64fd84c8b6",
+      "source": "ord_seed_002",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_a15337fe19cdf495",
+      "source": "ord_seed_025",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_b0f25a1344046ea1",
+      "source": "ord_seed_036",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_b4b4868135a003a3",
+      "source": "ord_seed_017",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_b63fb3e0c8ca0371",
+      "source": "ord_seed_019",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_b7b33ab2e2dc62ce",
+      "source": "ord_seed_009",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_b90bb87308d8152d",
+      "source": "ord_seed_014",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_cb32781e82a7e671",
+      "source": "ord_seed_048",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_cfa3cb8eca67c5bb",
+      "source": "ord_seed_024",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_d0ade108eb6577f8",
+      "source": "ord_seed_015",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_d54d4b15edb948da",
+      "source": "ord_seed_022",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_e44779a7166f1bc2",
+      "source": "ord_seed_005",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_e617b51a37a49f78",
+      "source": "ord_seed_045",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_ea89ec899871ac59",
+      "source": "ord_seed_012",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_f5b36151cd1cdba6",
+      "source": "ord_seed_040",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_fa66c79b8df3cfab",
+      "source": "ord_seed_042",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "SHIPPED_TO",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "Order",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_0bb862a41ad80bf3",
+      "source": "ec_24f5e9de20c5b013",
+      "target": "mock:weather:wet_weekend:demo",
+      "relation": "TEMPORAL_LIFT",
+      "weight": 0.6,
+      "provenance": "OBSERVED",
+      "from_type": "EventCandidate",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_0e65ad05662a557f",
+      "source": "ec_769979e76bed363c",
+      "target": "mock:race:gm-10k:2026-10-04",
+      "relation": "TEMPORAL_LIFT",
+      "weight": 1.0,
+      "provenance": "MOCK",
+      "from_type": "EventCandidate",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_71fbd9a02ebea482",
+      "source": "ec_257f33655586dd05",
+      "target": "mock:pl:arsenal-chelsea:2026-09-26",
+      "relation": "TEMPORAL_LIFT",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "EventCandidate",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_9be82e0f48671ba5",
+      "source": "ec_800f6f3674120a58",
+      "target": "evt_kingston_half",
+      "relation": "TEMPORAL_LIFT",
+      "weight": 1.0,
+      "provenance": "OBSERVED",
+      "from_type": "EventCandidate",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_a0a18750c489670f",
+      "source": "ec_c13d333a0fc2941a",
+      "target": "mock:season:athleisure-drop:aut26",
+      "relation": "TEMPORAL_LIFT",
+      "weight": 1.0,
+      "provenance": "MOCK",
+      "from_type": "EventCandidate",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_c77b3aadb95f8867",
+      "source": "ec_9bd1afe1914b05dd",
+      "target": "mock:virtual:sofa5k:series",
+      "relation": "TEMPORAL_LIFT",
+      "weight": 1.0,
+      "provenance": "MOCK",
+      "from_type": "EventCandidate",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_fb46a8ac1807256f",
+      "source": "ec_985374c4df5016a6",
+      "target": "virt:hyrox-qualifier:online",
+      "relation": "TEMPORAL_LIFT",
+      "weight": 0.5,
+      "provenance": "MOCK",
+      "from_type": "EventCandidate",
+      "to_type": "Event"
+    },
+    {
+      "id": "ge_36981f2d59163012",
+      "source": "act:zwift-climb:oct",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "TRENDING_IN",
+      "weight": 0.48,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_7244c198fe54ca8c",
+      "source": "st_8f1ea3ad3dc03ea0",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "TRENDING_IN",
+      "weight": 0.71,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_748382cb7440d605",
+      "source": "st_9725feff37903973",
+      "target": "geo_f18f2c5f55fce82b",
+      "relation": "TRENDING_IN",
+      "weight": 0.78,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_a41170272b43805f",
+      "source": "act:sep-100k:2026",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "TRENDING_IN",
+      "weight": 0.72,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_aa0a17f079ad6bc0",
+      "source": "st_35663d91f528e2e9",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "TRENDING_IN",
+      "weight": 0.64,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_b7c70a45b75825f4",
+      "source": "st_d2ae0a162c65d447",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "TRENDING_IN",
+      "weight": 0.52,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_d207c64a41f98f6f",
+      "source": "act:club:harbour-weekly",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "TRENDING_IN",
+      "weight": 0.55,
+      "provenance": "MOCK",
+      "from_type": "ActivityChallenge",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_f499bba3f7fd62f1",
+      "source": "st_da7b30ee2d5b14f7",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "TRENDING_IN",
+      "weight": 0.58,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_f9cf72026073738e",
+      "source": "st_0010b20035bb064d",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "TRENDING_IN",
+      "weight": 0.69,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "SocialTrend",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_019bff8566ec4967",
+      "source": "evt_victoria_park",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_1172e4873c7257ab",
+      "source": "mock:pl:arsenal-chelsea:2026-09-26",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "MOCK",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_2480616fcd41486e",
+      "source": "mock:pl:mufc-liverpool:2026-09-27",
+      "target": "geo_f18f2c5f55fce82b",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "MOCK",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_496bbedea218a002",
+      "source": "evt_hyde_park_5k_10k",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_5cd47783afde294d",
+      "source": "virt:sofa5k:2026-q3",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "VENUE_IN",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "VirtualEvent",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_6775abfac2eb2f58",
+      "source": "evt_clapham_common",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_7900a40812cf9ac3",
+      "source": "evt_royal_parks_half",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_a06f7cca23ccb869",
+      "source": "mock:virtual:sofa5k:series",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "VENUE_IN",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_a568fa5a8a0b50b3",
+      "source": "evt_battersea_park",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_d38356bf58d0b33f",
+      "source": "mock:race:gm-10k:2026-10-04",
+      "target": "geo_f18f2c5f55fce82b",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "MOCK",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_d5388476155636cd",
+      "source": "virt:zwift-ride:weekend",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "VENUE_IN",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "VirtualEvent",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_d837f3efb877c855",
+      "source": "evt_hackney_parkrun",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_e07e95f206a1f891",
+      "source": "virt:class-drop:week",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "VENUE_IN",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "VirtualEvent",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_ebcf05057f2077dd",
+      "source": "virt:watch-party:mufc",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "VENUE_IN",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "VirtualEvent",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_ef9ca6fd4e136025",
+      "source": "evt_kingston_half",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "AGGREGATE_PROXY",
+      "from_type": "Event",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_f38dfb92a34ecb0d",
+      "source": "virt:hyrox-qualifier:online",
+      "target": "geo_dfe2365b2e8ade4a",
+      "relation": "VENUE_IN",
+      "weight": 0.2,
+      "provenance": "MOCK",
+      "from_type": "VirtualEvent",
+      "to_type": "Geo"
+    },
+    {
+      "id": "ge_fbf6e19bfbb31778",
+      "source": "mock:hyrox:london:2026-10-11",
+      "target": "geo_5aa4302a16bb606d",
+      "relation": "VENUE_IN",
+      "weight": 1.0,
+      "provenance": "MOCK",
+      "from_type": "Event",
+      "to_type": "Geo"
+    }
+  ],
+  "events": [
+    {
+      "id": "ec_257f33655586dd05",
+      "name": "Match-day home kit rush",
+      "archetype": "match_day",
+      "catalogue_event_id": "mock:pl:arsenal-chelsea:2026-09-26",
+      "time_start": "2026-09-24T15:00:00+01:00",
+      "time_end": "2026-09-27T19:00:00+01:00",
+      "venue_city": "London",
+      "venue_country": "GB",
+      "enrichment_source": "orders_plus_calendar",
+      "window_label": "event −2d/+1d",
+      "confidence": {
+        "value": 0.8737262113093776,
+        "value_pct": 87.37262113093776,
+        "Lt": 1.0,
+        "G": 1.0,
+        "A": 0.78,
+        "Y": 0.5,
+        "R": 0.7872621130937746,
+        "baseline_pct": 64.6
+      },
+      "n_orders": 48,
+      "provenance_labels": [
+        "OBSERVED orders",
+        "MOCK fixtures",
+        "Y=0.5 prior-year neutral",
+        "AGGREGATE_PROXY hashtag buzz"
+      ],
+      "window_start": "2026-09-24T15:00:00+01:00",
+      "window_end": "2026-09-27T19:00:00+01:00"
+    },
+    {
+      "id": "ec_800f6f3674120a58",
+      "name": "Race weekend — London 10K",
+      "archetype": "race_weekend",
+      "catalogue_event_id": "evt_kingston_half",
+      "time_start": "2026-09-27T08:30:00+01:00",
+      "time_end": "2026-10-06T12:30:00+01:00",
+      "venue_city": "London",
+      "venue_country": "GB",
+      "enrichment_source": "orders_plus_calendar",
+      "window_label": "race −7d/+2d",
+      "confidence": {
+        "value": 0.8070988465532354,
+        "value_pct": 80.70988465532353,
+        "Lt": 1.0,
+        "G": 1.0,
+        "A": 0.4966666666666667,
+        "Y": 0.5,
+        "R": 0.8293217988656859,
+        "baseline_pct": 56.8
+      },
+      "n_orders": 5,
+      "provenance_labels": [
+        "MOCK race calendar",
+        "OBSERVED orders",
+        "Y=0.5 prior-year neutral"
+      ],
+      "window_start": "2026-09-27T08:30:00+01:00",
+      "window_end": "2026-10-06T12:30:00+01:00"
+    },
+    {
+      "id": "ec_24f5e9de20c5b013",
+      "name": "Wet weekend layers",
+      "archetype": "weather",
+      "catalogue_event_id": "mock:weather:wet_weekend:demo",
+      "time_start": "2026-09-10T00:00:00+01:00",
+      "time_end": "2026-09-15T23:59:59+01:00",
+      "venue_city": "Manchester",
+      "venue_country": "GB",
+      "enrichment_source": "orders_plus_mock",
+      "window_label": "event −2d/+1d",
+      "confidence": {
+        "value": 0.5775,
+        "value_pct": 57.75,
+        "Lt": 0.6,
+        "G": 0.5,
+        "A": 0.55,
+        "Y": 0.5,
+        "R": 0.85,
+        "baseline_pct": 42.25
+      },
+      "n_orders": 8,
+      "provenance_labels": [
+        "AGGREGATE_PROXY weather driver",
+        "MOCK synthetic driver",
+        "OBSERVED orders",
+        "Y=0.5 prior-year neutral"
+      ],
+      "window_start": "2026-09-10T00:00:00+01:00",
+      "window_end": "2026-09-15T23:59:59+01:00"
+    },
+    {
+      "id": "ec_985374c4df5016a6",
+      "name": "Hyrox-style meet",
+      "archetype": "functional_meet",
+      "catalogue_event_id": "virt:hyrox-qualifier:online",
+      "time_start": "2026-09-29T00:00:00+01:00",
+      "time_end": "2026-10-15T23:59:59+01:00",
+      "venue_city": null,
+      "venue_country": null,
+      "enrichment_source": "orders_plus_calendar",
+      "window_label": "event −2d/+1d",
+      "confidence": {
+        "value": 0.47363636363636363,
+        "value_pct": 47.36363636363636,
+        "Lt": 0.5,
+        "G": 0.3,
+        "A": 0.45454545454545453,
+        "Y": 0.5,
+        "R": 0.85,
+        "baseline_pct": 52.63636363636364
+      },
+      "n_orders": 10,
+      "provenance_labels": [
+        "MOCK catalogue",
+        "AGGREGATE_PROXY hashtag buzz",
+        "Y=0.5 prior-year neutral"
+      ],
+      "window_start": "2026-09-29T00:00:00+01:00",
+      "window_end": "2026-10-15T23:59:59+01:00"
+    },
+    {
+      "id": "ec_9bd1afe1914b05dd",
+      "name": "Sofa-to-5K virtual",
+      "archetype": "virtual",
+      "catalogue_event_id": "mock:virtual:sofa5k:series",
+      "time_start": "2026-09-20T00:00:00+01:00",
+      "time_end": "2026-10-21T23:59:59+01:00",
+      "venue_city": null,
+      "venue_country": null,
+      "enrichment_source": "orders_plus_calendar",
+      "window_label": "virtual window",
+      "confidence": {
+        "value": 0.38,
+        "value_pct": 38.0,
+        "Lt": 0.0,
+        "G": 0.35,
+        "A": 0.4,
+        "Y": 0.5,
+        "R": 0.85,
+        "baseline_pct": 67.75
+      },
+      "n_orders": 2,
+      "provenance_labels": [
+        "MOCK virtual calendar",
+        "MODEL_HYPOTHESIS",
+        "Y=0.5 prior-year neutral",
+        "AGGREGATE_PROXY hashtag buzz",
+        "MODEL HYPOTHESIS (low n)"
+      ],
+      "window_start": "2026-09-20T00:00:00+01:00",
+      "window_end": "2026-10-21T23:59:59+01:00"
+    },
+    {
+      "id": "ec_c13d333a0fc2941a",
+      "name": "Autumn athleisure drop",
+      "archetype": "seasonal_drop",
+      "catalogue_event_id": "mock:season:athleisure-drop:aut26",
+      "time_start": "2026-09-26T00:00:00+01:00",
+      "time_end": "2026-10-06T23:59:59+01:00",
+      "venue_city": null,
+      "venue_country": null,
+      "enrichment_source": "orders_plus_mock",
+      "window_label": "event −2d/+1d",
+      "confidence": {
+        "value": 0.25126344086021507,
+        "value_pct": 25.126344086021508,
+        "Lt": 0.0,
+        "G": 0.25,
+        "A": 0.21505376344086022,
+        "Y": 0.5,
+        "R": 0.85,
+        "baseline_pct": 74.8736559139785
+      },
+      "n_orders": 0,
+      "provenance_labels": [
+        "MOCK",
+        "Y=0.5 prior-year neutral",
+        "MODEL HYPOTHESIS (low n)"
+      ],
+      "window_start": "2026-09-26T00:00:00+01:00",
+      "window_end": "2026-10-06T23:59:59+01:00"
+    },
+    {
+      "id": "ec_769979e76bed363c",
+      "name": "Race weekend — Manchester 10K",
+      "archetype": "race_weekend",
+      "catalogue_event_id": "mock:race:gm-10k:2026-10-04",
+      "time_start": "2026-09-27T09:30:00+01:00",
+      "time_end": "2026-10-06T13:30:00+01:00",
+      "venue_city": "Manchester",
+      "venue_country": "GB",
+      "enrichment_source": "orders_plus_mock",
+      "window_label": "race −7d/+2d",
+      "confidence": {
+        "value": 0.1970678201134314,
+        "value_pct": 19.70678201134314,
+        "Lt": 0.0,
+        "G": 0.20000000000000004,
+        "A": 0.08,
+        "Y": 0.5,
+        "R": 0.770678201134314,
+        "baseline_pct": 49.9
+      },
+      "n_orders": 0,
+      "provenance_labels": [
+        "MOCK race calendar",
+        "MODEL_HYPOTHESIS",
+        "Y=0.5 prior-year neutral",
+        "MODEL HYPOTHESIS (low n)"
+      ],
+      "window_start": "2026-09-27T09:30:00+01:00",
+      "window_end": "2026-10-06T13:30:00+01:00"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English.",
+    "provenance": "CURATED",
+    "purpose": "Scripted Playwright path for Harbour Athletic / football merch demo",
+    "epic": "06",
+    "deprecated": true,
+    "deprecatedNote": "DEPRECATED 2026-09-24 \u2014 use path-harbour-run-dawn.json (Harbour Run / running). Football kit path kept for history only."
+  },
+  "personaId": "pers_away_day_dad",
+  "storefrontHint": "demo-football-merch.myshopify.com",
+  "stopPolicy": "checkout_start_only",
+  "denyList": [
+    "/checkouts/*/payment",
+    "complete_purchase",
+    "Buy with Shop Pay submit"
+  ],
+  "steps": [
+    {
+      "id": "home",
+      "action": "goto",
+      "target": "/",
+      "expect": "Home Kits"
+    },
+    {
+      "id": "nav_home_kits",
+      "action": "click",
+      "selectorHint": "text=Home Kits 25/26",
+      "expect": "collection"
+    },
+    {
+      "id": "open_shirt",
+      "action": "click",
+      "selectorHint": "text=Home Shirt",
+      "expect": "PDP"
+    },
+    {
+      "id": "select_size_l",
+      "action": "click",
+      "selectorHint": "text=L",
+      "optional": true
+    },
+    {
+      "id": "atc_shirt",
+      "action": "click",
+      "selectorHint": "text=Add to cart"
+    },
+    {
+      "id": "kids_scarf_search",
+      "action": "goto",
+      "target": "/collections/kids-juniors",
+      "expect": "Kids"
+    },
+    {
+      "id": "open_scarf",
+      "action": "click",
+      "selectorHint": "text=Kids Scarf",
+      "expect": "PDP"
+    },
+    {
+      "id": "note_size_guide",
+      "action": "observe",
+      "note": "Kids size guide missing \u2014 friction"
+    },
+    {
+      "id": "atc_scarf",
+      "action": "click",
+      "selectorHint": "text=Add to cart"
+    },
+    {
+      "id": "cart",
+      "action": "goto",
+      "target": "/cart"
+    },
+    {
+      "id": "checkout_start",
+      "action": "click",
+      "selectorHint": "text=Check out",
+      "outcome": "checkout_started"
+    },
+    {
+      "id": "stop",
+      "action": "stop",
+      "reason": "stop_before_payment"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Syndicate Graph Lab · Harbour Athletic</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- vis-network via CDN (offline: see README for canvas fallback note) -->
+  <script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"
+          crossorigin="anonymous"
+          onerror="window.__VIS_CDN_FAILED=true"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__title">Syndicate Graph Lab</span>
+      <span class="topbar__shop" id="shopLabel">Harbour Athletic</span>
+    </div>
+    <div class="topbar__stats" id="topStats">
+      <span class="pill"><strong id="statNodes">—</strong> nodes</span>
+      <span class="pill"><strong id="statEdges">—</strong> edges</span>
+      <span class="pill"><strong id="statEvents">—</strong> EventCandidates</span>
+    </div>
+    <div class="topbar__actions">
+      <button type="button" class="btn btn--ghost" id="btnPhysics" title="Toggle force simulation">Physics: on</button>
+      <button type="button" class="btn btn--ghost" id="btnPng" title="Export PNG of the canvas">Export PNG</button>
+      <button type="button" class="btn btn--solid" id="btnFit">Fit</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="panel" id="filters">
+      <h2 class="panel__h">Filters</h2>
+
+      <div class="panel__section">
+        <p class="panel__label">Search</p>
+        <input type="search" class="search-input" id="searchInput" placeholder="Label or id…" autocomplete="off" />
+      </div>
+
+      <div class="panel__section">
+        <p class="panel__label">Presets</p>
+        <button type="button" class="btn btn--panel is-active" data-preset="default" id="presetDefault">Default (readable)</button>
+        <button type="button" class="btn btn--panel" data-preset="matchday" id="presetMatchday">Match-day evidence path</button>
+        <button type="button" class="btn btn--panel" data-preset="events" id="presetEvents">Events only</button>
+        <button type="button" class="btn btn--panel" data-preset="full" id="presetFull">Full graph</button>
+      </div>
+
+      <div class="panel__section">
+        <p class="panel__label">Node types</p>
+        <ul class="check-list" id="typeFilters"></ul>
+      </div>
+
+      <div class="panel__section">
+        <p class="panel__label">Relations</p>
+        <ul class="check-list" id="relFilters"></ul>
+      </div>
+
+      <div class="panel__section">
+        <p class="panel__label">Provenance</p>
+        <ul class="check-list" id="provFilters"></ul>
+      </div>
+
+      <div class="panel__section">
+        <p class="panel__label">Layout</p>
+        <div class="toggle-row">
+          <span>Hierarchical</span>
+          <label class="toggle"><input type="checkbox" id="chkHier" /><span></span></label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="canvas-wrap">
+      <div class="loading" id="loading">Loading graph…</div>
+      <div class="fallback-banner" id="fallbackBanner">
+        vis-network CDN unavailable — using canvas force-directed fallback. For offline use, vendor
+        <code>vis-network.min.js</code> beside this page.
+      </div>
+      <div class="status-bar" id="statusBar">Loading…</div>
+      <div id="network"></div>
+      <div class="legend" id="legend">
+        <p class="legend__title">Legend</p>
+        <div class="legend__grid" id="legendNodes"></div>
+        <div class="legend__edge" id="legendEdges"></div>
+      </div>
+    </main>
+
+    <aside class="panel panel--right" id="inspector">
+      <h2 class="panel__h">Inspector</h2>
+      <div id="inspectorBody">
+        <p class="inspector-empty">
+          Click a node or edge to inspect. Double-click an EventCandidate for a confidence breakdown
+          and neighbourhood focus. Hover for a quick tooltip.
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

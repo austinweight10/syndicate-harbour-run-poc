@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "purpose": "Demo shop session \u2014 Harbour Run live target",
+    "provenance": "CURATED"
+  },
+  "shop": {
+    "id": "shop_harbour_run_demo",
+    "name": "Harbour Run",
+    "myshopifyDomain": "harbour-run-demo.myshopify.com",
+    "primaryDomain": "harbour-run-demo.myshopify.com",
+    "currencyCode": "GBP",
+    "ianaTimezone": "Europe/London",
+    "countryCode": "GB",
+    "plan": "partner_test",
+    "theme": "Dawn",
+    "vertical": "running",
+    "storefrontUrl": "https://harbour-run-demo.myshopify.com"
+  },
+  "connection": {
+    "status": "connected",
+    "scopes": [
+      "read_orders",
+      "read_products",
+      "read_customers"
+    ],
+    "pcdLevel": 2,
+    "pcdAddressEnabled": true
+  },
+  "flags": {
+    "useOrderFixtures": false,
+    "agentsAutoRun": false,
+    "llmProvider": "off"
+  }
+}

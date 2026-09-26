@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English (e.g. colour, organise, labelled, centre).",
+    "provenance": "CURATED",
+    "purpose": "Seed URLs/domains for social.webHarvest public sports news/calendars — no twitter.com/x.com",
+    "epic": "03",
+    "hardLine": "Do not hard-depend on unofficial Twitter/X HTML scrapes"
+  },
+  "robotsPolicy": "respect_robots_txt",
+  "rateLimitPerDomainPerHour": 30,
+  "label": "AGGREGATE_PROXY",
+  "forbiddenHostSuffixes": [
+    "twitter.com",
+    "x.com",
+    "t.co"
+  ],
+  "domains": [
+    {
+      "domain": "www.bbc.co.uk",
+      "paths": [
+        "/sport/football",
+        "/sport/athletics"
+      ],
+      "notes": "Public BBC Sport listings"
+    },
+    {
+      "domain": "www.skysports.com",
+      "paths": [
+        "/football",
+        "/athletics"
+      ],
+      "notes": "Public fixtures/news pages"
+    },
+    {
+      "domain": "www.premierleague.com",
+      "paths": [
+        "/fixtures",
+        "/news"
+      ],
+      "notes": "Official PL public calendar"
+    },
+    {
+      "domain": "www.theguardian.com",
+      "paths": [
+        "/football",
+        "/sport"
+      ],
+      "notes": "Public sports news"
+    },
+    {
+      "domain": "www.runbritain.com",
+      "paths": [
+        "/"
+      ],
+      "notes": "UK race calendar listings where public"
+    },
+    {
+      "domain": "hyrox.com",
+      "paths": [
+        "/events"
+      ],
+      "notes": "Public Hyrox event pages"
+    },
+    {
+      "domain": "www.london-marathon.co.uk",
+      "paths": [
+        "/"
+      ],
+      "notes": "Official race site public pages"
+    }
+  ],
+  "seedUrls": [
+    "https://www.bbc.co.uk/sport/football",
+    "https://www.bbc.co.uk/sport/athletics",
+    "https://www.skysports.com/football",
+    "https://www.premierleague.com/fixtures",
+    "https://www.theguardian.com/football",
+    "https://hyrox.com/events",
+    "https://www.london-marathon.co.uk/"
+  ],
+  "discovery": {
+    "sameDomainOnly": true,
+    "maxDepth": 1,
+    "maxPagesPerRun": 40
+  }
+}

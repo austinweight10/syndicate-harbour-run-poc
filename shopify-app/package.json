@@ -1,0 +1,51 @@
+{
+  "name": "syndicate-shopify",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "shopify app dev",
+    "dev:demo": "DEMO_FIXTURE_SHOP=1 PORT=44731 react-router dev --host 0.0.0.0",
+    "build": "react-router build",
+    "start": "react-router-serve ./build/server/index.js",
+    "setup": "prisma generate && prisma migrate deploy",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "tsx prisma/seed.ts",
+    "pipeline:demo": "tsx scripts/pipeline-demo.ts",
+    "storefront:stub": "tsx stub-storefront/server.ts",
+    "agents:run": "tsx scripts/agents-run.ts",
+    "agents:prove": "tsx scripts/agents-prove.ts",
+    "fixtures:validate": "tsx scripts/validate-fixtures.ts",
+    "smoke": "tsx scripts/smoke.ts",
+    "test": "tsx --test --test-concurrency=1 tests/**/*.ts",
+    "typecheck": "react-router typegen && tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.16.3",
+    "@react-router/dev": "7.18.2",
+    "@react-router/fs-routes": "7.18.2",
+    "@react-router/node": "7.18.2",
+    "@react-router/serve": "7.18.2",
+    "@shopify/app-bridge-react": "^4.2.4",
+    "@shopify/shopify-app-react-router": "^1.1.0",
+    "@shopify/shopify-app-session-storage-prisma": "^9.0.0",
+    "isbot": "^5.1.31",
+    "prisma": "^6.16.3",
+    "playwright": "^1.63.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "7.18.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^18.3.24",
+    "@types/react-dom": "^18.3.7",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^6.0.4"
+  }
+}

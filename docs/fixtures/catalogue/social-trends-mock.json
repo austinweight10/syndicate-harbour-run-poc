@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English (e.g. colour, organise, labelled, centre).",
+    "provenance": "MOCK",
+    "purpose": "Demo SocialTrend buzz series — never OBSERVED demand alone",
+    "epic": "03"
+  },
+  "trends": [
+    {
+      "tag": "#MUFC",
+      "geoHint": "Manchester",
+      "score": 0.78,
+      "timeBucket": "2026-09-27T12:00:00+01:00",
+      "volumeProxy": 8200,
+      "provenance": "MOCK",
+      "affinity": [
+        "home_kit",
+        "scarf",
+        "kids_kit"
+      ]
+    },
+    {
+      "tag": "#MatchDay",
+      "geoHint": "London",
+      "score": 0.71,
+      "timeBucket": "2026-09-26T10:00:00+01:00",
+      "volumeProxy": 5400,
+      "provenance": "MOCK",
+      "affinity": [
+        "home_kit",
+        "layers"
+      ]
+    },
+    {
+      "tag": "#LondonMarathon",
+      "geoHint": "London",
+      "score": 0.64,
+      "timeBucket": "2026-09-24T08:00:00+01:00",
+      "volumeProxy": 3100,
+      "provenance": "MOCK",
+      "affinity": [
+        "trainers",
+        "race_day"
+      ]
+    },
+    {
+      "tag": "#HYROX",
+      "geoHint": null,
+      "score": 0.58,
+      "timeBucket": "2026-09-23T18:00:00+01:00",
+      "volumeProxy": 2100,
+      "provenance": "MOCK",
+      "affinity": [
+        "grips",
+        "shorts"
+      ]
+    },
+    {
+      "tag": "#SofaTo5K",
+      "geoHint": null,
+      "score": 0.52,
+      "timeBucket": "2026-09-22T09:00:00+01:00",
+      "volumeProxy": 1400,
+      "provenance": "MOCK",
+      "affinity": [
+        "trainers",
+        "recovery"
+      ]
+    },
+    {
+      "tag": "#Arsenal",
+      "geoHint": "London",
+      "score": 0.69,
+      "timeBucket": "2026-09-26T14:00:00+01:00",
+      "volumeProxy": 4800,
+      "provenance": "MOCK",
+      "affinity": [
+        "home_kit",
+        "jersey"
+      ]
+    }
+  ]
+}

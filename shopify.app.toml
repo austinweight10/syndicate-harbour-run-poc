@@ -1,0 +1,31 @@
+# Syndicate — hackathon prototype.
+# Scopes are declared so a dev-store install can be wired later.
+# This UI does not perform OAuth or token exchange.
+
+name = "Syndicate"
+client_id = "00000000000000000000000000000000"
+application_url = "http://127.0.0.1:43123"
+embedded = true
+
+[access_scopes]
+scopes = "read_products,read_orders,read_customers"
+
+[auth]
+redirect_urls = [
+  "http://127.0.0.1:43123/api/auth/callback",
+]
+
+[webhooks]
+api_version = "2025-10"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/uninstalled"]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = ["orders/create"]
+  uri = "/webhooks/orders/create"
+
+  [[webhooks.subscriptions]]
+  topics = ["products/update"]
+  uri = "/webhooks/products/update"

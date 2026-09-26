@@ -1,0 +1,26 @@
+name: smoke
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  phase0-phase1:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: shopify-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install
+      - run: npx prisma generate
+      - run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: file:./dev.db
+      - run: npm run smoke
+        env:
+          DATABASE_URL: file:./dev.db
+          DEMO_FIXTURE_SHOP: "1"

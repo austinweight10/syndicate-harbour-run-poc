@@ -1,0 +1,142 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English.",
+    "provenance": "GOLDEN",
+    "purpose": "Weekend golden confidence bands for Harbour Run / running vertical (primary demo). Use for Epic 04 asserts. Football-era expected-scores.json is SUPERSEDED for primary demo.",
+    "epic": "04",
+    "vertical": "running",
+    "shopId": "shop_harbour_run_demo",
+    "status": "WEEKEND_SOT",
+    "source": "syndicate-graph-lab/expected-scores-running.proposed.json"
+  },
+  "bands": [
+    {
+      "name": "Race-day taper rush",
+      "eventNaturalKeyHint": "cohort:race_day_taper|evt_hyde|race_running",
+      "confidenceMin": 0.72,
+      "confidenceMax": 0.92,
+      "reasoning": "18 OBSERVED race_day_taper orders (largest cohort) + London geo overlap + race_kit / race_day affinity on Harbour Run SKUs. Prior-year Y stays 0.5. Expected top event for Harbour Run demo.",
+      "provenanceMustInclude": [
+        "OBSERVED"
+      ],
+      "components": {
+        "Lt": [
+          0.5,
+          1.0
+        ],
+        "G": [
+          0.5,
+          1.0
+        ],
+        "A": [
+          0.55,
+          1.0
+        ],
+        "Y": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "name": "Race weekend \u2014 Hyde Park 10K",
+      "eventNaturalKeyHint": "evt_hyde_park",
+      "confidenceMin": 0.65,
+      "confidenceMax": 0.9,
+      "reasoning": "demoPrimary RunThrough Hyde Park 5K/10K (2026-09-26). Race window \u22127d/+2d overlaps late race_day_taper orders; venue maps to London; AGGREGATE_PROXY calendar + OBSERVED orders.",
+      "provenanceMustInclude": [
+        "OBSERVED"
+      ],
+      "components": {
+        "Lt": [
+          0.4,
+          1.0
+        ],
+        "G": [
+          0.5,
+          1.0
+        ],
+        "A": [
+          0.5,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "Wet-weather training weekend",
+      "eventNaturalKeyHint": "weather|wet|cohort:wet_weather",
+      "confidenceMin": 0.48,
+      "confidenceMax": 0.8,
+      "reasoning": "12 wet_weather_trainer orders with shell/midlayer affinity. When london-weather.json wet days (\u224827\u201328 Sep) are wired, labels include OBSERVED weather forecast + AGGREGATE_PROXY weather driver; Lt still from orders only.",
+      "provenanceMustInclude": [
+        "AGGREGATE_PROXY"
+      ],
+      "components": {
+        "A": [
+          0.45,
+          1.0
+        ],
+        "G": [
+          0.4,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "Club social stretch",
+      "eventNaturalKeyHint": "cohort:club_social",
+      "confidenceMin": 0.38,
+      "confidenceMax": 0.7,
+      "reasoning": "10 club_social orders (cap/joggers). Mid confidence \u2014 weaker kit signature than race-day taper; enrichment orders_only / MODEL_HYPOTHESIS cohort spike.",
+      "provenanceMustInclude": [
+        "OBSERVED"
+      ],
+      "components": {
+        "Lt": [
+          0.2,
+          1.0
+        ],
+        "A": [
+          0.3,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "Sofa-to-5K virtual",
+      "eventNaturalKeyHint": "sofa5k|virtual",
+      "confidenceMin": 0.3,
+      "confidenceMax": 0.6,
+      "reasoning": "MOCK virtual calendar; pure-virtual G capped near national with slight audience bump. Low order overlap \u2192 may hit low-n cap 0.40. Social/activity buzz must not become OBSERVED demand.",
+      "provenanceMustInclude": [
+        "MOCK"
+      ],
+      "components": {
+        "G": [
+          0.2,
+          0.6
+        ]
+      }
+    },
+    {
+      "name": "Hyrox-style meet",
+      "eventNaturalKeyHint": "hyrox",
+      "confidenceMin": 0.28,
+      "confidenceMax": 0.58,
+      "reasoning": "Secondary MOCK / functional meet; Harbour Run catalogue has limited hyrox-specific SKUs so A stays moderate. Provenance MOCK + optional AGGREGATE_PROXY hashtag \u2014 never OBSERVED from buzz alone.",
+      "provenanceMustInclude": [
+        "MOCK"
+      ]
+    }
+  ],
+  "assertRules": [
+    "Social alone never upgrades demand provenance to OBSERVED",
+    "Activity buzz alone never OBSERVED demand",
+    "Prior-year Y defaults to 0.5 within 60d window",
+    "Low-n (n_orders < 5) caps displayed confidence at 0.40",
+    "Football Match-day home kit rush is not a required Harbour Run top event",
+    "Do not overwrite fixtures/graph/expected-scores.json \u2014 this file is the lab proposal"
+  ]
+}

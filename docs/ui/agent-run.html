@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent run · Syndicate</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-brand">
+        <div class="brand-mark" aria-hidden="true">SY</div>
+        <span class="brand-name">Syndicate</span>
+      </div>
+      <div class="topbar-shop">
+        <span class="shop-domain">demo-football-merch.myshopify.com</span>
+        <span class="pill pill-success pill-dot">Connected</span>
+      </div>
+    </header>
+
+    <div class="body-row">
+      <nav class="sidenav" aria-label="App">
+        <a class="nav-item" href="index.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z"/></svg>
+          Overview
+        </a>
+        <a class="nav-item" href="events.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5h10v2H4V7h2z"/></svg>
+          Events
+        </a>
+        <a class="nav-item" href="personas.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>
+          Personas
+        </a>
+        <a class="nav-item" href="artifacts.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9z"/></svg>
+          Insights
+        </a>
+        <a class="nav-item active" href="agent-run.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+          Agent runs
+        </a>
+        <div class="nav-spacer"></div>
+        <div class="nav-section-label">Shop</div>
+        <a class="nav-item" href="settings.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-1.57 1.996A1.532 1.532 0 013.07 8.59c-1.56.38-1.56 2.6 0 2.98a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 1.996 1.57a1.532 1.532 0 012.287.947c.38 1.56 2.6 1.56 2.98 0a1.532 1.532 0 012.287-.947c1.372.836 2.942-.734 1.57-1.996a1.532 1.532 0 01.947-2.287c1.56-.38 1.56-2.6 0-2.98a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-1.996-1.57a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <main class="main">
+        <div class="page-header">
+          <div>
+            <h1>Agent run</h1>
+            <p class="page-subtitle">Playwright storefront loop · never pays · auto-queue capped ≤3</p>
+          </div>
+          <div class="header-actions">
+            <span class="pill pill-dot" data-run-status>Not started</span>
+            <button type="button" class="btn btn-primary" data-run-agents><span data-label>Run agents</span></button>
+          </div>
+        </div>
+
+
+        <div class="stop-pay-banner" role="status">
+          <div class="stop-pay-icon" aria-hidden="true">⏹</div>
+          <div>
+            <strong>Stop before payment</strong>
+            Agents may reach checkout start, then halt. No orders placed · no payment taken.
+            <span class="stop-pay-cap">Auto-queue capped at ≤3 Ready personas (concurrency 1). Pause in Settings to disable.</span>
+          </div>
+        </div>
+        <div data-agent-run>
+          <div class="run-context">
+            <div class="metric-cell">
+              <div class="stat-label">Persona</div>
+              <div class="stat-value"><a href="persona-detail.html">Race-day taper</a></div>
+              <div class="stat-meta">Mobile · £40–£90</div>
+            </div>
+            <div class="metric-cell">
+              <div class="stat-label">Event</div>
+              <div class="stat-value"><a href="event-detail.html">Home kit rush</a></div>
+              <div class="stat-meta"><span class="badge-source badge-observed">Obs</span> · 0.82</div>
+            </div>
+            <div class="metric-cell accent">
+              <div class="stat-label">Progress</div>
+              <div class="stat-value" data-run-progress-label style="font-size:22px">0%</div>
+              <div class="progress-bar" style="background:rgba(255,255,255,0.15)"><div class="progress-fill" data-run-progress style="width:0%;background:#8ce8c3"></div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2>Timeline</h2>
+              <span class="muted mono">playwright</span>
+            </div>
+            <div class="card-body" style="padding:4px 12px">
+              <ul class="run-timeline" data-run-steps>
+                <li class="run-step">
+                  <div class="run-step-icon pending">·</div>
+                  <div class="run-step-body">
+                    <div class="run-step-title">Waiting</div>
+                    <div class="run-step-detail">Queue from Overview, Personas, or here.</div>
+                  </div>
+                  <div class="run-step-time">idle</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" data-run-outcome hidden>
+            <div class="card-header">
+              <h2>Outcome</h2>
+              <span class="pill pill-success">Carted · checkout started</span>
+            </div>
+            <div class="card-body">
+              <p style="margin:0 0 10px;font-size:13px">Adult race tee (M) + youth run tee · basket ~£64. <strong>No payment taken.</strong></p>
+              <div class="inline-flex">
+                <a class="btn btn-primary" href="artifacts.html">Open Insights board</a>
+                <a class="btn btn-secondary" href="persona-detail.html">Persona</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h2>History</h2></div>
+            <div class="card-body flush">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Started</th>
+                    <th>Persona</th>
+                    <th>Status</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>21 Sep 2026, 16:12 BST</td>
+                    <td>Race-day taper</td>
+                    <td><span class="pill pill-success">Done</span></td>
+                    <td>carted</td>
+                  </tr>
+                  <tr>
+                    <td>20 Sep 2026, 11:04 BST</td>
+                    <td>Race-day taper</td>
+                    <td><span class="pill pill-warning">Done</span></td>
+                    <td>abandoned</td>
+                  </tr>
+                  <tr>
+                    <td>—</td>
+                    <td>Wet-weather trainer</td>
+                    <td><span class="pill pill-neutral">Later</span></td>
+                    <td>—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

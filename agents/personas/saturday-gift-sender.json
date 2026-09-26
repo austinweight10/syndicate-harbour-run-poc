@@ -1,0 +1,21 @@
+{
+  "id": "per_gift_sender",
+  "name": "Saturday gift sender",
+  "nameEvidence": "model_hypothesis",
+  "eventId": "evt_gift_match",
+  "goals": [
+    "Find a scarf or a mug under £30",
+    "Leave a short gift note",
+    "Stay within a small budget"
+  ],
+  "budgetMin": 15,
+  "budgetMax": 35,
+  "currency": "GBP",
+  "viewport": "mobile",
+  "locale": "en-GB",
+  "constraints": {
+    "avoidShirtBuilder": true,
+    "stopBeforePayment": true
+  },
+  "mockFlags": []
+}

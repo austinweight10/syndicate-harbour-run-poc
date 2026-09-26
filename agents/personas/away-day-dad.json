@@ -1,0 +1,23 @@
+{
+  "id": "per_away_day_dad",
+  "name": "Away-day dad",
+  "nameEvidence": "mock",
+  "eventId": "evt_away_travel",
+  "goals": [
+    "Find the 2026/27 away shirt in adult L",
+    "Add a scarf under £25",
+    "Keep the basket between £40 and £80"
+  ],
+  "budgetMin": 40,
+  "budgetMax": 80,
+  "currency": "GBP",
+  "viewport": "mobile",
+  "locale": "en-GB",
+  "constraints": {
+    "size": "adult L",
+    "colourway": "navy / copper",
+    "avoid": "children's aisle",
+    "stopBeforePayment": true
+  },
+  "mockFlags": ["demographic_proxy_mock"]
+}

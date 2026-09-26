@@ -1,0 +1,229 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English.",
+    "provenance": "MOCK",
+    "purpose": "Demo catalogue SKUs for Harbour Run \u2014 London running apparel",
+    "epic": "02",
+    "shopStory": "Harbour Run"
+  },
+  "collections": [
+    {
+      "id": "col_race_kits",
+      "title": "Race Kits",
+      "handle": "race-kits"
+    },
+    {
+      "id": "col_wet",
+      "title": "Wet-weather training",
+      "handle": "wet-weather-training"
+    },
+    {
+      "id": "col_race_day",
+      "title": "Race-day essentials",
+      "handle": "race-day-essentials"
+    },
+    {
+      "id": "col_kids",
+      "title": "Kids & Youth",
+      "handle": "kids-youth"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_race_tee",
+      "title": "Race Tee \u2014 Unisex",
+      "handle": "race-tee-unisex",
+      "productType": "Apparel",
+      "tags": [
+        "race_day",
+        "race_kit",
+        "adult_size"
+      ],
+      "vendor": "Harbour Run",
+      "variants": [
+        {
+          "id": "var_rt_m",
+          "title": "M",
+          "price": "38.00",
+          "sku": "HR-RT-M"
+        },
+        {
+          "id": "var_rt_l",
+          "title": "L",
+          "price": "38.00",
+          "sku": "HR-RT-L"
+        },
+        {
+          "id": "var_rt_xl",
+          "title": "XL",
+          "price": "38.00",
+          "sku": "HR-RT-XL"
+        }
+      ]
+    },
+    {
+      "id": "prod_shorts",
+      "title": "Running Shorts",
+      "handle": "running-shorts",
+      "productType": "Shorts",
+      "tags": [
+        "race_day",
+        "race_kit",
+        "adult_size"
+      ],
+      "vendor": "Harbour Run",
+      "variants": [
+        {
+          "id": "var_rs_l",
+          "title": "L",
+          "price": "42.00",
+          "sku": "HR-RS-L"
+        }
+      ]
+    },
+    {
+      "id": "prod_shell",
+      "title": "Waterproof Shell Jacket",
+      "handle": "waterproof-shell-jacket",
+      "productType": "Outerwear",
+      "tags": [
+        "waterproof",
+        "wx_aware",
+        "wet_weather",
+        "adult_size"
+      ],
+      "vendor": "Harbour Run",
+      "variants": [
+        {
+          "id": "var_wsj_l",
+          "title": "L",
+          "price": "65.00",
+          "sku": "HR-WSJ-L"
+        }
+      ]
+    },
+    {
+      "id": "prod_hz",
+      "title": "Half-Zip Midlayer",
+      "handle": "half-zip-midlayer",
+      "productType": "Apparel",
+      "tags": [
+        "layers",
+        "wet_weather",
+        "adult_size"
+      ],
+      "vendor": "Harbour Run",
+      "variants": [
+        {
+          "id": "var_hz_m",
+          "title": "M",
+          "price": "55.00",
+          "sku": "HR-HZ-M"
+        }
+      ]
+    },
+    {
+      "id": "prod_socks",
+      "title": "Performance Socks",
+      "handle": "performance-socks",
+      "productType": "Accessories",
+      "tags": [
+        "race_day",
+        "race_kit",
+        "socks"
+      ],
+      "vendor": "Harbour Run",
+      "variants": [
+        {
+          "id": "var_ps_3",
+          "title": "3-pack",
+          "price": "18.00",
+          "sku": "HR-PS-3"
+        }
+      ]
+    },
+    {
+      "id": "prod_joggers",
+      "title": "Recovery Joggers",
+      "handle": "recovery-joggers",
+      "productType": "Apparel",
+      "tags": [
+        "recovery",
+        "club_social",
+        "adult_size"
+      ],
+      "vendor": "Harbour Run",
+      "variants": [
+        {
+          "id": "var_rj_m",
+          "title": "M",
+          "price": "48.00",
+          "sku": "HR-RJ-M"
+        }
+      ]
+    },
+    {
+      "id": "prod_cap",
+      "title": "Trail / Road Cap",
+      "handle": "trail-or-road-cap",
+      "productType": "Accessories",
+      "tags": [
+        "race_day",
+        "cap",
+        "club_social"
+      ],
+      "vendor": "Harbour Run",
+      "variants": [
+        {
+          "id": "var_cap",
+          "title": "One size",
+          "price": "22.00",
+          "sku": "HR-CAP-1"
+        }
+      ]
+    },
+    {
+      "id": "prod_flask",
+      "title": "Soft Flask 500 ml",
+      "handle": "soft-flask",
+      "productType": "Hydration",
+      "tags": [
+        "race_day",
+        "race_kit",
+        "hydration"
+      ],
+      "vendor": "Harbour Run",
+      "variants": [
+        {
+          "id": "var_sf",
+          "title": "500 ml",
+          "price": "16.00",
+          "sku": "HR-SF-500"
+        }
+      ]
+    },
+    {
+      "id": "prod_kyt",
+      "title": "Kids / Youth Run Tee",
+      "handle": "kids-youth-run-tee",
+      "productType": "Apparel",
+      "tags": [
+        "kids",
+        "youth",
+        "race_day"
+      ],
+      "vendor": "Harbour Run",
+      "notes": "Intentional P0: no size guide on PDP",
+      "variants": [
+        {
+          "id": "var_kyt_ym",
+          "title": "YM",
+          "price": "28.00",
+          "sku": "HR-KYT-YM"
+        }
+      ]
+    }
+  ]
+}

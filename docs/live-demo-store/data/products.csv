@@ -1,0 +1,44 @@
+Handle,Title,Body (HTML),Vendor,Product Category,Type,Tags,Published,Option1 Name,Option1 Value,Option2 Name,Option2 Value,Option3 Name,Option3 Value,Variant SKU,Variant Grams,Variant Inventory Tracker,Variant Inventory Qty,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Compare At Price,Variant Requires Shipping,Variant Taxable,Variant Barcode,Image Src,Image Position,Image Alt Text,Gift Card,SEO Title,SEO Description,Google Shopping / Google Product Category,Google Shopping / Gender,Google Shopping / Age Group,Google Shopping / MPN,Google Shopping / Condition,Google Shopping / Custom Product,Variant Image,Variant Weight Unit,Variant Tax Code,Cost per item,Status
+race-tee-unisex,Race Tee — Unisex,"<p>Lightweight race tee for training and event days. Moisture-wicking crew neck. Unisex fit.</p>
+<p><strong>Size guide</strong></p>
+<ul>
+<li>S — chest 36–38&quot;</li>
+<li>M — chest 38–40&quot;</li>
+<li>L — chest 40–42&quot;</li>
+<li>XL — chest 42–44&quot;</li>
+</ul>
+<p><!-- Intentional P2: weak race-day / Hyde Park / Battersea language — agents should flag copy insight --></p>",Harbour Run,,Apparel,"race_day,race_kit,adult_size,trainers",TRUE,Size,S,,,,,HR-RT-S,160,shopify,50,deny,manual,38.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-RT,1,Race Tee — Unisex,FALSE,,,,,,,,,,g,,,active
+race-tee-unisex,,,,,,,,Size,M,,,,,HR-RT-M,160,shopify,50,deny,manual,38.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+race-tee-unisex,,,,,,,,Size,L,,,,,HR-RT-L,160,shopify,50,deny,manual,38.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+race-tee-unisex,,,,,,,,Size,XL,,,,,HR-RT-XL,160,shopify,50,deny,manual,38.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+running-shorts,Running Shorts,"<p>5-inch running shorts with brief liner and zip pocket. Built for park loops and race weekends.</p>
+<p><strong>Size guide</strong> — waist S 30&quot; · M 32&quot; · L 34&quot; · XL 36&quot;.</p>",Harbour Run,,Shorts,"race_day,race_kit,adult_size",TRUE,Size,S,,,,,HR-RS-S,140,shopify,50,deny,manual,42.00,,TRUE,TRUE,,https://placehold.co/800x800/142850/f5f0e8/png?text=HR-RS,1,Running Shorts,FALSE,,,,,,,,,,g,,,active
+running-shorts,,,,,,,,Size,M,,,,,HR-RS-M,140,shopify,50,deny,manual,42.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+running-shorts,,,,,,,,Size,L,,,,,HR-RS-L,140,shopify,50,deny,manual,42.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+running-shorts,,,,,,,,Size,XL,,,,,HR-RS-XL,140,shopify,50,deny,manual,42.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+waterproof-shell-jacket,Waterproof Shell Jacket,"<p>Packable waterproof shell. Hooded, zip pockets, folds into its own pocket. £65.</p>
+<p>Adult sizes S–XL.</p>
+<p><!-- Intentional P2: weak midweek rain / London weather language — agents should flag copy insight --></p>",Harbour Run,,Outerwear,"waterproof,wx_aware,wet_weather,adult_size",TRUE,Size,S,,,,,HR-WSJ-S,380,shopify,50,deny,manual,65.00,,TRUE,TRUE,,https://placehold.co/800x800/37465a/f5f0e8/png?text=HR-WSJ,1,Waterproof Shell Jacket,FALSE,,,,,,,,,,g,,,active
+waterproof-shell-jacket,,,,,,,,Size,M,,,,,HR-WSJ-M,380,shopify,50,deny,manual,65.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+waterproof-shell-jacket,,,,,,,,Size,L,,,,,HR-WSJ-L,380,shopify,50,deny,manual,65.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+waterproof-shell-jacket,,,,,,,,Size,XL,,,,,HR-WSJ-XL,380,shopify,50,deny,manual,65.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+half-zip-midlayer,Half-Zip Midlayer,"<p>Breathable half-zip midlayer for cool starts and post-run coffee. Thumbholes, reflective hit.</p>
+<p><strong>Size guide</strong> — fitted athletic cut; size up for layering over a race tee.</p>",Harbour Run,,Apparel,"layers,wet_weather,adult_size,club_social",TRUE,Size,S,,,,,HR-HZ-S,280,shopify,50,deny,manual,55.00,,TRUE,TRUE,,https://placehold.co/800x800/1a3050/f5f0e8/png?text=HR-HZ,1,Half-Zip Midlayer,FALSE,,,,,,,,,,g,,,active
+half-zip-midlayer,,,,,,,,Size,M,,,,,HR-HZ-M,280,shopify,50,deny,manual,55.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+half-zip-midlayer,,,,,,,,Size,L,,,,,HR-HZ-L,280,shopify,50,deny,manual,55.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+performance-socks,Performance Socks,"<p>Cushioned performance socks. Arch support, blister-resistant toe seam. Race and training packs.</p>
+<p><strong>Size note:</strong> UK 6–11 unisex fit.</p>",Harbour Run,,Accessories,"race_day,race_kit,socks,adult_size",TRUE,Pack,3-pack,,,,,HR-PS-3,80,shopify,50,deny,manual,18.00,,TRUE,TRUE,,https://placehold.co/800x800/c4b8a8/0f2040/png?text=HR-PS,1,Performance Socks,FALSE,,,,,,,,,,g,,,active
+performance-socks,,,,,,,,Pack,5-pack,,,,,HR-PS-5,80,shopify,50,deny,manual,28.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+recovery-joggers,Recovery Joggers,"<p>Soft recovery joggers for after parkrun and long-run Sundays. Tapered, zip pockets.</p>
+<p><strong>Size guide</strong> — waist S 30&quot; · M 32&quot; · L 34&quot; · XL 36&quot;.</p>",Harbour Run,,Apparel,"recovery,club_social,adult_size,athleisure",TRUE,Size,S,,,,,HR-RJ-S,320,shopify,50,deny,manual,48.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-RJ,1,Recovery Joggers,FALSE,,,,,,,,,,g,,,active
+recovery-joggers,,,,,,,,Size,M,,,,,HR-RJ-M,320,shopify,50,deny,manual,48.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+recovery-joggers,,,,,,,,Size,L,,,,,HR-RJ-L,320,shopify,50,deny,manual,48.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+recovery-joggers,,,,,,,,Size,XL,,,,,HR-RJ-XL,320,shopify,50,deny,manual,48.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+trail-or-road-cap,Trail / Road Cap,"<p>Lightweight trail/road cap with moisture-wicking sweatband. Adjustable. One size.</p>
+<p><strong>Size note:</strong> adjustable 54–62 cm.</p>",Harbour Run,,Accessories,"race_day,cap,club_social,adult_size",TRUE,Size,One size,,,,,HR-CAP-1,60,shopify,50,deny,manual,22.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-CAP,1,Trail / Road Cap,FALSE,,,,,,,,,,g,,,active
+soft-flask,Soft Flask 500 ml,"<p>500 ml soft flask for Hyde Park loops and race aid stations. BPA-free, collapsible.</p>",Harbour Run,,Hydration,"race_day,race_kit,hydration,adult_size",TRUE,Size,500 ml,,,,,HR-SF-500,40,shopify,50,deny,manual,16.00,,TRUE,TRUE,,https://placehold.co/800x800/4a6a8a/f5f0e8/png?text=HR-SF,1,Soft Flask 500 ml,FALSE,,,,,,,,,,g,,,active
+kids-youth-run-tee,Kids / Youth Run Tee,"<p>Youth run tee with Harbour Run mark. Soft cotton-blend for juniors on parkrun and family race days.</p>
+<p>100% soft jersey. Machine wash cold.</p>
+<!-- Intentional P0 Insight: NO size guide section on this PDP -->",Harbour Run,,Apparel,"kids,youth,race_day",TRUE,Size,YS,,,,,HR-KYT-YS,120,shopify,50,deny,manual,28.00,,TRUE,TRUE,,https://placehold.co/800x800/b22234/f5f0e8/png?text=HR-KYT,1,Kids / Youth Run Tee,FALSE,,,,,,,,,,g,,,active
+kids-youth-run-tee,,,,,,,,Size,YM,,,,,HR-KYT-YM,120,shopify,50,deny,manual,28.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+kids-youth-run-tee,,,,,,,,Size,YL,,,,,HR-KYT-YL,120,shopify,50,deny,manual,28.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active

@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "britishEnglishNotes": "Merchant-facing titles and copy use British English (e.g. colour, organise, labelled, centre).",
+    "provenance": "MOCK",
+    "purpose": "P0 VirtualEvent / mode=virtual|hybrid seed",
+    "epic": "03"
+  },
+  "events": [
+    {
+      "naturalKey": "virt:sofa5k:2026-q3",
+      "title": "Sofa-to-5K virtual series",
+      "category": "virtual_challenge",
+      "mode": "virtual",
+      "streamOrAppHint": "app_race",
+      "affinity": [
+        "trainers",
+        "recovery",
+        "finishers_merch"
+      ],
+      "window": {
+        "start": "2026-09-22",
+        "end": "2026-10-20"
+      },
+      "provenance": "MOCK"
+    },
+    {
+      "naturalKey": "virt:zwift-ride:weekend",
+      "title": "Zwift-style virtual ride weekend",
+      "category": "virtual_challenge",
+      "mode": "virtual",
+      "streamOrAppHint": "zwift",
+      "affinity": [
+        "cycling_kit",
+        "hydration",
+        "trainers"
+      ],
+      "window": {
+        "start": "2026-09-26",
+        "end": "2026-09-27"
+      },
+      "provenance": "MOCK"
+    },
+    {
+      "naturalKey": "virt:watch-party:mufc",
+      "title": "Match-day watch party (stream)",
+      "category": "team_fixture",
+      "mode": "virtual",
+      "streamOrAppHint": "livestream",
+      "affinity": [
+        "home_kit",
+        "layers",
+        "scarf"
+      ],
+      "window": {
+        "start": "2026-09-27T16:00:00+01:00",
+        "end": "2026-09-27T19:00:00+01:00"
+      },
+      "audienceTags": [
+        "fan_spectator",
+        "online_only"
+      ],
+      "provenance": "MOCK"
+    },
+    {
+      "naturalKey": "virt:hyrox-qualifier:online",
+      "title": "Online Hyrox qualifier window",
+      "category": "crossfit_functional",
+      "mode": "hybrid",
+      "streamOrAppHint": "app_qualifier",
+      "affinity": [
+        "grips",
+        "lifting_shoes",
+        "shorts"
+      ],
+      "window": {
+        "start": "2026-10-01",
+        "end": "2026-10-14"
+      },
+      "provenance": "MOCK"
+    },
+    {
+      "naturalKey": "virt:class-drop:week",
+      "title": "Studio class drop week",
+      "category": "season_drop_calendar",
+      "mode": "virtual",
+      "streamOrAppHint": "class_calendar",
+      "affinity": [
+        "leggings",
+        "bras",
+        "layers"
+      ],
+      "window": {
+        "start": "2026-09-28",
+        "end": "2026-10-04"
+      },
+      "provenance": "MOCK"
+    }
+  ]
+}

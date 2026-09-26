@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "provenance": "PROPOSED",
+    "purpose": "Proposed running confidence bands for Harbour Run. Does not replace expected-scores.json. The football golden file is left unchanged.",
+    "epic": "04",
+    "status": "proposed",
+    "vertical": "running",
+    "shopStory": "Harbour Run"
+  },
+  "bands": [
+    {
+      "name": "Race-day taper — Hyde Park / Battersea",
+      "eventNaturalKeyHint": "hyde|battersea|race_running",
+      "confidenceMin": 0.72,
+      "confidenceMax": 0.92,
+      "provenanceMustInclude": ["OBSERVED"],
+      "components": {
+        "Lt": [0.5, 1.0],
+        "G": [0.4, 1.0],
+        "A": [0.5, 1.0]
+      }
+    },
+    {
+      "name": "Wet-weather trainer",
+      "eventNaturalKeyHint": "weather|wet|shell",
+      "confidenceMin": 0.45,
+      "confidenceMax": 0.75,
+      "provenanceMustInclude": ["AGGREGATE_PROXY"],
+      "components": {
+        "A": [0.5, 1.0]
+      }
+    },
+    {
+      "name": "Sofa-to-5K virtual",
+      "eventNaturalKeyHint": "sofa5k|virtual",
+      "confidenceMin": 0.35,
+      "confidenceMax": 0.65,
+      "provenanceMustInclude": ["MOCK"],
+      "components": {
+        "G": [0.2, 0.6]
+      }
+    },
+    {
+      "name": "Hackney Marshes parkrun",
+      "eventNaturalKeyHint": "parkrun",
+      "confidenceMin": 0.3,
+      "confidenceMax": 0.6,
+      "provenanceMustInclude": ["AGGREGATE_PROXY"],
+      "notes": "Public calendar citation only. No live parkrun scrape. Social or activity buzz alone must not become OBSERVED demand."
+    }
+  ],
+  "assertRules": [
+    "Social alone never upgrades demand provenance to OBSERVED",
+    "Activity buzz alone never OBSERVED demand",
+    "parkrun is not a live scrape",
+    "Prior-year Y defaults to 0.5 within 60d window"
+  ]
+}

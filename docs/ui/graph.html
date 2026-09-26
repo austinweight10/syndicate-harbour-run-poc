@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Graph · Syndicate</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-brand">
+        <div class="brand-mark" aria-hidden="true">SY</div>
+        <span class="brand-name">Syndicate</span>
+      </div>
+      <div class="topbar-shop">
+        <span class="shop-domain">harbour-run-demo.myshopify.com</span>
+        <span class="mode-badge demo">Demo</span>
+        <span class="pill pill-success pill-dot">Connected</span>
+      </div>
+    </header>
+
+    <div class="body-row">
+      <nav class="sidenav" aria-label="App">
+        <a class="nav-item" href="index.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z"/></svg>
+          Overview
+        </a>
+        <a class="nav-item" href="events.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5h10v2H4V7h2z"/></svg>
+          Events
+        </a>
+        <a class="nav-item" href="personas.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>
+          Personas
+        </a>
+        <a class="nav-item" href="artifacts.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9z"/></svg>
+          Insights
+        </a>
+        <a class="nav-item active" href="graph.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zm-2 4a1 1 0 011-1h14a1 1 0 110 2H3a1 1 0 01-1-1zm3 4a1 1 0 100 2h8a1 1 0 100-2H5z"/></svg>
+          Graph
+        </a>
+        <a class="nav-item" href="agent-run.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+          Agent runs
+        </a>
+        <div class="nav-spacer"></div>
+        <div class="nav-section-label">Shop</div>
+        <a class="nav-item" href="settings.html">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-1.57 1.996A1.532 1.532 0 013.07 8.59c-1.56.38-1.56 2.6 0 2.98a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 1.996 1.57a1.532 1.532 0 012.287.947c.38 1.56 2.6 1.56 2.98 0a1.532 1.532 0 012.287-.947c1.372.836 2.942-.734 1.57-1.996a1.532 1.532 0 01.947-2.287c1.56-.38 1.56-2.6 0-2.98a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-1.996-1.57a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <main class="main">
+        <div class="page-header">
+          <div>
+            <h1>Graph</h1>
+            <p class="page-subtitle">Showing top occasion subgraph · Race-day evidence path · Prisma edges (layout stub only)</p>
+          </div>
+          <div class="header-actions">
+            <button type="button" class="btn btn-secondary btn-sm" data-open-modal="modal-enrichment">Labels</button>
+          </div>
+        </div>
+
+        <p class="compliance-note">
+          Harbour Run · Admin Graph reads the same Prisma <code>GraphEdge</code> rows as score_link ·
+          <a href="#" data-open-modal="modal-enrichment">enrichment labels</a>
+        </p>
+
+        <div class="filter-row" role="toolbar" aria-label="Graph filters">
+          <button type="button" class="filter-pill active" aria-pressed="true">Order</button>
+          <button type="button" class="filter-pill active" aria-pressed="true">SKU</button>
+          <button type="button" class="filter-pill active" aria-pressed="true">Geo</button>
+          <button type="button" class="filter-pill active" aria-pressed="true">CatalogueEvent</button>
+          <button type="button" class="filter-pill active" aria-pressed="true">Driver</button>
+          <button type="button" class="filter-pill active" aria-pressed="true">Weather</button>
+          <button type="button" class="filter-pill">Social</button>
+          <button type="button" class="filter-pill active" aria-pressed="true">EventCandidate</button>
+          <button type="button" class="filter-pill">Persona</button>
+          <label class="graph-search">
+            <span class="visually-hidden">Search nodes</span>
+            <input type="search" placeholder="Search nodes…" aria-label="Search nodes" disabled title="Wired in Remix build" />
+          </label>
+          <button type="button" class="filter-pill" disabled title="Wired in Remix build">Fit</button>
+          <button type="button" class="filter-pill active" aria-pressed="true">Physics <span class="filter-sep">·</span> On</button>
+        </div>
+
+        <div class="card graph-panel">
+          <div class="graph-canvas" role="img" aria-label="Force graph canvas placeholder — Race-day evidence path">
+            <div class="graph-canvas-inner">
+              <svg class="graph-stub-svg" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0 0 L10 5 L0 10 z" fill="#a8a29e"/>
+                  </marker>
+                </defs>
+                <!-- edges -->
+                <line x1="120" y1="180" x2="260" y2="120" stroke="#a8a29e" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <line x1="120" y1="180" x2="260" y2="240" stroke="#a8a29e" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <line x1="260" y1="120" x2="400" y2="100" stroke="#78716c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+                <line x1="260" y1="240" x2="400" y2="200" stroke="#1a2744" stroke-width="1.75" marker-end="url(#arrow)"/>
+                <line x1="400" y1="100" x2="520" y2="180" stroke="#a11d2a" stroke-width="1.75" marker-end="url(#arrow)"/>
+                <line x1="400" y1="200" x2="520" y2="180" stroke="#a11d2a" stroke-width="1.75" marker-end="url(#arrow)"/>
+                <line x1="260" y1="120" x2="400" y2="200" stroke="#78716c" stroke-width="1.25" opacity="0.7" marker-end="url(#arrow)"/>
+                <!-- nodes -->
+                <g transform="translate(120,180)">
+                  <circle r="28" fill="#ffffff" stroke="#008060" stroke-width="2.5"/>
+                  <text text-anchor="middle" dy="4" font-size="11" font-family="system-ui,sans-serif" fill="#292524">Order</text>
+                </g>
+                <g transform="translate(260,120)">
+                  <circle r="26" fill="#ffffff" stroke="#1a2744" stroke-width="2"/>
+                  <text text-anchor="middle" dy="4" font-size="11" font-family="system-ui,sans-serif" fill="#292524">SKU</text>
+                </g>
+                <g transform="translate(260,240)">
+                  <circle r="26" fill="#ffffff" stroke="#1a2744" stroke-width="2"/>
+                  <text text-anchor="middle" dy="4" font-size="11" font-family="system-ui,sans-serif" fill="#292524">Geo</text>
+                </g>
+                <g transform="translate(400,100)">
+                  <rect x="-52" y="-18" width="104" height="36" rx="8" fill="#ffffff" stroke="#78716c" stroke-width="2" stroke-dasharray="4 3"/>
+                  <text text-anchor="middle" dy="4" font-size="10" font-family="system-ui,sans-serif" fill="#292524">Race PROXY</text>
+                </g>
+                <g transform="translate(400,200)">
+                  <rect x="-48" y="-18" width="96" height="36" rx="8" fill="#ffffff" stroke="#1a2744" stroke-width="2"/>
+                  <text text-anchor="middle" dy="4" font-size="10" font-family="system-ui,sans-serif" fill="#292524">Wx Driver</text>
+                </g>
+                <g transform="translate(520,180)">
+                  <rect x="-58" y="-22" width="116" height="44" rx="10" fill="#fff7f7" stroke="#a11d2a" stroke-width="2.5"/>
+                  <text text-anchor="middle" dy="0" font-size="10" font-family="ui-serif,Georgia,serif" fill="#292524">EventCandidate</text>
+                  <text text-anchor="middle" dy="14" font-size="9" font-family="system-ui,sans-serif" fill="#a11d2a">Race-day rush</text>
+                </g>
+              </svg>
+              <p class="graph-canvas-caption muted">
+                Visual stub — Remix Admin wires force layout to Prisma <strong>GraphEdge</strong> (never lab sqlite / Vite-only).
+              </p>
+            </div>
+          </div>
+          <div class="graph-legend" aria-label="Provenance legend">
+            <span class="badge-source badge-observed" title="Observed" aria-label="Observed">Obs</span>
+            <span class="badge-source badge-aggregate" title="Aggregate proxy" aria-label="Aggregate proxy">Agg</span>
+            <span class="badge-source badge-hypothesis" title="Model hypothesis" aria-label="Model hypothesis">Hyp</span>
+            <span class="badge-source badge-mock" title="Mock" aria-label="Mock">Mock</span>
+            <span class="muted" style="margin-left:8px">Race PROXY dashed · weather Driver solid navy · EventCandidate kit-red</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Enrichment legend modal stub (shared chrome) -->
+  <div class="modal" id="modal-enrichment" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel" role="dialog" aria-labelledby="enrichment-title">
+      <h2 id="enrichment-title">Enrichment labels</h2>
+      <p>Obs · Agg · Hyp · Mock — see Admin Labels modal in Remix build.</p>
+      <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

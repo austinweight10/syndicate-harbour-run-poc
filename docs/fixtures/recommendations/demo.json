@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "version": "2026-09-24",
+    "locale": "en-GB",
+    "purpose": "Demo recommendation / insight cards for Harbour Run — MUST bind to AgentRun in live mode",
+    "epic": "07",
+    "shopStory": "Harbour Run",
+    "demoGate": "agentRunIdRequired:true means DEMO pitch MUST NOT claim these as agent-found until linked to a real completed/stopped_before_payment AgentRun id after seed+run, OR show visible MOCK badge. Seed into Prisma only — never import in Insights route (LIVE_DATA_WIRE).",
+    "agentRunIdRequiredGate": true
+  },
+  "insights": [
+    {
+      "id": "ins_youth_size_guide",
+      "priority": "P0",
+      "type": "sizing",
+      "title": "Youth run tee has no size guide",
+      "summary": "Race-day taper path hit Kids / Youth Run Tee PDP with no size guide — high abandon risk when buying for family.",
+      "personaId": "pers_race_day_taper",
+      "productHandle": "kids-youth-run-tee",
+      "provenanceLabels": [
+        "OBSERVED"
+      ],
+      "agentRunIdRequired": true
+    },
+    {
+      "id": "ins_race_kits_no_shell",
+      "priority": "P1",
+      "type": "collection_filter",
+      "title": "Race Kits excludes waterproof shell",
+      "summary": "Shoppers (and agents) looking for rain cover inside Race Kits dead-end — shell only under Wet-weather training.",
+      "personaId": "pers_wet_weather_trainer",
+      "collectionHandle": "race-kits",
+      "provenanceLabels": [
+        "OBSERVED"
+      ],
+      "agentRunIdRequired": true
+    },
+    {
+      "id": "ins_weak_race_copy",
+      "priority": "P2",
+      "type": "copy",
+      "title": "Weak race-day / weather copy on race tee and shell",
+      "summary": "PDP body omits Hyde Park / Battersea / midweek rain language that would join to calendar and Open-Meteo drivers.",
+      "productHandles": [
+        "race-tee-unisex",
+        "waterproof-shell-jacket"
+      ],
+      "provenanceLabels": [
+        "MODEL_HYPOTHESIS"
+      ],
+      "agentRunIdRequired": true
+    },
+    {
+      "id": "ins_shipping_checkout",
+      "priority": "P1",
+      "type": "shipping",
+      "title": "Shipping cost only at checkout",
+      "summary": "Dawn default — rate revealed late; document-only friction for race-morning shoppers.",
+      "provenanceLabels": [
+        "OBSERVED"
+      ],
+      "agentRunIdRequired": true
+    }
+  ],
+  "affordances": [
+    {
+      "id": "aff_race_day_kit_rush",
+      "title": "Race-day kit rush",
+      "summary": "Saturday race-tee lift around Hyde Park / Battersea weekend — observed orders + race calendar PROXY.",
+      "confidence": 0.78,
+      "provenanceLabels": [
+        "OBSERVED",
+        "AGGREGATE_PROXY"
+      ]
+    }
+  ]
+}

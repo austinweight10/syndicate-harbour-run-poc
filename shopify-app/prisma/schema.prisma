@@ -1,0 +1,492 @@
+// Syndicate SQLite schema — aligned to docs/scope/CONTRACTS.md §7.
+// Session columns match the Shopify React Router app template so
+// PrismaSessionStorage can persist offline tokens. Not Neo4j.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?
+  expires             DateTime?
+  accessToken         String
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+}
+
+model Shop {
+  id              String    @id
+  myshopifyDomain String    @unique
+  name            String?
+  accessToken     String
+  scopes          String
+  installedAt     DateTime  @default(now())
+  uninstalledAt   DateTime?
+  primaryLocale   String?   @default("en-GB")
+  currencyCode    String?   @default("GBP")
+  timezone        String?   @default("Europe/London")
+  storefrontUrl   String?
+}
+
+model SyncRun {
+  id               String    @id @default(cuid())
+  shopId           String
+  kind             String
+  status           String
+  startedAt        DateTime  @default(now())
+  finishedAt       DateTime?
+  cursor           String?
+  ordersUpserted   Int       @default(0)
+  productsUpserted Int       @default(0)
+  errorCode        String?
+  errorMessage     String?
+  pipelineRunId    String?
+
+  @@index([shopId, startedAt])
+}
+
+model PipelineRun {
+  id                    String    @id @default(cuid())
+  shopId                String
+  mode                  String
+  trigger               String
+  status                String
+  currentStage          String?
+  lastSuccessfulStage   String?
+  failedStage           String?
+  stagesJson            String
+  agentsAutoRunSnapshot Boolean   @default(true)
+  errorCode             String?
+  errorMessage          String?
+  startedAt             DateTime  @default(now())
+  finishedAt            DateTime?
+  idempotencyKey        String    @unique
+
+  @@index([shopId, startedAt])
+  @@index([shopId, status])
+}
+
+model StoreMakeupSnapshot {
+  id                 String   @id @default(cuid())
+  shopId             String
+  pipelineRunId      String   @unique
+  capturedAt         DateTime @default(now())
+  windowDays         Int      @default(60)
+  collectionsJson    String
+  productTypesJson   String
+  tagsJson           String
+  orderSkuMixJson    String
+  priceBandsJson     String
+  topCollectionsJson String
+  geoBucketsJson     String
+  totalsJson         String
+  emptyOrders        Boolean  @default(false)
+  provenance         String   @default("OBSERVED")
+
+  @@index([shopId, capturedAt])
+}
+
+model ShopSettings {
+  shopId        String  @id
+  agentsAutoRun Boolean @default(true)
+  modeOverride  String?
+}
+
+model OrderRow {
+  id                       String   @id
+  shopId                   String
+  name                     String?
+  processedAt              DateTime
+  createdAt                DateTime
+  currencyCode             String
+  subtotalAmount           Decimal
+  totalAmount              Decimal
+  totalShipping            Decimal?
+  displayFinancialStatus   String?
+  displayFulfillmentStatus String?
+  sourceName               String?
+  tags                     String?
+  test                     Boolean  @default(false)
+  customerHash             String?
+  geoId                    String?
+
+  @@index([shopId, processedAt])
+}
+
+model LineItemRow {
+  id           String  @id
+  orderId      String
+  shopId       String
+  productId    String?
+  variantId    String?
+  sku          String?
+  title        String
+  variantTitle String?
+  vendor       String?
+  quantity     Int
+  unitPrice    Decimal
+  lineTotal    Decimal
+  productType  String?
+  tagsJson     String?
+
+  @@index([shopId, orderId])
+}
+
+model ProductRow {
+  id          String   @id
+  shopId      String
+  title       String
+  handle      String?
+  productType String?
+  vendor      String?
+  tags        String?
+  status      String?
+  updatedAt   DateTime
+
+  @@index([shopId])
+}
+
+model CollectionRow {
+  id     String  @id
+  shopId String
+  title  String
+  handle String?
+
+  @@index([shopId])
+}
+
+model ProductCollection {
+  productId    String
+  collectionId String
+
+  @@id([productId, collectionId])
+}
+
+model Geo {
+  id           String  @id
+  shopId       String
+  city         String?
+  provinceCode String?
+  countryCode  String
+  postalSector String?
+  lat          Float?
+  lng          Float?
+  provenance   String
+
+  @@unique([shopId, countryCode, city, postalSector])
+  @@index([shopId])
+}
+
+model CatalogueEvent {
+  id                  String   @id @default(cuid())
+  naturalKey          String   @unique
+  title               String
+  category            String
+  mode                String   @default("physical")
+  audienceJson        String
+  city                String?
+  region              String?
+  countryCode         String?
+  lat                 Float?
+  lng                 Float?
+  venueName           String?
+  virtualFlag         Boolean  @default(false)
+  startAt             DateTime
+  endAt               DateTime
+  recurrence          String   @default("none")
+  sourceUrl           String?
+  sourceType          String
+  sourceExternalId    String?
+  lastCrawledAt       DateTime
+  freshnessConfidence Float    @default(1)
+  provenance          String
+  stale               Boolean  @default(false)
+  rawPayloadHash      String?
+}
+
+model Driver {
+  id            String   @id @default(cuid())
+  naturalKey    String   @unique
+  type          String
+  label         String
+  geoCity       String?
+  countryCode   String?
+  lat           Float?
+  lng           Float?
+  timeStart     DateTime
+  timeEnd       DateTime
+  metricsJson   String?
+  provenance    String
+  sourceType    String
+  externalRef   String?
+  lastCrawledAt DateTime
+  stale         Boolean  @default(false)
+}
+
+model WeatherForecast {
+  id             String   @id @default(cuid())
+  naturalKey     String   @unique
+  geoBucketKey   String
+  geoCity        String?
+  countryCode    String?
+  lat            Float
+  lng            Float
+  forecastDate   DateTime
+  tMinC          Float?
+  tMaxC          Float?
+  precipMm       Float?
+  windKph        Float?
+  weatherCode    Int?
+  sunriseAt      DateTime?
+  sunsetAt       DateTime?
+  rawPayloadHash String?
+  sourceType     String   @default("open_meteo")
+  provenance     String
+  lastCrawledAt  DateTime
+  stale          Boolean  @default(false)
+
+  @@index([geoBucketKey, forecastDate])
+}
+
+model HashtagWatch {
+  id                    String   @id @default(cuid())
+  tag                   String
+  naturalKey            String   @unique
+  geoHint               String?
+  catalogueAffinityJson String?
+  clubOrEventHint       String?
+  sourceType            String
+  enabled               Boolean  @default(true)
+  provenance            String
+  updatedAt             DateTime
+}
+
+model SocialTrend {
+  id              String   @id @default(cuid())
+  naturalKey      String   @unique
+  hashtagWatchId  String?
+  tag             String
+  timeBucketStart DateTime
+  timeBucketEnd   DateTime
+  score           Float
+  volumeProxy     Float?
+  geoHint         String?
+  geoBucketKey    String?
+  sourceType      String
+  provenance      String
+  lastCrawledAt   DateTime
+  stale           Boolean  @default(false)
+  payloadJson     String?
+
+  @@index([tag, timeBucketStart])
+}
+
+model VirtualEvent {
+  id               String   @id @default(cuid())
+  naturalKey       String   @unique
+  catalogueEventId String?
+  title            String
+  category         String
+  mode             String
+  audienceJson     String
+  audienceGeoJson  String?
+  globalVirtual    Boolean  @default(true)
+  streamOrAppHint  String?
+  startAt          DateTime
+  endAt            DateTime
+  sourceType       String
+  provenance       String
+  lastCrawledAt    DateTime
+  stale            Boolean  @default(false)
+}
+
+model ActivityChallenge {
+  id                    String   @id @default(cuid())
+  naturalKey            String   @unique
+  title                 String
+  platform              String
+  mode                  String   @default("virtual")
+  windowStart           DateTime
+  windowEnd             DateTime
+  catalogueAffinityJson String?
+  volumeProxy           Float?
+  geoBucketKey          String?
+  sourceType            String
+  provenance            String
+  lastCrawledAt         DateTime
+  stale               Boolean  @default(false)
+  payloadJson           String?
+
+  @@index([platform, windowStart])
+}
+
+model CatalogueJobRun {
+  id           String    @id @default(cuid())
+  job          String
+  status       String
+  startedAt    DateTime  @default(now())
+  finishedAt   DateTime?
+  upserted     Int       @default(0)
+  errorMessage String?
+}
+
+model GraphEdge {
+  id          String   @id @default(cuid())
+  shopId      String
+  fromType    String
+  fromId      String
+  toType      String
+  toId        String
+  relation    String
+  weight      Float    @default(1)
+  provenance  String
+  payloadJson String?
+  createdAt   DateTime @default(now())
+
+  @@index([shopId, relation])
+  @@index([fromType, fromId])
+  @@index([toType, toId])
+}
+
+model EventCandidate {
+  id               String   @id @default(cuid())
+  shopId           String
+  catalogueEventId String?
+  name             String
+  archetype        String
+  timeStart        DateTime
+  timeEnd          DateTime
+  venueCity        String?
+  venueCountry     String?
+  driverIdsJson    String?
+  enrichmentSource String
+  nOrders          Int
+  windowLabel      String?
+  createdAt        DateTime @default(now())
+
+  @@index([shopId])
+}
+
+model ConfidenceScore {
+  id                   String   @id @default(cuid())
+  eventCandidateId     String   @unique
+  valuePct             Float
+  value                Float
+  Lt                   Float
+  G                    Float
+  A                    Float
+  Y                    Float
+  R                    Float
+  baselinePct          Float
+  competingJson        String
+  provenanceLabelsJson String
+  nOrders              Int
+  windowStart          DateTime
+  windowEnd            DateTime
+}
+
+model Persona {
+  id                  String   @id
+  shopId              String
+  primaryEventId      String?
+  name                String
+  status              String
+  vertical            String
+  goalsJson           String
+  budgetMin           Decimal
+  budgetMax           Decimal
+  currencyCode        String   @default("GBP")
+  constraintsJson     String
+  behaviouralJson     String
+  locationProxy       String?
+  mockFlagsJson       String
+  successCriteriaJson String
+  avatarInitials      String?
+  createdAt           DateTime @default(now())
+
+  @@unique([shopId, name])
+}
+
+model AgentRun {
+  id            String    @id
+  shopId        String
+  personaId     String
+  eventId       String?
+  status        String
+  outcome       String?
+  startedAt     DateTime?
+  endedAt       DateTime?
+  progressPct   Int       @default(0)
+  timelineJson  String?
+  storefrontUrl String?
+  errorMessage  String?
+
+  @@index([shopId, startedAt])
+}
+
+model AffordanceScore {
+  id           String @id
+  shopId       String
+  personaId    String
+  runId        String
+  targetType   String
+  targetRef    String
+  score        Float
+  evidenceJson String
+  notes        String?
+
+  @@index([runId])
+}
+
+model InsightScore {
+  id           String @id
+  shopId       String
+  personaId    String
+  runId        String
+  targetType   String
+  targetRef    String
+  score        Float
+  insightKind  String
+  evidenceJson String
+  notes        String?
+
+  @@index([runId])
+}
+
+model Recommendation {
+  id                   String   @id
+  shopId               String
+  kind                 String
+  priority             String
+  title                String
+  body                 String
+  personaId            String?
+  eventId              String?
+  runId                String?
+  targetType           String?
+  targetRef            String?
+  adminDeepLink        String?
+  provenanceLabelsJson String
+  confidence           Float?
+  status               String   @default("open")
+  createdAt            DateTime @default(now())
+
+  @@index([shopId, priority])
+}
