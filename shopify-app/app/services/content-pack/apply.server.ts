@@ -45,13 +45,24 @@ async function resolveTarget(shopId: string): Promise<Target | { error: string }
     if (domain && token) return { mode: "shopify", domain, token };
     return { mode: "simulated", reason: "Demo shop — no Admin token, so Shopify was not changed." };
   }
+  if (!shop.accessToken) return { error: "Shop is disconnected. Reinstall Syndicate." };
+
+  // Custom Admin token (same as storefront actions) can publish even when OAuth
+  // optional scopes aren't granted yet.
+  const overrideDomain = process.env.SHOPIFY_STORE_DOMAIN?.trim();
+  const overrideToken = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN?.trim();
+  if (overrideDomain && overrideToken) {
+    return { mode: "shopify", domain: overrideDomain, token: overrideToken };
+  }
+
   if (!hasMarketingWriteScopes(shop.scopes)) {
+    // Don't 401 the merchant — record the pack and explain what's needed for live.
     return {
-      error:
-        "Syndicate needs write_content, write_customers and write_products to publish a marketing pack. Click Deploy again to approve.",
+      mode: "simulated",
+      reason:
+        "Pack saved in Syndicate. Live publish needs write_content and write_customers on the app install — those optional scopes aren’t granted yet.",
     };
   }
-  if (!shop.accessToken) return { error: "Shop is disconnected. Reinstall Syndicate." };
   return { mode: "shopify", domain: shop.myshopifyDomain, token: shop.accessToken };
 }
 

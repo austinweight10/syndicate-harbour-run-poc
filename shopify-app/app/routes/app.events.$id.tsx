@@ -42,7 +42,12 @@ export async function action({ request, params }: ActionFunctionArgs) {
     return { ok: true as const, message: "Marketing pack drafted." };
   }
   if (intent === "apply_pack" || intent === "undo_pack") {
-    await ensureMarketingWrites(request, shopId);
+    try {
+      await ensureMarketingWrites(request, shopId);
+    } catch (error) {
+      // Scope consent redirects must propagate; anything else falls through to apply.
+      if (error instanceof Response && error.status >= 300 && error.status < 400) throw error;
+    }
     return intent === "apply_pack" ? applyPack(shopId, packId) : undoPack(shopId, packId);
   }
   return { ok: false as const, message: "Unknown action." };
