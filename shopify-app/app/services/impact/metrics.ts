@@ -1,6 +1,7 @@
 /**
  * Impact maths for deployed insights and occasions. Pure functions so the
- * dashboard loader stays thin and the numbers are unit-tested.
+ * dashboard loader and the demo seeder share them, and the numbers are
+ * unit-tested.
  *
  * Commercial impact is correlational: sales of the targeted products in equal
  * windows before and after deployment, relative to the rest of the store over
@@ -21,7 +22,19 @@ export type OrderLite = {
   lines: { productId: string | null; quantity: number; lineTotal: number }[];
 };
 
-export type WindowStats = { orders: number; units: number; revenue: number; aov: number };
+export type WindowStats = {
+  orders: number;
+  units: number;
+  revenue: number;
+  aov: number;
+  /** Sessions that viewed the targeted products, when a traffic source exists. */
+  sessions: number | null;
+  /** Orders containing the targeted products ÷ those sessions. */
+  conversion: number | null;
+};
+
+/** Product-page sessions either side of deployment. Only the demo scenario supplies these today. */
+export type Traffic = { sessionsBefore: number; sessionsAfter: number };
 
 export type CommercialStatus = "no_targets" | "measuring" | "early" | "ok";
 
@@ -38,12 +51,14 @@ export type Commercial = {
   uplift: number | null;
   /** Target revenue above what the store trend alone predicts. */
   incrementalRevenue: number | null;
+  /** After − before conversion, in percentage points ÷ 100, or null without traffic. */
+  conversionChange: number | null;
   /** Daily target revenue from −windowDays to +windowDays (deployment day = index windowDays). */
   series: { day: string; revenue: number }[];
 };
 
 function emptyWindow(): WindowStats {
-  return { orders: 0, units: 0, revenue: 0, aov: 0 };
+  return { orders: 0, units: 0, revenue: 0, aov: 0, sessions: null, conversion: null };
 }
 
 function isoDay(at: Date): string {
@@ -55,6 +70,7 @@ export function commercialImpact(
   targetProductIds: Set<string>,
   deployedAt: Date,
   now: Date,
+  traffic: Traffic | null = null,
 ): Commercial {
   const daysLive = Math.max(0, Math.floor((now.getTime() - deployedAt.getTime()) / DAY));
   const windowDays = Math.min(WINDOW_DAYS, daysLive);
@@ -96,6 +112,14 @@ export function commercialImpact(
   }
   before.aov = before.orders ? before.revenue / before.orders : 0;
   after.aov = after.orders ? after.revenue / after.orders : 0;
+  let conversionChange: number | null = null;
+  if (traffic && traffic.sessionsBefore > 0 && traffic.sessionsAfter > 0 && windowDays > 0) {
+    before.sessions = traffic.sessionsBefore;
+    after.sessions = traffic.sessionsAfter;
+    before.conversion = before.orders / traffic.sessionsBefore;
+    after.conversion = after.orders / traffic.sessionsAfter;
+    conversionChange = after.conversion - before.conversion;
+  }
 
   let uplift: number | null = null;
   let incrementalRevenue: number | null = null;
@@ -121,78 +145,7 @@ export function commercialImpact(
     baselineAfter,
     uplift,
     incrementalRevenue,
+    conversionChange,
     series,
   };
-}
-
-// --------------------------------------------------------------------------- //
-// Shopper journeys
-// --------------------------------------------------------------------------- //
-
-export type RunLite = {
-  id: string;
-  personaId: string;
-  startedAt: Date;
-  status: string;
-  reachedCheckout: boolean;
-  stepsOk: number;
-  stepsTotal: number;
-  durationMs: number | null;
-  /** Friction titles the run recorded; null for runs from before frictions were saved. */
-  frictions: string[] | null;
-  mock: boolean;
-};
-
-export type JourneyStatus = "no_runs" | "awaiting_after" | "improved" | "unchanged" | "worse";
-
-export type Journey = {
-  status: JourneyStatus;
-  before: RunLite | null;
-  after: RunLite | null;
-  /** The insight's own friction, when it came from a shopper run. */
-  friction: { title: string; before: boolean | null; after: boolean | null } | null;
-};
-
-const TERMINAL = new Set(["stopped_before_payment", "failed", "abandoned"]);
-
-/**
- * Latest finished run before deployment vs the first finished run after it
- * (the one closest to the change).
- * Improved when the insight's own friction is gone, or (without one) when the
- * after run has fewer frictions, reaches checkout where the before run did not,
- * or reaches it at least 10% faster.
- */
-export function journeyImpact(runs: RunLite[], deployedAt: Date, frictionTitle: string | null): Journey {
-  const done = runs.filter((run) => TERMINAL.has(run.status)).sort((a, b) => a.startedAt.getTime() - b.startedAt.getTime());
-  const before = [...done].reverse().find((run) => run.startedAt < deployedAt) ?? null;
-  const after = done.find((run) => run.startedAt >= deployedAt) ?? null;
-  const has = (run: RunLite | null) =>
-    run && run.frictions && frictionTitle ? run.frictions.includes(frictionTitle) : null;
-  const friction = frictionTitle ? { title: frictionTitle, before: has(before), after: has(after) } : null;
-
-  if (!before && !after) return { status: "no_runs", before, after, friction };
-  if (!after) return { status: "awaiting_after", before, after, friction };
-  if (!before) return { status: "unchanged", before, after, friction };
-
-  if (friction && friction.before !== null && friction.after !== null) {
-    if (friction.before && !friction.after) return { status: "improved", before, after, friction };
-    if (!friction.before && friction.after) return { status: "worse", before, after, friction };
-  }
-  const score = (run: RunLite) => ({
-    frictions: run.frictions?.length ?? null,
-    checkout: run.reachedCheckout,
-    duration: run.durationMs,
-  });
-  const b = score(before);
-  const a = score(after);
-  if (a.checkout && !b.checkout) return { status: "improved", before, after, friction };
-  if (!a.checkout && b.checkout) return { status: "worse", before, after, friction };
-  if (a.frictions !== null && b.frictions !== null && a.frictions !== b.frictions) {
-    return { status: a.frictions < b.frictions ? "improved" : "worse", before, after, friction };
-  }
-  if (a.duration && b.duration) {
-    if (a.duration <= b.duration * 0.9) return { status: "improved", before, after, friction };
-    if (a.duration >= b.duration * 1.1) return { status: "worse", before, after, friction };
-  }
-  return { status: "unchanged", before, after, friction };
 }

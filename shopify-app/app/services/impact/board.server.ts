@@ -1,29 +1,11 @@
 import prisma from "../../db.server";
-import { ACTION_VERB, parseParams, type ActionType } from "../actions/types";
+import { ACTION_VERB, parseParams, type ActionParams, type ActionType } from "../actions/types";
 import { provenanceKinds, type ProvenanceKind } from "../board.server";
 import { parseAssets } from "../content-pack/types";
-import {
-  commercialImpact,
-  journeyImpact,
-  type Commercial,
-  type Journey,
-  type OrderLite,
-  type RunLite,
-} from "./metrics";
+import { commercialImpact, type Commercial, type OrderLite, type Traffic } from "./metrics";
 
 /** Rows written by scripts/impact-demo.ts carry this source and show a MOCK chip. */
 export const DEMO_SOURCE = "demo_scenario";
-
-export type RunView = {
-  id: string;
-  mock: boolean;
-  startedAt: string;
-  reachedCheckout: boolean;
-  stepsOk: number;
-  stepsTotal: number;
-  durationMs: number | null;
-  frictions: string[] | null;
-};
 
 export type ImpactTile = {
   id: string;
@@ -38,8 +20,7 @@ export type ImpactTile = {
   rationale: string;
   changes: { label: string; detail: string }[];
   targets: string[];
-  commercial: Commercial & { series: { day: string; revenue: number }[] };
-  journey: Omit<Journey, "before" | "after"> & { before: RunView | null; after: RunView | null; fromRun: boolean };
+  commercial: Commercial;
 };
 
 export type ImpactBoard = {
@@ -48,12 +29,13 @@ export type ImpactBoard = {
     live: number;
     incrementalRevenue: number;
     measuredTiles: number;
-    journeysImproved: number;
+    /** Mean conversion change across live tiles that have traffic, or null. */
+    conversionChange: number | null;
     measuring: number;
   };
 };
 
-type ResultMeta = { insightTitle?: string; frictionTitle?: string; personaId?: string };
+type ResultMeta = { insightTitle?: string; demoTraffic?: Traffic };
 
 function parseJson<T>(raw: string | null | undefined, fallback: T): T {
   if (!raw) return fallback;
@@ -64,61 +46,46 @@ function parseJson<T>(raw: string | null | undefined, fallback: T): T {
   }
 }
 
-type Timeline = {
-  steps?: { ok?: boolean; at?: string }[];
-  frictions?: { title: string }[];
-  demoScenario?: boolean;
-};
-
-function toRunLite(run: {
-  id: string;
-  personaId: string;
-  status: string;
-  outcome: string | null;
-  startedAt: Date | null;
-  endedAt: Date | null;
-  timelineJson: string | null;
-}): RunLite | null {
-  if (!run.startedAt) return null;
-  const timeline = parseJson<Timeline>(run.timelineJson, {});
-  const steps = timeline.steps ?? [];
-  const stamps = steps.map((step) => (step.at ? Date.parse(step.at) : NaN)).filter((t) => !Number.isNaN(t));
-  const durationMs =
-    run.endedAt && run.startedAt
-      ? run.endedAt.getTime() - run.startedAt.getTime()
-      : stamps.length > 1
-        ? Math.max(...stamps) - Math.min(...stamps)
-        : null;
-  return {
-    id: run.id,
-    personaId: run.personaId,
-    startedAt: run.startedAt,
-    status: run.status,
-    reachedCheckout: run.outcome === "checkout_started" || run.status === "stopped_before_payment",
-    stepsOk: steps.filter((step) => step.ok).length,
-    stepsTotal: steps.length,
-    durationMs,
-    frictions: timeline.frictions ? timeline.frictions.map((friction) => friction.title) : null,
-    mock: timeline.demoScenario === true,
-  };
+/** Every non-test order for the shop, as the impact maths expects them. */
+export async function loadShopOrders(shopId: string): Promise<OrderLite[]> {
+  const [orderRows, lineRows] = await Promise.all([
+    prisma.orderRow.findMany({ where: { shopId, test: false }, select: { id: true, processedAt: true } }),
+    prisma.lineItemRow.findMany({
+      where: { shopId },
+      select: { orderId: true, productId: true, quantity: true, lineTotal: true },
+    }),
+  ]);
+  const linesByOrder = new Map<string, OrderLite["lines"]>();
+  for (const line of lineRows) {
+    const bucket = linesByOrder.get(line.orderId) ?? [];
+    bucket.push({ productId: line.productId, quantity: line.quantity, lineTotal: Number(line.lineTotal) });
+    linesByOrder.set(line.orderId, bucket);
+  }
+  return orderRows.map((order) => ({ at: order.processedAt, lines: linesByOrder.get(order.id) ?? [] }));
 }
 
-function toRunView(run: RunLite | null): RunView | null {
-  if (!run) return null;
-  return {
-    id: run.id,
-    mock: run.mock,
-    startedAt: run.startedAt.toISOString(),
-    reachedCheckout: run.reachedCheckout,
-    stepsOk: run.stepsOk,
-    stepsTotal: run.stepsTotal,
-    durationMs: run.durationMs,
-    frictions: run.frictions,
-  };
+/** Products a storefront action is about. */
+export async function actionTargets(shopId: string, params: ActionParams): Promise<Set<string>> {
+  const rows = await prisma.productRow.findMany({ where: { shopId, handle: params.productHandle }, select: { id: true } });
+  return new Set(rows.map((row) => row.id));
 }
 
-function journeyView(journey: Journey, fromRun: boolean): ImpactTile["journey"] {
-  return { ...journey, before: toRunView(journey.before), after: toRunView(journey.after), fromRun };
+/** Products an occasion's pack is about: its top SKUs plus the collection its banner links to. */
+export async function packTargets(shopId: string, eventId: string, bannerCtaPath: string): Promise<Set<string>> {
+  const edges = await prisma.graphEdge.findMany({
+    where: { shopId, fromType: "EventCandidate", fromId: eventId, relation: "AFFINITY", toType: "SKU" },
+    select: { toId: true },
+  });
+  const targets = new Set(edges.map((edge) => edge.toId));
+  const handle = bannerCtaPath.match(/\/collections\/([^/?#]+)/)?.[1];
+  if (handle) {
+    const collection = await prisma.collectionRow.findFirst({ where: { shopId, handle } });
+    if (collection) {
+      const links = await prisma.productCollection.findMany({ where: { collectionId: collection.id } });
+      for (const link of links) targets.add(link.productId);
+    }
+  }
+  return targets;
 }
 
 export async function loadImpactBoard(shopId: string, now = new Date()): Promise<ImpactBoard> {
@@ -133,45 +100,16 @@ export async function loadImpactBoard(shopId: string, now = new Date()): Promise
     }),
   ]);
   if (actions.length === 0 && packs.length === 0) {
-    return { tiles: [], summary: { live: 0, incrementalRevenue: 0, measuredTiles: 0, journeysImproved: 0, measuring: 0 } };
+    return { tiles: [], summary: { live: 0, incrementalRevenue: 0, measuredTiles: 0, conversionChange: null, measuring: 0 } };
   }
 
-  const [orderRows, lineRows, productRows, agentRuns] = await Promise.all([
-    prisma.orderRow.findMany({ where: { shopId, test: false }, select: { id: true, processedAt: true } }),
-    prisma.lineItemRow.findMany({
-      where: { shopId },
-      select: { orderId: true, productId: true, quantity: true, lineTotal: true },
-    }),
+  const [orders, productRows] = await Promise.all([
+    loadShopOrders(shopId),
     prisma.productRow.findMany({ where: { shopId }, select: { id: true, handle: true, title: true } }),
-    prisma.agentRun.findMany({
-      where: { shopId },
-      select: { id: true, personaId: true, status: true, outcome: true, startedAt: true, endedAt: true, timelineJson: true },
-    }),
   ]);
-
-  const linesByOrder = new Map<string, OrderLite["lines"]>();
-  for (const line of lineRows) {
-    const bucket = linesByOrder.get(line.orderId) ?? [];
-    bucket.push({ productId: line.productId, quantity: line.quantity, lineTotal: Number(line.lineTotal) });
-    linesByOrder.set(line.orderId, bucket);
-  }
-  const orders: OrderLite[] = orderRows.map((order) => ({ at: order.processedAt, lines: linesByOrder.get(order.id) ?? [] }));
-  const productsByHandle = new Map<string, { id: string; title: string }[]>();
-  const titleById = new Map<string, string>();
-  for (const product of productRows) {
-    titleById.set(product.id, product.title);
-    if (!product.handle) continue;
-    const bucket = productsByHandle.get(product.handle) ?? [];
-    bucket.push({ id: product.id, title: product.title });
-    productsByHandle.set(product.handle, bucket);
-  }
-  const runs = agentRuns.map(toRunLite).filter((run): run is RunLite => run !== null);
-  // Demo-scenario tiles compare only demo runs; real tiles only real runs.
-  const runsFor = (personaIds: string[], demo: boolean) => {
-    const pool = runs.filter((run) => run.mock === demo);
-    const scoped = pool.filter((run) => personaIds.includes(run.personaId));
-    return scoped.length > 0 ? scoped : pool;
-  };
+  const titleById = new Map(productRows.map((product) => [product.id, product.title]));
+  const titleByHandle = new Map(productRows.filter((p) => p.handle).map((product) => [product.handle as string, product.title]));
+  const names = (ids: Set<string>) => [...ids].map((id) => titleById.get(id) ?? id);
 
   const tiles: ImpactTile[] = [];
 
@@ -185,32 +123,28 @@ export async function loadImpactBoard(shopId: string, now = new Date()): Promise
     const meta = parseJson<ResultMeta>(action.resultJson, {});
     const params = parseParams(action.paramsJson);
     const demo = action.source === DEMO_SOURCE;
-    const deployedAt = action.appliedAt!;
-    const targetIds = new Set((productsByHandle.get(params.productHandle) ?? []).map((product) => product.id));
-    const frictionTitle = rec && rec.kind === "insight" && rec.runId ? rec.title : meta.frictionTitle ?? null;
-    const personaIds = [rec?.personaId ?? meta.personaId].filter((id): id is string => Boolean(id));
-    const labels = parseJson<string[]>(rec?.provenanceLabelsJson, []);
+    const targets = await actionTargets(shopId, params);
+    const product = titleByHandle.get(params.productHandle) ?? params.productHandle;
     const detail =
       params.type === "collection_add_product" || params.type === "collection_feature_product"
-        ? `${titleFor(productsByHandle, params.productHandle)} → ${params.collectionHandle}`
+        ? `${product} → ${params.collectionHandle}`
         : params.type === "product_add_tags"
-          ? `${titleFor(productsByHandle, params.productHandle)}: ${params.tags.join(", ")}`
-          : titleFor(productsByHandle, params.productHandle);
+          ? `${product}: ${params.tags.join(", ")}`
+          : product;
     tiles.push({
       id: `insight:${action.cardId}`,
       kind: "insight",
       title: rec?.title ?? meta.insightTitle ?? action.headline,
       eyebrow: rec?.priority ? `Insight · ${rec.priority}` : "Insight",
       href: "/app/artifacts",
-      deployedAt: deployedAt.toISOString(),
+      deployedAt: action.appliedAt!.toISOString(),
       undone: action.status === "reverted",
       demo,
-      provenance: withMock(["OBSERVED", ...provenanceKinds(labels)], demo),
+      provenance: withMock(["OBSERVED", ...provenanceKinds(parseJson<string[]>(rec?.provenanceLabelsJson, []))], demo),
       rationale: action.rationale,
       changes: [{ label: ACTION_VERB[params.type as ActionType] ?? "Change", detail: `${action.headline} (${detail})` }],
-      targets: [...targetIds].map((id) => titleById.get(id) ?? id),
-      commercial: commercialImpact(orders, targetIds, deployedAt, now),
-      journey: journeyView(journeyImpact(runsFor(personaIds, demo), deployedAt, frictionTitle), Boolean(frictionTitle)),
+      targets: names(targets),
+      commercial: commercialImpact(orders, targets, action.appliedAt!, now, meta.demoTraffic ?? null),
     });
   }
 
@@ -219,37 +153,19 @@ export async function loadImpactBoard(shopId: string, now = new Date()): Promise
     where: { shopId, id: { in: packs.map((pack) => pack.eventId) } },
   });
   const eventById = new Map(events.map((event) => [event.id, event]));
-  const skuEdges = await prisma.graphEdge.findMany({
-    where: { shopId, fromType: "EventCandidate", relation: "AFFINITY", toType: "SKU", fromId: { in: packs.map((pack) => pack.eventId) } },
-    select: { fromId: true, toId: true },
-  });
   for (const pack of packs) {
     const event = eventById.get(pack.eventId);
     const assets = parseAssets(pack.assetsJson);
+    const meta = parseJson<ResultMeta>(pack.resultJson, {});
     const demo = pack.source === DEMO_SOURCE;
-    const deployedAt = pack.appliedAt!;
-    const targetIds = new Set(skuEdges.filter((edge) => edge.fromId === pack.eventId).map((edge) => edge.toId));
-    const collectionHandle = assets.banner.ctaPath.match(/\/collections\/([^/?#]+)/)?.[1];
-    if (collectionHandle) {
-      const collection = await prisma.collectionRow.findFirst({ where: { shopId, handle: collectionHandle } });
-      if (collection) {
-        const links = await prisma.productCollection.findMany({ where: { collectionId: collection.id } });
-        for (const link of links) targetIds.add(link.productId);
-      }
-    }
-    let personaIds = parseJson<string[]>(pack.personaIdsJson, []);
-    if (personaIds.length === 0 && event) {
-      personaIds = (await prisma.persona.findMany({ where: { shopId, primaryEventId: event.id }, select: { id: true } })).map(
-        (persona) => persona.id,
-      );
-    }
+    const targets = await packTargets(shopId, pack.eventId, assets.banner.ctaPath);
     tiles.push({
       id: `occasion:${pack.eventId}`,
       kind: "occasion",
       title: event?.name ?? pack.headline,
       eyebrow: event ? `Occasion · ${event.archetype.replaceAll("_", " ")}` : "Occasion",
       href: `/app/events/${pack.eventId}`,
-      deployedAt: deployedAt.toISOString(),
+      deployedAt: pack.appliedAt!.toISOString(),
       undone: pack.status === "reverted",
       demo,
       provenance: withMock(["OBSERVED"], demo),
@@ -259,34 +175,29 @@ export async function loadImpactBoard(shopId: string, now = new Date()): Promise
         { label: "Landing page", detail: assets.page.title },
         { label: "Homepage banner", detail: assets.banner.headline },
         { label: "Email draft", detail: assets.email.subject },
-        {
-          label: "Customer segments",
-          detail: assets.segments.map((segment) => segment.name).join(", ") || "None",
-        },
+        { label: "Customer segments", detail: assets.segments.map((segment) => segment.name).join(", ") || "None" },
       ],
-      targets: [...targetIds].map((id) => titleById.get(id) ?? id),
-      commercial: commercialImpact(orders, targetIds, deployedAt, now),
-      journey: journeyView(journeyImpact(runsFor(personaIds, demo), deployedAt, null), false),
+      targets: names(targets),
+      commercial: commercialImpact(orders, targets, pack.appliedAt!, now, meta.demoTraffic ?? null),
     });
   }
 
   tiles.sort((a, b) => Number(a.undone) - Number(b.undone) || b.deployedAt.localeCompare(a.deployedAt));
   const live = tiles.filter((tile) => !tile.undone);
   const measured = live.filter((tile) => tile.commercial.status === "ok");
+  const withConversion = live.filter((tile) => tile.commercial.conversionChange !== null);
   return {
     tiles,
     summary: {
       live: live.length,
       incrementalRevenue: measured.reduce((sum, tile) => sum + (tile.commercial.incrementalRevenue ?? 0), 0),
       measuredTiles: measured.length,
-      journeysImproved: live.filter((tile) => tile.journey.status === "improved").length,
+      conversionChange: withConversion.length
+        ? withConversion.reduce((sum, tile) => sum + (tile.commercial.conversionChange ?? 0), 0) / withConversion.length
+        : null,
       measuring: live.filter((tile) => tile.commercial.status === "measuring" || tile.commercial.status === "early").length,
     },
   };
-}
-
-function titleFor(byHandle: Map<string, { id: string; title: string }[]>, handle: string): string {
-  return byHandle.get(handle)?.[0]?.title ?? handle;
 }
 
 function withMock(kinds: ProvenanceKind[], demo: boolean): ProvenanceKind[] {

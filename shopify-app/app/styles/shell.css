@@ -2107,19 +2107,18 @@ kbd {
 
 .impact-detail {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
   margin-top: 6px;
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
 .impact-section { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-.impact-section:last-child { grid-column: 1 / -1; }
 .impact-section h3 { display: flex; align-items: center; gap: 7px; margin: 0; font-size: 14px; font-weight: 700; }
 .impact-window { margin-left: auto; font-size: 12px; font-weight: 550; color: var(--text-subdued); }
 .impact-section .muted { margin: 0; font-size: 13px; }
 
-.impact-commercial { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+.impact-commercial { display: grid; grid-template-columns: minmax(0, 520px) minmax(200px, 280px); gap: 16px; align-items: start; }
 .impact-table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
 .impact-table th, .impact-table td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--border); }
 .impact-table th[scope="row"] { text-align: left; font-weight: 550; color: var(--text-subdued); }
@@ -2138,19 +2137,6 @@ kbd {
 .impact-spark figcaption { display: flex; justify-content: space-between; font-size: 11.5px; margin-top: 4px; }
 .impact-targets { font-size: 12.5px; }
 
-.impact-friction { display: flex; align-items: flex-start; gap: 7px; margin: 0; font-size: 13px; font-weight: 600; color: #7a4e12; }
-.impact-friction.resolved { color: #065f46; }
-.impact-runs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.impact-run { display: flex; flex-direction: column; gap: 8px; background: var(--bg-sunken); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 14px; }
-.impact-run.is-empty { justify-content: center; }
-.impact-run .eyebrow { margin: 0; }
-.impact-run-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 12px; margin: 0; }
-.impact-run-stats dt { font-size: 11.5px; color: var(--text-subdued); font-weight: 550; }
-.impact-run-stats dd { margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; }
-.impact-frictions { margin: 0; padding-left: 16px; font-size: 12.5px; color: var(--text-subdued); display: flex; flex-direction: column; gap: 2px; }
-.impact-frictions.resolved { list-style: none; padding-left: 0; color: #065f46; font-weight: 600; }
-.impact-frictions.resolved li { display: flex; align-items: center; gap: 5px; }
-
 .impact-changes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
 .impact-changes li { display: flex; flex-direction: column; gap: 2px; background: var(--bg-sunken); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 13px; }
 .impact-changes strong { font-size: 11.5px; color: var(--text-subdued); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 650; }
@@ -2158,10 +2144,9 @@ kbd {
 
 @media (max-width: 1100px) {
   .impact-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .impact-detail { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
-  .impact-commercial, .impact-runs { grid-template-columns: 1fr; }
+  .impact-commercial { grid-template-columns: 1fr; }
   .impact-uplift { align-items: flex-start; text-align: left; }
   .impact-headline { align-items: flex-start; text-align: left; }
 }

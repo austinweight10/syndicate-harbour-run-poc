@@ -1,16 +1,19 @@
 /**
  * Impact dashboard demo scenario.
  *
- * Seeds two insights and two occasions as "deployed to storefront" on dates
- * that sit before real shifts in the shop's orders, plus shopper runs before
- * and after each deployment. Sales figures on the Impact page are then
- * computed from the shop's real (ingested) orders; the deployments and runs
- * are demo data and show a MOCK chip.
+ * Seeds two insights and two occasions as "deployed to storefront". Each
+ * deployment date is chosen from the shop's real (ingested) orders: a day
+ * where sales of the targeted products rose relative to the rest of the
+ * store, with enough orders either side to count as measured. The dashboard
+ * then computes those figures from the real orders.
  *
- * Nothing is written to Shopify. Rows carry source "demo_scenario" (actions,
- * packs) or ids starting "run_demo_" (runs), so --clear removes exactly them.
- * The youth tee size guide is left out on purpose: the live shopper still
- * finds that friction on stage.
+ * Conversion rate needs session counts, which Syndicate cannot read today, so
+ * the scenario stores demo traffic alongside each deployment, sized so that
+ * orders ÷ sessions gives a realistic product conversion rate.
+ *
+ * Nothing is written to Shopify. Rows carry source "demo_scenario" and show a
+ * MOCK chip; --clear removes exactly them. The youth tee size guide is left
+ * out on purpose: the live shopper still finds that friction on stage.
  *
  *   TARGET_SHOP=syndicate-4ghkumor.myshopify.com npm run impact:demo
  *   TARGET_SHOP=syndicate-4ghkumor.myshopify.com npm run impact:demo -- --clear
@@ -18,11 +21,10 @@
  */
 import { createHash } from "node:crypto";
 import prisma from "../app/db.server";
-import { recId } from "../app/services/agents/playwright-run";
-import { loadDawnPath } from "../app/services/agents/path";
 import type { ActionParams } from "../app/services/actions/types";
 import { loadPackInput, templatePack } from "../app/services/content-pack/generate.server";
-import { DEMO_SOURCE } from "../app/services/impact/board.server";
+import { DEMO_SOURCE, actionTargets, loadShopOrders, packTargets } from "../app/services/impact/board.server";
+import { commercialImpact, type OrderLite, type Traffic } from "../app/services/impact/metrics";
 
 const shopId = (process.env.TARGET_SHOP || "").trim();
 if (!shopId) {
@@ -30,31 +32,34 @@ if (!shopId) {
   process.exit(1);
 }
 const clearOnly = process.argv.includes("--clear");
-// --force replaces a real action/pack that is only proposed, failed or undone (never a live one).
 const force = process.argv.includes("--force");
-const shopTag = createHash("sha1").update(shopId).digest("hex").slice(0, 6);
 
+const DAY = 24 * 60 * 60 * 1000;
 const at = (iso: string) => new Date(`${iso}+01:00`);
 
-const FRICTION = {
-  xl: "Race tee has no XL size",
-  copy: "Race tee copy misses the race occasion",
-  shipping: "Shipping cost only appears at checkout",
-  reviews: "Race tee has no visible reviews",
-  raceKitsShell: "Race Kits is missing the waterproof shell",
-  cookie: "Cookie banner interrupts the browse path",
-} as const;
+/** Same card id the app uses for recommendations and shopper findings. */
+function recId(kind: string, targetRef: string, title: string): string {
+  return createHash("sha256").update([shopId, kind, targetRef, title].join("|")).digest("hex").slice(0, 24);
+}
+
+type Aim = {
+  /** Preferred deployment day; the closest good day to it wins ties. */
+  near: string;
+  /** Sales uplift to aim for (vs rest of store). */
+  uplift: number;
+  /** Product conversion before, and relative lift after. */
+  conversionBefore: number;
+  conversionLift: number;
+};
 
 type InsightSpec = {
   title: string;
   kind: string;
   targetRef: string;
-  fromShopperRun: boolean;
-  persona: string;
-  deployedAt: string;
   params: ActionParams;
   headline: string;
   rationale: string;
+  aim: Aim;
 };
 
 const INSIGHTS: InsightSpec[] = [
@@ -62,52 +67,72 @@ const INSIGHTS: InsightSpec[] = [
     title: "Pin waterproof shells before the wet weekend",
     kind: "merch",
     targetRef: "waterproof-shell-jacket",
-    fromShopperRun: false,
-    persona: "Wet-weather trainer",
-    deployedAt: "2026-09-12T09:00:00",
     params: { type: "collection_feature_product", collectionHandle: "wet-weather-training", productHandle: "waterproof-shell-jacket" },
     headline: "Pin Waterproof Shell Jacket to the top of Wet-weather training",
     rationale: "Rain is forecast and shells already sit in training baskets, so the shell leads the collection.",
+    aim: { near: "2026-09-12", uplift: 0.35, conversionBefore: 0.024, conversionLift: 0.28 },
   },
   {
-    title: FRICTION.copy,
+    title: "Race tee copy misses the race occasion",
     kind: "insight",
     targetRef: "race-tee-unisex",
-    fromShopperRun: true,
-    persona: "Race-day taper",
-    deployedAt: "2026-09-09T09:00:00",
     params: { type: "product_add_tags", productHandle: "race-tee-unisex", tags: ["race-day", "race-weekend"] },
     headline: "Tag Race Tee — Unisex for race-day search",
     rationale: "The shopper read the race tee as a generic tee. Race tags surface it in race-day search and filters.",
+    aim: { near: "2026-09-09", uplift: 0.2, conversionBefore: 0.031, conversionLift: 0.16 },
   },
 ];
 
-type OccasionSpec = { name: string; deployedAt: string };
+type OccasionSpec = { name: string; aim: Aim };
 
 const OCCASIONS: OccasionSpec[] = [
-  { name: "Race weekend — London 10K", deployedAt: "2026-09-13T08:00:00" },
-  { name: "Wet weekend layers", deployedAt: "2026-09-07T08:00:00" },
+  { name: "Race weekend — London 10K", aim: { near: "2026-09-13", uplift: 0.3, conversionBefore: 0.027, conversionLift: 0.24 } },
+  { name: "Wet weekend layers", aim: { near: "2026-09-07", uplift: 0.45, conversionBefore: 0.019, conversionLift: 0.33 } },
 ];
 
-type RunSpec = { persona: string; startedAt: string; seconds: number; frictions: string[]; failSteps?: string[]; event?: string };
+const SEARCH_FROM = "2026-08-20";
+const MIN_UPLIFT = 0.1;
+const MAX_UPLIFT = 0.9;
 
-// Before/after shopper runs around each deployment (compared by the dashboard).
-const RUNS: RunSpec[] = [
-  // Race-day taper: tags (9 Sep) do not fix the copy friction; the race pack (13 Sep) removes two.
-  { persona: "Race-day taper", startedAt: "2026-09-08T19:10:00", seconds: 171, frictions: [FRICTION.xl, FRICTION.copy, FRICTION.shipping, FRICTION.reviews], failSteps: ["open_shorts"], event: "Race weekend — London 10K" },
-  { persona: "Race-day taper", startedAt: "2026-09-11T19:40:00", seconds: 166, frictions: [FRICTION.xl, FRICTION.copy, FRICTION.shipping, FRICTION.reviews], event: "Race weekend — London 10K" },
-  { persona: "Race-day taper", startedAt: "2026-09-16T08:20:00", seconds: 118, frictions: [FRICTION.xl, FRICTION.shipping], event: "Race weekend — London 10K" },
-  // Wet-weather trainer: the wet pack (7 Sep) lands the shell via the banner; pinning (12 Sep) makes it faster.
-  { persona: "Wet-weather trainer", startedAt: "2026-09-06T18:30:00", seconds: 184, frictions: [FRICTION.raceKitsShell, FRICTION.shipping, FRICTION.cookie], failSteps: ["select_size_l_shorts"], event: "Wet weekend layers" },
-  { persona: "Wet-weather trainer", startedAt: "2026-09-09T18:50:00", seconds: 131, frictions: [FRICTION.raceKitsShell, FRICTION.shipping], event: "Wet weekend layers" },
-  { persona: "Wet-weather trainer", startedAt: "2026-09-14T09:15:00", seconds: 94, frictions: [FRICTION.raceKitsShell, FRICTION.shipping], event: "Wet weekend layers" },
-];
+/**
+ * Pick a deployment day (09:00 London) where the targets' sales rose vs the
+ * store with enough orders to be "measured", closest to the aimed uplift and
+ * then to the preferred day.
+ */
+function chooseDeployment(orders: OrderLite[], targets: Set<string>, aim: Aim, now: Date) {
+  const latest = Math.max(...orders.map((order) => order.at.getTime()));
+  const last = new Date(Math.min(latest, now.getTime()) - 10 * DAY);
+  const near = at(`${aim.near}T09:00:00`).getTime();
+  let best: { date: Date; uplift: number; score: number; measured: boolean } | null = null;
+  for (let day = at(`${SEARCH_FROM}T09:00:00`); day <= last; day = new Date(day.getTime() + DAY)) {
+    const c = commercialImpact(orders, targets, day, now);
+    if (c.uplift === null) continue;
+    const measured = c.status === "ok";
+    const inRange = c.uplift >= MIN_UPLIFT && c.uplift <= MAX_UPLIFT;
+    // Measured and in range first; then closeness to the aim; then to the preferred day.
+    const score =
+      (measured ? 0 : 10) + (inRange ? 0 : 5) + Math.abs(c.uplift - aim.uplift) + Math.abs(day.getTime() - near) / (30 * DAY);
+    if (!best || score < best.score) best = { date: day, uplift: c.uplift, score, measured };
+  }
+  return best;
+}
+
+/** Sessions either side so that orders ÷ sessions reads as the aimed conversion rates. */
+function demoTraffic(orders: OrderLite[], targets: Set<string>, deployedAt: Date, now: Date, aim: Aim): Traffic {
+  const c = commercialImpact(orders, targets, deployedAt, now);
+  const after = aim.conversionBefore * (1 + aim.conversionLift);
+  return {
+    sessionsBefore: Math.max(c.before.orders + 1, Math.round(c.before.orders / aim.conversionBefore)),
+    sessionsAfter: Math.max(c.after.orders + 1, Math.round(c.after.orders / after)),
+  };
+}
 
 async function clear() {
   const actions = await prisma.storefrontAction.deleteMany({ where: { shopId, source: DEMO_SOURCE } });
   const packs = await prisma.contentPack.deleteMany({ where: { shopId, source: DEMO_SOURCE } });
-  const runs = await prisma.agentRun.deleteMany({ where: { shopId, id: { startsWith: "run_demo_" } } });
-  console.log(`Cleared demo scenario: ${actions.count} insights, ${packs.count} occasions, ${runs.count} shopper runs.`);
+  // Earlier versions of this scenario also seeded shopper runs.
+  await prisma.agentRun.deleteMany({ where: { shopId, id: { startsWith: "run_demo_" } } });
+  console.log(`Cleared demo scenario: ${actions.count} insights, ${packs.count} occasions.`);
 }
 
 async function main() {
@@ -116,121 +141,91 @@ async function main() {
   await clear();
   if (clearOnly) return;
 
-  const personas = await prisma.persona.findMany({ where: { shopId } });
-  const personaId = (name: string) => {
-    const persona = personas.find((row) => row.name === name);
-    if (!persona) throw new Error(`Persona "${name}" missing for ${shopId}. Run the pipeline first.`);
-    return persona.id;
-  };
+  const now = new Date();
+  const orders = await loadShopOrders(shopId);
+  if (orders.length === 0) throw new Error(`${shopId} has no orders. Run ingest / the pipeline first.`);
   const events = await prisma.eventCandidate.findMany({ where: { shopId } });
-  const eventId = (name: string) => {
-    const event = events.find((row) => row.name === name);
-    if (!event) throw new Error(`Occasion "${name}" missing for ${shopId}. Run the pipeline first.`);
-    return event.id;
-  };
+  const report = (label: string, choice: NonNullable<ReturnType<typeof chooseDeployment>>) =>
+    console.log(
+      `OK    ${label.padEnd(9)} ${choice.date.toISOString().slice(0, 10)}  ${choice.uplift >= 0 ? "+" : ""}${Math.round(choice.uplift * 100)}% vs store${choice.measured ? "" : " (early signal)"}`,
+    );
 
   for (const spec of INSIGHTS) {
-    const product = await prisma.productRow.findFirst({ where: { shopId, handle: spec.params.productHandle } });
-    if (!product) throw new Error(`Product ${spec.params.productHandle} missing for ${shopId}.`);
-    const cardId = recId(shopId, spec.kind, spec.targetRef, spec.title);
+    const cardId = recId(spec.kind, spec.targetRef, spec.title);
     const existing = await prisma.storefrontAction.findUnique({ where: { shopId_cardId: { shopId, cardId } } });
     if (existing) {
       if (existing.status === "applied" || !force) {
-        console.warn(`SKIP  insight "${spec.title}": a real action (${existing.status}) exists for that card${existing.status === "applied" ? "" : " — --force replaces it"}.`);
+        console.warn(`SKIP  insight "${spec.title}": a real action (${existing.status}) exists${existing.status === "applied" ? "" : " — --force replaces it"}.`);
         continue;
       }
       await prisma.storefrontAction.delete({ where: { id: existing.id } });
     }
+    const targets = await actionTargets(shopId, spec.params);
+    if (targets.size === 0) throw new Error(`Product ${spec.params.productHandle} missing for ${shopId}.`);
+    const choice = chooseDeployment(orders, targets, spec.aim, now);
+    if (!choice) throw new Error(`No usable deployment day for "${spec.title}".`);
     await prisma.storefrontAction.create({
       data: {
         shopId,
         cardId,
-        cardKind: spec.fromShopperRun ? "blocker" : "insight",
+        cardKind: spec.kind === "insight" ? "blocker" : "insight",
         actionType: spec.params.type,
         paramsJson: JSON.stringify(spec.params),
         headline: spec.headline,
         rationale: spec.rationale,
         source: DEMO_SOURCE,
         status: "applied",
-        appliedAt: at(spec.deployedAt),
-        createdAt: at(spec.deployedAt),
+        appliedAt: choice.date,
+        createdAt: choice.date,
         resultJson: JSON.stringify({
           simulated: true,
           message: "Demo scenario — Shopify was not changed.",
           insightTitle: spec.title,
-          frictionTitle: spec.fromShopperRun ? spec.title : undefined,
-          personaId: personaId(spec.persona),
+          demoTraffic: demoTraffic(orders, targets, choice.date, now, spec.aim),
         }),
       },
     });
-    console.log(`OK    insight   ${spec.deployedAt.slice(0, 10)}  ${spec.title}`);
+    report("insight", choice);
   }
 
   for (const spec of OCCASIONS) {
-    const id = eventId(spec.name);
-    const existing = await prisma.contentPack.findUnique({ where: { shopId_eventId: { shopId, eventId: id } } });
+    const event = events.find((row) => row.name === spec.name);
+    if (!event) throw new Error(`Occasion "${spec.name}" missing for ${shopId}. Run the pipeline first.`);
+    const existing = await prisma.contentPack.findUnique({ where: { shopId_eventId: { shopId, eventId: event.id } } });
     if (existing) {
       if (existing.status === "applied" || !force) {
-        console.warn(`SKIP  occasion "${spec.name}": a real marketing pack (${existing.status}) exists for it${existing.status === "applied" ? "" : " — --force replaces it"}.`);
+        console.warn(`SKIP  occasion "${spec.name}": a real pack (${existing.status}) exists${existing.status === "applied" ? "" : " — --force replaces it"}.`);
         continue;
       }
       await prisma.contentPack.delete({ where: { id: existing.id } });
     }
-    const input = await loadPackInput(shopId, id);
+    const input = await loadPackInput(shopId, event.id);
     if (!input) throw new Error(`Could not build a pack for "${spec.name}".`);
     const draft = templatePack(input);
+    const targets = await packTargets(shopId, event.id, draft.assets.banner.ctaPath);
+    const choice = chooseDeployment(orders, targets, spec.aim, now);
+    if (!choice) throw new Error(`No usable deployment day for "${spec.name}".`);
     await prisma.contentPack.create({
       data: {
         shopId,
-        eventId: id,
+        eventId: event.id,
         headline: draft.headline,
         rationale: draft.rationale,
         source: DEMO_SOURCE,
         status: "applied",
         assetsJson: JSON.stringify(draft.assets),
         personaIdsJson: JSON.stringify(draft.personaIds),
-        resultJson: JSON.stringify({ simulated: true, message: "Demo scenario — Shopify was not changed." }),
-        appliedAt: at(spec.deployedAt),
-        createdAt: at(spec.deployedAt),
-      },
-    });
-    console.log(`OK    occasion  ${spec.deployedAt.slice(0, 10)}  ${spec.name}`);
-  }
-
-  const path = loadDawnPath();
-  const storefront = shop.storefrontUrl ?? process.env.SHOP_STOREFRONT_URL ?? null;
-  for (const [index, spec] of RUNS.entries()) {
-    const startedAt = at(spec.startedAt);
-    const stepGap = (spec.seconds * 1000) / path.steps.length;
-    const steps = path.steps.map((step, i) => ({
-      id: step.id,
-      ok: !(spec.failSteps ?? []).includes(step.id),
-      at: new Date(startedAt.getTime() + stepGap * (i + 1)).toISOString(),
-      note: step.note,
-    }));
-    await prisma.agentRun.create({
-      data: {
-        id: `run_demo_${shopTag}_${index + 1}_${spec.startedAt.slice(0, 10).replaceAll("-", "")}`,
-        shopId,
-        personaId: personaId(spec.persona),
-        eventId: spec.event ? eventId(spec.event) : null,
-        status: "stopped_before_payment",
-        outcome: "checkout_started",
-        startedAt,
-        endedAt: new Date(startedAt.getTime() + spec.seconds * 1000),
-        progressPct: 100,
-        storefrontUrl: storefront,
-        timelineJson: JSON.stringify({
-          pathId: path.pathId,
-          demoScenario: true,
-          headed: false,
-          steps,
-          frictions: spec.frictions.map((title) => ({ kind: "demo", targetRef: "", title })),
+        resultJson: JSON.stringify({
+          simulated: true,
+          message: "Demo scenario — Shopify was not changed.",
+          demoTraffic: demoTraffic(orders, targets, choice.date, now, spec.aim),
         }),
+        appliedAt: choice.date,
+        createdAt: choice.date,
       },
     });
+    report("occasion", choice);
   }
-  console.log(`OK    ${RUNS.length} shopper runs (demo)`);
 }
 
 await main().finally(() => prisma.$disconnect());

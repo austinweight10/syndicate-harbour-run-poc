@@ -8,9 +8,6 @@ import { resolveHeaded, resolveStorefrontUrl } from "./storefront";
 
 type StepLog = { id: string; ok: boolean; at: string; note?: string };
 
-/** One friction a run found, saved on the run so later runs can be compared. */
-export type RunFriction = { kind: string; targetRef: string; title: string };
-
 type Findings = {
   sizeGuideMissing: boolean;
   shellMissingFromRaceKits: boolean;
@@ -42,7 +39,7 @@ export class DeniedClickError extends Error {
   }
 }
 
-export function recId(shopId: string, kind: string, targetRef: string, title: string): string {
+function recId(shopId: string, kind: string, targetRef: string, title: string): string {
   return createHash("sha256").update([shopId, kind, targetRef, title].join("|")).digest("hex").slice(0, 24);
 }
 
@@ -85,7 +82,6 @@ export async function executeAgentRun(runId: string, client: PrismaClient = pris
   let sawRaceKits = false;
   let browserMeta: { executablePath: string; pid: number | null; headless: boolean } | null = null;
 
-  let frictions: RunFriction[] | undefined;
   const timelineJson = () =>
     JSON.stringify({
       pathId: path.pathId,
@@ -93,7 +89,6 @@ export async function executeAgentRun(runId: string, client: PrismaClient = pris
       forceHeaded,
       browser: browserMeta,
       steps,
-      ...(frictions ? { frictions } : {}),
     });
 
   const persist = async (progressPct: number) => {
@@ -180,7 +175,7 @@ export async function executeAgentRun(runId: string, client: PrismaClient = pris
       throw new Error("Path finished without reaching checkout.");
     }
 
-    frictions = await writeFindings(client, run.shopId, run.personaId, runId, run.eventId, findings);
+    await writeFindings(client, run.shopId, run.personaId, runId, run.eventId, findings);
     await client.agentRun.update({
       where: { id: runId },
       data: {
@@ -458,12 +453,7 @@ async function writeFindings(
   runId: string,
   eventId: string | null,
   findings: Findings,
-): Promise<RunFriction[]> {
-  const found: RunFriction[] = [];
-  const record = async (input: Parameters<typeof writeInsight>[1]) => {
-    await writeInsight(client, input);
-    found.push({ kind: input.insightKind, targetRef: input.targetRef, title: input.title });
-  };
+) {
   if (findings.addedTee || findings.reachedCheckout) {
     const id = recId(shopId, "affordance", "race-tee-unisex", "Race tee added");
     const labels = ["OBSERVED"];
@@ -500,7 +490,7 @@ async function writeFindings(
   }
 
   if (findings.sizeGuideMissing) {
-    await record({
+    await writeInsight(client, {
       shopId,
       personaId,
       runId,
@@ -517,7 +507,7 @@ async function writeFindings(
   }
 
   if (findings.shellMissingFromRaceKits) {
-    await record({
+    await writeInsight(client, {
       shopId,
       personaId,
       runId,
@@ -534,7 +524,7 @@ async function writeFindings(
   }
 
   if (findings.missingVariantXl) {
-    await record({
+    await writeInsight(client, {
       shopId,
       personaId,
       runId,
@@ -551,7 +541,7 @@ async function writeFindings(
   }
 
   if (findings.weakRaceCopy) {
-    await record({
+    await writeInsight(client, {
       shopId,
       personaId,
       runId,
@@ -568,7 +558,7 @@ async function writeFindings(
   }
 
   if (findings.priceShockShipping) {
-    await record({
+    await writeInsight(client, {
       shopId,
       personaId,
       runId,
@@ -585,7 +575,7 @@ async function writeFindings(
   }
 
   if (findings.trustThinReviews) {
-    await record({
+    await writeInsight(client, {
       shopId,
       personaId,
       runId,
@@ -602,7 +592,7 @@ async function writeFindings(
   }
 
   if (findings.uxTrapCookie) {
-    await record({
+    await writeInsight(client, {
       shopId,
       personaId,
       runId,
@@ -617,6 +607,5 @@ async function writeFindings(
       priority: "P2",
     });
   }
-  return found;
 }
 
