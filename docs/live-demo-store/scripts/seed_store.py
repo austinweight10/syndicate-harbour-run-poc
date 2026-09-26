@@ -463,7 +463,9 @@ class Shopify:
         self.url = f"https://{domain}/admin/api/{API_VERSION}/graphql.json"
         self.token = token
 
-    def gql(self, query: str, variables: dict | None = None) -> dict:
+    def gql(self, query: str, variables: dict | None = None, retry_network: bool = True) -> dict:
+        """retry_network=False raises NetworkError instead of retrying, for
+        non-idempotent writes (orderCreate) that the caller must re-check."""
         body = json.dumps({"query": query, "variables": variables or {}}).encode("utf-8")
         for attempt in range(6):
             req = urllib.request.Request(
@@ -479,11 +481,17 @@ class Shopify:
                 with urllib.request.urlopen(req, timeout=60) as resp:
                     payload = json.loads(resp.read().decode("utf-8"))
             except urllib.error.HTTPError as e:
-                if e.code == 429:
+                if e.code == 429 or (e.code >= 500 and retry_network):
                     time.sleep(2 * (attempt + 1))
                     continue
                 detail = e.read().decode("utf-8", errors="replace")
                 die(f"HTTP {e.code}: {detail}")
+            except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
+                if not retry_network:
+                    raise NetworkError(str(e)) from e
+                warn(f"network error ({e}); retrying in {5 * (attempt + 1)}s")
+                time.sleep(5 * (attempt + 1))
+                continue
             errors = payload.get("errors") or []
             if any((err.get("extensions") or {}).get("code") == "THROTTLED" for err in errors):
                 time.sleep(2 * (attempt + 1))
@@ -491,8 +499,12 @@ class Shopify:
             if errors:
                 die(f"GraphQL errors: {json.dumps(errors, indent=2)}")
             return payload["data"]
-        die("Still throttled after retries. Wait a minute and re-run.")
+        die("Still throttled or unreachable after retries. Wait a minute and re-run (it resumes).")
         return {}
+
+
+class NetworkError(Exception):
+    """The request may or may not have reached Shopify."""
 
 
 def user_errors(result: dict) -> list:
@@ -1303,6 +1315,18 @@ def rate_limited(result: dict) -> bool:
     return any("too many attempts" in (e.get("message") or "").lower() for e in user_errors(result))
 
 
+ORDER_BY_TAG = """
+query ($q: String!) {
+  orders(first: 1, query: $q) { nodes { id name } }
+}
+"""
+
+
+def order_by_seed_tag(api: Shopify, seed_id: str) -> dict | None:
+    nodes = api.gql(ORDER_BY_TAG, {"q": f"tag:{seed_id}"})["orders"]["nodes"]
+    return nodes[0] if nodes else None
+
+
 def seeded_order_tags(api: Shopify) -> set[str]:
     tags: set[str] = set()
     after = None
@@ -1349,11 +1373,23 @@ def seed_orders(api: Shopify | None, dry: bool, customer_ids: dict[str, str]) ->
             order_input["customer"] = {"toAssociate": {"id": customer_id}}
         else:
             warn(f"{o['id']}: no customer for {o['customer_email']}; order will be guest-only")
+        result: dict = {"order": None, "userErrors": [{"field": None, "message": "network errors on every attempt"}]}
         for attempt in range(4):
-            data = api.gql(
-                ORDER_CREATE,
-                {"order": order_input, "options": {"sendReceipt": False, "sendFulfillmentReceipt": False}},
-            )
+            try:
+                data = api.gql(
+                    ORDER_CREATE,
+                    {"order": order_input, "options": {"sendReceipt": False, "sendFulfillmentReceipt": False}},
+                    retry_network=False,
+                )
+            except NetworkError as e:
+                # The create may have landed. Look for its id tag before retrying.
+                warn(f"{o['id']}: network error ({e}); checking before retry")
+                time.sleep(20)
+                existing = order_by_seed_tag(api, o["id"])
+                if existing:
+                    result = {"order": existing, "userErrors": []}
+                    break
+                continue
             result = data["orderCreate"]
             if not rate_limited(result) or attempt == 3:
                 break
