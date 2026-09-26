@@ -119,9 +119,11 @@ model OrderRow {
   subtotalAmount           Decimal
   totalAmount              Decimal
   totalShipping            Decimal?
+  totalDiscounts           Decimal?
   displayFinancialStatus   String?
   displayFulfillmentStatus String?
   sourceName               String?
+  shippingMethod           String?
   tags                     String?
   test                     Boolean  @default(false)
   customerHash             String?
@@ -131,34 +133,39 @@ model OrderRow {
 }
 
 model LineItemRow {
-  id           String  @id
-  orderId      String
-  shopId       String
-  productId    String?
-  variantId    String?
-  sku          String?
-  title        String
-  variantTitle String?
-  vendor       String?
-  quantity     Int
-  unitPrice    Decimal
-  lineTotal    Decimal
-  productType  String?
-  tagsJson     String?
+  id                   String  @id
+  orderId              String
+  shopId               String
+  productId            String?
+  variantId            String?
+  sku                  String?
+  title                String
+  variantTitle         String?
+  vendor               String?
+  quantity             Int
+  unitPrice            Decimal
+  lineTotal            Decimal
+  compareAtUnitPrice   Decimal?
+  selectedOptionsJson  String?
+  productType          String?
+  tagsJson             String?
 
   @@index([shopId, orderId])
 }
 
 model ProductRow {
-  id          String   @id
-  shopId      String
-  title       String
-  handle      String?
-  productType String?
-  vendor      String?
-  tags        String?
-  status      String?
-  updatedAt   DateTime
+  id              String   @id
+  shopId          String
+  title           String
+  handle          String?
+  productType     String?
+  vendor          String?
+  tags            String?
+  status          String?
+  optionsJson     String?
+  compareAtPrice  Decimal?
+  metafieldsJson  String?
+  updatedAt       DateTime
 
   @@index([shopId])
 }
@@ -489,4 +496,29 @@ model Recommendation {
   createdAt            DateTime @default(now())
 
   @@index([shopId, priority])
+}
+
+/// One-click storefront change proposed for an Insights board card.
+/// The agent (Claude) drafts it; a template stands in when no key is set.
+model StorefrontAction {
+  id           String    @id @default(cuid())
+  shopId       String
+  cardId       String
+  cardKind     String
+  actionType   String
+  paramsJson   String
+  headline     String
+  rationale    String
+  source       String
+  model        String?
+  status       String    @default("proposed")
+  undoJson     String?
+  resultJson   String?
+  errorMessage String?
+  createdAt    DateTime  @default(now())
+  appliedAt    DateTime?
+  revertedAt   DateTime?
+
+  @@unique([shopId, cardId])
+  @@index([shopId, status])
 }

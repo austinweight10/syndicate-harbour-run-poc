@@ -69,7 +69,7 @@ function send(res: ServerResponse, status: number, html: string, cookie?: string
   res.end(html);
 }
 
-export function startStub(port = Number(process.env.STUB_PORT || 44741)) {
+export function startStub(port = Number(process.env.STUB_PORT || 0)) {
   const server = createServer((req, res) => {
   const url = new URL(req.url ?? "/", "http://127.0.0.1");
   hits.push(url.pathname);
@@ -165,6 +165,7 @@ export function startStub(port = Number(process.env.STUB_PORT || 44741)) {
         "Checkout",
         `<h1>Checkout</h1>
          <p>Guest checkout. No account required.</p>
+         <p>Shipping £4.95 — calculated at checkout.</p>
          <p>Stop here. Do not pay.</p>
          <a href="/checkouts/1/payment">Pay now</a>
          <button type="button">Complete order</button>
@@ -182,8 +183,10 @@ export function startStub(port = Number(process.env.STUB_PORT || 44741)) {
 
   return new Promise<{ url: string; hits: () => string[]; close: () => Promise<void> }>((resolve) => {
     server.listen(port, "0.0.0.0", () => {
+      const address = server.address();
+      const bound = typeof address === "object" && address ? address.port : port;
       resolve({
-        url: `http://127.0.0.1:${port}`,
+        url: `http://127.0.0.1:${bound}`,
         hits: () => hits.slice(),
         close: () =>
           new Promise((done) => {

@@ -4,16 +4,10 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import "./styles/shell.css";
 
 export const links: LinksFunction = () => [
-  {
-    rel: "preload",
-    href: "/fonts/manrope-latin-var.woff2",
-    as: "font",
-    type: "font/woff2",
-    crossOrigin: "anonymous",
-  },
-  { rel: "icon", href: "/brand/syndicate-favicon-48.png", type: "image/png", sizes: "48x48" },
-  { rel: "icon", href: "/brand/syndicate-favicon-32.png", type: "image/png", sizes: "32x32" },
-  { rel: "icon", href: "/brand/syndicate-favicon-16.png", type: "image/png", sizes: "16x16" },
+  { rel: "preload", href: "/fonts/manrope-latin-var.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+  { rel: "icon", type: "image/png", sizes: "48x48", href: "/brand/syndicate-favicon-48.png" },
+  { rel: "icon", type: "image/png", sizes: "32x32", href: "/brand/syndicate-favicon-32.png" },
+  { rel: "icon", type: "image/png", sizes: "16x16", href: "/brand/syndicate-favicon-16.png" },
   { rel: "apple-touch-icon", href: "/brand/syndicate-app-icon-dark-256.png" },
 ];
 

@@ -9,6 +9,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (!process.env.SHOPIFY_API_KEY || !process.env.SHOPIFY_API_SECRET) {
     throw redirect("/");
   }
+  // /auth/login is handled by auth.login.tsx (shopify.login).
+  // This splat covers /auth/callback and other auth paths.
   const { authenticate } = await import("../shopify.live.server");
   await authenticate.admin(request);
   return null;

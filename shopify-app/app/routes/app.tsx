@@ -22,11 +22,11 @@ export default function AppLayout() {
     <AppProvider embedded apiKey={data.apiKey}>
       <s-app-nav>
         <s-link href="/app">Overview</s-link>
-        <s-link href="/app/events">Events</s-link>
-        <s-link href="/app/personas">Personas</s-link>
+        <s-link href="/app/events">Occasions</s-link>
+        <s-link href="/app/personas">Shoppers</s-link>
         <s-link href="/app/artifacts">Insights</s-link>
-        <s-link href="/app/graph">Graph</s-link>
-        <s-link href="/app/runs">Agent runs</s-link>
+        <s-link href="/app/graph">Evidence</s-link>
+        <s-link href="/app/runs">Shopper runs</s-link>
         <s-link href="/app/settings">Settings</s-link>
       </s-app-nav>
       <Outlet context={data} />

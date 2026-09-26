@@ -73,6 +73,8 @@ export type BoardCard = {
   runId: string | null;
   confidence: number | null;
   agentClaim: boolean;
+  targetType: string | null;
+  targetRef: string | null;
 };
 
 function blurbFor(name: string, confidence: number, nOrders: number, lowN: boolean): string {
@@ -228,6 +230,8 @@ export async function loadBoard(shopId: string): Promise<{ insights: BoardCard[]
       runId: claimed ? row.runId : null,
       confidence: row.score,
       agentClaim: claimed,
+      targetType: row.targetType,
+      targetRef: row.targetRef,
     };
   });
 
@@ -248,6 +252,8 @@ export async function loadBoard(shopId: string): Promise<{ insights: BoardCard[]
         runId: row.runId,
         confidence: row.confidence,
         agentClaim: Boolean(row.runId),
+        targetType: row.targetType,
+        targetRef: row.targetRef,
       };
     })
     .sort((a, b) => (priorityRank[a.priority ?? "P2"] ?? 9) - (priorityRank[b.priority ?? "P2"] ?? 9));

@@ -1,4 +1,5 @@
 import prisma from "../db.server";
+import { kickLivePipelineDrain } from "./pipeline/drain-live";
 
 export const PIPELINE_STAGE_ORDER = [
   "store_makeup",
@@ -34,7 +35,8 @@ function pendingStages() {
 }
 
 /**
- * Live OAuth success calls this. Workers for stages a–f are later epics.
+ * Live OAuth success calls this. Stages drain in-process via kickLivePipelineDrain
+ * (score existing orders, or fail store_makeup honestly if ingest is empty).
  * Idempotent on shop + trigger + install timestamp.
  */
 export async function enqueueLivePipeline(
@@ -45,7 +47,10 @@ export async function enqueueLivePipeline(
     where: { shopId, status: { in: ["pending", "running"] } },
     orderBy: { startedAt: "desc" },
   });
-  if (active) return { pipelineRunId: active.id };
+  if (active) {
+    if (active.status === "pending") kickLivePipelineDrain(prisma, active.id);
+    return { pipelineRunId: active.id };
+  }
 
   const shop = await prisma.shop.findUnique({ where: { id: shopId } });
   const settings = await prisma.shopSettings.findUnique({ where: { shopId } });
@@ -54,20 +59,35 @@ export async function enqueueLivePipeline(
     trigger === "install" ? `${shopId}:install:${installEpoch}` : `${shopId}:${trigger}:${Date.now()}`;
 
   const existing = await prisma.pipelineRun.findUnique({ where: { idempotencyKey } });
-  if (existing) return { pipelineRunId: existing.id };
+  if (existing) {
+    if (existing.status === "pending" || existing.status === "running") {
+      kickLivePipelineDrain(prisma, existing.id);
+    }
+    return { pipelineRunId: existing.id };
+  }
 
-  const created = await prisma.pipelineRun.create({
-    data: {
-      shopId,
-      mode: "live",
-      trigger,
-      status: "pending",
-      currentStage: "store_makeup",
-      stagesJson: JSON.stringify(pendingStages()),
-      agentsAutoRunSnapshot: settings?.agentsAutoRun ?? true,
-      idempotencyKey,
-    },
-  });
+  let created;
+  try {
+    created = await prisma.pipelineRun.create({
+      data: {
+        shopId,
+        mode: "live",
+        trigger,
+        status: "pending",
+        currentStage: "store_makeup",
+        stagesJson: JSON.stringify(pendingStages()),
+        agentsAutoRunSnapshot: settings?.agentsAutoRun ?? true,
+        idempotencyKey,
+      },
+    });
+  } catch (err) {
+    // Parallel loaders (layout + index) race here on first embedded load; the loser reuses the winner's run.
+    if ((err as { code?: string })?.code !== "P2002") throw err;
+    const winner = await prisma.pipelineRun.findUnique({ where: { idempotencyKey } });
+    if (!winner) throw err;
+    return { pipelineRunId: winner.id };
+  }
+  kickLivePipelineDrain(prisma, created.id);
   return { pipelineRunId: created.id };
 }
 

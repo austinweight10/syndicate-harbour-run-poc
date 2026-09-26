@@ -1,0 +1,8 @@
+.env
+
+# Dawn working copy (live source of truth is Shopify). Keep brand overlay.
+theme/sections/
+theme/templates/
+theme/layout/
+theme/config/
+theme/assets/base.css
