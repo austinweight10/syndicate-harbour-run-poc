@@ -1,6 +1,6 @@
 # Syndicate brand assets
 
-Copied from the Syndicate identity pack v1 (`syndicate-brand-v1`). Its README is the brand guideline, and its `source/` generator can rebuild any size.
+Copied from the Syndicate identity pack v1.1 (`syndicate-brand-v1.1`). Its README is the brand guideline, and its `source/build.py` generator can rebuild any size. v1.1 fixes the lockup alignment and adds cream variants and a favicon (see the pack's changelog).
 
 ## In the app
 
@@ -8,26 +8,45 @@ Copied from the Syndicate identity pack v1 (`syndicate-brand-v1`). Its README is
 
 | File | Used for |
 |---|---|
-| `syndicate-lockup-white.svg` | Admin header on charcoal, at 180px wide (the lockup minimum) |
-| `syndicate-symbol-white.svg` | Admin header at 720px wide and below, at 32px |
+| `syndicate-lockup-cream.svg` | Admin header on charcoal, at 180px wide (the lockup minimum) |
+| `syndicate-symbol-cream.svg` | Admin header at 720px wide and below, at 32px |
 | `syndicate-lockup-charcoal.svg` | Landing page (`/?stay=1`) |
-| `syndicate-app-icon-dark.svg`, `-16.png`, `-32.png` | Favicon |
-| `syndicate-app-icon-dark-256.png` | Apple touch icon |
+| `syndicate-favicon-16.png`, `-32.png`, `-48.png` | Favicon |
+| `syndicate-app-icon-dark-256.png` | Apple touch icon (iOS applies its own corner mask) |
 
-### Lockup correction
+The admin header is 56px high so the symbol keeps a quarter of its height clear above and below. A small negative margin lines the hexagon's flat left edge up with the text column.
 
-The two lockup SVGs here differ from the pack. The pack's `build.py` sizes and centres the wordmark on its full ink box, descender included. The capitals therefore sit about 12% of the symbol height above the symbol's centre, and the lettering overpowers the symbol. These files use the composition from the pack's own `syndicate-brand-preview.svg` instead: the same symbol and outlined wordmark paths, with the wordmark at 0.754× (was 1×) and its ink box at (125.14, 28.0) in the 120-unit-high artboard. The artboard is 494.86 units wide (was 598.33). At 180px wide the wordmark is 131px, above the 120px minimum. The admin header is 56px high so the symbol keeps a quarter of its height clear above and below.
+## Colour
 
-To fix it at source, replace the lockup line in `build.py` with:
+Tokens are in `app/styles/shell.css` `:root`.
 
-```python
- k=.48/1.05;ws=1.65*k;bx=52+160*k;by=60-70*k;pad=52-math.sqrt(3)*50*.48
- save('syndicate-lockup-'+name,bx+ww*ws+pad,120,f'<g transform="translate(52,60) scale(.48)">{mono(col)}</g><g transform="translate({bx},{by}) scale({ws})">{word(col)}</g>',2000)
-```
+| Role | Value |
+|---|---|
+| Charcoal: text, headings, links, avatars, confident data | `#252522` |
+| Cream: page background, text on charcoal | `#F5F1E8` |
+| Warm grey: disabled text, low-confidence data | `#8E8B83` |
+| Light grey: link underlines, aggregate chips | `#CCC7BC` |
+| Shopify green: buttons, actions and success states only | `#008060` |
 
-Colour tokens are in `app/styles/shell.css` `:root`: charcoal `#252522`, cream `#F5F1E8`, warm grey `#8E8B83` and light grey `#CCC7BC`. Buttons and actions keep Shopify green (`--primary: #008060`). Secondary text uses `#6B6861`, a darker version of the warm grey, because `#8E8B83` on cream is only 3:1.
+UI tints derived from the palette:
 
-The app UI uses Manrope, the wordmark typeface, for body text and headings. `public/fonts/manrope-latin-var.woff2` is a Latin subset of the pack's variable font (weights 200–800), made with fontTools `pyftsubset`. Its SIL Open Font License is at `public/fonts/OFL.txt` and must stay with the font. The logo SVGs have outlined lettering and do not need the font.
+| Token | Value | Use |
+|---|---|---|
+| `--bg-canvas-deep` | `#EDE9DF` | Side navigation, bar tracks, disabled buttons |
+| `--border` | `#E2DDD3` | Card, banner and input borders |
+| `--bg-hover` | `#FAF8F3` | Hover states, graph background |
+| `--text-subdued` | `#6B6861` | Secondary text, mid-confidence data. The brand warm grey is only 3:1 on cream; this is 4.9:1. |
+| Demo badge | `#3A3935` | One step up from charcoal, inside the header |
+
+Rules:
+
+- **Green:** only for actions (buttons) and success states ("Connected"). Info banners are neutral: white with a border. Warnings stay amber.
+- **Data certainty uses the brand's tonal steps, not extra hues.** Observed is solid charcoal, aggregate proxy is light grey, model hypothesis is a dashed outline, and mock is faint. Confidence bars run charcoal, then dark grey, then warm grey. The graph uses the same steps for its edges.
+- **Links** are charcoal with a light grey underline. Links in headings drop the underline until hover.
+
+## Type
+
+The app UI uses Manrope, the wordmark typeface, for body text and headings. `public/fonts/manrope-latin-var.woff2` is a Latin subset of the pack's variable font (weights 200–800), made with fontTools `pyftsubset`. Its SIL Open Font License is at `public/fonts/OFL.txt` and must stay with the font. Page titles are weight 700, one step lighter than the wordmark's 750 so they don't compete with the logo. Eyebrow labels are weight 600, uppercase, with 0.08em tracking.
 
 ## App icon (Dev Dashboard)
 

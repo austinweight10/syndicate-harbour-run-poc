@@ -34,11 +34,11 @@ export function AppShell({
           <picture className="brand-logo">
             <source
               media="(max-width: 720px)"
-              srcSet="/brand/syndicate-symbol-white.svg"
+              srcSet="/brand/syndicate-symbol-cream.svg"
               width={32}
               height={32}
             />
-            <img src="/brand/syndicate-lockup-white.svg" alt="Syndicate" width={180} height={44} />
+            <img src="/brand/syndicate-lockup-cream.svg" alt="Syndicate" width={180} height={44} />
           </picture>
         </div>
         <div className="topbar-shop">

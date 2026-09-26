@@ -21,11 +21,12 @@ const PROV = [
   { kind: "MOCK", short: "Mock", label: "Mock" },
 ] as const;
 
+// Brand tonal steps, most to least certain. Hypothesis and mock edges are also dashed.
 const PROV_COLOUR: Record<string, string> = {
-  OBSERVED: "#059669",
-  AGGREGATE_PROXY: "#1a2744",
-  MODEL_HYPOTHESIS: "#78716c",
-  MOCK: "#a8a29e",
+  OBSERVED: "#252522",
+  AGGREGATE_PROXY: "#6b6861",
+  MODEL_HYPOTHESIS: "#8e8b83",
+  MOCK: "#ccc7bc",
 };
 
 type Point = { x: number; y: number };
@@ -270,7 +271,7 @@ export function GraphCanvas({ graph }: { graph: GraphView }) {
               {item.short}
             </span>
           ))}
-          <span className="muted">Race PROXY dashed · weather Driver solid navy · EventCandidate kit-red</span>
+          <span className="muted">Race PROXY dashed · weather Driver solid grey · EventCandidate filled charcoal</span>
         </div>
         {selectedNode ? (
           <div className="graph-detail">
@@ -330,13 +331,13 @@ function layoutColumns(nodes: GraphNode[]): Record<string, Point> {
 }
 
 function NodeMark({ node, selected }: { node: GraphNode; selected: boolean }) {
-  const stroke = selected ? "#a11d2a" : strokeFor(node.type);
-  const width = selected ? 2.5 : 2;
+  const stroke = selected ? "#252522" : strokeFor(node.type);
+  const width = selected ? 3.5 : 2;
   if (node.type === "CatalogueEvent") {
     return <rect x={-16} y={-12} width={32} height={24} rx={6} fill="#ffffff" stroke={stroke} strokeWidth={width} strokeDasharray="4 3" />;
   }
   if (node.type === "EventCandidate") {
-    return <rect x={-18} y={-14} width={36} height={28} rx={8} fill="#fff7f7" stroke="#a11d2a" strokeWidth={selected ? 3 : 2.5} />;
+    return <rect x={-18} y={-14} width={36} height={28} rx={8} fill="#252522" stroke="#252522" strokeWidth={selected ? 5 : 2.5} />;
   }
   if (node.type === "Driver" || node.type === "Weather") {
     return <rect x={-16} y={-12} width={32} height={24} rx={6} fill="#ffffff" stroke={stroke} strokeWidth={width} />;
@@ -345,10 +346,9 @@ function NodeMark({ node, selected }: { node: GraphNode; selected: boolean }) {
 }
 
 function strokeFor(type: string): string {
-  if (type === "Order") return "#008060";
-  if (type === "EventCandidate") return "#a11d2a";
-  if (type === "CatalogueEvent" || type === "Social" || type === "Persona") return "#78716c";
-  return "#1a2744";
+  if (type === "Order" || type === "EventCandidate") return "#252522";
+  if (type === "CatalogueEvent" || type === "Social" || type === "Persona") return "#8e8b83";
+  return "#6b6861";
 }
 
 function provenanceLabel(kind: string): string {
@@ -369,7 +369,7 @@ function EdgeLine({ edge, positions }: { edge: GraphLink; positions: Record<stri
   const a = positions[edge.from];
   const b = positions[edge.to];
   if (!a || !b) return null;
-  const colour = PROV_COLOUR[edge.provenance] ?? "#a8a29e";
+  const colour = PROV_COLOUR[edge.provenance] ?? "#ccc7bc";
   const dashed = edge.provenance === "MOCK" || edge.provenance === "MODEL_HYPOTHESIS" || edge.relation === "VENUE_IN";
   return (
     <line

@@ -11,9 +11,9 @@ export const links: LinksFunction = () => [
     type: "font/woff2",
     crossOrigin: "anonymous",
   },
-  { rel: "icon", href: "/brand/syndicate-app-icon-dark.svg", type: "image/svg+xml" },
-  { rel: "icon", href: "/brand/syndicate-app-icon-dark-32.png", type: "image/png", sizes: "32x32" },
-  { rel: "icon", href: "/brand/syndicate-app-icon-dark-16.png", type: "image/png", sizes: "16x16" },
+  { rel: "icon", href: "/brand/syndicate-favicon-48.png", type: "image/png", sizes: "48x48" },
+  { rel: "icon", href: "/brand/syndicate-favicon-32.png", type: "image/png", sizes: "32x32" },
+  { rel: "icon", href: "/brand/syndicate-favicon-16.png", type: "image/png", sizes: "16x16" },
   { rel: "apple-touch-icon", href: "/brand/syndicate-app-icon-dark-256.png" },
 ];
 
