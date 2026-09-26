@@ -53,7 +53,7 @@
         "color_scheme": "scheme-1",
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "left",
-        "show_text_below": false,
+        "show_text_below": true,
         "image": "shopify://shop_images/hr-life-01-hero-fog-hill.jpg"
       }
     },
@@ -236,7 +236,7 @@
         "c3": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/hr-life-03-training-track-curve.jpg",
+            "image": "shopify://shop_images/hr-life-03b-track-curve-portrait.jpg",
             "title": "Track nights",
             "text": "<p>Lap after lap on the bend. Light kit for fast sessions.</p>",
             "link_label": "Shorts",
@@ -307,8 +307,8 @@
         "button"
       ],
       "settings": {
-        "image": "shopify://shop_images/hr-life-10-detail-lane-one.jpg",
-        "height": "medium",
+        "image": "shopify://shop_images/hr-life-10b-lane-one-cropped.jpg",
+        "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
         "image_behavior": "none",

@@ -85,6 +85,26 @@
       "photographer": "Ben Soyka",
       "source": "https://unsplash.com/photos/a-red-track-with-a-white-arrow-painted-on-it-yWLfld6ErDY",
       "original_px": "5793x3862"
+    },
+    {
+      "file": "hr-life-03b-track-curve-portrait.jpg",
+      "slot": "Training · track (portrait crop)",
+      "alt": "A runner rounds the bend of a red running track, seen from behind",
+      "photographer": "Zhivko Minkov",
+      "source": "https://unsplash.com/photos/man-running-on-a-red-track-with-white-lines-2nUwx5QSJ84",
+      "original_px": "6960x4640",
+      "crop_of": "hr-life-03-training-track-curve.jpg",
+      "crop": "4:5 crop, 1706x2133, runner centred for portrait placements"
+    },
+    {
+      "file": "hr-life-10b-lane-one-cropped.jpg",
+      "slot": "Supporting detail · texture (cropped)",
+      "alt": "Lane one painted on a worn red running track",
+      "photographer": "Ben Soyka",
+      "source": "https://unsplash.com/photos/a-red-track-with-a-white-arrow-painted-on-it-yWLfld6ErDY",
+      "original_px": "5793x3862",
+      "crop_of": "hr-life-10-detail-lane-one.jpg",
+      "crop": "Lower two-thirds, 3198x1422, stands and buildings removed"
     }
   ]
 }
