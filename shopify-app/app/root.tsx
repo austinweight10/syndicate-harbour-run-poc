@@ -4,6 +4,13 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import "./styles/shell.css";
 
 export const links: LinksFunction = () => [
+  {
+    rel: "preload",
+    href: "/fonts/manrope-latin-var.woff2",
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous",
+  },
   { rel: "icon", href: "/brand/syndicate-app-icon-dark.svg", type: "image/svg+xml" },
   { rel: "icon", href: "/brand/syndicate-app-icon-dark-32.png", type: "image/png", sizes: "32x32" },
   { rel: "icon", href: "/brand/syndicate-app-icon-dark-16.png", type: "image/png", sizes: "16x16" },

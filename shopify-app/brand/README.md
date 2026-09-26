@@ -16,7 +16,7 @@ Copied from the Syndicate identity pack v1 (`syndicate-brand-v1`). Its README is
 
 Colour tokens are in `app/styles/shell.css` `:root`: charcoal `#252522`, cream `#F5F1E8`, warm grey `#8E8B83` and light grey `#CCC7BC`. Buttons and actions keep Shopify green (`--primary: #008060`). Secondary text uses `#6B6861`, a darker version of the warm grey, because `#8E8B83` on cream is only 3:1.
 
-The wordmark lettering is outlined, so the app does not load Manrope. If Manrope is added as a web font later, ship the pack's `OFL.txt` with it.
+The app UI uses Manrope, the wordmark typeface, for body text and headings. `public/fonts/manrope-latin-var.woff2` is a Latin subset of the pack's variable font (weights 200–800), made with fontTools `pyftsubset`. Its SIL Open Font License is at `public/fonts/OFL.txt` and must stay with the font. The logo SVGs have outlined lettering and do not need the font.
 
 ## App icon (Dev Dashboard)
 

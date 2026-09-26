@@ -1,3 +1,12 @@
+/* Manrope variable (wght 200–800), Latin subset of the brand pack font. SIL OFL 1.1: see /fonts/OFL.txt. */
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope-latin-var.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Syndicate brand palette (identity pack v1). */
   --brand-charcoal: #252522;
@@ -28,8 +37,8 @@
   --radius-pill: 999px;
   --nav-width: 220px;
   --topbar-height: 52px;
-  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-display: ui-serif, "Iowan Old Style", Palatino, Georgia, serif;
+  --font: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: var(--font);
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --space-page: 28px;
   --space-section: 20px;
@@ -44,9 +53,13 @@ html, body {
   font-family: var(--font);
   font-size: 13.5px;
   line-height: 1.45;
+  /* Manrope sets tight at text sizes. */
+  letter-spacing: 0.01em;
   color: var(--text);
   background: var(--bg-canvas);
 }
+
+input, select, textarea { font-family: inherit; }
 
 a { color: var(--navy); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -187,7 +200,7 @@ a:hover { text-decoration: underline; }
   margin: 0;
   font-family: var(--font-display);
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 750;
   letter-spacing: -0.02em;
   line-height: 1.15;
   color: var(--charcoal);
@@ -474,6 +487,8 @@ a:hover { text-decoration: underline; }
 .kpi-value {
   font-family: var(--font-display);
   font-size: 26px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   color: var(--charcoal);
   line-height: 1;
 }
