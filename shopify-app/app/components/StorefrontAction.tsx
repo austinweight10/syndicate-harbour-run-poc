@@ -21,6 +21,8 @@ export function StorefrontActionPanel({ cardId, action }: { cardId: string; acti
   const applied = action.status === "applied";
   const failed = action.status === "failed";
   const error = fetcher.data && !fetcher.data.ok ? fetcher.data.message : failed ? action.errorMessage : null;
+  const needsWrite =
+    Boolean(error) && /write_products/i.test(error ?? "");
 
   return (
     <div className={`action-panel${applied ? " action-panel-applied" : ""}`}>
@@ -98,7 +100,10 @@ export function StorefrontActionPanel({ cardId, action }: { cardId: string; acti
       ) : null}
       {error ? (
         <p className="action-error" role="alert">
-          <Icon name="alert" size={13} /> {error}
+          <Icon name="alert" size={13} />{" "}
+          {needsWrite
+            ? "Syndicate needs permission to update products. Click Deploy again — Shopify will ask you to approve write access."
+            : error}
         </p>
       ) : null}
     </div>

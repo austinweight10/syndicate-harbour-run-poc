@@ -45,7 +45,7 @@ async function resolveTarget(shopId: string): Promise<Target | { error: string }
   }
   if (!hasWriteScope(shop.scopes)) {
     return {
-      error: "Syndicate needs write_products to change your storefront. Reopen the app from Shopify admin and approve the updated access.",
+      error: "Syndicate needs write_products to change your storefront. Click Deploy again to approve product updates.",
     };
   }
   if (!shop.accessToken) return { error: "Shop is disconnected. Reinstall Syndicate." };

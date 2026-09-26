@@ -28,15 +28,16 @@ test("fixtures parse and golden score schema is valid", () => {
   assert.match(golden, /Match-day home kit rush/);
 });
 
-test("shopify.app.toml scopes are exact — reads plus write_products only", () => {
+test("shopify.app.toml — reads required; write_products optional for Deploy", () => {
   const toml = readFileSync(path.join(root, "shopify.app.toml"), "utf8");
   const match = toml.match(/scopes\s*=\s*"([^"]+)"/);
   assert.ok(match);
   assert.equal(match[1], APP_SCOPES);
   assert.deepEqual(
     match[1].split(",").filter((scope) => scope.startsWith("write_")),
-    ["write_products"],
+    [],
   );
+  assert.match(toml, /optional_scopes\s*=\s*\[\s*"write_products"\s*\]/);
 });
 
 test("app source does not fetch twitter or parkrun", () => {

@@ -10,6 +10,7 @@ import { loadBoard, type BoardCard } from "../services/board.server";
 import { loadBoardActions, type ActionView } from "../services/actions/board.server";
 import { applyAction, undoAction } from "../services/actions/apply.server";
 import { redraftAction } from "../services/actions/propose.server";
+import { ensureWriteProducts } from "../services/actions/write-scope.server";
 import { currentShopId } from "../services/shop-context.server";
 
 export const meta: MetaFunction = () => [{ title: "Insights · Syndicate" }];
@@ -27,8 +28,11 @@ export async function action({ request }: ActionFunctionArgs) {
   const intent = String(form.get("intent") ?? "");
   const actionId = String(form.get("actionId") ?? "");
   const cardId = String(form.get("cardId") ?? "");
-  if (intent === "apply") return applyAction(shopId, actionId);
-  if (intent === "undo") return undoAction(shopId, actionId);
+  if (intent === "apply" || intent === "undo") {
+    // Throws a Shopify redirect when write_products is not yet granted.
+    await ensureWriteProducts(request, shopId);
+    return intent === "apply" ? applyAction(shopId, actionId) : undoAction(shopId, actionId);
+  }
   if (intent === "redraft") {
     await redraftAction(shopId, cardId);
     return { ok: true as const, simulated: false, message: "Asking the agent again…" };

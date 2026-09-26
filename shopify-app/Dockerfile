@@ -19,7 +19,7 @@ RUN npx prisma generate && npm run build
 FROM node:22-bookworm-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production \
-    SCOPES=read_orders,read_products,read_customers,write_products \
+    SCOPES=read_orders,read_products,read_customers \
     DATABASE_URL=file:/data/dev.db \
     PORT=8080 \
     HOST=0.0.0.0 \

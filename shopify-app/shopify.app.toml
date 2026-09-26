@@ -5,7 +5,10 @@ application_url = "https://syndicate-harbour-run.fly.dev"
 embedded = true
 
 [access_scopes]
-scopes = "read_orders,read_products,read_customers,write_products"
+# Reads are required at install. write_products is optional so Deploy can
+# request it when the merchant ships a storefront change (scopes.request).
+scopes = "read_orders,read_products,read_customers"
+optional_scopes = [ "write_products" ]
 
 [auth]
 redirect_urls = [ "https://syndicate-harbour-run.fly.dev/auth/callback", "http://127.0.0.1:44731/auth/callback" ]

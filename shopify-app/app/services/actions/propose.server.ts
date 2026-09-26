@@ -35,7 +35,12 @@ export function agentEnabled(): boolean {
 export async function kickActionDrafts(shopId: string, cards: ActionCardInput[]): Promise<boolean> {
   if (inflight.has(shopId)) return true;
   const existing = await prisma.storefrontAction.findMany({
-    where: { shopId, cardId: { in: cards.map((card) => card.cardId) } },
+    where: {
+      shopId,
+      cardId: { in: cards.map((card) => card.cardId) },
+      // Once a key is set, unshipped template fixes are redrafted by the agent.
+      ...(agentEnabled() ? { NOT: { source: "template", status: "proposed" } } : {}),
+    },
     select: { cardId: true },
   });
   const have = new Set(existing.map((row) => row.cardId));
