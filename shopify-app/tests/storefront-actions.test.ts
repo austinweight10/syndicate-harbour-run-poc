@@ -5,11 +5,20 @@ process.env.DEMO_FIXTURE_SHOP = "1";
 process.env.SYNDICATE_LLM_PROVIDER = "off";
 delete process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
 
-const { assertExactScopes, hasWriteScope } = await import("../app/scopes");
+const { assertExactScopes, hasWriteScope, normalizeScopes } = await import("../app/scopes");
 
-test("scopes accept the read set with or without write_products, and nothing else", () => {
+test("scopes accept the read set with optional product/content/customer writes", () => {
   assert.doesNotThrow(() => assertExactScopes("read_orders,read_products,read_customers"));
   assert.doesNotThrow(() => assertExactScopes("write_products,read_customers,read_orders,read_products"));
+  // Shopify session tokens omit read_products when write_products is granted.
+  assert.doesNotThrow(() => assertExactScopes("read_customers,read_orders,write_products"));
+  assert.doesNotThrow(() =>
+    assertExactScopes("read_customers,read_orders,read_products,write_products,write_content,write_customers"),
+  );
+  assert.equal(
+    normalizeScopes("read_customers,read_orders,write_products"),
+    "read_customers,read_orders,read_products,write_products",
+  );
   assert.throws(() => assertExactScopes("read_orders,read_products,read_customers,write_themes"));
   assert.throws(() => assertExactScopes("read_orders,read_products,write_products"));
   assert.equal(hasWriteScope("read_orders,write_products"), true);
