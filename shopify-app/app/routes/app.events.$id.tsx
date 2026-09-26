@@ -152,7 +152,12 @@ export default function EventDetailPage() {
         </div>
       ) : null}
 
-      <ContentPackPanel pack={pack} trending={trending} drafting={drafting && !pack} />
+      <ContentPackPanel
+        pack={pack}
+        trending={trending}
+        drafting={drafting && !pack}
+        occasion={{ name: detail.name, windowLabel: detail.windowLabel, city: detail.city }}
+      />
 
       <section className="card">
         <div className="card-body">

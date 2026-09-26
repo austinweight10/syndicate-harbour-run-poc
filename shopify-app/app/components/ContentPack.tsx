@@ -1,6 +1,9 @@
+import { useMemo, useState } from "react";
 import { useFetcher } from "react-router";
 import type { PackView } from "../services/content-pack/board.server";
+import { sidekickPrompt, sidekickUrl, type OccasionForSidekick } from "../services/content-pack/sidekick";
 import { Icon } from "./Icon";
+import { useShell } from "./Stub";
 
 type Result = { ok: boolean; message: string; simulated?: boolean };
 
@@ -8,10 +11,12 @@ export function ContentPackPanel({
   pack,
   trending,
   drafting,
+  occasion,
 }: {
   pack: PackView | null;
   trending: boolean;
   drafting?: boolean;
+  occasion: OccasionForSidekick;
 }) {
   const fetcher = useFetcher<Result>();
   const busy = fetcher.state !== "idle";
@@ -158,6 +163,7 @@ export function ContentPackPanel({
                 {pendingIntent === "undo_pack" ? "Undoing…" : "Undo"}
               </button>
             </fetcher.Form>
+            {pack.simulated ? <SidekickHandoff pack={pack} occasion={occasion} /> : null}
           </div>
         ) : (
           <div className="action-row">
@@ -183,6 +189,7 @@ export function ContentPackPanel({
                 Redraft pack
               </button>
             </fetcher.Form>
+            <SidekickHandoff pack={pack} occasion={occasion} />
           </div>
         )}
         {applied && pack.simulated && pack.resultMessage ? (
@@ -201,5 +208,49 @@ export function ContentPackPanel({
         ) : null}
       </div>
     </section>
+  );
+}
+
+/**
+ * Alternative to Publish: open Sidekick in the Shopify admin with a prompt
+ * built from this pack, or copy the prompt. The deep link is not in Shopify's
+ * developer docs, so Copy is always offered too.
+ */
+function SidekickHandoff({ pack, occasion }: { pack: PackView; occasion: OccasionForSidekick }) {
+  const shell = useShell();
+  const prompt = useMemo(() => sidekickPrompt(pack, occasion), [pack, occasion]);
+  const [copy, setCopy] = useState<"idle" | "copied" | "failed">("idle");
+  const live = shell.shop.mode === "live";
+
+  const openSidekick = () => {
+    // The app runs in the admin iframe: navigate the top frame, not the iframe.
+    window.open(sidekickUrl(shell.shop.domain, prompt), "_top");
+  };
+  const copyPrompt = async () => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopy("copied");
+      window.setTimeout(() => setCopy("idle"), 2500);
+    } catch {
+      setCopy("failed");
+    }
+  };
+
+  return (
+    <>
+      {live ? (
+        <button type="button" className="button button-quiet" onClick={openSidekick} data-sidekick-open>
+          <Icon name="sparkles" size={14} /> Create with Sidekick
+        </button>
+      ) : null}
+      <button type="button" className="button button-quiet button-small" onClick={copyPrompt} data-sidekick-copy>
+        <Icon name={copy === "copied" ? "check" : "layers"} size={13} />
+        {copy === "copied" ? "Copied" : "Copy Sidekick prompt"}
+      </button>
+      <details className="sidekick-prompt" open={copy === "failed" || undefined}>
+        <summary>{copy === "failed" ? "Copy blocked — select the prompt below" : "Preview Sidekick prompt"}</summary>
+        <pre>{prompt}</pre>
+      </details>
+    </>
   );
 }

@@ -2197,6 +2197,23 @@ kbd {
   min-width: 0;
 }
 .pack-asset-wide { grid-column: 1 / -1; }
+.sidekick-prompt { flex-basis: 100%; font-size: 12.5px; }
+.sidekick-prompt summary { cursor: pointer; color: var(--text-subdued); font-weight: 600; width: fit-content; }
+.sidekick-prompt pre {
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-hover);
+  font-family: var(--font);
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 260px;
+  overflow: auto;
+  user-select: all;
+}
 .pack-asset-label {
   display: block;
   font-size: 11px;
