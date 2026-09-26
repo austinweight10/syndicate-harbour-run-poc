@@ -75,11 +75,17 @@ export async function derivePersonas(
       currencyCode: "GBP",
       constraintsJson: JSON.stringify({
         sizes: ["L"],
+        colours: ["navy", "race"],
         mobileFirst: true,
         timePressure: true,
         deliveryBy: "race-morning",
       }),
-      behaviouralJson: JSON.stringify({ impulseVsDeliberate: "impulse", collectionFirstVsSearch: "collection" }),
+      behaviouralJson: JSON.stringify({
+        impulseVsDeliberate: "impulse",
+        collectionFirstVsSearch: "collection",
+        brief:
+          "Shops on mobile the morning of a London 5K/10K. Wants adult L race tee plus shorts or socks. Time-pressured — will abandon if size guide is buried.",
+      }),
       locationProxy: "London — Hyde Park / Battersea",
       mockFlagsJson: JSON.stringify(["time_pressure_hypothesis"]),
       successCriteriaJson: JSON.stringify({ minGoalsInCart: 2, reachCheckout: true }),
@@ -92,6 +98,20 @@ export async function derivePersonas(
       budgetMin: String(raceStats?.budgetMin ?? 50),
       budgetMax: String(raceStats?.budgetMax ?? 100),
       locationProxy: raceStats?.city ? `${raceStats.city} race cohort` : "London — Hyde Park / Battersea",
+      constraintsJson: JSON.stringify({
+        sizes: ["L"],
+        colours: ["navy", "race"],
+        mobileFirst: true,
+        timePressure: true,
+        deliveryBy: "race-morning",
+      }),
+      behaviouralJson: JSON.stringify({
+        impulseVsDeliberate: "impulse",
+        collectionFirstVsSearch: "collection",
+        brief:
+          "Shops on mobile the morning of a London 5K/10K. Wants adult L race tee plus shorts or socks. Time-pressured — will abandon if size guide is buried.",
+      }),
+      mockFlagsJson: JSON.stringify(["time_pressure_hypothesis"]),
     },
   });
 
@@ -108,10 +128,21 @@ export async function derivePersonas(
       budgetMin: String(wetStats?.budgetMin ?? 60),
       budgetMax: String(wetStats?.budgetMax ?? 130),
       currencyCode: "GBP",
-      constraintsJson: JSON.stringify({ sizes: ["M", "L"], mobileFirst: true, weatherAware: true }),
-      behaviouralJson: JSON.stringify({ impulseVsDeliberate: "deliberate", collectionFirstVsSearch: "search" }),
+      constraintsJson: JSON.stringify({
+        sizes: ["M", "L"],
+        colours: ["black", "olive"],
+        mobileFirst: true,
+        timePressure: false,
+        weatherAware: true,
+      }),
+      behaviouralJson: JSON.stringify({
+        impulseVsDeliberate: "deliberate",
+        collectionFirstVsSearch: "search",
+        brief:
+          "Midweek London rain. Buys a packable shell (± tee or midlayer). Search-first, compares waterproof claims and delivery before carting.",
+      }),
       locationProxy: "London — wet training",
-      mockFlagsJson: JSON.stringify(["weather_window_may_be_thin"]),
+      mockFlagsJson: JSON.stringify(["weather_window_may_be_thin", "weather_proxy_narrative"]),
       successCriteriaJson: JSON.stringify({ minGoalsInCart: 1, reachCheckout: true }),
       avatarInitials: "WW",
     },
@@ -121,6 +152,20 @@ export async function derivePersonas(
       goalsJson: JSON.stringify(wetGoals),
       budgetMin: String(wetStats?.budgetMin ?? 60),
       budgetMax: String(wetStats?.budgetMax ?? 130),
+      constraintsJson: JSON.stringify({
+        sizes: ["M", "L"],
+        colours: ["black", "olive"],
+        mobileFirst: true,
+        timePressure: false,
+        weatherAware: true,
+      }),
+      behaviouralJson: JSON.stringify({
+        impulseVsDeliberate: "deliberate",
+        collectionFirstVsSearch: "search",
+        brief:
+          "Midweek London rain. Buys a packable shell (± tee or midlayer). Search-first, compares waterproof claims and delivery before carting.",
+      }),
+      mockFlagsJson: JSON.stringify(["weather_window_may_be_thin", "weather_proxy_narrative"]),
     },
   });
 

@@ -209,6 +209,8 @@ export async function seedFixtures(
     const handle = asString(product.handle);
     productByHandle.set(handle, product);
     const tags = Array.isArray(product.tags) ? (product.tags as string[]).join(",") : null;
+    const variants = Array.isArray(product.variants) ? (product.variants as Json[]) : [];
+    const firstPrice = variants[0] ? asNumber(variants[0].price, NaN) : NaN;
     await prisma.productRow.create({
       data: {
         id: asString(product.id),
@@ -219,6 +221,9 @@ export async function seedFixtures(
         vendor: asString(product.vendor, "Harbour Run"),
         tags,
         status: "ACTIVE",
+        metafieldsJson: JSON.stringify({
+          fromPrice: Number.isFinite(firstPrice) ? firstPrice : null,
+        }),
         updatedAt: now,
       },
     });
@@ -529,7 +534,12 @@ export async function seedFixtures(
         budgetMax: money(row.budgetMax),
         currencyCode: asString(row.currencyCode, "GBP"),
         constraintsJson: JSON.stringify(row.constraints ?? {}),
-        behaviouralJson: JSON.stringify(row.behavioural ?? {}),
+        behaviouralJson: JSON.stringify({
+          ...(typeof row.behavioural === "object" && row.behavioural && !Array.isArray(row.behavioural)
+            ? row.behavioural
+            : {}),
+          ...(asString(row.brief) ? { brief: asString(row.brief) } : {}),
+        }),
         locationProxy: asString(row.locationProxy) || null,
         mockFlagsJson: JSON.stringify(row.mockFlags ?? []),
         successCriteriaJson: JSON.stringify(row.successCriteria ?? {}),
@@ -545,7 +555,12 @@ export async function seedFixtures(
         budgetMax: money(row.budgetMax),
         currencyCode: asString(row.currencyCode, "GBP"),
         constraintsJson: JSON.stringify(row.constraints ?? {}),
-        behaviouralJson: JSON.stringify(row.behavioural ?? {}),
+        behaviouralJson: JSON.stringify({
+          ...(typeof row.behavioural === "object" && row.behavioural && !Array.isArray(row.behavioural)
+            ? row.behavioural
+            : {}),
+          ...(asString(row.brief) ? { brief: asString(row.brief) } : {}),
+        }),
         locationProxy: asString(row.locationProxy) || null,
         mockFlagsJson: JSON.stringify(row.mockFlags ?? []),
         successCriteriaJson: JSON.stringify(row.successCriteria ?? {}),

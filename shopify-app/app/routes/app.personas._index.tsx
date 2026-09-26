@@ -63,7 +63,15 @@ export default function Personas() {
                     </div>
                     <span className={ready ? "pill pill-success pill-dot" : "pill"}>{personaStatusLabel(persona.status)}</span>
                   </div>
-                  {persona.goals.length > 0 ? (
+                  {persona.likelyProducts.length > 0 ? (
+                    <div className="tag-row">
+                      {persona.likelyProducts.slice(0, 3).map((product) => (
+                        <span key={product.title} className="tag tag-product">
+                          {product.title}
+                        </span>
+                      ))}
+                    </div>
+                  ) : persona.goals.length > 0 ? (
                     <div className="tag-row">
                       {persona.goals.map((goal) => (
                         <span key={goal} className="tag">
@@ -73,23 +81,35 @@ export default function Personas() {
                     </div>
                   ) : (
                     <p className="muted" style={{ margin: 0 }}>
-                      No goals yet.
+                      No product likes yet.
                     </p>
                   )}
                   <div className="persona-facts">
                     <span className="fact">
                       <Icon name="card" size={14} />
                       <span>
-                        £{persona.budgetMin.toFixed(0)}–£{persona.budgetMax.toFixed(0)} budget
+                        Usually £{persona.budgetMin.toFixed(0)}–£{persona.budgetMax.toFixed(0)}
                       </span>
                     </span>
                     <span className="fact">
                       <Icon name="pin" size={14} />
                       <span>{persona.locationProxy ?? "Anywhere"}</span>
                     </span>
+                    {persona.facts.shopStyle ? (
+                      <span className="fact">
+                        <Icon name="search" size={14} />
+                        <span>{persona.facts.shopStyle}</span>
+                      </span>
+                    ) : null}
+                    {persona.facts.device ? (
+                      <span className="fact">
+                        <Icon name="zap" size={14} />
+                        <span>{persona.facts.device}</span>
+                      </span>
+                    ) : null}
                     <span className="fact" style={{ gridColumn: "1 / -1" }}>
                       <Icon name="flag" size={14} />
-                      <span>{persona.eventName ?? "No occasion pinned"}</span>
+                      <span>{persona.eventName ? `Shopping for ${persona.eventName}` : "No occasion pinned yet"}</span>
                     </span>
                   </div>
                 </div>

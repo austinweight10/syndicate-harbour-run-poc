@@ -6,6 +6,7 @@ import { AgentNotices, RunAgentsControls } from "../components/RunAgents";
 import { Stub } from "../components/Stub";
 import { loadAgentGate } from "../services/agents/gate";
 import { loadPersonas } from "../services/board.server";
+import type { PersonaAttribute } from "../services/personas/attributes";
 import { currentShopId } from "../services/shop-context.server";
 
 export const meta: MetaFunction = () => [{ title: "Shopper · Syndicate" }];
@@ -22,6 +23,26 @@ const PATH: { icon: IconName; title: string; body: string; stop?: boolean }[] = 
   { icon: "cart", title: "Adds to cart", body: "Checks sizes, stock and delivery on the way." },
   { icon: "stop", title: "Stops before payment", body: "Checkout may open — nothing is ever charged.", stop: true },
 ];
+
+function TraitList({ items }: { items: PersonaAttribute[] }) {
+  if (items.length === 0) return null;
+  return (
+    <ul className="trait-list">
+      {items.map((row) => (
+        <li key={row.label} className="trait-item">
+          <span className="trait-icon" aria-hidden="true">
+            <Icon name={(row.icon as IconName | undefined) ?? "info"} size={16} />
+          </span>
+          <span className="trait-copy">
+            <strong>{row.label}</strong>
+            <span className="trait-value">{row.value}</span>
+            {row.source ? <span className="src-note">{row.source}</span> : null}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default function PersonaDetail() {
   const { persona, gate } = useLoaderData<typeof loader>();
@@ -63,32 +84,37 @@ export default function PersonaDetail() {
                 <span className={ready ? "pill pill-success pill-dot" : "pill"}>{personaStatusLabel(persona.status)}</span>
               </div>
             </div>
-            <div>
-              <p className="subhead" style={{ marginTop: 4 }}>
-                Goals
-              </p>
-              {persona.goals.length > 0 ? (
-                <div className="tag-row">
-                  {persona.goals.map((goal) => (
-                    <span key={goal} className="tag">
-                      {goal}
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <p className="muted">No goals yet.</p>
-              )}
-            </div>
-            <dl className="kv">
-              <dt>Budget</dt>
-              <dd>
-                £{persona.budgetMin.toFixed(0)}–£{persona.budgetMax.toFixed(0)}
-              </dd>
-              <dt>Location</dt>
-              <dd>{persona.locationProxy ?? "Anywhere"}</dd>
-              <dt>Occasion</dt>
-              <dd>{persona.eventName ?? "No occasion pinned"}</dd>
-            </dl>
+            {persona.brief ? <p className="persona-brief">{persona.brief}</p> : null}
+
+            {persona.sections.map((section) => (
+              <div key={section.id} className={`persona-section persona-section-${section.id}`}>
+                <p className="subhead">{section.title}</p>
+                <p className="persona-section-intro">{section.intro}</p>
+
+                {section.id === "products" && section.products && section.products.length > 0 ? (
+                  <ul className="product-like-list">
+                    {section.products.map((product) => (
+                      <li key={product.title} className="product-like">
+                        <span className="product-like-mark" aria-hidden="true">
+                          <Icon name="bag" size={16} />
+                        </span>
+                        <span className="product-like-copy">
+                          <strong>{product.title}</strong>
+                          <span className="product-like-meta">
+                            {product.fromPrice != null ? `From £${product.fromPrice.toFixed(0)}` : null}
+                            {product.fromPrice != null && product.productType ? " · " : null}
+                            {product.productType}
+                          </span>
+                          <span className="product-like-why">{product.why}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+
+                <TraitList items={section.items} />
+              </div>
+            ))}
           </div>
         </section>
 

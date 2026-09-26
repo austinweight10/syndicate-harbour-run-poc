@@ -17,8 +17,9 @@
       "vertical": "running",
       "avatarInitials": "RT",
       "goals": [
-        "Race tee (adult L)",
-        "Shorts or socks under \u00a345"
+        "Race Tee — Unisex",
+        "Running Shorts",
+        "Performance Socks"
       ],
       "budgetMin": 50,
       "budgetMax": 100,
@@ -67,8 +68,9 @@
       "vertical": "running",
       "avatarInitials": "WW",
       "goals": [
-        "Waterproof shell",
-        "Optional race tee or midlayer"
+        "Waterproof Shell Jacket",
+        "Half-Zip Midlayer",
+        "Race Tee — Unisex"
       ],
       "budgetMin": 60,
       "budgetMax": 130,
@@ -78,8 +80,13 @@
           "M",
           "L"
         ],
+        "colours": [
+          "black",
+          "olive"
+        ],
         "mobileFirst": true,
-        "timePressure": false
+        "timePressure": false,
+        "weatherAware": true
       },
       "behavioural": {
         "impulseVsDeliberate": "deliberate",
@@ -87,13 +94,14 @@
       },
       "locationProxy": "London metro",
       "mockFlags": [
-        "weather_proxy_narrative"
+        "weather_proxy_narrative",
+        "weather_window_may_be_thin"
       ],
       "successCriteria": {
         "minGoalsInCart": 1,
         "reachCheckout": true
       },
-      "brief": "Midweek London rain. Buys packable shell (\u00b1 tee). Weather is PROXY for Insights narrative \u2014 orders remain OBSERVED.",
+      "brief": "Midweek London rain. Buys a packable shell (\u00b1 tee or midlayer). Search-first, compares waterproof claims and delivery before carting.",
       "evidenceOrderCount": 12,
       "tags": [
         "Wet-weather",
