@@ -33,3 +33,6 @@ syndicate-graph-lab/out/
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code
+CLAUDE.md
