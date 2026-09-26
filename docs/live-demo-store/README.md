@@ -69,8 +69,10 @@ live-demo-store/
     orders-seed.json
     matrixify-orders.csv
     collections.md
-  images/
+  images/                       ← <handle>/<colour>.png, manifest.json, contact-sheet.png
   scripts/
+    seed_store.py               ← full seed (products, collections, images, customers, orders, menu)
+    render_product_images.mjs   ← renders images/ (+ product_image_templates.mjs)
     seed_orders.py
     seed_orders_via_api.md
   playwright/
@@ -127,9 +129,20 @@ Rules: [`PERSONA_DERIVATION.md`](./PERSONA_DERIVATION.md). London signal provena
 
 ## Images
 
-CSV `Image Src` uses public **placehold.co** HTTPS URLs so one-click import works without Files uploads.
+CSV `Image Src` still uses public **placehold.co** HTTPS URLs so a one-click CSV import works without Files uploads.
 
-Local PNGs under `images/` are for a nicer later swap: Admin → Content → Files → upload → paste CDN URLs back onto products.
+`images/<handle>/<colour>.png` (or `main.png`) are rendered flat-lay product images — one per product × colourway,
+1200×1200, original artwork (no third-party marks). `images/manifest.json` maps them to products/colours and
+`images/contact-sheet.png` shows the whole set. Regenerate with
+`node scripts/render_product_images.mjs` (Playwright from `shopify-app/`).
+
+`scripts/seed_store.py`'s `images` stage uploads them (staged upload → product media), links each colour
+variant to its image and detaches the old placehold.co media. Products in the manifest are created without
+the placeholder. Needs `write_files` on the seed app:
+
+```bash
+ONLY=products,collections,images python3 docs/live-demo-store/scripts/seed_store.py
+```
 
 ---
 

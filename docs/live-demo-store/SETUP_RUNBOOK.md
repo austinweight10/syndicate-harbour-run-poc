@@ -62,7 +62,7 @@ In Admin:
    - **Running Shorts** (`running-shorts`)
    - **Waterproof Shell Jacket** (`waterproof-shell-jacket`)
    - **Kids / Youth Run Tee** (`kids-youth-run-tee`) — **open PDP → confirm no Size guide section** (P0)
-4. Images are placehold.co placeholders. Optional later: upload `images/*.png` via **Content → Files**.
+4. A CSV import gives placehold.co placeholders. `seed_store.py`'s `images` stage swaps in the rendered `images/` set (see README → Images).
 
 
 ## 6) Create manual collections (exact handles)
