@@ -4,6 +4,7 @@ import { Icon } from "../components/Icon";
 import { ConfidenceRing, ProvenanceChips } from "../components/Provenance";
 import { Stub } from "../components/Stub";
 import { loadEventList } from "../services/board.server";
+import { TRENDING_CONFIDENCE } from "../services/content-pack/types";
 import { currentShopId } from "../services/shop-context.server";
 
 export const meta: MetaFunction = () => [{ title: "Occasions · Syndicate" }];
@@ -14,6 +15,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function EventsIndex() {
   const events = useLoaderData<typeof loader>();
+  const trendingCount = events.filter((event) => event.confidence >= TRENDING_CONFIDENCE).length;
   return (
     <Stub
       title="Occasions"
@@ -47,43 +49,67 @@ export default function EventsIndex() {
           </div>
         </section>
       ) : (
-        <div className="event-grid stagger">
-          {events.map((event) => (
-            <article key={event.id} className="card card-link event-card">
-              <div className="card-body">
-                <div className="event-card-top">
-                  <div style={{ minWidth: 0 }}>
-                    <p className="eyebrow">{event.archetype.replaceAll("_", " ")}</p>
-                    <h2>
-                      <Link to={`/app/events/${event.id}`} className="stretched">
-                        {event.name}
+        <>
+          {trendingCount > 0 ? (
+            <div className="banner" role="status">
+              <Icon name="sparkles" size={15} />{" "}
+              {trendingCount === 1
+                ? "1 occasion is trending — launch a marketing pack (blog, banner, email, segments) in one click."
+                : `${trendingCount} occasions are trending — launch a marketing pack (blog, banner, email, segments) in one click.`}
+            </div>
+          ) : null}
+          <div className="event-grid stagger">
+            {events.map((event) => {
+              const trending = event.confidence >= TRENDING_CONFIDENCE;
+              return (
+                <article
+                  key={event.id}
+                  className={`card card-link event-card${trending ? " event-card-trending" : ""}`}
+                >
+                  <div className="card-body">
+                    <div className="event-card-top">
+                      <div style={{ minWidth: 0 }}>
+                        <p className="eyebrow">
+                          {event.archetype.replaceAll("_", " ")}
+                          {trending ? <span className="pill pill-success event-trending-pill">Trending</span> : null}
+                        </p>
+                        <h2>
+                          <Link to={`/app/events/${event.id}`} className="stretched">
+                            {event.name}
+                          </Link>
+                        </h2>
+                      </div>
+                      <ConfidenceRing value={event.confidence} size={66} stroke={7} />
+                    </div>
+                    <div className="meta-row">
+                      <span className="meta-item">
+                        <Icon name="pin" size={13} /> {event.city ?? "No venue"}
+                      </span>
+                      <span className="meta-item">
+                        <Icon name="bag" size={13} /> {event.nOrders} orders
+                      </span>
+                      {event.windowLabel ? (
+                        <span className="meta-item">
+                          <Icon name="clock" size={13} /> {event.windowLabel}
+                        </span>
+                      ) : null}
+                    </div>
+                    <p className="blurb">{event.blurb}</p>
+                    <div className="event-card-foot">
+                      <ProvenanceChips kinds={event.provenance} />
+                      {event.lowN ? <span className="tag tag-warn">Early signal</span> : null}
+                    </div>
+                    {trending ? (
+                      <Link to={`/app/events/${event.id}`} className="button button-small event-pack-cta">
+                        <Icon name="zap" size={13} /> Launch marketing pack
                       </Link>
-                    </h2>
+                    ) : null}
                   </div>
-                  <ConfidenceRing value={event.confidence} size={66} stroke={7} />
-                </div>
-                <div className="meta-row">
-                  <span className="meta-item">
-                    <Icon name="pin" size={13} /> {event.city ?? "No venue"}
-                  </span>
-                  <span className="meta-item">
-                    <Icon name="bag" size={13} /> {event.nOrders} orders
-                  </span>
-                  {event.windowLabel ? (
-                    <span className="meta-item">
-                      <Icon name="clock" size={13} /> {event.windowLabel}
-                    </span>
-                  ) : null}
-                </div>
-                <p className="blurb">{event.blurb}</p>
-                <div className="event-card-foot">
-                  <ProvenanceChips kinds={event.provenance} />
-                  {event.lowN ? <span className="tag tag-warn">Early signal</span> : null}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+                </article>
+              );
+            })}
+          </div>
+        </>
       )}
     </Stub>
   );
