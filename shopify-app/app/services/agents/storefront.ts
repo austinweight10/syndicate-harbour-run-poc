@@ -5,12 +5,18 @@
  */
 const PLACEHOLDER = "https://harbour-run-demo.myshopify.com";
 
+/** "shop.myshopify.com" → "https://shop.myshopify.com"; trailing slash dropped. */
+function normalise(url: string): string {
+  const withScheme = /^https?:\/\//i.test(url) ? url : `https://${url}`;
+  return withScheme.replace(/\/$/, "");
+}
+
 export function resolveStorefrontUrl(saved: string | null | undefined): string | null {
   const fromEnv = process.env.SHOP_STOREFRONT_URL?.trim();
-  if (fromEnv) return fromEnv.replace(/\/$/, "");
+  if (fromEnv) return normalise(fromEnv);
   const fromShop = saved?.trim();
-  if (!fromShop || fromShop.replace(/\/$/, "") === PLACEHOLDER) return null;
-  return fromShop.replace(/\/$/, "");
+  if (!fromShop || normalise(fromShop) === PLACEHOLDER) return null;
+  return normalise(fromShop);
 }
 
 /** Headed Chromium when a display exists, unless AGENTS_HEADED forces it. */

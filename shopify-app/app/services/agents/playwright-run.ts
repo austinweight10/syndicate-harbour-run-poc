@@ -119,9 +119,22 @@ export async function executeAgentRun(runId: string, client: PrismaClient = pris
       await page.goto(storefront, { waitUntil: "domcontentloaded" });
       const password = page.locator("input[name=password]");
       if (await password.count()) {
-        await password.fill(process.env.SHOP_STOREFRONT_PASSWORD);
-        const enter = page.getByText("Enter", { exact: false });
-        if (await enter.count()) await enter.first().click();
+        // Dawn hides the field behind "Enter using password"; the dev-store page shows it.
+        if (!(await password.first().isVisible())) {
+          const reveal = page.getByText("Enter using password", { exact: false });
+          if (await reveal.count()) await reveal.first().click();
+        }
+        await password.first().fill(process.env.SHOP_STOREFRONT_PASSWORD);
+        // Submit the form itself. getByText("Enter") also matches the
+        // "Enter store password" label, which does not submit.
+        await Promise.all([
+          page.waitForLoadState("domcontentloaded"),
+          password.first().press("Enter"),
+        ]);
+        await page.waitForURL((url) => !url.pathname.startsWith("/password"), { timeout: 8000 }).catch(() => {});
+        if (new URL(page.url()).pathname.startsWith("/password")) {
+          throw new Error("Storefront password was not accepted. Check SHOP_STOREFRONT_PASSWORD.");
+        }
         log("password_gate", true, "Storefront password only. Not a customer account.");
       }
     }
@@ -245,13 +258,28 @@ async function runStep(
   throw new Error(last);
 }
 
+/** Dawn's mobile header keeps the main menu inside a closed drawer. */
+const MENU_TOGGLE = "header-drawer summary, summary[aria-label='Menu']";
+
 async function clickHint(page: import("playwright").Page, hint: string) {
   const role = hint.match(/^role=(\w+)\[name=(.+)\]$/);
-  const locator = role
-    ? page.getByRole(role[1] as "link", { name: role[2] }).first()
+  const matches = role
+    ? page.getByRole(role[1] as "link", { name: role[2] })
     : hint.startsWith("text=")
-      ? page.getByText(hint.slice(5), { exact: false }).first()
-      : page.locator(hint).first();
+      ? page.getByText(hint.slice(5), { exact: false })
+      : page.locator(hint);
+  // The first DOM match is often a hidden copy (drawer vs desktop nav), so
+  // prefer a visible one. If the only copies are in the closed mobile drawer,
+  // open it once and look again.
+  const visible = matches.filter({ visible: true });
+  if ((await visible.count()) === 0 && (await matches.count()) > 0) {
+    const toggle = page.locator(MENU_TOGGLE).filter({ visible: true }).first();
+    if (await toggle.count()) {
+      await toggle.click();
+      await visible.first().waitFor({ state: "visible", timeout: 3000 }).catch(() => {});
+    }
+  }
+  const locator = visible.first();
   await locator.waitFor({ state: "visible", timeout: 8000 });
   const label = (await locator.innerText().catch(() => "")) || hint;
   const href = await locator.getAttribute("href").catch(() => null);
