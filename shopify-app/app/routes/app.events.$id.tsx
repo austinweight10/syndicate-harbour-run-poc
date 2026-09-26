@@ -152,6 +152,7 @@ export default function EventDetailPage() {
         trending={trending}
         drafting={drafting && !pack}
         shopDomain={shopId}
+        occasion={{ name: detail.name, windowLabel: detail.windowLabel, city: detail.city }}
       />
 
       <section className="card">
