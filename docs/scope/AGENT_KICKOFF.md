@@ -2,7 +2,8 @@
 
 **Date:** 26 Sep 2026 · Europe/London  
 **Product:** Syndicate — occasion-commerce intelligence for Shopify Admin (sports + athleisure)  
-**Status:** **BUILD GREENLIT** · start Phase 0 → epic 01 · live-data wire is hard DoD
+**Status:** **BUILD GREENLIT** · start Phase 0 → epic 01 · live-data wire is hard DoD  
+**Pitch Day (Sat 26 Sep):** operational hour plan → [`HACKATHON_PDAY_PLAN.md`](./HACKATHON_PDAY_PLAN.md)
 
 ---
 
@@ -59,6 +60,7 @@ UI **cannot** merge with fixture-only Insights. Detail: [`LIVE_DATA_WIRE.md`](./
 ## Reading order (exactly)
 
 1. **This file** — `scope/AGENT_KICKOFF.md`
+1a. **`scope/HACKATHON_PDAY_PLAN.md`** — **Sat Pitch Day hour plan** (T1/T2/T3 ladder · Austin vs build tracks)
 2. `scope/LIVE_DATA_WIRE.md` — **UI↔DB hard DoD**
 2b. `scope/RUN_AGENTS_UI_CONTRACT.md` — **Run agents → real Playwright** (P0)
 2c. `scope/LIVE_DEMO_GATE.md` + `scope/HOLES_PLUGGED.md` + `scope/PLAN_HOLES_DELTA.md` — PoC bar + plugged holes

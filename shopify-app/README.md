@@ -53,6 +53,18 @@ Then, in the browser:
 
 `dev:demo` sets `DEMO_FIXTURE_SHOP=1` and listens on port **44731**. That flag uses the same loaders as a connected shop. It does not call Partner OAuth.
 
+## Host on Fly.io
+
+Fixture demo (no Partner keys). From repo root, after `fly auth login`:
+
+```bash
+./shopify-app/scripts/fly-deploy.sh
+```
+
+That creates app `syndicate-harbour-run`, a 1GB SQLite volume, sets `SHOPIFY_APP_URL`, and deploys. Open `https://syndicate-harbour-run.fly.dev/app`.
+
+Playwright Chromium is not in the image — Admin + `pipeline:demo` only. Agents stay local or on the stub.
+
 ## Checks
 
 ```bash

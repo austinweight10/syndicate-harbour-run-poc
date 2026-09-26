@@ -4,7 +4,8 @@
 **Product:** Syndicate  
 **Store pack:** [`../live-demo-store/`](../live-demo-store/)  
 **Vertical:** **RUNNING** (Harbour Run) — football kits are no longer the primary demo story  
-**Rule:** Do **not** claim a live demo until every **P0** box is ticked. Fixture / MOCK paths remain legal **only** when labelled.
+**Rule:** Do **not** claim a live demo until every **P0** box is ticked. Fixture / MOCK paths remain legal **only** when labelled.  
+**Day plan:** [`HACKATHON_PDAY_PLAN.md`](./HACKATHON_PDAY_PLAN.md) (T3 = this gate signed · T2 = stub PoC · T1 = wire + labelled MOCK).
 
 ---
 

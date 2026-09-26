@@ -78,3 +78,5 @@ Open [Admin prototype](http://127.0.0.1:43123). OAuth is not connected there.
 ## Specs
 
 Start at [`docs/scope/AGENT_KICKOFF.md`](docs/scope/AGENT_KICKOFF.md). Harbour Run context: [`docs/live-demo-store/PIVOT_RUNNING.md`](docs/live-demo-store/PIVOT_RUNNING.md).
+
+**Pitch Day (Sat):** [`docs/scope/HACKATHON_PDAY_PLAN.md`](docs/scope/HACKATHON_PDAY_PLAN.md) — hour-by-hour T1/T2/T3 ladder.

@@ -3,7 +3,8 @@
 **Date:** 26 Sep 2026 · Europe/London  
 **Audience:** Weekend coding agents + Austin (Hackathon lead)  
 **Status:** **BUILD GREENLIT** — implement epics on Origin per AGENT_KICKOFF / BUILD_ORDER  
-**Entry:** [AGENT_KICKOFF.md](./AGENT_KICKOFF.md) · [BUILD_ORDER.md](./BUILD_ORDER.md) · [LIVE_DATA_WIRE.md](./LIVE_DATA_WIRE.md) · [RUN_AGENTS_UI_CONTRACT.md](./RUN_AGENTS_UI_CONTRACT.md) · [AI_CALL_CONTRACT.md](./AI_CALL_CONTRACT.md) · [LIVE_DEMO_GATE.md](./LIVE_DEMO_GATE.md) · [`../live-demo-store/`](../live-demo-store/)
+**Entry:** [AGENT_KICKOFF.md](./AGENT_KICKOFF.md) · [BUILD_ORDER.md](./BUILD_ORDER.md) · [LIVE_DATA_WIRE.md](./LIVE_DATA_WIRE.md) · [RUN_AGENTS_UI_CONTRACT.md](./RUN_AGENTS_UI_CONTRACT.md) · [AI_CALL_CONTRACT.md](./AI_CALL_CONTRACT.md) · [LIVE_DEMO_GATE.md](./LIVE_DEMO_GATE.md) · [`../live-demo-store/`](../live-demo-store/)  
+**Pitch Day (Sat):** [HACKATHON_PDAY_PLAN.md](./HACKATHON_PDAY_PLAN.md) — hour-by-hour T1/T2/T3 ladder · Austin clicks ∥ build close
 
 ---
 

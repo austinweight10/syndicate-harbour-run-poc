@@ -1,0 +1,47 @@
+# fly.toml app configuration file generated for Syndicate Harbour Run PoC
+#
+# Deploy from repo root:
+#   fly deploy
+#
+# First-time (after `fly auth login`):
+#   fly apps create syndicate-harbour-run
+#   fly volumes create syndicate_data --region lhr --size 1 -a syndicate-harbour-run
+#   fly secrets set SHOPIFY_APP_URL=https://syndicate-harbour-run.fly.dev -a syndicate-harbour-run
+
+app = "syndicate-harbour-run"
+primary_region = "lhr"
+
+[build]
+  dockerfile = "shopify-app/Dockerfile"
+
+[env]
+  DEMO_FIXTURE_SHOP = "1"
+  DATABASE_URL = "file:/data/dev.db"
+  PORT = "8080"
+  HOST = "0.0.0.0"
+  SCOPES = "read_orders,read_products,read_customers"
+  NODE_ENV = "production"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+  [[http_service.checks]]
+    interval = "15s"
+    timeout = "5s"
+    grace_period = "60s"
+    method = "GET"
+    path = "/health"
+
+[[mounts]]
+  source = "syndicate_data"
+  destination = "/data"
+  initial_size = "1gb"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1024mb"

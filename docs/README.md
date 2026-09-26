@@ -9,6 +9,8 @@
 
 Coding agents start at [`scope/AGENT_KICKOFF.md`](./scope/AGENT_KICKOFF.md) and follow [`scope/BUILD_ORDER.md`](./scope/BUILD_ORDER.md) + [`scope/SDD_PLAYBOOK.md`](./scope/SDD_PLAYBOOK.md) using paste-ready prompts in [`epics/PROMPTS/`](./epics/PROMPTS/).
 
+**Pitch Day (Sat 26 Sep):** hour-by-hour operational plan → [`scope/HACKATHON_PDAY_PLAN.md`](./scope/HACKATHON_PDAY_PLAN.md).
+
 **Hard DoD — live data wire:** Admin UI loaders must read EventCandidates and Insights/Frictions from **Prisma/SQLite** written by the pipeline — not static HTML, not route-imported fixture JSON. Spec: [`scope/LIVE_DATA_WIRE.md`](./scope/LIVE_DATA_WIRE.md).
 
 Cloud Agents **BUILD** the app. Playwright runs merchant shoppers. Cloud Agents do **not** run `PipelineRun`s as runtime.

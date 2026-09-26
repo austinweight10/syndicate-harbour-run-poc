@@ -45,6 +45,7 @@ Visual / IA source of truth remains `../ui/*.html` + `../ui/SCOPE_UI.md`. Planni
 | Doc | Purpose |
 |-----|---------|
 | [AGENT_KICKOFF.md](./AGENT_KICKOFF.md) | **Weekend entry** for coding agents — reading order, locked decisions, DoD, escalation |
+| [HACKATHON_PDAY_PLAN.md](./HACKATHON_PDAY_PLAN.md) | **Pitch Day (Sat 26 Sep)** — hour-by-hour plan, T1/T2/T3 success ladder, Austin vs build tracks |
 | [WEEKEND_BUILD_SPEC.md](./WEEKEND_BUILD_SPEC.md) | Tight Sat–Sun builder brief (In/Out, stages, merge gates) — **BUILD GREENLIT** |
 | [LIVE_DATA_WIRE.md](./LIVE_DATA_WIRE.md) | **Hard DoD** — single write (pipeline→SQLite) · single read (loaders→Prisma) · anti-patterns |
 | [AI_CALL_CONTRACT.md](./AI_CALL_CONTRACT.md) | **What AI the app calls** — call sites, providers, caps, templates-first, forbidden LangGraph/LLM-browser |
@@ -70,8 +71,9 @@ Visual / IA source of truth remains `../ui/*.html` + `../ui/SCOPE_UI.md`. Planni
 ## Suggested reader order (for Austin or a build lead)
 
 1. **`AGENT_KICKOFF.md`** — start here for weekend agents (GREENLIT)  
-1a. `LIVE_DATA_WIRE.md` — UI↔DB hard DoD  
-1b. `WEEKEND_BUILD_SPEC.md` + `AI_CALL_CONTRACT.md` — weekend brief + what AI is called  
+1a. **`HACKATHON_PDAY_PLAN.md`** — Sat Pitch Day hour plan (if today is demo day)  
+1b. `LIVE_DATA_WIRE.md` — UI↔DB hard DoD  
+1c. `WEEKEND_BUILD_SPEC.md` + `AI_CALL_CONTRACT.md` — weekend brief + what AI is called  
 2. `BUILD_ORDER.md` + `SDD_PLAYBOOK.md` + `FIXTURES_MANIFEST.md`  
 3. `PLAN_COMPLETENESS.md` — know the score and gaps  
 4. `RISKS_AND_DECISIONS.md` — locked A5/A6/A15; remaining A1/A3/A4/A7  
