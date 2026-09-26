@@ -214,6 +214,7 @@ async function publishToShopify(
         body: assets.blog.bodyHtml,
         summary: assets.blog.summary,
         isPublished: true,
+        author: { name: "Harbour Run" },
       },
     },
   );
