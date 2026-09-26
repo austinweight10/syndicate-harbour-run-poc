@@ -172,8 +172,9 @@ export async function drainLivePipeline(prisma: PrismaClient, pipelineRunId: str
     const msg = error instanceof Error ? error.message : "pipeline failed";
     const failed = (run.currentStage as PipelineStage) || "store_makeup";
     stages = mark(stages, failed, "failed", msg);
-    await prisma.pipelineRun.update({
-      where: { id: pipelineRunId },
+    // updateMany: the run may be gone (uninstall wipe) or cancelled mid-drain — don't resurrect or throw.
+    await prisma.pipelineRun.updateMany({
+      where: { id: pipelineRunId, status: { notIn: ["cancelled"] } },
       data: {
         status: "failed",
         failedStage: failed,
@@ -192,8 +193,13 @@ export function kickLivePipelineDrain(prisma: PrismaClient, pipelineRunId: strin
   if (pumping) return;
   pumping = true;
   setTimeout(() => {
-    void drainLivePipeline(prisma, pipelineRunId).finally(() => {
-      pumping = false;
-    });
+    void drainLivePipeline(prisma, pipelineRunId)
+      .catch((error) => {
+        // Fire-and-forget: an unhandled rejection here would kill the server process.
+        console.error("pipeline.drain_failed", pipelineRunId, error instanceof Error ? error.message : error);
+      })
+      .finally(() => {
+        pumping = false;
+      });
   }, 200);
 }
