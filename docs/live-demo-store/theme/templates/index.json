@@ -1,0 +1,335 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Harbour Run",
+            "heading_size": "hxxl"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "London race kit for wet mornings and Saturday start lines.",
+            "text_style": "subtitle"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop Race Kits",
+            "button_link_1": "shopify://collections/race-kits",
+            "button_style_secondary_1": false,
+            "button_label_2": "Wet-weather training",
+            "button_link_2": "shopify://collections/wet-weather-training",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "top-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false,
+        "image": "shopify://shop_images/hr-life-01-hero-fog-hill.jpg"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "race-kits",
+        "products_to_show": 8,
+        "title": "Race Kits",
+        "heading_size": "h1",
+        "description": "<p>Tee, shorts, socks — the Saturday basket.</p>",
+        "show_description": true,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "midweek": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Midweek miles",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Tuesday rain, Thursday dark, the same loop you've run a hundred times. Layers that pack small and dry fast.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop wet-weather training",
+            "button_link": "shopify://collections/wet-weather-training",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/hr-life-02-training-group-cobbles.jpg",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "race_season": {
+      "type": "collage",
+      "blocks": {
+        "img": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/hr-life-04-race-street-blur.jpg"
+          }
+        },
+        "c_essentials": {
+          "type": "collection",
+          "settings": {
+            "collection": "race-day-essentials"
+          }
+        },
+        "c_trail": {
+          "type": "collection",
+          "settings": {
+            "collection": "trail"
+          }
+        }
+      },
+      "block_order": [
+        "img",
+        "c_essentials",
+        "c_trail"
+      ],
+      "settings": {
+        "heading": "Race season",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "none",
+        "color_scheme": "scheme-2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "stride": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Every stride, every weather",
+            "heading_size": "h1"
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Browse the catalogue",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "buttons"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/hr-life-09-detail-stride-shadow.jpg",
+        "image_overlay_opacity": 10,
+        "image_height": "small",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-right",
+        "desktop_content_alignment": "right",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      }
+    },
+    "stories": {
+      "type": "multicolumn",
+      "blocks": {
+        "c1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/hr-life-07-story-track-rest.jpg",
+            "title": "After the session",
+            "text": "<p>Ten minutes on the infield once the reps are done. Something warm to pull on.</p>",
+            "link_label": "Long-sleeve tops",
+            "link": "shopify://collections/long-sleeve-tops"
+          }
+        },
+        "c2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/hr-life-08-story-aid-station.jpg",
+            "title": "The long days",
+            "text": "<p>Aid stations, salt and the last ten miles. Carry what you need and nothing more.</p>",
+            "link_label": "Accessories",
+            "link": "shopify://collections/accessories"
+          }
+        },
+        "c3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/hr-life-03-training-track-curve.jpg",
+            "title": "Track nights",
+            "text": "<p>Lap after lap on the bend. Light kit for fast sessions.</p>",
+            "link_label": "Shorts",
+            "link": "shopify://collections/shorts"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "title": "Before, during, after",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "portrait",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "lane_one": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "First race?",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Start in lane one",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Everything for your first start line, from singlets to split shorts, in one place.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop the race collection",
+            "button_link": "shopify://collections/race",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "caption",
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/hr-life-10-detail-lane-one.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "featured_collection",
+    "midweek",
+    "race_season",
+    "stride",
+    "stories",
+    "lane_one"
+  ]
+}

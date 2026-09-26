@@ -1,0 +1,90 @@
+{
+  "licence": {
+    "name": "Unsplash License",
+    "url": "https://unsplash.com/license",
+    "summary": "Free for commercial and non-commercial use; attribution not required. Images may not be sold without significant modification or compiled into a competing service. No model or property releases are supplied."
+  },
+  "note": "Lifestyle photography only; none of it shows Harbour Run product. Keep it on banners, collection headers and story tiles, never beside product cards. Files are resized from the Unsplash originals (3200px long edge, JPEG q82).",
+  "images": [
+    {
+      "file": "hr-life-01-hero-fog-hill.jpg",
+      "slot": "Homepage hero",
+      "alt": "A lone runner climbs a grassy hill path into morning fog",
+      "photographer": "Lucas Canino",
+      "source": "https://unsplash.com/photos/a-man-running-down-a-trail-in-the-mountains-MFCzJQoFXzc",
+      "original_px": "7422x4639"
+    },
+    {
+      "file": "hr-life-02-training-group-cobbles.jpg",
+      "slot": "Training",
+      "alt": "A group of runners heads away down a cobbled city street, black and white",
+      "photographer": "Lukáš Lehotský",
+      "source": "https://unsplash.com/photos/a-group-of-people-running-down-a-brick-road-Z7e_2bGnVn4",
+      "original_px": "2997x4495"
+    },
+    {
+      "file": "hr-life-03-training-track-curve.jpg",
+      "slot": "Training · track",
+      "alt": "A runner rounds the bend of an empty red running track",
+      "photographer": "Zhivko Minkov",
+      "source": "https://unsplash.com/photos/man-running-on-a-red-track-with-white-lines-2nUwx5QSJ84",
+      "original_px": "6960x4640"
+    },
+    {
+      "file": "hr-life-04-race-street-blur.jpg",
+      "slot": "Race",
+      "alt": "Two runners race down a city street past a blur of spectators, black and white",
+      "photographer": "Jorgen Hendriksen",
+      "source": "https://unsplash.com/photos/runners-sprint-down-a-street-in-motion-3xxG3Mw7nOg",
+      "original_px": "4000x6000"
+    },
+    {
+      "file": "hr-life-05-race-pack-blur.jpg",
+      "slot": "Race · atmosphere",
+      "alt": "A pack of race runners streams past spectators in motion blur, black and white",
+      "photographer": "Ayla Meinberg",
+      "source": "https://unsplash.com/photos/blurred-runners-race-past-spectators-on-street-uKZr44AI9OQ",
+      "original_px": "5655x3770"
+    },
+    {
+      "file": "hr-life-06-trail-hillside.jpg",
+      "slot": "Trail",
+      "alt": "A runner climbs a steep grassy hillside against low sun",
+      "photographer": "Venti Views",
+      "source": "https://unsplash.com/photos/woman-running-on-los-angeles-hillside-H9xlJ23Vx8U",
+      "original_px": "4672x7008"
+    },
+    {
+      "file": "hr-life-07-story-track-rest.jpg",
+      "slot": "Editorial story",
+      "alt": "A runner sits on a running track after a session, seen from behind, black and white",
+      "photographer": "Leonardo Iribe",
+      "source": "https://unsplash.com/photos/athlete-resting-on-a-running-track-sY1WAP31WwQ",
+      "original_px": "3283x3840"
+    },
+    {
+      "file": "hr-life-08-story-aid-station.jpg",
+      "slot": "Editorial story",
+      "alt": "A tired runner rests on the ground at an aid station, black and white",
+      "photographer": "Zero",
+      "source": "https://unsplash.com/photos/a-tired-runner-rests-on-the-ground-Ua9awTSsjTM",
+      "original_px": "2771x4254"
+    },
+    {
+      "file": "hr-life-09-detail-stride-shadow.jpg",
+      "slot": "Supporting detail · movement",
+      "alt": "A runner's legs mid-stride with a long shadow on the road, black and white",
+      "photographer": "Mathias Reding",
+      "source": "https://unsplash.com/photos/runners-legs-in-motion-with-a-long-shadow-G96xGokbTUM",
+      "original_px": "7008x4672"
+    },
+    {
+      "file": "hr-life-10-detail-lane-one.jpg",
+      "slot": "Supporting detail · texture",
+      "alt": "Lane one painted on a worn red running track",
+      "photographer": "Ben Soyka",
+      "source": "https://unsplash.com/photos/a-red-track-with-a-white-arrow-painted-on-it-yWLfld6ErDY",
+      "original_px": "5793x3862"
+    }
+  ]
+}
