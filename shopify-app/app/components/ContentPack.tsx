@@ -11,11 +11,13 @@ export function ContentPackPanel({
   pack,
   trending,
   drafting,
+  shopDomain,
   occasion,
 }: {
   pack: PackView | null;
   trending: boolean;
   drafting?: boolean;
+  shopDomain?: string;
   occasion: OccasionForSidekick;
 }) {
   const fetcher = useFetcher<Result>();
@@ -67,6 +69,8 @@ export function ContentPackPanel({
   const error = fetcher.data && !fetcher.data.ok ? fetcher.data.message : failed ? pack.errorMessage : null;
   const needsWrite = Boolean(error) && /write_content|write_customers|write_products/i.test(error ?? "");
   const { assets } = pack;
+  const storeOrigin = shopDomain ? `https://${shopDomain}` : "";
+  const pageUrl = pack.pagePath && storeOrigin ? `${storeOrigin}${pack.pagePath}` : pack.pagePath;
 
   return (
     <section className={`card pack-card${applied ? " pack-card-applied" : ""}`}>
@@ -96,7 +100,7 @@ export function ContentPackPanel({
           <article className="pack-asset">
             <span className="pack-asset-label">Page</span>
             <strong>{assets.page.title}</strong>
-            <p className="muted">/{assets.page.handle}</p>
+            <p className="muted">/pages/{assets.page.handle}</p>
           </article>
           <article className="pack-asset">
             <span className="pack-asset-label">Banner</span>
@@ -150,6 +154,10 @@ export function ContentPackPanel({
                   {pendingIntent === "apply_pack" ? "Publishing…" : "Publish to Shopify for real"}
                 </button>
               </fetcher.Form>
+            ) : pageUrl ? (
+              <a className="button button-quiet button-small" href={pageUrl} target="_blank" rel="noreferrer">
+                Open storefront page <Icon name="arrowRight" size={13} />
+              </a>
             ) : null}
             <fetcher.Form method="post">
               <input type="hidden" name="intent" value="undo_pack" />
@@ -192,10 +200,17 @@ export function ContentPackPanel({
             <SidekickHandoff pack={pack} occasion={occasion} />
           </div>
         )}
+        {applied && !pack.simulated && pack.pagePath ? (
+          <p className="action-note muted">
+            Storefront page: <code>{pageUrl ?? pack.pagePath}</code>
+            {" · "}
+            {pack.resultMessage}
+          </p>
+        ) : null}
         {applied && pack.simulated && pack.resultMessage ? (
           <p className="action-note muted">
             {pack.resultMessage} Click <strong>Publish to Shopify for real</strong> — Shopify will ask you to approve
-            page and segment access, then the storefront URL will work.
+            page and segment access, then open <code>/pages/…</code> on the storefront.
           </p>
         ) : null}
         {error ? (
