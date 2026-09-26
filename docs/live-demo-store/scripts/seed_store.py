@@ -37,6 +37,7 @@ Optional:
   ONLY=products,collections   run a subset of stages
   DRY_RUN=1                   print the plan, no network calls
   LIMIT=N                     seed only the first N orders
+  IMAGE_HANDLES=a,b             images stage: only these product handles
   ORDER_INTERVAL=12.5         seconds between orders (dev stores: 5 orders/min)
   FORCE_IMAGES=1              re-upload product images even if already present
   IMAGE_TIMEOUT=240           seconds to wait for uploaded media to be READY
@@ -1052,6 +1053,12 @@ def seed_images(api: Shopify | None, dry: bool, product_ids: dict[str, str]) -> 
     products = load_products()
     force = os.environ.get("FORCE_IMAGES", "").strip().lower() in ("1", "true", "yes")
     with_images = [p for p in products if p["handle"] in manifest]
+    only = {h.strip() for h in os.environ.get("IMAGE_HANDLES", "").split(",") if h.strip()}
+    if only:
+        unknown = only - {p["handle"] for p in with_images}
+        if unknown:
+            die(f"IMAGE_HANDLES not in the image manifest: {sorted(unknown)}")
+        with_images = [p for p in with_images if p["handle"] in only]
     print(f"\n== images ({len(with_images)} products, "
           f"{sum(len(manifest[p['handle']]['images']) for p in with_images)} files"
           f"{', FORCE' if force else ''})")
