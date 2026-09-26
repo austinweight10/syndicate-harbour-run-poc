@@ -95,7 +95,8 @@
       ],
       "expect": "PDP",
       "optional": true,
-      "note": "Prefer stay in Race Kits; else goto /products/running-shorts"
+      "note": "Prefer stay in Race Kits; else goto /products/running-shorts",
+      "fallbackGoto": "/products/running-shorts"
     },
     {
       "id": "select_size_l_shorts",

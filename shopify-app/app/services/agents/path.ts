@@ -7,6 +7,8 @@ export type PathStep = {
   target?: string;
   selectorHint?: string;
   fallbackHints?: string[];
+  /** Storefront path to open when every click hint fails (e.g. the product page). */
+  fallbackGoto?: string;
   optional?: boolean;
   expect?: string;
   note?: string;

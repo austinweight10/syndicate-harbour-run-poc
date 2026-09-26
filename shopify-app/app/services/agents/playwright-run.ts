@@ -107,6 +107,9 @@ export async function executeAgentRun(runId: string, client: PrismaClient = pris
     const page = await browser.newPage({
       viewport: path.viewport,
       locale: "en-GB",
+      // Dawn skips scroll/fade animations under reduced motion; animating
+      // banners otherwise intercept clicks on their own buttons.
+      reducedMotion: "reduce",
     });
     page.setDefaultTimeout(8000);
     const started = Date.now();
@@ -238,7 +241,7 @@ async function runStep(
     return;
   }
   const hints = [step.selectorHint, ...(step.fallbackHints ?? [])].filter((hint): hint is string => Boolean(hint));
-  let last = "no selector";
+  const tried: string[] = [];
   for (const hint of hints) {
     try {
       await clickHint(page, hint);
@@ -252,10 +255,17 @@ async function runStep(
       return;
     } catch (error) {
       if (error instanceof DeniedClickError) throw error;
-      last = error instanceof Error ? error.message : "click failed";
+      const message = error instanceof Error ? error.message.split("\n")[0] : "click failed";
+      tried.push(`${hint}: ${message}`);
     }
   }
-  throw new Error(last);
+  if (step.fallbackGoto) {
+    const url = `${storefront}${step.fallbackGoto.startsWith("/") ? "" : "/"}${step.fallbackGoto}`;
+    if (isDeniedUrl(url)) throw new DeniedClickError(url);
+    await page.goto(url, { waitUntil: "domcontentloaded" });
+    return;
+  }
+  throw new Error(tried.length ? tried.join(" | ") : "no selector");
 }
 
 /** Dawn's mobile header keeps the main menu inside a closed drawer. */
@@ -263,29 +273,58 @@ const MENU_TOGGLE = "header-drawer summary, summary[aria-label='Menu']";
 
 async function clickHint(page: import("playwright").Page, hint: string) {
   const role = hint.match(/^role=(\w+)\[name=(.+)\]$/);
+  // Radios match exactly so size "L" does not also hit "XL"; links stay loose
+  // ("Race Kits" should find "Shop Race Kits" when the menu is collapsed).
   const matches = role
-    ? page.getByRole(role[1] as "link", { name: role[2] })
+    ? page.getByRole(role[1] as "link", { name: role[2], exact: role[1] === "radio" })
     : hint.startsWith("text=")
       ? page.getByText(hint.slice(5), { exact: false })
       : page.locator(hint);
-  // The first DOM match is often a hidden copy (drawer vs desktop nav), so
-  // prefer a visible one. If the only copies are in the closed mobile drawer,
-  // open it once and look again.
   const visible = matches.filter({ visible: true });
-  if ((await visible.count()) === 0 && (await matches.count()) > 0) {
+
+  // The first DOM match is often a hidden copy (drawer vs desktop nav). If the
+  // only copies are in the closed mobile drawer, open it and look again.
+  const openDrawer = async () => {
     const toggle = page.locator(MENU_TOGGLE).filter({ visible: true }).first();
-    if (await toggle.count()) {
-      await toggle.click();
-      await visible.first().waitFor({ state: "visible", timeout: 3000 }).catch(() => {});
+    if (!(await toggle.count())) return false;
+    await toggle.click();
+    await visible.first().waitFor({ state: "visible", timeout: 3000 }).catch(() => {});
+    return true;
+  };
+  if ((await visible.count()) === 0 && (await matches.count()) > 0) await openDrawer();
+  await visible.first().waitFor({ state: "visible", timeout: 8000 });
+
+  // Try up to three visible copies: a hero CTA can be covered by its own
+  // banner while a menu link with the same name is fine.
+  let lastError: unknown = null;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const count = Math.min(await visible.count(), 3);
+    for (let index = 0; index < count; index += 1) {
+      let locator = visible.nth(index);
+      // Dawn animates its variant radios ("element is not stable"); the label
+      // is what a shopper actually taps.
+      if (role?.[1] === "radio") {
+        const id = await locator.getAttribute("id").catch(() => null);
+        if (id) {
+          const label = page.locator(`label[for="${id.replace(/"/g, '\\"')}"]`).filter({ visible: true }).first();
+          if (await label.count()) locator = label;
+        }
+      }
+      const text = (await locator.innerText().catch(() => "")) || hint;
+      const href = await locator.getAttribute("href").catch(() => null);
+      if (isCardField(hint) || isCardField(text)) throw new DeniedClickError(text);
+      if (isDeniedTarget(text, href)) throw new DeniedClickError(text);
+      try {
+        await locator.click({ timeout: 4000 });
+        return;
+      } catch (error) {
+        lastError = error;
+      }
     }
+    // Every visible copy was blocked: fall back to the menu drawer's copy.
+    if (attempt === 0 && !(await openDrawer())) break;
   }
-  const locator = visible.first();
-  await locator.waitFor({ state: "visible", timeout: 8000 });
-  const label = (await locator.innerText().catch(() => "")) || hint;
-  const href = await locator.getAttribute("href").catch(() => null);
-  if (isCardField(hint) || isCardField(label)) throw new DeniedClickError(label);
-  if (isDeniedTarget(label, href)) throw new DeniedClickError(label);
-  await locator.click({ timeout: 8000 });
+  throw lastError instanceof Error ? lastError : new Error(`No clickable match for ${hint}`);
 }
 
 async function writeFindings(
