@@ -52,7 +52,14 @@ body {
     );
 }
 
-.banner .banner__content,
+/* Keep Dawn's stacking: the image overlay (.banner::after) is z-index 1 and
+   stays in the hit-test path even at 0% opacity, so content must sit above it
+   (Dawn uses 2) or the banner buttons can't be clicked. */
+.banner .banner__content {
+  position: relative;
+  z-index: 2;
+}
+
 .banner .banner__box {
   position: relative;
   z-index: 1;
