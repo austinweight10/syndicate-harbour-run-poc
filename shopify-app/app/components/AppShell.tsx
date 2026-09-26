@@ -38,7 +38,7 @@ export function AppShell({
               width={32}
               height={32}
             />
-            <img src="/brand/syndicate-lockup-white.svg" alt="Syndicate" width={180} height={36} />
+            <img src="/brand/syndicate-lockup-white.svg" alt="Syndicate" width={180} height={44} />
           </picture>
         </div>
         <div className="topbar-shop">

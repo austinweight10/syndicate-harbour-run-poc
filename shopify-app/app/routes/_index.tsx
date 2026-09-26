@@ -32,7 +32,7 @@ export default function Index() {
   return (
     <main className="landing">
       <h1 className="landing-logo">
-        <img src="/brand/syndicate-lockup-charcoal.svg" alt="Syndicate" width={240} height={48} />
+        <img src="/brand/syndicate-lockup-charcoal.svg" alt="Syndicate" width={240} height={58} />
       </h1>
       <p>
         Occasion intelligence for a running shop. Connect Shopify Admin, or open the Harbour Run
