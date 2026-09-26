@@ -25,6 +25,7 @@ export default function AppLayout() {
         <s-link href="/app/events">Occasions</s-link>
         <s-link href="/app/personas">Shoppers</s-link>
         <s-link href="/app/artifacts">Insights</s-link>
+        <s-link href="/app/impact">Impact</s-link>
         <s-link href="/app/graph">Evidence</s-link>
         <s-link href="/app/runs">Shopper runs</s-link>
         <s-link href="/app/settings">Settings</s-link>

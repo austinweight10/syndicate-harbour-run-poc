@@ -345,7 +345,8 @@ export async function loadRuns(shopId: string) {
       rawStatus: run.status,
       outcome: run.outcome,
       progressPct: run.progressPct,
-      replay: run.id.includes("mock"),
+      // Demo-scenario runs (scripts/impact-demo.ts) are not live browses either.
+      replay: run.id.includes("mock") || run.id.startsWith("run_demo_"),
       pathId: timeline.pathId,
       headed: timeline.headed,
       browser: timeline.browser,
