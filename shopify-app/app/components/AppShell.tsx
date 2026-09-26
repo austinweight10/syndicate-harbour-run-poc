@@ -31,8 +31,15 @@ export function AppShell({
     <div className="app-shell">
       <header className="topbar">
         <div className="topbar-brand">
-          <div className="brand-mark" aria-hidden="true">SY</div>
-          <span className="brand-name">Syndicate</span>
+          <picture className="brand-logo">
+            <source
+              media="(max-width: 720px)"
+              srcSet="/brand/syndicate-symbol-white.svg"
+              width={32}
+              height={32}
+            />
+            <img src="/brand/syndicate-lockup-white.svg" alt="Syndicate" width={180} height={36} />
+          </picture>
         </div>
         <div className="topbar-shop">
           <span className="shop-domain">{shop.domain}</span>

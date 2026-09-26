@@ -31,8 +31,9 @@ export default function Index() {
   const data = useLoaderData<typeof loader>();
   return (
     <main className="landing">
-      <div className="brand-mark" aria-hidden="true">SY</div>
-      <h1>Syndicate</h1>
+      <h1 className="landing-logo">
+        <img src="/brand/syndicate-lockup-charcoal.svg" alt="Syndicate" width={240} height={48} />
+      </h1>
       <p>
         Occasion intelligence for a running shop. Connect Shopify Admin, or open the Harbour Run
         fixture without a Partner store.
