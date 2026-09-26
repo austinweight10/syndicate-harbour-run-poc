@@ -1,4 +1,12 @@
 import prisma from "../db.server";
+import {
+  parsePersonaJson,
+  parseProductMeta,
+  personaBrief,
+  personaFactLabels,
+  personaProfileSections,
+  type CatalogueProduct,
+} from "./personas/attributes";
 
 export type ProvenanceKind = "OBSERVED" | "AGGREGATE_PROXY" | "MODEL_HYPOTHESIS" | "MOCK";
 
@@ -18,7 +26,16 @@ function parseLabels(raw: string | null | undefined): string[] {
   if (!raw) return [];
   try {
     const parsed = JSON.parse(raw) as unknown;
-    return Array.isArray(parsed) ? parsed.map(String) : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((item) => {
+        if (typeof item === "string") return item;
+        if (item && typeof item === "object" && "title" in item) {
+          return String((item as { title: unknown }).title ?? "");
+        }
+        return "";
+      })
+      .filter(Boolean);
   } catch {
     return [];
   }
@@ -262,22 +279,65 @@ export async function loadBoard(shopId: string): Promise<{ insights: BoardCard[]
 }
 
 export async function loadPersonas(shopId: string) {
-  const personas = await prisma.persona.findMany({ where: { shopId }, orderBy: { name: "asc" } });
-  const events = await prisma.eventCandidate.findMany({ where: { shopId } });
+  const [personas, events, products] = await Promise.all([
+    prisma.persona.findMany({ where: { shopId }, orderBy: { name: "asc" } }),
+    prisma.eventCandidate.findMany({ where: { shopId } }),
+    prisma.productRow.findMany({ where: { shopId } }),
+  ]);
   const eventName = new Map(events.map((event) => [event.id, event.name]));
-  return personas.map((persona) => ({
-    id: persona.id,
-    name: persona.name,
-    status: persona.status,
-    initials: persona.avatarInitials ?? persona.name.slice(0, 2).toUpperCase(),
-    vertical: persona.vertical,
-    goals: parseLabels(persona.goalsJson),
-    budgetMin: Number(persona.budgetMin),
-    budgetMax: Number(persona.budgetMax),
-    locationProxy: persona.locationProxy,
-    eventName: persona.primaryEventId ? eventName.get(persona.primaryEventId) ?? null : null,
-    stub: persona.status === "stub",
-  }));
+  const catalogue: CatalogueProduct[] = products.map((product) => {
+    const meta = parseProductMeta(product.metafieldsJson);
+    return {
+      id: product.id,
+      title: product.title,
+      handle: product.handle,
+      productType: product.productType,
+      tags: product.tags ? product.tags.split(",").map((tag) => tag.trim()).filter(Boolean) : [],
+      fromPrice: meta.fromPrice,
+    };
+  });
+  return personas.map((persona) => {
+    const eventLabel = persona.primaryEventId ? eventName.get(persona.primaryEventId) ?? null : null;
+    const { constraints, behavioural, mockFlags } = parsePersonaJson(persona);
+    const budgetMin = Number(persona.budgetMin);
+    const budgetMax = Number(persona.budgetMax);
+    const goals = parseLabels(persona.goalsJson);
+    const sections =
+      persona.status === "stub"
+        ? []
+        : personaProfileSections({
+            goals,
+            catalogue,
+            budgetMin,
+            budgetMax,
+            locationProxy: persona.locationProxy,
+            eventName: eventLabel,
+            constraints,
+            behavioural,
+            mockFlags,
+          });
+    const facts = personaFactLabels({ constraints, behavioural });
+    const likelyProducts = sections.find((section) => section.id === "products")?.products ?? [];
+    const productLabels = likelyProducts.map((product) => product.title).filter(Boolean);
+    return {
+      id: persona.id,
+      name: persona.name,
+      status: persona.status,
+      initials: persona.avatarInitials ?? persona.name.slice(0, 2).toUpperCase(),
+      vertical: persona.vertical,
+      goals,
+      productLabels,
+      budgetMin,
+      budgetMax,
+      locationProxy: persona.locationProxy,
+      eventName: eventLabel,
+      brief: personaBrief(constraints, behavioural),
+      sections,
+      likelyProducts,
+      facts,
+      stub: persona.status === "stub",
+    };
+  });
 }
 
 type TimelineStep = { id: string; ok: boolean; note?: string; at?: string };

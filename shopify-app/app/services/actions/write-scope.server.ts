@@ -39,7 +39,10 @@ export async function ensureWriteProducts(request: Request, shopId: string): Pro
   await scopes.request([WRITE_SCOPE]);
 }
 
-/** Request content + customers + products writes for marketing pack deploy. */
+/**
+ * Ensure the install can create pages, blogs, segments and product metafields.
+ * Always escalates missing marketing writes — never soft-fail into a simulated pack.
+ */
 export async function ensureMarketingWrites(request: Request, shopId: string): Promise<void> {
   if (process.env.DEMO_FIXTURE_SHOP === "1") return;
 
@@ -61,7 +64,7 @@ export async function ensureMarketingWrites(request: Request, shopId: string): P
     });
     if (hasMarketingWriteScopes(normalized)) return;
     const missing = missingMarketingWriteScopes(normalized);
-    if (missing.length > 0) await scopes.request(missing);
+    await scopes.request(missing.length ? missing : [...MARKETING_WRITE_SCOPES]);
     return;
   }
 

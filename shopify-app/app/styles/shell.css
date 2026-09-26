@@ -966,6 +966,10 @@ a.kpi:hover .kpi-arrow { opacity: 1; transform: none; }
 .event-card h2 a { color: var(--charcoal); }
 .event-card .blurb { color: #4a443e; margin: 0; font-size: 13.5px; }
 .event-card-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid #f0ebe3; }
+.event-card-trending { border-left: 3px solid var(--primary); }
+.event-card .eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.event-trending-pill { font-size: 10px; letter-spacing: 0.02em; text-transform: none; font-weight: 650; }
+.event-pack-cta { align-self: flex-start; margin-top: 2px; }
 
 .featured-strip {
   display: grid;
@@ -1076,6 +1080,132 @@ a.kpi:hover .kpi-arrow { opacity: 1; transform: none; }
 }
 .fact .icon { color: #a0968a; }
 .fact span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.persona-brief {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-subdued);
+}
+
+.persona-section { display: flex; flex-direction: column; gap: 8px; }
+.persona-section .subhead { margin-top: 6px; margin-bottom: 0; }
+.persona-section-intro {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--text-subdued);
+}
+.tag-product {
+  background: #f3eee6;
+  border-color: #e5ddd2;
+  font-weight: 600;
+}
+
+.product-like-list,
+.trait-list {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.product-like,
+.trait-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--bg-sunken);
+  border: 1px solid #efe9e0;
+}
+.product-like-mark,
+.trait-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid #efe9e0;
+  color: var(--text-subdued);
+}
+.product-like-copy,
+.trait-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.product-like-copy strong,
+.trait-copy strong {
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--charcoal);
+}
+.product-like-meta {
+  font-size: 12px;
+  color: var(--text-subdued);
+}
+.product-like-why,
+.trait-value {
+  font-size: 12.5px;
+  line-height: 1.35;
+  color: var(--text);
+}
+.trait-copy .src-note { margin-top: 2px; }
+
+.persona-section-products .product-like-mark { color: #5a4a3a; }
+.persona-section-behaviours .trait-icon { color: #3d5a4a; }
+.persona-section-predictions .trait-icon { color: #4a5570; }
+
+.persona-kv { display: grid; gap: 0; margin: 0; font-size: 13px; }
+.persona-kv .kv-row {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 8px 14px;
+  padding: 9px 0;
+  border-top: 1px solid #efe9e0;
+}
+.persona-kv .kv-row:first-child { border-top: 0; padding-top: 2px; }
+.persona-kv dt { color: var(--text-subdued); padding-top: 1px; }
+.persona-kv dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.persona-kv .kv-value { font-weight: 600; }
+.persona-kv .src-note {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-subdued);
+}
+
+.src-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid #e5ddd2;
+  color: var(--text-subdued);
+  background: #f7f3ec;
+  line-height: 1.2;
+}
+.src-obs { color: #1f6b45; background: #e8f6ee; border-color: #c6e6d2; }
+.src-agg { color: #2f5f8a; background: #eaf3fb; border-color: #c9dff1; }
+.src-proxy { color: #6a4f12; background: #f8f0d8; border-color: #ead9a4; }
+.src-hyp { color: #6b3f78; background: #f4ebf7; border-color: #e0cce8; }
+.src-mock { color: #7a3b1e; background: #f8ebe3; border-color: #ebc9b4; }
 
 .profile { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 20px; align-items: start; }
 

@@ -39,28 +39,57 @@ async function resolveTarget(shopId: string): Promise<Target | { error: string }
   const shop = await prisma.shop.findUnique({ where: { id: shopId } });
   if (!shop) return { error: "Shop not found." };
   const demo = process.env.DEMO_FIXTURE_SHOP === "1" || shop.accessToken === FIXTURE_ACCESS_TOKEN;
-  if (demo) {
-    const domain = process.env.SHOPIFY_STORE_DOMAIN?.trim();
-    const token = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN?.trim();
-    if (domain && token) return { mode: "shopify", domain, token };
-    return { mode: "simulated", reason: "Demo shop — no Admin token, so Shopify was not changed." };
+
+  // Prefer a custom Admin token when set — used for demo fixture → real store writes.
+  const overrideDomain = process.env.SHOPIFY_STORE_DOMAIN?.trim();
+  const overrideToken = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN?.trim();
+  if (overrideDomain && overrideToken) {
+    return { mode: "shopify", domain: overrideDomain, token: overrideToken };
   }
-  if (!hasMarketingWriteScopes(shop.scopes)) {
+
+  if (demo) {
     return {
-      error:
-        "Syndicate needs write_content, write_customers and write_products to publish a marketing pack. Click Deploy again to approve.",
+      mode: "simulated",
+      reason: "Demo fixture shop — set SHOPIFY_ADMIN_ACCESS_TOKEN to publish to a real storefront.",
     };
   }
   if (!shop.accessToken) return { error: "Shop is disconnected. Reinstall Syndicate." };
+  if (!hasMarketingWriteScopes(shop.scopes)) {
+    return {
+      error:
+        "Syndicate needs permission to create pages, blogs and customer segments. Click Publish again — Shopify will ask you to approve write access.",
+    };
+  }
   return { mode: "shopify", domain: shop.myshopifyDomain, token: shop.accessToken };
 }
 
 export async function applyPack(shopId: string, packId: string): Promise<PackApplyResult> {
-  const claimed = await prisma.contentPack.updateMany({
-    where: { id: packId, shopId, status: { in: ["proposed", "failed", "reverted"] } },
-    data: { status: "applying", errorMessage: null },
-  });
-  if (claimed.count !== 1) return { ok: false, message: "This pack is already applied or in progress." };
+  const existing = await prisma.contentPack.findFirst({ where: { id: packId, shopId } });
+  if (!existing) return { ok: false, message: "Pack not found." };
+
+  // Allow a second Publish after a simulated save so the merchant can go live
+  // once write_content / write_customers are granted.
+  let simulatedPrior = false;
+  if (existing.status === "applied" && existing.resultJson) {
+    try {
+      simulatedPrior = Boolean((JSON.parse(existing.resultJson) as { simulated?: boolean }).simulated);
+    } catch {
+      simulatedPrior = false;
+    }
+  }
+  const rePublish = existing.status === "applied" && simulatedPrior;
+  if (!rePublish) {
+    const claimed = await prisma.contentPack.updateMany({
+      where: { id: packId, shopId, status: { in: ["proposed", "failed", "reverted"] } },
+      data: { status: "applying", errorMessage: null },
+    });
+    if (claimed.count !== 1) return { ok: false, message: "This pack is already applied or in progress." };
+  } else {
+    await prisma.contentPack.update({
+      where: { id: packId },
+      data: { status: "applying", errorMessage: null },
+    });
+  }
   const pack = await prisma.contentPack.findUniqueOrThrow({ where: { id: packId } });
   const assets = parseAssets(pack.assetsJson);
 
@@ -79,8 +108,14 @@ export async function applyPack(shopId: string, packId: string): Promise<PackApp
         adminGraphql<T>(target.domain, target.token, query, variables, { retries: 1 });
       const published = await publishToShopify(gql, assets);
       undo = published.undo;
-      message = "Live in Shopify Admin — blog, page, banner, email draft and segments.";
-      resultExtra = { links: published.links };
+      message = "Live on your Shopify storefront — blog, page, banner, email draft and segments.";
+      resultExtra = {
+        links: published.links,
+        pagePath: `/pages/${assets.page.handle}`,
+        blogPath: published.links.article
+          ? `/blogs/news/${published.links.article}`
+          : `/blogs/news/${assets.blog.handle}`,
+      };
     }
     await prisma.contentPack.update({
       where: { id: packId },
@@ -179,6 +214,7 @@ async function publishToShopify(
         body: assets.blog.bodyHtml,
         summary: assets.blog.summary,
         isPublished: true,
+        author: { name: "Harbour Run" },
       },
     },
   );

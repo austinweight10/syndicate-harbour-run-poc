@@ -55,8 +55,10 @@ test("marketing pack drafts blog, page, banner, email and persona segments", asy
   assert.equal(applied.ok, true);
   assert.equal(applied.ok && applied.simulated, true);
 
+  // Simulated packs can be re-published once scopes/token are available.
   const again = await applyPack(DEMO_SHOP_DOMAIN, row!.id);
-  assert.equal(again.ok, false);
+  assert.equal(again.ok, true);
+  assert.equal(again.ok && again.simulated, true);
 
   const undone = await undoPack(DEMO_SHOP_DOMAIN, row!.id);
   assert.equal(undone.ok, true);

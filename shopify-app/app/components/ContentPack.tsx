@@ -8,10 +8,12 @@ export function ContentPackPanel({
   pack,
   trending,
   drafting,
+  shopDomain,
 }: {
   pack: PackView | null;
   trending: boolean;
   drafting?: boolean;
+  shopDomain?: string;
 }) {
   const fetcher = useFetcher<Result>();
   const busy = fetcher.state !== "idle";
@@ -62,6 +64,8 @@ export function ContentPackPanel({
   const error = fetcher.data && !fetcher.data.ok ? fetcher.data.message : failed ? pack.errorMessage : null;
   const needsWrite = Boolean(error) && /write_content|write_customers|write_products/i.test(error ?? "");
   const { assets } = pack;
+  const storeOrigin = shopDomain ? `https://${shopDomain}` : "";
+  const pageUrl = pack.pagePath && storeOrigin ? `${storeOrigin}${pack.pagePath}` : pack.pagePath;
 
   return (
     <section className={`card pack-card${applied ? " pack-card-applied" : ""}`}>
@@ -69,7 +73,11 @@ export function ContentPackPanel({
         <div className="action-head">
           <p className="eyebrow" style={{ margin: 0 }}>
             <Icon name={applied ? "check" : "sparkles"} size={13} />{" "}
-            {applied ? "Marketing pack live" : "Marketing pack"}
+            {applied
+              ? pack.simulated
+                ? "Pack saved in Syndicate"
+                : "Marketing pack live on Shopify"
+              : "Marketing pack"}
           </p>
           <span className="prov prov-mock" title="Template pack — British English Harbour Run copy">
             Template
@@ -87,7 +95,7 @@ export function ContentPackPanel({
           <article className="pack-asset">
             <span className="pack-asset-label">Page</span>
             <strong>{assets.page.title}</strong>
-            <p className="muted">/{assets.page.handle}</p>
+            <p className="muted">/pages/{assets.page.handle}</p>
           </article>
           <article className="pack-asset">
             <span className="pack-asset-label">Banner</span>
@@ -126,8 +134,26 @@ export function ContentPackPanel({
         {applied ? (
           <div className="action-row">
             <span className={`pill ${pack.simulated ? "pill-warn" : "pill-success"}`}>
-              {pack.simulated ? "Simulated — demo shop" : "Live in Shopify"}
+              {pack.simulated ? "Simulated — not on storefront yet" : "Live on Shopify"}
             </span>
+            {pack.simulated ? (
+              <fetcher.Form method="post">
+                <input type="hidden" name="intent" value="apply_pack" />
+                <input type="hidden" name="packId" value={pack.id} />
+                <button className="button" type="submit" disabled={busy} data-apply-pack>
+                  {pendingIntent === "apply_pack" ? (
+                    <span className="spinner spinner-light" aria-hidden="true" />
+                  ) : (
+                    <Icon name="zap" size={14} />
+                  )}
+                  {pendingIntent === "apply_pack" ? "Publishing…" : "Publish to Shopify for real"}
+                </button>
+              </fetcher.Form>
+            ) : pageUrl ? (
+              <a className="button button-quiet button-small" href={pageUrl} target="_blank" rel="noreferrer">
+                Open storefront page <Icon name="arrowRight" size={13} />
+              </a>
+            ) : null}
             <fetcher.Form method="post">
               <input type="hidden" name="intent" value="undo_pack" />
               <input type="hidden" name="packId" value={pack.id} />
@@ -167,8 +193,18 @@ export function ContentPackPanel({
             </fetcher.Form>
           </div>
         )}
+        {applied && !pack.simulated && pack.pagePath ? (
+          <p className="action-note muted">
+            Storefront page: <code>{pageUrl ?? pack.pagePath}</code>
+            {" · "}
+            {pack.resultMessage}
+          </p>
+        ) : null}
         {applied && pack.simulated && pack.resultMessage ? (
-          <p className="action-note muted">{pack.resultMessage}</p>
+          <p className="action-note muted">
+            {pack.resultMessage} Click <strong>Publish to Shopify for real</strong> — Shopify will ask you to approve
+            page and segment access, then open <code>/pages/…</code> on the storefront.
+          </p>
         ) : null}
         {error ? (
           <p className="action-error" role="alert">
