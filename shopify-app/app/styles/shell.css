@@ -2047,3 +2047,40 @@ kbd {
 .action-row form { margin: 0; }
 .action-note { margin: 10px 0 0; font-size: 12.5px; }
 .action-error { margin: 10px 0 0; color: var(--kit-red); font-size: 13px; display: flex; gap: 6px; align-items: flex-start; }
+
+/* Occasion marketing pack */
+.pack-card { border-left: 3px solid var(--primary); }
+.pack-card-applied { border-left-color: #059669; }
+.pack-panel-empty { display: flex; align-items: center; gap: 8px; }
+.pack-title { margin: 4px 0 6px; font-size: 18px; }
+.pack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+.pack-asset {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-hover);
+  min-width: 0;
+}
+.pack-asset-wide { grid-column: 1 / -1; }
+.pack-asset-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-subdued);
+  margin-bottom: 4px;
+}
+.pack-asset strong { display: block; font-size: 14px; margin-bottom: 2px; }
+.pack-asset .muted { margin: 0; font-size: 12.5px; }
+.pack-segments { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.pack-segments li { display: grid; gap: 2px; }
+.pack-segments .muted { font-size: 12.5px; }
+@media (max-width: 720px) {
+  .pack-grid { grid-template-columns: 1fr; }
+  .pack-asset-wide { grid-column: auto; }
+}

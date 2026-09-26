@@ -132,10 +132,10 @@ export default function Overview() {
                 </div>
                 <div className="hero-actions">
                   <Link to={`/app/events/${data.hero.id}`} className="button button-light">
-                    Open occasion <Icon name="arrowRight" size={15} />
+                    <Icon name="zap" size={15} /> Launch marketing pack
                   </Link>
-                  <Link to="/app/graph" className="button button-glass">
-                    <Icon name="graph" size={15} /> See the evidence
+                  <Link to={`/app/events/${data.hero.id}`} className="button button-glass">
+                    Open occasion <Icon name="arrowRight" size={15} />
                   </Link>
                 </div>
               </div>

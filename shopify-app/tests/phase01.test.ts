@@ -28,7 +28,7 @@ test("fixtures parse and golden score schema is valid", () => {
   assert.match(golden, /Match-day home kit rush/);
 });
 
-test("shopify.app.toml — reads required; write_products optional for Deploy", () => {
+test("shopify.app.toml — reads required; write scopes optional for Deploy", () => {
   const toml = readFileSync(path.join(root, "shopify.app.toml"), "utf8");
   const match = toml.match(/scopes\s*=\s*"([^"]+)"/);
   assert.ok(match);
@@ -37,7 +37,10 @@ test("shopify.app.toml — reads required; write_products optional for Deploy", 
     match[1].split(",").filter((scope) => scope.startsWith("write_")),
     [],
   );
-  assert.match(toml, /optional_scopes\s*=\s*\[\s*"write_products"\s*\]/);
+  assert.match(toml, /write_products/);
+  assert.match(toml, /write_content/);
+  assert.match(toml, /write_customers/);
+  assert.match(toml, /optional_scopes\s*=/);
 });
 
 test("app source does not fetch twitter or parkrun", () => {
