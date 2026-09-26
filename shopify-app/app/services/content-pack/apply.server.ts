@@ -39,22 +39,21 @@ async function resolveTarget(shopId: string): Promise<Target | { error: string }
   const shop = await prisma.shop.findUnique({ where: { id: shopId } });
   if (!shop) return { error: "Shop not found." };
   const demo = process.env.DEMO_FIXTURE_SHOP === "1" || shop.accessToken === FIXTURE_ACCESS_TOKEN;
-  if (demo) {
-    const domain = process.env.SHOPIFY_STORE_DOMAIN?.trim();
-    const token = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN?.trim();
-    if (domain && token) return { mode: "shopify", domain, token };
-    return { mode: "simulated", reason: "Demo shop — no Admin token, so Shopify was not changed." };
-  }
-  if (!shop.accessToken) return { error: "Shop is disconnected. Reinstall Syndicate." };
 
-  // Custom Admin token (same as storefront actions) can publish even when OAuth
-  // optional scopes aren't granted yet.
+  // Prefer a custom Admin token when set — used for demo fixture → real store writes.
   const overrideDomain = process.env.SHOPIFY_STORE_DOMAIN?.trim();
   const overrideToken = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN?.trim();
   if (overrideDomain && overrideToken) {
     return { mode: "shopify", domain: overrideDomain, token: overrideToken };
   }
 
+  if (demo) {
+    return {
+      mode: "simulated",
+      reason: "Demo fixture shop — set SHOPIFY_ADMIN_ACCESS_TOKEN to publish to a real storefront.",
+    };
+  }
+  if (!shop.accessToken) return { error: "Shop is disconnected. Reinstall Syndicate." };
   if (!hasMarketingWriteScopes(shop.scopes)) {
     return {
       error:
@@ -109,8 +108,14 @@ export async function applyPack(shopId: string, packId: string): Promise<PackApp
         adminGraphql<T>(target.domain, target.token, query, variables, { retries: 1 });
       const published = await publishToShopify(gql, assets);
       undo = published.undo;
-      message = "Live in Shopify Admin — blog, page, banner, email draft and segments.";
-      resultExtra = { links: published.links };
+      message = "Live on your Shopify storefront — blog, page, banner, email draft and segments.";
+      resultExtra = {
+        links: published.links,
+        pagePath: `/pages/${assets.page.handle}`,
+        blogPath: published.links.article
+          ? `/blogs/news/${published.links.article}`
+          : `/blogs/news/${assets.blog.handle}`,
+      };
     }
     await prisma.contentPack.update({
       where: { id: packId },

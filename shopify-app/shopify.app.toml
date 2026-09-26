@@ -5,10 +5,10 @@ application_url = "https://syndicate-harbour-run.fly.dev"
 embedded = true
 
 [access_scopes]
-# Reads are required at install. Writes are optional so Deploy can request
-# them when the merchant ships a storefront fix or marketing pack.
-scopes = "read_orders,read_products,read_customers"
-optional_scopes = [ "write_products", "write_content", "write_customers" ]
+# Live installs need content + customer writes so marketing packs publish for real
+# (blog, pages, segments) — not a simulated Syndicate-only save.
+scopes = "read_orders,read_products,read_customers,write_products,write_content,write_customers"
+optional_scopes = []
 
 [auth]
 redirect_urls = [ "https://syndicate-harbour-run.fly.dev/auth/callback", "http://127.0.0.1:44731/auth/callback" ]

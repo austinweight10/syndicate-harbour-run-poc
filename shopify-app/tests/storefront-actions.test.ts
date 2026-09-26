@@ -25,6 +25,13 @@ test("scopes accept the read set with optional product/content/customer writes",
   assert.equal(hasWriteScope("read_orders,read_products"), false);
 });
 
+test("APP_SCOPES includes marketing writes for live publish", async () => {
+  const { APP_SCOPES } = await import("../app/scopes");
+  assert.match(APP_SCOPES, /write_content/);
+  assert.match(APP_SCOPES, /write_customers/);
+  assert.match(APP_SCOPES, /write_products/);
+});
+
 test("every board card gets a one-click action; deploy and undo round-trip", async () => {
   const { default: prisma } = await import("../app/db.server");
   const { runDemoPipeline } = await import("../app/services/pipeline/run-demo");
@@ -119,5 +126,19 @@ test("validation rejects invented handles and unsafe size-guide HTML", async () 
       catalogue,
     ) ?? "",
     /already in/,
+  );
+  assert.match(
+    validateDraft(
+      {
+        ...base,
+        params: {
+          type: "collection_feature_product",
+          collectionHandle: "kids-youth",
+          productHandle: "kids-youth-run-tee",
+        },
+      },
+      catalogue,
+    ) ?? "",
+    /already first/i,
   );
 });

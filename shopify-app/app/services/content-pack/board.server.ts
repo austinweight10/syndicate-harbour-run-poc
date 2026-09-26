@@ -11,6 +11,7 @@ export type PackView = {
   errorMessage: string | null;
   simulated: boolean;
   resultMessage: string | null;
+  pagePath: string | null;
   appliedAt: string | null;
   assets: ContentPackAssets;
   personaIds: string[];
@@ -29,12 +30,13 @@ export async function loadPackView(shopId: string, eventId: string): Promise<Pac
   } catch {
     personaIds = [];
   }
-  let result: { simulated?: boolean; message?: string } = {};
+  let result: { simulated?: boolean; message?: string; pagePath?: string } = {};
   try {
     result = row.resultJson ? (JSON.parse(row.resultJson) as typeof result) : {};
   } catch {
     result = {};
   }
+  const pagePath = result.pagePath ?? `/pages/${assets.page.handle}`;
   return {
     id: row.id,
     eventId: row.eventId,
@@ -45,12 +47,13 @@ export async function loadPackView(shopId: string, eventId: string): Promise<Pac
     errorMessage: row.errorMessage,
     simulated: Boolean(result.simulated),
     resultMessage: result.message ?? null,
+    pagePath,
     appliedAt: row.appliedAt?.toISOString() ?? null,
     assets,
     personaIds,
     preview: [
       { label: "Blog", value: assets.blog.title },
-      { label: "Page", value: assets.page.title },
+      { label: "Page", value: pagePath },
       { label: "Banner", value: assets.banner.headline },
       { label: "Email", value: assets.email.subject },
       {

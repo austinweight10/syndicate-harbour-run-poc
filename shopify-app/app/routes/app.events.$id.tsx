@@ -26,7 +26,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const trending = Boolean(detail && detail.confidence >= TRENDING_CONFIDENCE);
   const drafting = detail && trending ? await kickPackDraft(shopId, detail.id, detail.confidence) : false;
   const pack = detail ? await loadPackView(shopId, detail.id) : null;
-  return { detail, gate, pack, trending, drafting };
+  return { detail, gate, pack, trending, drafting, shopId };
 }
 
 export async function action({ request, params }: ActionFunctionArgs) {
@@ -42,12 +42,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
     return { ok: true as const, message: "Marketing pack drafted." };
   }
   if (intent === "apply_pack" || intent === "undo_pack") {
-    try {
-      await ensureMarketingWrites(request, shopId);
-    } catch (error) {
-      // Scope consent redirects must propagate; anything else falls through to apply.
-      if (error instanceof Response && error.status >= 300 && error.status < 400) throw error;
-    }
+    await ensureMarketingWrites(request, shopId);
     return intent === "apply_pack" ? applyPack(shopId, packId) : undoPack(shopId, packId);
   }
   return { ok: false as const, message: "Unknown action." };
@@ -56,7 +51,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 type TabId = "signals" | "catalogue" | "personas";
 
 export default function EventDetailPage() {
-  const { detail, gate, pack, trending, drafting } = useLoaderData<typeof loader>();
+  const { detail, gate, pack, trending, drafting, shopId } = useLoaderData<typeof loader>();
   const [tab, setTab] = useState<TabId>("signals");
   const linkedReady = detail?.personas.filter((persona) => persona.status === "ready").map((persona) => persona.id) ?? [];
 
@@ -152,7 +147,12 @@ export default function EventDetailPage() {
         </div>
       ) : null}
 
-      <ContentPackPanel pack={pack} trending={trending} drafting={drafting && !pack} />
+      <ContentPackPanel
+        pack={pack}
+        trending={trending}
+        drafting={drafting && !pack}
+        shopDomain={shopId}
+      />
 
       <section className="card">
         <div className="card-body">
