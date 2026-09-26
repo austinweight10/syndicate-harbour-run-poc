@@ -66,12 +66,14 @@ live-demo-store/
   data/
     products.csv
     customers.csv
-    orders-seed.json
+    orders-seed.json            ← the original 48 hand-authored orders
+    generated/                  ← gitignored; output of scripts/generate_orders.py
     matrixify-orders.csv
     collections.md
   images/                       ← <handle>/<colour>.png, manifest.json, contact-sheet.png
   scripts/
     seed_store.py               ← full seed (products, collections, images, customers, orders, menu)
+    generate_orders.py          ← +460 orders / +125 customers into data/generated/ (not committed)
     render_product_images.mjs   ← renders images/ (+ product_image_templates.mjs)
     seed_orders.py
     seed_orders_via_api.md
@@ -142,6 +144,19 @@ the placeholder. Needs `write_files` on the seed app:
 
 ```bash
 ONLY=products,collections,images python3 docs/live-demo-store/scripts/seed_store.py
+```
+
+## Extra orders (not committed)
+
+The 460 extra orders and 125 customers (race-taper, wet-spell and hot-spell patterns, repeat buyers) are
+generated rather than committed. `generate_orders.py` is deterministic (same `SEED` + catalogue → same
+files) and writes to `data/generated/`; `seed_store.py` appends those to the committed originals when
+present. Dev stores accept 5 new orders a minute, so the full run takes about 100 minutes and resumes
+where it left off if interrupted.
+
+```bash
+python3 docs/live-demo-store/scripts/generate_orders.py
+ONLY=customers,orders python3 docs/live-demo-store/scripts/seed_store.py
 ```
 
 ---

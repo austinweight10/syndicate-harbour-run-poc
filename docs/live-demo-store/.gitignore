@@ -6,3 +6,6 @@ theme/templates/
 theme/layout/
 theme/config/
 theme/assets/base.css
+
+# Generated seed extras (scripts/generate_orders.py); not committed.
+data/generated/

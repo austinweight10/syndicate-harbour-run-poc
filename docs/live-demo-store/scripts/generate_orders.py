@@ -2,12 +2,12 @@
 """
 Harbour Run — generate the extended order and customer seed.
 
-Keeps the original 48 orders (ord_seed_001–048) and 25 customers untouched and
-appends generated ones after them, so seed_store.py can push only what is new
-(orders are matched on their id tag, customers on email).
+Reads the committed original 48 orders (ord_seed_001–048) and 25 customers and
+writes ONLY the generated extras to data/generated/ (gitignored). seed_store.py
+appends those to the originals when present; orders are matched on their id tag
+and customers on email, so re-seeding pushes only what is new.
 
-Deterministic: the same SEED gives the same files. Re-running regenerates the
-appended part only.
+Deterministic: the same SEED and catalogue give the same files.
 
 Shape (so Syndicate's occasion scoring has something real to find):
   - 60-day window ending the morning of ANCHOR (Syndicate reads ≤60 days).
@@ -29,6 +29,7 @@ import io
 import json
 import os
 import random
+import zlib
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -37,6 +38,11 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 ORDERS_PATH = DATA / "orders-seed.json"
 CUSTOMERS_PATH = DATA / "customers.csv"
+# Generated rows are not committed (data/generated/ is gitignored); seed_store.py
+# appends them to the committed originals when present.
+GENERATED = DATA / "generated"
+GEN_ORDERS_PATH = GENERATED / "orders-seed.generated.json"
+GEN_CUSTOMERS_PATH = GENERATED / "customers.generated.csv"
 PRODUCTS_PATH = DATA / "products.csv"
 
 ORIGINAL_ORDERS = 48
@@ -348,7 +354,7 @@ def build_order(rng, idx, when, customer, cohort, products, pool, size) -> dict:
             "province": customer["Province"],
             "address1": customer["Address1"],
         },
-        "geo": {"lat": round(lat + (hash(customer["Email"]) % 7 - 3) * 0.002, 3), "lng": round(lng, 3)},
+        "geo": {"lat": round(lat + (zlib.crc32(customer["Email"].encode()) % 7 - 3) * 0.002, 3), "lng": round(lng, 3)},
         "line_items": line_items,
         "cohort_hint": cohort,
         "tags": tags,
@@ -454,27 +460,25 @@ def main() -> None:
     if dry:
         return
 
-    meta = payload["_meta"]
-    meta.update({
-        "version": "2026-09-26-extended",
-        "order_count": len(orders),
-        "window_days": (ANCHOR - WINDOW_START).days,
-        "anchor_date": ANCHOR.date().isoformat(),
-        "cohort_counts": dict(Counter(o["cohort_hint"] for o in orders)),
-        "generator": f"scripts/generate_orders.py SEED={SEED} NEW_ORDERS={NEW_ORDERS} NEW_CUSTOMERS={NEW_CUSTOMERS}",
-        "notes": meta.get("notes", "") + " Orders 049+ and customers 26+ are generated; see generate_orders.py.",
-    })
-    payload["orders"] = orders
-    ORDERS_PATH.write_text(json.dumps(payload, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+    GENERATED.mkdir(exist_ok=True)
+    GEN_ORDERS_PATH.write_text(json.dumps({
+        "_meta": {
+            "generator": f"scripts/generate_orders.py SEED={SEED} NEW_ORDERS={NEW_ORDERS} NEW_CUSTOMERS={NEW_CUSTOMERS}",
+            "extends": "orders-seed.json",
+            "order_count": len(new_orders),
+            "window_days": (ANCHOR - WINDOW_START).days,
+            "anchor_date": ANCHOR.date().isoformat(),
+            "cohort_counts": dict(Counter(o["cohort_hint"] for o in new_orders)),
+        },
+        "orders": new_orders,
+    }, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
 
-    # Keep the file's existing line endings so the diff shows only new rows.
-    newline = "\r\n" if b"\r\n" in CUSTOMERS_PATH.read_bytes()[:4096] else "\n"
     buf = io.StringIO()
-    writer = csv.DictWriter(buf, fieldnames=fields, lineterminator=newline)
+    writer = csv.DictWriter(buf, fieldnames=fields, lineterminator="\r\n")
     writer.writeheader()
-    writer.writerows(all_customers)
-    CUSTOMERS_PATH.write_bytes(buf.getvalue().encode("utf-8"))
-    print(f"\nWrote {ORDERS_PATH.relative_to(ROOT.parent.parent)} and {CUSTOMERS_PATH.relative_to(ROOT.parent.parent)}")
+    writer.writerows(new_customers)
+    GEN_CUSTOMERS_PATH.write_bytes(buf.getvalue().encode("utf-8"))
+    print(f"\nWrote {GEN_ORDERS_PATH.relative_to(ROOT.parent.parent)} and {GEN_CUSTOMERS_PATH.relative_to(ROOT.parent.parent)}")
 
 
 if __name__ == "__main__":

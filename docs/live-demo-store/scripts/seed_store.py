@@ -10,8 +10,8 @@ collections, order seed, main menu). Stages, in order:
   images       images/manifest.json → staged upload of the local PNGs, attached
                                     as product media, colour variants linked,
                                     placehold.co media removed
-  customers    data/customers.csv  → customerCreate
-  orders       data/orders-seed.json → orderCreate, associated to customers
+  customers    data/customers.csv (+ data/generated/customers.generated.csv) → customerCreate
+  orders       data/orders-seed.json (+ data/generated/orders-seed.generated.json) → orderCreate
   menu         main-menu           → Home + the four MENU_HANDLES collections (best effort)
 
 Every stage skips what already exists, so re-running is safe. Orders are
@@ -468,7 +468,8 @@ class Shopify:
         """retry_network=False raises NetworkError instead of retrying, for
         non-idempotent writes (orderCreate) that the caller must re-check."""
         body = json.dumps({"query": query, "variables": variables or {}}).encode("utf-8")
-        for attempt in range(6):
+        # ~8 minutes of back-off in total, so a short network drop doesn't end a long run.
+        for attempt in range(12):
             req = urllib.request.Request(
                 self.url,
                 data=body,
@@ -490,8 +491,9 @@ class Shopify:
             except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
                 if not retry_network:
                     raise NetworkError(str(e)) from e
-                warn(f"network error ({e}); retrying in {5 * (attempt + 1)}s")
-                time.sleep(5 * (attempt + 1))
+                wait = min(60, 5 * (attempt + 1))
+                warn(f"network error ({e}); retrying in {wait}s")
+                time.sleep(wait)
                 continue
             errors = payload.get("errors") or []
             if any((err.get("extensions") or {}).get("code") == "THROTTLED" for err in errors):
@@ -1229,8 +1231,11 @@ def find_customer(api: Shopify, email: str) -> str | None:
 
 
 def seed_customers(api: Shopify | None, dry: bool) -> dict[str, str]:
-    with open(DATA / "customers.csv", encoding="utf-8", newline="") as fh:
-        rows = list(csv.DictReader(fh))
+    rows = []
+    for path in (DATA / "customers.csv", DATA / "generated" / "customers.generated.csv"):
+        if path.exists():
+            with open(path, encoding="utf-8", newline="") as fh:
+                rows.extend(csv.DictReader(fh))
     print(f"\n== customers ({len(rows)})")
     if dry:
         for r in rows:
@@ -1349,6 +1354,9 @@ def seeded_order_tags(api: Shopify) -> set[str]:
 def seed_orders(api: Shopify | None, dry: bool, customer_ids: dict[str, str]) -> None:
     payload = json.loads((DATA / "orders-seed.json").read_text(encoding="utf-8"))
     orders = payload["orders"]
+    generated = DATA / "generated" / "orders-seed.generated.json"
+    if generated.exists():
+        orders = orders + json.loads(generated.read_text(encoding="utf-8"))["orders"]
     limit = os.environ.get("LIMIT", "").strip()
     if limit:
         orders = orders[: int(limit)]
