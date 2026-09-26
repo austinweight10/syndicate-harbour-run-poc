@@ -4,9 +4,10 @@
    Red / amber are reserved for warnings and blockers
    ───────────────────────────────────────────────────────────────────────── */
 
+/* Latin subset of the brand pack's Manrope variable font (wght 200–800). SIL OFL 1.1: /fonts/Manrope-OFL.txt */
 @font-face {
   font-family: "Manrope";
-  src: url("/fonts/Manrope.ttf") format("truetype");
+  src: url("/fonts/manrope-latin-var.woff2") format("woff2");
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;
@@ -118,7 +119,9 @@ code { font-family: var(--mono); font-size: 12px; }
 
 .brand-symbol { color: var(--brand-cream); display: block; transition: transform 0.4s var(--ease); }
 .topbar-brand:hover .brand-symbol { transform: rotate(120deg); }
-.brand-wordmark { display: block; height: 22px; width: auto; }
+/* Symbol and wordmark follow the identity v1.1 lockup: wordmark ink 0.77× the hexagon's height,
+   8.4px from it (0.33×), and 1.25px below centre so the lettering sits optically level. */
+.brand-wordmark { display: block; height: 22px; width: auto; margin-left: -6px; transform: translateY(1.25px); }
 
 .brand-tag {
   font-size: 11px;
@@ -2044,3 +2047,40 @@ kbd {
 .action-row form { margin: 0; }
 .action-note { margin: 10px 0 0; font-size: 12.5px; }
 .action-error { margin: 10px 0 0; color: var(--kit-red); font-size: 13px; display: flex; gap: 6px; align-items: flex-start; }
+
+/* Occasion marketing pack */
+.pack-card { border-left: 3px solid var(--primary); }
+.pack-card-applied { border-left-color: #059669; }
+.pack-panel-empty { display: flex; align-items: center; gap: 8px; }
+.pack-title { margin: 4px 0 6px; font-size: 18px; }
+.pack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+.pack-asset {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-hover);
+  min-width: 0;
+}
+.pack-asset-wide { grid-column: 1 / -1; }
+.pack-asset-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-subdued);
+  margin-bottom: 4px;
+}
+.pack-asset strong { display: block; font-size: 14px; margin-bottom: 2px; }
+.pack-asset .muted { margin: 0; font-size: 12.5px; }
+.pack-segments { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.pack-segments li { display: grid; gap: 2px; }
+.pack-segments .muted { font-size: 12.5px; }
+@media (max-width: 720px) {
+  .pack-grid { grid-template-columns: 1fr; }
+  .pack-asset-wide { grid-column: auto; }
+}

@@ -522,3 +522,26 @@ model StorefrontAction {
   @@unique([shopId, cardId])
   @@index([shopId, status])
 }
+
+/// One-click marketing pack for a trending occasion: blog, page, banner, email draft, segments.
+model ContentPack {
+  id            String    @id @default(cuid())
+  shopId        String
+  eventId       String
+  headline      String
+  rationale     String
+  source        String
+  model         String?
+  status        String    @default("proposed")
+  assetsJson    String
+  personaIdsJson String
+  undoJson      String?
+  resultJson    String?
+  errorMessage  String?
+  createdAt     DateTime  @default(now())
+  appliedAt     DateTime?
+  revertedAt    DateTime?
+
+  @@unique([shopId, eventId])
+  @@index([shopId, status])
+}

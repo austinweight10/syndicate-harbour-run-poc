@@ -1,30 +1,57 @@
 import { useState } from "react";
-import type { LoaderFunctionArgs, MetaFunction } from "react-router";
+import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "react-router";
 import { Link, useLoaderData } from "react-router";
 import { Avatar, isReady, personaStatusLabel } from "../components/Avatar";
+import { ContentPackPanel } from "../components/ContentPack";
 import { Icon } from "../components/Icon";
 import { AgentNotices, RunAgentsControls } from "../components/RunAgents";
+import { RunPoller } from "../components/RunPoller";
 import { Stub } from "../components/Stub";
 import { ConfidenceRing, ProvenanceChips } from "../components/Provenance";
 import { loadAgentGate } from "../services/agents/gate";
+import { ensureMarketingWrites } from "../services/actions/write-scope.server";
 import { loadEventDetail } from "../services/board.server";
+import { applyPack, undoPack } from "../services/content-pack/apply.server";
+import { loadPackView } from "../services/content-pack/board.server";
+import { generatePack, kickPackDraft, redraftPack } from "../services/content-pack/generate.server";
+import { TRENDING_CONFIDENCE } from "../services/content-pack/types";
 import { currentShopId } from "../services/shop-context.server";
 
 export const meta: MetaFunction = () => [{ title: "Occasion · Syndicate" }];
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const shopId = await currentShopId(request);
-  const [detail, gate] = await Promise.all([
-    loadEventDetail(shopId, params.id ?? ""),
-    loadAgentGate(shopId),
-  ]);
-  return { detail, gate };
+  const eventId = params.id ?? "";
+  const [detail, gate] = await Promise.all([loadEventDetail(shopId, eventId), loadAgentGate(shopId)]);
+  const trending = Boolean(detail && detail.confidence >= TRENDING_CONFIDENCE);
+  const drafting = detail && trending ? await kickPackDraft(shopId, detail.id, detail.confidence) : false;
+  const pack = detail ? await loadPackView(shopId, detail.id) : null;
+  return { detail, gate, pack, trending, drafting };
+}
+
+export async function action({ request, params }: ActionFunctionArgs) {
+  const shopId = await currentShopId(request);
+  const eventId = params.id ?? "";
+  const form = await request.formData();
+  const intent = String(form.get("intent") ?? "");
+  const packId = String(form.get("packId") ?? "");
+
+  if (intent === "generate_pack" || intent === "redraft_pack") {
+    if (intent === "redraft_pack") await redraftPack(shopId, eventId);
+    else await generatePack(shopId, eventId);
+    return { ok: true as const, message: "Marketing pack drafted." };
+  }
+  if (intent === "apply_pack" || intent === "undo_pack") {
+    await ensureMarketingWrites(request, shopId);
+    return intent === "apply_pack" ? applyPack(shopId, packId) : undoPack(shopId, packId);
+  }
+  return { ok: false as const, message: "Unknown action." };
 }
 
 type TabId = "signals" | "catalogue" | "personas";
 
 export default function EventDetailPage() {
-  const { detail, gate } = useLoaderData<typeof loader>();
+  const { detail, gate, pack, trending, drafting } = useLoaderData<typeof loader>();
   const [tab, setTab] = useState<TabId>("signals");
   const linkedReady = detail?.personas.filter((persona) => persona.status === "ready").map((persona) => persona.id) ?? [];
 
@@ -70,6 +97,7 @@ export default function EventDetailPage() {
       actions={<RunAgentsControls gate={gate} personaIds={linkedReady} />}
     >
       <AgentNotices gate={gate} />
+      <RunPoller live={Boolean(drafting && !pack)} quiet />
 
       <section className="card detail-hero">
         <div className="card-body">
@@ -78,6 +106,7 @@ export default function EventDetailPage() {
             <div className="split" style={{ flexWrap: "wrap", marginBottom: 8 }}>
               <p className="eyebrow" style={{ margin: 0 }}>
                 Confidence · {detail.enrichmentSource.replaceAll("_", " ")}
+                {trending ? " · Trending" : ""}
               </p>
               <ProvenanceChips kinds={detail.provenance} />
             </div>
@@ -117,6 +146,8 @@ export default function EventDetailPage() {
           </span>
         </div>
       ) : null}
+
+      <ContentPackPanel pack={pack} trending={trending} drafting={drafting && !pack} />
 
       <section className="card">
         <div className="card-body">

@@ -4,9 +4,10 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import "./styles/shell.css";
 
 export const links: LinksFunction = () => [
-  { rel: "preload", href: "/fonts/Manrope.ttf", as: "font", type: "font/ttf", crossOrigin: "anonymous" },
-  { rel: "icon", type: "image/svg+xml", href: "/brand/syndicate-app-icon-dark.svg" },
-  { rel: "icon", type: "image/png", sizes: "32x32", href: "/brand/syndicate-app-icon-dark-32.png" },
+  { rel: "preload", href: "/fonts/manrope-latin-var.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+  { rel: "icon", type: "image/png", sizes: "48x48", href: "/brand/syndicate-favicon-48.png" },
+  { rel: "icon", type: "image/png", sizes: "32x32", href: "/brand/syndicate-favicon-32.png" },
+  { rel: "icon", type: "image/png", sizes: "16x16", href: "/brand/syndicate-favicon-16.png" },
   { rel: "apple-touch-icon", href: "/brand/syndicate-app-icon-dark-256.png" },
 ];
 
