@@ -26,7 +26,16 @@ function parseLabels(raw: string | null | undefined): string[] {
   if (!raw) return [];
   try {
     const parsed = JSON.parse(raw) as unknown;
-    return Array.isArray(parsed) ? parsed.map(String) : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((item) => {
+        if (typeof item === "string") return item;
+        if (item && typeof item === "object" && "title" in item) {
+          return String((item as { title: unknown }).title ?? "");
+        }
+        return "";
+      })
+      .filter(Boolean);
   } catch {
     return [];
   }
@@ -309,6 +318,7 @@ export async function loadPersonas(shopId: string) {
           });
     const facts = personaFactLabels({ constraints, behavioural });
     const likelyProducts = sections.find((section) => section.id === "products")?.products ?? [];
+    const productLabels = likelyProducts.map((product) => product.title).filter(Boolean);
     return {
       id: persona.id,
       name: persona.name,
@@ -316,6 +326,7 @@ export async function loadPersonas(shopId: string) {
       initials: persona.avatarInitials ?? persona.name.slice(0, 2).toUpperCase(),
       vertical: persona.vertical,
       goals,
+      productLabels,
       budgetMin,
       budgetMax,
       locationProxy: persona.locationProxy,
@@ -324,9 +335,6 @@ export async function loadPersonas(shopId: string) {
       sections,
       likelyProducts,
       facts,
-      constraints,
-      behavioural,
-      mockFlags,
       stub: persona.status === "stub",
     };
   });

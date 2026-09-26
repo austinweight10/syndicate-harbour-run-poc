@@ -93,22 +93,31 @@ export default function PersonaDetail() {
 
                 {section.id === "products" && section.products && section.products.length > 0 ? (
                   <ul className="product-like-list">
-                    {section.products.map((product) => (
-                      <li key={product.title} className="product-like">
-                        <span className="product-like-mark" aria-hidden="true">
-                          <Icon name="bag" size={16} />
-                        </span>
-                        <span className="product-like-copy">
-                          <strong>{product.title}</strong>
-                          <span className="product-like-meta">
-                            {product.fromPrice != null ? `From £${product.fromPrice.toFixed(0)}` : null}
-                            {product.fromPrice != null && product.productType ? " · " : null}
-                            {product.productType}
+                    {section.products.map((product) => {
+                      const title = typeof product.title === "string" ? product.title : "Product";
+                      const type = typeof product.productType === "string" ? product.productType : null;
+                      const why = typeof product.why === "string" ? product.why : "";
+                      const price =
+                        typeof product.fromPrice === "number" && Number.isFinite(product.fromPrice)
+                          ? product.fromPrice
+                          : null;
+                      return (
+                        <li key={title} className="product-like">
+                          <span className="product-like-mark" aria-hidden="true">
+                            <Icon name="bag" size={16} />
                           </span>
-                          <span className="product-like-why">{product.why}</span>
-                        </span>
-                      </li>
-                    ))}
+                          <span className="product-like-copy">
+                            <strong>{title}</strong>
+                            <span className="product-like-meta">
+                              {price != null ? `From £${price.toFixed(0)}` : null}
+                              {price != null && type ? " · " : null}
+                              {type}
+                            </span>
+                            {why ? <span className="product-like-why">{why}</span> : null}
+                          </span>
+                        </li>
+                      );
+                    })}
                   </ul>
                 ) : null}
 

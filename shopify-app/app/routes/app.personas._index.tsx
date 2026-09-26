@@ -63,11 +63,11 @@ export default function Personas() {
                     </div>
                     <span className={ready ? "pill pill-success pill-dot" : "pill"}>{personaStatusLabel(persona.status)}</span>
                   </div>
-                  {persona.likelyProducts.length > 0 ? (
+                  {persona.productLabels.length > 0 ? (
                     <div className="tag-row">
-                      {persona.likelyProducts.slice(0, 3).map((product) => (
-                        <span key={product.title} className="tag tag-product">
-                          {product.title}
+                      {persona.productLabels.slice(0, 3).map((label) => (
+                        <span key={label} className="tag tag-product">
+                          {label}
                         </span>
                       ))}
                     </div>
@@ -75,7 +75,7 @@ export default function Personas() {
                     <div className="tag-row">
                       {persona.goals.map((goal) => (
                         <span key={goal} className="tag">
-                          {goal}
+                          {typeof goal === "string" ? goal : String(goal)}
                         </span>
                       ))}
                     </div>
