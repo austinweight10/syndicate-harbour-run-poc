@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import type { PrismaClient } from "@prisma/client";
 import type { ScoredEvent } from "../graph/build";
+import { personaIdFor } from "../personas/ids";
 
 function recId(shopId: string, kind: string, targetRef: string, title: string): string {
   return createHash("sha256").update([shopId, kind, targetRef, title].join("|")).digest("hex").slice(0, 24);
@@ -39,7 +40,7 @@ export async function buildRecommendations(
     priority: "P1",
     title: "Add the waterproof shell to Race Kits",
     body: "Race-weekend baskets look for rain cover beside the tee and shorts. The shell only sits in Wet-weather training, so Race Kits is a dead end on a wet Saturday.",
-    personaId: "pers_wet_weather_trainer",
+    personaId: personaIdFor(shopId, "wet_weather_trainer"),
     eventId: race?.id ?? wet?.id ?? null,
     runId: null,
     targetType: "collection",
@@ -55,7 +56,7 @@ export async function buildRecommendations(
     body: wet?.lowN
       ? "London’s forecast is wet on 27–28 September, but fewer than five orders fall in that window. Treat this as an early signal and surface the shell anyway."
       : "London’s forecast is wet on 27–28 September and shell orders already show up in training baskets. Pin the shell above the fold before the weekend.",
-    personaId: "pers_wet_weather_trainer",
+    personaId: personaIdFor(shopId, "wet_weather_trainer"),
     eventId: wet?.id ?? null,
     runId: null,
     targetType: "product",
@@ -97,7 +98,7 @@ export async function buildRecommendations(
         data: {
           id: `ins_${id}`,
           shopId,
-          personaId: card.personaId ?? "pers_race_day_taper",
+          personaId: card.personaId ?? personaIdFor(shopId, "race_day_taper"),
           runId: card.runId,
           targetType: card.targetType ?? "product",
           targetRef: card.targetRef ?? id,

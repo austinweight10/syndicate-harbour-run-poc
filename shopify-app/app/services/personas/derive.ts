@@ -1,5 +1,6 @@
 import type { PrismaClient } from "@prisma/client";
 import type { ScoredEvent } from "../graph/build";
+import { personaIdFor } from "./ids";
 
 function percentile(sorted: number[], p: number): number {
   if (sorted.length === 0) return 0;
@@ -63,7 +64,7 @@ export async function derivePersonas(
   await prisma.persona.upsert({
     where: { shopId_name: { shopId, name: "Race-day taper" } },
     create: {
-      id: "pers_race_day_taper",
+      id: personaIdFor(shopId, "race_day_taper"),
       shopId,
       name: "Race-day taper",
       status: "ready",
@@ -98,7 +99,7 @@ export async function derivePersonas(
   await prisma.persona.upsert({
     where: { shopId_name: { shopId, name: "Wet-weather trainer" } },
     create: {
-      id: "pers_wet_weather_trainer",
+      id: personaIdFor(shopId, "wet_weather_trainer"),
       shopId,
       name: "Wet-weather trainer",
       status: wet && !wet.lowN ? "ready" : "draft",

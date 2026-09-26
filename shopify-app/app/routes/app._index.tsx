@@ -1,6 +1,6 @@
 import type { LoaderFunctionArgs, MetaFunction } from "react-router";
 import { Link, useLoaderData } from "react-router";
-import { Stub } from "../components/Stub";
+import { Stub, useShell } from "../components/Stub";
 import { AgentNotices, RunAgentsControls } from "../components/RunAgents";
 import { ConfidenceBar, ProvenanceChips } from "../components/Provenance";
 import { loadAgentGate } from "../services/agents/gate";
@@ -17,8 +17,14 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function Overview() {
   const { board: data, gate } = useLoaderData<typeof loader>();
+  const shell = useShell();
+  const live = shell.shop.mode === "live";
   const subtitle = data.empty
-    ? "No scored occasions yet. Run the demo pipeline, then refresh."
+    ? live
+      ? shell.pipeline
+        ? `${shell.pipeline.label} Reload when the run finishes.`
+        : "No scored occasions yet. Refresh the store from Settings."
+      : "No scored occasions yet. Run the demo pipeline, then refresh."
     : "London race weekend · orders and calendar from SQLite · last 60 days";
 
   return (
@@ -40,10 +46,18 @@ export default function Overview() {
         <section className="card">
           <div className="card-body">
             <h2>Graph is empty</h2>
-            <p className="muted">
-              Seeded orders are in SQLite, but EventCandidates are written by the scoring job. From
-              shopify-app run <code>npm run pipeline:demo</code>, then reload this page.
-            </p>
+            {live ? (
+              <p className="muted">
+                {shell.pipeline
+                  ? "Syndicate is reading this shop's products and last 60 days of orders, then scoring occasions. Reload this page when the run finishes."
+                  : <>No occasions have been scored for this shop yet. Use <Link to="/app/settings">Refresh store + re-run</Link> in Settings.</>}
+              </p>
+            ) : (
+              <p className="muted">
+                Seeded orders are in SQLite, but EventCandidates are written by the scoring job. From
+                shopify-app run <code>npm run pipeline:demo</code>, then reload this page.
+              </p>
+            )}
           </div>
         </section>
       ) : (

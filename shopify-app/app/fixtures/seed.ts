@@ -76,6 +76,227 @@ export type SeedCounts = {
   recommendations: number;
 };
 
+export type CatalogueCounts = {
+  catalogueEvents: number;
+  hashtags: number;
+  socialTrends: number;
+  virtualEvents: number;
+  challenges: number;
+};
+
+/**
+ * Curated / MOCK catalogue rows shared by every shop: race calendar, hashtag
+ * watchlist, social trends, virtual events, activity challenges. Upserts on
+ * natural keys, so it is safe to call from the demo seed and from the live
+ * pipeline's catalogue_refresh stage.
+ */
+export async function seedCatalogue(prisma: PrismaClient, now = new Date()): Promise<CatalogueCounts> {
+  const sports = readJson(FIXTURE_FILES.sports);
+  let catalogueEvents = 0;
+  for (const event of sports.events as Json[]) {
+    const naturalKey = asString(event.naturalKey) || asString(event.id);
+    const startAt = dateOr(event.startAt ?? event.startsAt, now);
+    const endAt = dateOr(event.endAt, new Date(startAt.getTime() + 4 * 60 * 60 * 1000));
+    const mode = asString(event.mode, "physical");
+    const category =
+      asString(event.category) ||
+      (event.sport === "running" ? "race_running" : "race_running");
+    const audience = event.affinityTags ?? event.audienceTags ?? [];
+    const venueName = asString(event.venue) || asString(event.venueCity) || null;
+    const venue = inferVenue(event);
+    await prisma.catalogueEvent.upsert({
+      where: { naturalKey },
+      create: {
+        naturalKey,
+        title: asString(event.title),
+        category,
+        mode,
+        audienceJson: JSON.stringify(audience),
+        city: venue.city,
+        region: venue.city === "London" ? "Greater London" : null,
+        countryCode: "GB",
+        lat: venue.lat,
+        lng: venue.lng,
+        venueName,
+        virtualFlag: mode !== "physical",
+        startAt,
+        endAt,
+        recurrence: asString(event.recurring).includes("weekly") ? "weekly" : "none",
+        sourceUrl: asString(event.sourceUrl) || null,
+        sourceType: asString(event.sourceType, "curated_json"),
+        sourceExternalId: asString(event.id) || null,
+        lastCrawledAt: now,
+        freshnessConfidence: 1,
+        provenance: asString(event.provenance, "MOCK"),
+        stale: false,
+        rawPayloadHash: sha(JSON.stringify(event)).slice(0, 32),
+      },
+      update: {
+        title: asString(event.title),
+        category,
+        mode,
+        audienceJson: JSON.stringify(audience),
+        city: venue.city,
+        region: venue.city === "London" ? "Greater London" : null,
+        countryCode: "GB",
+        lat: venue.lat,
+        lng: venue.lng,
+        venueName,
+        virtualFlag: mode !== "physical",
+        startAt,
+        endAt,
+        provenance: asString(event.provenance, "MOCK"),
+        lastCrawledAt: now,
+      },
+    });
+    catalogueEvents += 1;
+  }
+
+  const hashtags = readJson(FIXTURE_FILES.hashtags);
+  const hashtagIds = new Map<string, string>();
+  let hashtagCount = 0;
+  for (const row of hashtags.watchlist as Json[]) {
+    const tag = asString(row.tag);
+    const naturalKey = tag.toLowerCase();
+    const saved = await prisma.hashtagWatch.upsert({
+      where: { naturalKey },
+      create: {
+        tag,
+        naturalKey,
+        geoHint: asString(row.geoHint) || null,
+        catalogueAffinityJson: JSON.stringify(row.affinity ?? []),
+        sourceType: "curated_json",
+        enabled: true,
+        provenance: "CURATED",
+        updatedAt: now,
+      },
+      update: {
+        tag,
+        geoHint: asString(row.geoHint) || null,
+        catalogueAffinityJson: JSON.stringify(row.affinity ?? []),
+        updatedAt: now,
+      },
+    });
+    hashtagIds.set(tag.toLowerCase(), saved.id);
+    hashtagCount += 1;
+  }
+
+  const trends = readJson(FIXTURE_FILES.socialTrends);
+  let socialTrends = 0;
+  for (const trend of trends.trends as Json[]) {
+    if (trend.provenance === "OBSERVED") {
+      throw new Error("Refusing to seed OBSERVED social demand");
+    }
+    const tag = asString(trend.tag);
+    const start = dateOr(trend.timeBucket, now);
+    const end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
+    const geoHint = asString(trend.geoHint) || null;
+    const naturalKey = sha([tag, start.toISOString(), geoHint ?? ""].join("|")).slice(0, 32);
+    await prisma.socialTrend.upsert({
+      where: { naturalKey },
+      create: {
+        naturalKey,
+        hashtagWatchId: hashtagIds.get(tag.toLowerCase()) ?? null,
+        tag,
+        timeBucketStart: start,
+        timeBucketEnd: end,
+        score: asNumber(trend.score),
+        volumeProxy: typeof trend.volumeProxy === "number" ? trend.volumeProxy : null,
+        geoHint,
+        sourceType: "mock_json",
+        provenance: asString(trend.provenance, "MOCK"),
+        lastCrawledAt: now,
+        stale: false,
+        payloadJson: JSON.stringify({ affinity: trend.affinity ?? [] }),
+      },
+      update: {
+        score: asNumber(trend.score),
+        provenance: asString(trend.provenance, "MOCK"),
+        lastCrawledAt: now,
+      },
+    });
+    socialTrends += 1;
+  }
+
+  const virtuals = readJson(FIXTURE_FILES.virtualEvents);
+  let virtualEvents = 0;
+  for (const row of virtuals.events as Json[]) {
+    const window = (row.window ?? {}) as Json;
+    const startAt = dateOr(
+      typeof window.start === "string" ? `${window.start}T00:00:00+01:00` : window.start,
+      now,
+    );
+    const endAt = dateOr(
+      typeof window.end === "string" ? `${window.end}T23:59:59+01:00` : window.end,
+      startAt,
+    );
+    const naturalKey = asString(row.naturalKey);
+    await prisma.virtualEvent.upsert({
+      where: { naturalKey },
+      create: {
+        naturalKey,
+        title: asString(row.title),
+        category: asString(row.category, "virtual_challenge"),
+        mode: asString(row.mode, "virtual"),
+        audienceJson: JSON.stringify(row.affinity ?? []),
+        globalVirtual: true,
+        streamOrAppHint: asString(row.streamOrAppHint) || null,
+        startAt,
+        endAt,
+        sourceType: "mock_json",
+        provenance: asString(row.provenance, "MOCK"),
+        lastCrawledAt: now,
+        stale: false,
+      },
+      update: {
+        title: asString(row.title),
+        mode: asString(row.mode, "virtual"),
+        provenance: asString(row.provenance, "MOCK"),
+        lastCrawledAt: now,
+      },
+    });
+    virtualEvents += 1;
+  }
+
+  const challengesDoc = readJson(FIXTURE_FILES.activity);
+  let challenges = 0;
+  for (const row of challengesDoc.challenges as Json[]) {
+    const window = (row.window ?? {}) as Json;
+    const naturalKey = asString(row.naturalKey);
+    await prisma.activityChallenge.upsert({
+      where: { naturalKey },
+      create: {
+        naturalKey,
+        title: asString(row.title),
+        platform: asString(row.platform, "mock"),
+        mode: asString(row.mode, "virtual"),
+        windowStart: dateOr(
+          typeof window.start === "string" ? `${window.start}T00:00:00+01:00` : null,
+          now,
+        ),
+        windowEnd: dateOr(
+          typeof window.end === "string" ? `${window.end}T23:59:59+01:00` : null,
+          now,
+        ),
+        catalogueAffinityJson: JSON.stringify(row.affinity ?? []),
+        volumeProxy: typeof row.volumeProxy === "number" ? row.volumeProxy : null,
+        sourceType: "mock_json",
+        provenance: asString(row.provenance, "MOCK"),
+        lastCrawledAt: now,
+        stale: false,
+      },
+      update: {
+        title: asString(row.title),
+        provenance: asString(row.provenance, "MOCK"),
+        lastCrawledAt: now,
+      },
+    });
+    challenges += 1;
+  }
+
+  return { catalogueEvents, hashtags: hashtagCount, socialTrends, virtualEvents, challenges };
+}
+
 export async function seedFixtures(prisma: PrismaClient): Promise<SeedCounts> {
   const issues = validateFixtures();
   if (issues.length > 0) {
@@ -296,208 +517,8 @@ export async function seedFixtures(prisma: PrismaClient): Promise<SeedCounts> {
     }
   }
 
-  const sports = readJson(FIXTURE_FILES.sports);
-  let catalogueEvents = 0;
-  for (const event of sports.events as Json[]) {
-    const naturalKey = asString(event.naturalKey) || asString(event.id);
-    const startAt = dateOr(event.startAt ?? event.startsAt, now);
-    const endAt = dateOr(event.endAt, new Date(startAt.getTime() + 4 * 60 * 60 * 1000));
-    const mode = asString(event.mode, "physical");
-    const category =
-      asString(event.category) ||
-      (event.sport === "running" ? "race_running" : "race_running");
-    const audience = event.affinityTags ?? event.audienceTags ?? [];
-    const venueName = asString(event.venue) || asString(event.venueCity) || null;
-    const venue = inferVenue(event);
-    await prisma.catalogueEvent.upsert({
-      where: { naturalKey },
-      create: {
-        naturalKey,
-        title: asString(event.title),
-        category,
-        mode,
-        audienceJson: JSON.stringify(audience),
-        city: venue.city,
-        region: venue.city === "London" ? "Greater London" : null,
-        countryCode: "GB",
-        lat: venue.lat,
-        lng: venue.lng,
-        venueName,
-        virtualFlag: mode !== "physical",
-        startAt,
-        endAt,
-        recurrence: asString(event.recurring).includes("weekly") ? "weekly" : "none",
-        sourceUrl: asString(event.sourceUrl) || null,
-        sourceType: asString(event.sourceType, "curated_json"),
-        sourceExternalId: asString(event.id) || null,
-        lastCrawledAt: now,
-        freshnessConfidence: 1,
-        provenance: asString(event.provenance, "MOCK"),
-        stale: false,
-        rawPayloadHash: sha(JSON.stringify(event)).slice(0, 32),
-      },
-      update: {
-        title: asString(event.title),
-        category,
-        mode,
-        audienceJson: JSON.stringify(audience),
-        city: venue.city,
-        region: venue.city === "London" ? "Greater London" : null,
-        countryCode: "GB",
-        lat: venue.lat,
-        lng: venue.lng,
-        venueName,
-        virtualFlag: mode !== "physical",
-        startAt,
-        endAt,
-        provenance: asString(event.provenance, "MOCK"),
-        lastCrawledAt: now,
-      },
-    });
-    catalogueEvents += 1;
-  }
-
-  const hashtags = readJson(FIXTURE_FILES.hashtags);
-  const hashtagIds = new Map<string, string>();
-  let hashtagCount = 0;
-  for (const row of hashtags.watchlist as Json[]) {
-    const tag = asString(row.tag);
-    const naturalKey = tag.toLowerCase();
-    const saved = await prisma.hashtagWatch.upsert({
-      where: { naturalKey },
-      create: {
-        tag,
-        naturalKey,
-        geoHint: asString(row.geoHint) || null,
-        catalogueAffinityJson: JSON.stringify(row.affinity ?? []),
-        sourceType: "curated_json",
-        enabled: true,
-        provenance: "CURATED",
-        updatedAt: now,
-      },
-      update: {
-        tag,
-        geoHint: asString(row.geoHint) || null,
-        catalogueAffinityJson: JSON.stringify(row.affinity ?? []),
-        updatedAt: now,
-      },
-    });
-    hashtagIds.set(tag.toLowerCase(), saved.id);
-    hashtagCount += 1;
-  }
-
-  const trends = readJson(FIXTURE_FILES.socialTrends);
-  let socialTrends = 0;
-  for (const trend of trends.trends as Json[]) {
-    if (trend.provenance === "OBSERVED") {
-      throw new Error("Refusing to seed OBSERVED social demand");
-    }
-    const tag = asString(trend.tag);
-    const start = dateOr(trend.timeBucket, now);
-    const end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
-    const geoHint = asString(trend.geoHint) || null;
-    const naturalKey = sha([tag, start.toISOString(), geoHint ?? ""].join("|")).slice(0, 32);
-    await prisma.socialTrend.upsert({
-      where: { naturalKey },
-      create: {
-        naturalKey,
-        hashtagWatchId: hashtagIds.get(tag.toLowerCase()) ?? null,
-        tag,
-        timeBucketStart: start,
-        timeBucketEnd: end,
-        score: asNumber(trend.score),
-        volumeProxy: typeof trend.volumeProxy === "number" ? trend.volumeProxy : null,
-        geoHint,
-        sourceType: "mock_json",
-        provenance: asString(trend.provenance, "MOCK"),
-        lastCrawledAt: now,
-        stale: false,
-        payloadJson: JSON.stringify({ affinity: trend.affinity ?? [] }),
-      },
-      update: {
-        score: asNumber(trend.score),
-        provenance: asString(trend.provenance, "MOCK"),
-        lastCrawledAt: now,
-      },
-    });
-    socialTrends += 1;
-  }
-
-  const virtuals = readJson(FIXTURE_FILES.virtualEvents);
-  let virtualEvents = 0;
-  for (const row of virtuals.events as Json[]) {
-    const window = (row.window ?? {}) as Json;
-    const startAt = dateOr(
-      typeof window.start === "string" ? `${window.start}T00:00:00+01:00` : window.start,
-      now,
-    );
-    const endAt = dateOr(
-      typeof window.end === "string" ? `${window.end}T23:59:59+01:00` : window.end,
-      startAt,
-    );
-    const naturalKey = asString(row.naturalKey);
-    await prisma.virtualEvent.upsert({
-      where: { naturalKey },
-      create: {
-        naturalKey,
-        title: asString(row.title),
-        category: asString(row.category, "virtual_challenge"),
-        mode: asString(row.mode, "virtual"),
-        audienceJson: JSON.stringify(row.affinity ?? []),
-        globalVirtual: true,
-        streamOrAppHint: asString(row.streamOrAppHint) || null,
-        startAt,
-        endAt,
-        sourceType: "mock_json",
-        provenance: asString(row.provenance, "MOCK"),
-        lastCrawledAt: now,
-        stale: false,
-      },
-      update: {
-        title: asString(row.title),
-        mode: asString(row.mode, "virtual"),
-        provenance: asString(row.provenance, "MOCK"),
-        lastCrawledAt: now,
-      },
-    });
-    virtualEvents += 1;
-  }
-
-  const challengesDoc = readJson(FIXTURE_FILES.activity);
-  let challenges = 0;
-  for (const row of challengesDoc.challenges as Json[]) {
-    const window = (row.window ?? {}) as Json;
-    const naturalKey = asString(row.naturalKey);
-    await prisma.activityChallenge.upsert({
-      where: { naturalKey },
-      create: {
-        naturalKey,
-        title: asString(row.title),
-        platform: asString(row.platform, "mock"),
-        mode: asString(row.mode, "virtual"),
-        windowStart: dateOr(
-          typeof window.start === "string" ? `${window.start}T00:00:00+01:00` : null,
-          now,
-        ),
-        windowEnd: dateOr(
-          typeof window.end === "string" ? `${window.end}T23:59:59+01:00` : null,
-          now,
-        ),
-        catalogueAffinityJson: JSON.stringify(row.affinity ?? []),
-        volumeProxy: typeof row.volumeProxy === "number" ? row.volumeProxy : null,
-        sourceType: "mock_json",
-        provenance: asString(row.provenance, "MOCK"),
-        lastCrawledAt: now,
-        stale: false,
-      },
-      update: {
-        title: asString(row.title),
-        provenance: asString(row.provenance, "MOCK"),
-        lastCrawledAt: now,
-      },
-    });
-    challenges += 1;
-  }
+  const { catalogueEvents, hashtags: hashtagCount, socialTrends, virtualEvents, challenges } =
+    await seedCatalogue(prisma, now);
 
   const personasDoc = readJson(FIXTURE_FILES.personas);
   let personas = 0;

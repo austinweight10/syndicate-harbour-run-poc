@@ -5,6 +5,7 @@ import { FIXTURE_FILES, fixturePath } from "../fixtures/paths";
 import { MVP_SCOPES, assertExactScopes } from "../scopes";
 import { DEMO_SHOP_DOMAIN } from "../fixtures/seed";
 import { PIPELINE_STAGE_LABELS, pipelineEnqueue, type PipelineStage } from "./pipeline.server";
+import { kickPipelineWorker } from "./pipeline/worker.server";
 
 export async function currentShopId(request?: Request): Promise<string> {
   if (process.env.DEMO_FIXTURE_SHOP === "1") return DEMO_SHOP_DOMAIN;
@@ -132,8 +133,9 @@ type LiveSession = { shop: string; accessToken: string; scope?: string | null };
 
 async function ensureLiveShop(session: LiveSession): Promise<ShellData> {
   const domain = session.shop;
-  const scopes = session.scope && session.scope.length > 0 ? session.scope : MVP_SCOPES;
-  assertExactScopes(scopes);
+  assertExactScopes(session.scope && session.scope.length > 0 ? session.scope : MVP_SCOPES);
+  // Store the canonical order; Shopify returns scopes sorted alphabetically.
+  const scopes = MVP_SCOPES;
 
   const existing = await prisma.shop.findUnique({ where: { myshopifyDomain: domain } });
   await prisma.shop.upsert({
@@ -173,6 +175,11 @@ async function ensureLiveShop(session: LiveSession): Promise<ShellData> {
       if (!installed) await pipelineEnqueue(domain, "install");
     }
   }
+
+  const pending = await prisma.pipelineRun.findFirst({
+    where: { shopId: domain, mode: "live", status: "pending" },
+  });
+  if (pending) kickPipelineWorker();
 
   const shop = await prisma.shop.findUnique({ where: { id: domain } });
   return {

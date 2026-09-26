@@ -12,6 +12,7 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
     "pipeline:demo": "tsx scripts/pipeline-demo.ts",
+    "pipeline:live": "tsx --env-file=.env scripts/pipeline-live.ts",
     "storefront:stub": "tsx stub-storefront/server.ts",
     "agents:run": "tsx scripts/agents-run.ts",
     "agents:prove": "tsx scripts/agents-prove.ts",
