@@ -1,6 +1,6 @@
 # Syndicate
 
-**Occasion intelligence for Shopify.**
+**Syndicate is occasion-commerce intelligence for Shopify Admin** — it connects why shoppers buy this weekend to whether the storefront is ready, with labelled signals, derived personas, and agents that shop the site and stop before payment.
 
 ![Syndicate Overview — top occasion, confidence, and shopper workflow](docs/images/syndicate-overview.jpg)
 
@@ -75,6 +75,7 @@ Leave `SHOPIFY_API_KEY` / `SHOPIFY_API_SECRET` empty until you link a real Partn
 ## Links
 
 - [Product narrative / artifact](https://claude.ai/artifact/XUvvdUU91gmVwhq7zYyjft)
+- [Demo walkthrough (Loom)](https://www.loom.com/share/429060b42fc44b33befc85a5547f090c)
 - [Live demo (Fly)](https://syndicate-harbour-run.fly.dev/app)
 - [App README](shopify-app/README.md)
 - [Live demo gate](docs/scope/LIVE_DEMO_GATE.md)
