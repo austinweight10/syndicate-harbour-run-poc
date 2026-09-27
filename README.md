@@ -1,82 +1,81 @@
 # Syndicate
 
-Occasion-commerce intelligence for Shopify Admin. Primary demo vertical: **running** / brand **Harbour Run** / store `harbour-run-demo`.
+**Occasion intelligence for Shopify.**
 
-Austin greenlit the runnable app on 24 Sep 2026. This repo now has two surfaces:
+![Syndicate Overview — top occasion, confidence, and shopper workflow](docs/images/syndicate-overview.jpg)
 
-| Surface | What it is |
-|---------|------------|
-| [`shopify-app/`](shopify-app/) | **The app.** Shopify React Router scaffold (the current Remix successor) with Prisma/SQLite, OAuth scopes, and a `DEMO_FIXTURE_SHOP=1` shell. |
-| [`src/`](src/) | Earlier Vite Admin prototype. It still paints the Harbour Athletic fixture. It is not the OAuth app. |
+Syndicate is a Shopify Admin app that answers a simple merchant question: *what real-world occasions are driving demand in my shop right now, and what should I do about them?* Built over a hackathon weekend for the **Harbour Run** demo brand (running / race kit), it joins the last ~60 days of orders to an occasion calendar, scores each candidate with labelled evidence, and surfaces a clear “top occasion” with confidence — for example *Race weekend — London 10K* at 84% from orders in the window joined to the race calendar.
 
-The React Router app is greenfield beside `src/` because the Vite prototype has no Shopify session, App Bridge, or webhook runtime. Route paths stay `/app/*`.
+From there, Syndicate derives shopper personas (race-day taper, wet-weather trainer, parkrun regulars, and so on), then sends Playwright “shoppers” through the live storefront in a background browser. Those runs always stop before payment. When they hit friction — missing size guides, weak race-day copy, dead-end filters — the app turns the findings into insights and blockers the merchant can act on, including one-click marketing packs aimed at the winning occasion.
 
-## Run the Shopify app locally (no Partner token)
+The product lives inside Shopify Admin as an embedded app (Overview, Occasions, Shoppers, Shopper runs, Insights, Impact, Evidence). Evidence is labelled (Proxy / Seen / Demo / Estimate); fixture and live paths stay honest. The PoC is wired end-to-end: Prisma-backed Admin UI, in-process scoring pipeline, real Chromium shopper runs, and optional deploy to [Fly.io](https://syndicate-harbour-run.fly.dev/app).
 
-From the repo root:
+---
+
+## How it works
+
+```mermaid
+flowchart LR
+  subgraph Shopify
+    O[Orders / products]
+    SF[Dawn storefront]
+  end
+
+  subgraph Syndicate["Syndicate app"]
+    P[Pipeline<br/>seed · score · graph]
+    DB[(SQLite / Prisma)]
+    UI[Admin UI<br/>Overview · Occasions · Insights]
+    A[Playwright shoppers<br/>stop before pay]
+    I[Insights + blockers<br/>marketing packs]
+  end
+
+  O --> P
+  P --> DB
+  DB --> UI
+  UI -->|Watch shoppers browse| A
+  SF --> A
+  A -->|AgentRun + frictions| DB
+  DB --> I
+  I -->|optional| SF
+```
+
+1. **Ingest & score** — Orders and catalogue (fixture seed or live Shopify) land in Prisma/SQLite. A pipeline joins them to the race / weather / occasion calendar, builds graph edges, and writes `EventCandidate` rows with confidence bands.
+2. **Personas** — Ready shoppers are derived from those occasions (e.g. Race-day taper linked to the London 10K window).
+3. **Shopper runs** — On demand, Chromium walks a scripted path on the storefront (`SHOP_STOREFRONT_URL`), never clicks Pay / Shop Pay, and records an `AgentRun`.
+4. **Act** — Insights and blockers cite that run; merchants can open evidence, launch a marketing pack, or deploy storefront fixes when write scopes / tokens are present.
+
+| Piece | Stack |
+|-------|--------|
+| Admin app | Shopify React Router (Remix successor), App Bridge, Polaris-style shell |
+| Data | Prisma + SQLite (`EventCandidate`, `GraphEdge`, `AgentRun`, recommendations) |
+| Shoppers | Playwright Chromium in-process (headed or headless) |
+| Hosting | Optional Fly.io (`syndicate-harbour-run`) with a small volume for SQLite |
+
+Neo4j and Redis are out of scope for this PoC. Street addresses and emails are not stored; geo stays at city / region aggregate.
+
+---
+
+## Quick start (local, no Partner token)
 
 ```bash
 cd shopify-app
 npm install
 cp .env.example .env
-npx prisma generate
-npx prisma migrate deploy
+npx prisma generate && npx prisma migrate deploy
 npm run pipeline:demo
 npm run dev:demo
 ```
 
-Open [Syndicate overview](http://127.0.0.1:44731/app). Events and Insights load from SQLite after `pipeline:demo`. See [`shopify-app/README.md`](shopify-app/README.md).
+Open [http://127.0.0.1:44731/app](http://127.0.0.1:44731/app). Details, agent setup, and Fly deploy: [`shopify-app/README.md`](shopify-app/README.md).
 
-`DEMO_FIXTURE_SHOP=1` is set by `dev:demo`. The shell shows **Connected** for `harbour-run-demo.myshopify.com` and uses the same Prisma loaders as a live shop. It does **not** enqueue a live Partner `PipelineRun`.
+Leave `SHOPIFY_API_KEY` / `SHOPIFY_API_SECRET` empty until you link a real Partner app. Never commit `.env` files — only `.env.example` is in git.
 
-Equivalent root scripts, after `npm install` inside `shopify-app`:
+---
 
-```bash
-npm run db:setup
-npm run db:seed
-npm run dev:shopify
-```
+## Links
 
-Smoke (fixture parse, seed, scopes, uninstall wipe):
-
-```bash
-cd shopify-app && npm run smoke
-```
-
-## What a live Partner install still needs
-
-Do not invent tokens. Leave `SHOPIFY_API_KEY` and `SHOPIFY_API_SECRET` empty until Austin creates the Partner app and the `harbour-run-demo` development store.
-
-1. Partner app whose scopes are exactly `read_orders,read_products,read_customers` (`shopify-app/shopify.app.toml`).
-2. `shopify app config link` so `client_id` is real.
-3. `SHOPIFY_API_KEY`, `SHOPIFY_API_SECRET`, and `SHOPIFY_APP_URL` in `shopify-app/.env`.
-4. Unset `DEMO_FIXTURE_SHOP` and run `npm run dev` (`shopify app dev`) so OAuth can complete.
-5. On that live session the shell calls `pipelineEnqueue(shop, "install")`. The demo scorer is `npm run pipeline:demo` (fixture shop). A Partner install still leaves the live run `pending` until a worker drains it.
-
-Uninstall (`app/uninstalled`) verifies Shopify HMAC, then `pcdWipeShop` deletes sessions, customer hashes, and geo rows.
-
-## Phase 0 data
-
-Prisma schema: [`shopify-app/prisma/schema.prisma`](shopify-app/prisma/schema.prisma) (also linked from `prisma/schema.prisma`). SQLite file: `shopify-app/prisma/dev.db` (gitignored).
-
-`npm run db:seed` loads `docs/fixtures/**` for Harbour Run: snake_case orders, 48 orders, `HR-*` SKUs, running vertical. Street addresses and emails are not stored. Social trends are never seeded as OBSERVED.
-
-Weekend Harbour Run confidence bands are [`docs/fixtures/graph/expected-scores-running.json`](docs/fixtures/graph/expected-scores-running.json). The football-era [`docs/fixtures/graph/expected-scores.json`](docs/fixtures/graph/expected-scores.json) is superseded and still schema-checked. [`docs/fixtures/graph/expected-scores.running.proposed.json`](docs/fixtures/graph/expected-scores.running.proposed.json) is the earlier lab proposal.
-
-## Demo wire (epics 02–04, thin 05, 07, 08)
-
-`npm run pipeline:demo` inside `shopify-app` seeds fixtures, scores running occasions, and writes Insights. The Admin UI reads those rows from Prisma. Run agents are Playwright shoppers that stop before payment. Graph reads Prisma `GraphEdge`. Neo4j is out of scope. See [`docs/scope/LIVE_DEMO_GATE.md`](docs/scope/LIVE_DEMO_GATE.md) and [`shopify-app/README.md`](shopify-app/README.md).
-
-## Vite prototype (unchanged)
-
-```bash
-npm install && npm run dev
-```
-
-Open [Admin prototype](http://127.0.0.1:43123). OAuth is not connected there.
-
-## Specs
-
-Start at [`docs/scope/AGENT_KICKOFF.md`](docs/scope/AGENT_KICKOFF.md). Harbour Run context: [`docs/live-demo-store/PIVOT_RUNNING.md`](docs/live-demo-store/PIVOT_RUNNING.md).
-
-**Pitch Day (Sat):** [`docs/scope/HACKATHON_PDAY_PLAN.md`](docs/scope/HACKATHON_PDAY_PLAN.md) — hour-by-hour T1/T2/T3 ladder.
+- [Product narrative / artifact](https://claude.ai/artifact/XUvvdUU91gmVwhq7zYyjft)
+- [Live demo (Fly)](https://syndicate-harbour-run.fly.dev/app)
+- [App README](shopify-app/README.md)
+- [Live demo gate](docs/scope/LIVE_DEMO_GATE.md)
+- [Agent kickoff / specs](docs/scope/AGENT_KICKOFF.md)

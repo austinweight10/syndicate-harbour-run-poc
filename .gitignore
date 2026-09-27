@@ -11,11 +11,20 @@ node_modules
 dist
 prisma/*.db
 prisma/*.db-journal
+**/prisma/*.db
+**/prisma/*.db-journal
 .env
 .env.*
 !.env.example
+**/.env
+!**/.env.example
+*.pem
+*.p12
 dist-ssr
 *.local
+.shopify/
+**/dev.db*
+**/test.db*
 
 __pycache__/
 *.py[cod]
