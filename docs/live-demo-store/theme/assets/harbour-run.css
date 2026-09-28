@@ -52,7 +52,14 @@ body {
     );
 }
 
-.banner .banner__content,
+/* Keep Dawn's stacking: the image overlay (.banner::after) is z-index 1 and
+   stays in the hit-test path even at 0% opacity, so content must sit above it
+   (Dawn uses 2) or the banner buttons can't be clicked. */
+.banner .banner__content {
+  position: relative;
+  z-index: 2;
+}
+
 .banner .banner__box {
   position: relative;
   z-index: 1;
@@ -71,10 +78,29 @@ body {
 }
 
 .banner__text {
-  max-width: 28rem;
+  max-width: 36rem;
   margin-inline: auto;
   opacity: 0.92;
   animation: hr-rise 700ms var(--hr-ease) 80ms both;
+}
+
+/* Centre the subtitle only when the banner content is centred. */
+@media screen and (min-width: 750px) {
+  .banner--content-align-left .banner__text {
+    margin-inline: 0;
+  }
+  .banner--content-align-right .banner__text {
+    margin-inline: auto 0;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .banner--content-align-mobile-left .banner__text {
+    margin-inline: 0;
+  }
+  .banner--content-align-mobile-right .banner__text {
+    margin-inline: auto 0;
+  }
 }
 
 .banner__buttons {
