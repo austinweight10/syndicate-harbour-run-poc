@@ -18,6 +18,6 @@ if (!shop) {
   process.exit(1);
 }
 
-const result = await ingestShopifyFull(prisma, shopId, { maxOrders: 500 });
+const result = await ingestShopifyFull(prisma, shopId, { maxOrders: 2500 });
 console.log(JSON.stringify(result, null, 2));
 await prisma.$disconnect();

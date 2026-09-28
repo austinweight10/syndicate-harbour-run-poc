@@ -6,7 +6,7 @@ import { createHash } from "node:crypto";
 import type { PrismaClient } from "@prisma/client";
 import { adminGraphql, ShopifyGraphqlError } from "./admin-graphql";
 
-const MAX_ORDERS = 500;
+const MAX_ORDERS = 2500;
 const WINDOW_DAYS = 60;
 const PAGE = 50;
 

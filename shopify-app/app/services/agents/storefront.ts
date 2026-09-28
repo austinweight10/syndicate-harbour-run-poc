@@ -10,16 +10,22 @@ const BAD_PLACEHOLDERS = new Set([
   "http://YOUR-STORE.myshopify.com",
 ]);
 
+/** "shop.myshopify.com" → "https://shop.myshopify.com"; trailing slash dropped. */
+function normalise(url: string): string {
+  const withScheme = /^https?:\/\//i.test(url) ? url : `https://${url}`;
+  return withScheme.replace(/\/$/, "");
+}
+
 export function resolveStorefrontUrl(saved: string | null | undefined): string | null {
   const fromEnv = process.env.SHOP_STOREFRONT_URL?.trim();
   if (fromEnv) {
-    const cleaned = fromEnv.replace(/\/$/, "");
+    const cleaned = normalise(fromEnv);
     if (BAD_PLACEHOLDERS.has(cleaned) || cleaned.includes("YOUR-STORE")) return null;
     return cleaned;
   }
   const fromShop = saved?.trim();
   if (!fromShop) return null;
-  const cleaned = fromShop.replace(/\/$/, "");
+  const cleaned = normalise(fromShop);
   if (BAD_PLACEHOLDERS.has(cleaned) || cleaned.includes("YOUR-STORE")) return null;
   return cleaned;
 }

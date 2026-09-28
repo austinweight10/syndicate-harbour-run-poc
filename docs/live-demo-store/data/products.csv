@@ -42,3 +42,459 @@ kids-youth-run-tee,Kids / Youth Run Tee,"<p>Youth run tee with Harbour Run mark.
 <!-- Intentional P0 Insight: NO size guide section on this PDP -->",Harbour Run,,Apparel,"kids,youth,race_day",TRUE,Size,YS,,,,,HR-KYT-YS,120,shopify,50,deny,manual,28.00,,TRUE,TRUE,,https://placehold.co/800x800/b22234/f5f0e8/png?text=HR-KYT,1,Kids / Youth Run Tee,FALSE,,,,,,,,,,g,,,active
 kids-youth-run-tee,,,,,,,,Size,YM,,,,,HR-KYT-YM,120,shopify,50,deny,manual,28.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
 kids-youth-run-tee,,,,,,,,Size,YL,,,,,HR-KYT-YL,120,shopify,50,deny,manual,28.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,Men's Race Tee,"<p>Featherweight race tee cut close for marathon and half-marathon days. Open mesh panels dump heat, and flatlock seams stay quiet under a race bib.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Apparel,"race_day,race_kit,running,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MRT-BLK-XS,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-MRT,1,Men's Race Tee,FALSE,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,S,Colour,Black,,,HR-MRT-BLK-S,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,M,Colour,Black,,,HR-MRT-BLK-M,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,L,Colour,Black,,,HR-MRT-BLK-L,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,XL,Colour,Black,,,HR-MRT-BLK-XL,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,XXL,Colour,Black,,,HR-MRT-BLK-XXL,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,XS,Colour,Silver,,,HR-MRT-SLV-XS,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,S,Colour,Silver,,,HR-MRT-SLV-S,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,M,Colour,Silver,,,HR-MRT-SLV-M,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,L,Colour,Silver,,,HR-MRT-SLV-L,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,XL,Colour,Silver,,,HR-MRT-SLV-XL,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-tee,,,,,,,,Size,XXL,Colour,Silver,,,HR-MRT-SLV-XXL,110,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-tee,Women's Race Tee,"<p>A lightweight, slightly cropped race tee for fast days. Breathable knit, bonded hem and nothing to rub over 26.2 miles.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Apparel,"race_day,race_kit,running,adult_size",TRUE,Size,XS,Colour,Black,,,HR-WRT-BLK-XS,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-WRT,1,Women's Race Tee,FALSE,,,,,,,,,,g,,,active
+womens-race-tee,,,,,,,,Size,S,Colour,Black,,,HR-WRT-BLK-S,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-tee,,,,,,,,Size,M,Colour,Black,,,HR-WRT-BLK-M,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-tee,,,,,,,,Size,L,Colour,Black,,,HR-WRT-BLK-L,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-tee,,,,,,,,Size,XL,Colour,Black,,,HR-WRT-BLK-XL,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-tee,,,,,,,,Size,XS,Colour,Silver,,,HR-WRT-SLV-XS,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-tee,,,,,,,,Size,S,Colour,Silver,,,HR-WRT-SLV-S,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-tee,,,,,,,,Size,M,Colour,Silver,,,HR-WRT-SLV-M,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-tee,,,,,,,,Size,L,Colour,Silver,,,HR-WRT-SLV-L,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-tee,,,,,,,,Size,XL,Colour,Silver,,,HR-WRT-SLV-XL,100,shopify,50,deny,manual,90.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,Men's Eco Tech Tee,"<p>Everyday training tee in a recycled technical jersey. Quick-drying, soft handfeel and a regular fit that works for club nights as well as easy miles.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Apparel,"running,club_social,adult_size",TRUE,Size,XS,Colour,Grey,,,HR-METT-GRY-XS,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,https://placehold.co/800x800/1a3050/f5f0e8/png?text=HR-METT,1,Men's Eco Tech Tee,FALSE,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,S,Colour,Grey,,,HR-METT-GRY-S,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,M,Colour,Grey,,,HR-METT-GRY-M,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,L,Colour,Grey,,,HR-METT-GRY-L,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,XL,Colour,Grey,,,HR-METT-GRY-XL,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,XXL,Colour,Grey,,,HR-METT-GRY-XXL,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,XS,Colour,Yellow,,,HR-METT-YEL-XS,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,S,Colour,Yellow,,,HR-METT-YEL-S,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,M,Colour,Yellow,,,HR-METT-YEL-M,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,L,Colour,Yellow,,,HR-METT-YEL-L,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,XL,Colour,Yellow,,,HR-METT-YEL-XL,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-eco-tech-tee,,,,,,,,Size,XXL,Colour,Yellow,,,HR-METT-YEL-XXL,130,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-eco-tech-tee,Women's Eco Tech Tee,"<p>Recycled-yarn training tee with a relaxed shoulder and a longer back hem. Dries fast after a wet towpath loop.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Apparel,"running,club_social,adult_size",TRUE,Size,XS,Colour,Grey,,,HR-WETT-GRY-XS,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,https://placehold.co/800x800/1a3050/f5f0e8/png?text=HR-WETT,1,Women's Eco Tech Tee,FALSE,,,,,,,,,,g,,,active
+womens-eco-tech-tee,,,,,,,,Size,S,Colour,Grey,,,HR-WETT-GRY-S,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-eco-tech-tee,,,,,,,,Size,M,Colour,Grey,,,HR-WETT-GRY-M,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-eco-tech-tee,,,,,,,,Size,L,Colour,Grey,,,HR-WETT-GRY-L,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-eco-tech-tee,,,,,,,,Size,XL,Colour,Grey,,,HR-WETT-GRY-XL,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-eco-tech-tee,,,,,,,,Size,XS,Colour,Cream,,,HR-WETT-CRM-XS,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-eco-tech-tee,,,,,,,,Size,S,Colour,Cream,,,HR-WETT-CRM-S,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-eco-tech-tee,,,,,,,,Size,M,Colour,Cream,,,HR-WETT-CRM-M,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-eco-tech-tee,,,,,,,,Size,L,Colour,Cream,,,HR-WETT-CRM-L,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-eco-tech-tee,,,,,,,,Size,XL,Colour,Cream,,,HR-WETT-CRM-XL,120,shopify,50,deny,manual,85.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,Men's Hot Weather Tee,"<p>Ultra-airy striped tee for heatwave training and summer racing. Open-knit fabric and a loose drape keep air moving when the sun is up.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Apparel,"running,race_day,adult_size",TRUE,Size,XS,Colour,White/Blue Stripe,,,HR-MHWT-WBS-XS,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,https://placehold.co/800x800/4a6a8a/f5f0e8/png?text=HR-MHWT,1,Men's Hot Weather Tee,FALSE,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,S,Colour,White/Blue Stripe,,,HR-MHWT-WBS-S,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,M,Colour,White/Blue Stripe,,,HR-MHWT-WBS-M,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,L,Colour,White/Blue Stripe,,,HR-MHWT-WBS-L,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,XL,Colour,White/Blue Stripe,,,HR-MHWT-WBS-XL,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,XXL,Colour,White/Blue Stripe,,,HR-MHWT-WBS-XXL,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,XS,Colour,Grey/Navy Stripe,,,HR-MHWT-GNS-XS,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,S,Colour,Grey/Navy Stripe,,,HR-MHWT-GNS-S,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,M,Colour,Grey/Navy Stripe,,,HR-MHWT-GNS-M,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,L,Colour,Grey/Navy Stripe,,,HR-MHWT-GNS-L,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,XL,Colour,Grey/Navy Stripe,,,HR-MHWT-GNS-XL,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-hot-weather-tee,,,,,,,,Size,XXL,Colour,Grey/Navy Stripe,,,HR-MHWT-GNS-XXL,100,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-hot-weather-tee,Women's Hot Weather Tee,"<p>A breezy open-knit tee for hot days and summer races. Light enough to forget about, with a relaxed fit through the body.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Apparel,"running,race_day,adult_size",TRUE,Size,XS,Colour,White/Blue Stripe,,,HR-WHWT-WBS-XS,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,https://placehold.co/800x800/4a6a8a/f5f0e8/png?text=HR-WHWT,1,Women's Hot Weather Tee,FALSE,,,,,,,,,,g,,,active
+womens-hot-weather-tee,,,,,,,,Size,S,Colour,White/Blue Stripe,,,HR-WHWT-WBS-S,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-hot-weather-tee,,,,,,,,Size,M,Colour,White/Blue Stripe,,,HR-WHWT-WBS-M,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-hot-weather-tee,,,,,,,,Size,L,Colour,White/Blue Stripe,,,HR-WHWT-WBS-L,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-hot-weather-tee,,,,,,,,Size,XL,Colour,White/Blue Stripe,,,HR-WHWT-WBS-XL,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-hot-weather-tee,,,,,,,,Size,XS,Colour,Warm Grey/Yellow,,,HR-WHWT-WGY-XS,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-hot-weather-tee,,,,,,,,Size,S,Colour,Warm Grey/Yellow,,,HR-WHWT-WGY-S,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-hot-weather-tee,,,,,,,,Size,M,Colour,Warm Grey/Yellow,,,HR-WHWT-WGY-M,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-hot-weather-tee,,,,,,,,Size,L,Colour,Warm Grey/Yellow,,,HR-WHWT-WGY-L,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-hot-weather-tee,,,,,,,,Size,XL,Colour,Warm Grey/Yellow,,,HR-WHWT-WGY-XL,95,shopify,50,deny,manual,105.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,Men's Race Vest 2.0,"<p>Our lightest race vest, reworked with a lower armhole and a softer binding. Built for PB attempts from parkrun to marathon.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Vests,"race_day,race_kit,running,adult_size",TRUE,Size,XS,Colour,White,,,HR-MRV-WHT-XS,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-MRV,1,Men's Race Vest 2.0,FALSE,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,S,Colour,White,,,HR-MRV-WHT-S,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,M,Colour,White,,,HR-MRV-WHT-M,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,L,Colour,White,,,HR-MRV-WHT-L,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,XL,Colour,White,,,HR-MRV-WHT-XL,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,XXL,Colour,White,,,HR-MRV-WHT-XXL,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,XS,Colour,Black,,,HR-MRV-BLK-XS,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,S,Colour,Black,,,HR-MRV-BLK-S,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,M,Colour,Black,,,HR-MRV-BLK-M,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,L,Colour,Black,,,HR-MRV-BLK-L,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,XL,Colour,Black,,,HR-MRV-BLK-XL,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,XXL,Colour,Black,,,HR-MRV-BLK-XXL,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,XS,Colour,Bright Green,,,HR-MRV-GRN-XS,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,S,Colour,Bright Green,,,HR-MRV-GRN-S,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,M,Colour,Bright Green,,,HR-MRV-GRN-M,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,L,Colour,Bright Green,,,HR-MRV-GRN-L,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,XL,Colour,Bright Green,,,HR-MRV-GRN-XL,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-race-vest-2,,,,,,,,Size,XXL,Colour,Bright Green,,,HR-MRV-GRN-XXL,80,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-vest,Women's Race Vest,"<p>Minimal race vest with a racer back and bonded edges. Holds its shape when soaked and pins a bib cleanly.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Vests,"race_day,race_kit,running,adult_size",TRUE,Size,XS,Colour,Black,,,HR-WRV-BLK-XS,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-WRV,1,Women's Race Vest,FALSE,,,,,,,,,,g,,,active
+womens-race-vest,,,,,,,,Size,S,Colour,Black,,,HR-WRV-BLK-S,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-vest,,,,,,,,Size,M,Colour,Black,,,HR-WRV-BLK-M,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-vest,,,,,,,,Size,L,Colour,Black,,,HR-WRV-BLK-L,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-vest,,,,,,,,Size,XL,Colour,Black,,,HR-WRV-BLK-XL,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-vest,,,,,,,,Size,XS,Colour,White,,,HR-WRV-WHT-XS,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-vest,,,,,,,,Size,S,Colour,White,,,HR-WRV-WHT-S,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-vest,,,,,,,,Size,M,Colour,White,,,HR-WRV-WHT-M,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-vest,,,,,,,,Size,L,Colour,White,,,HR-WRV-WHT-L,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-race-vest,,,,,,,,Size,XL,Colour,White,,,HR-WRV-WHT-XL,75,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-crop-race-vest,Women's Crop Race Vest,"<p>Cropped race vest for track sessions and short, fast races. Stretch mesh with a supportive underband.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Vests,"race_day,race_kit,adult_size",TRUE,Size,XS,Colour,Black,,,HR-WCRV-BLK-XS,60,shopify,50,deny,manual,80.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-WCRV,1,Women's Crop Race Vest,FALSE,,,,,,,,,,g,,,active
+womens-crop-race-vest,,,,,,,,Size,S,Colour,Black,,,HR-WCRV-BLK-S,60,shopify,50,deny,manual,80.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-crop-race-vest,,,,,,,,Size,M,Colour,Black,,,HR-WCRV-BLK-M,60,shopify,50,deny,manual,80.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-crop-race-vest,,,,,,,,Size,L,Colour,Black,,,HR-WCRV-BLK-L,60,shopify,50,deny,manual,80.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,Men's Training Singlet,"<p>A relaxed-fit striped singlet for warm training days. Soft, fast-wicking knit with a dropped armhole.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Vests,"running,race_day,adult_size",TRUE,Size,XS,Colour,White/Blue Stripe,,,HR-MSG-WBS-XS,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,https://placehold.co/800x800/4a6a8a/f5f0e8/png?text=HR-MSG,1,Men's Training Singlet,FALSE,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,S,Colour,White/Blue Stripe,,,HR-MSG-WBS-S,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,M,Colour,White/Blue Stripe,,,HR-MSG-WBS-M,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,L,Colour,White/Blue Stripe,,,HR-MSG-WBS-L,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,XL,Colour,White/Blue Stripe,,,HR-MSG-WBS-XL,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,XXL,Colour,White/Blue Stripe,,,HR-MSG-WBS-XXL,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,XS,Colour,Grey/Navy Stripe,,,HR-MSG-GNS-XS,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,S,Colour,Grey/Navy Stripe,,,HR-MSG-GNS-S,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,M,Colour,Grey/Navy Stripe,,,HR-MSG-GNS-M,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,L,Colour,Grey/Navy Stripe,,,HR-MSG-GNS-L,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,XL,Colour,Grey/Navy Stripe,,,HR-MSG-GNS-XL,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-training-singlet,,,,,,,,Size,XXL,Colour,Grey/Navy Stripe,,,HR-MSG-GNS-XXL,90,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-elite-race-vest,Men's Elite Race Vest,"<p>Top-tier race vest using a graphene-infused yarn for cooling on the hottest start lines. Close fit, bonded throughout.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Vests,"race_day,race_kit,adult_size",TRUE,Size,XS,Colour,Fluro/Light Blue,,,HR-MERV-FLB-XS,70,shopify,50,deny,manual,190.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-MERV,1,Men's Elite Race Vest,FALSE,,,,,,,,,,g,,,active
+mens-elite-race-vest,,,,,,,,Size,S,Colour,Fluro/Light Blue,,,HR-MERV-FLB-S,70,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-elite-race-vest,,,,,,,,Size,M,Colour,Fluro/Light Blue,,,HR-MERV-FLB-M,70,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-elite-race-vest,,,,,,,,Size,L,Colour,Fluro/Light Blue,,,HR-MERV-FLB-L,70,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-elite-race-vest,,,,,,,,Size,XL,Colour,Fluro/Light Blue,,,HR-MERV-FLB-XL,70,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-elite-race-vest,,,,,,,,Size,XXL,Colour,Fluro/Light Blue,,,HR-MERV-FLB-XXL,70,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,Men's Long Sleeve Tech Tee,"<p>Long sleeve training top for cool mornings and shoulder-season runs. Lightweight recycled jersey with a trim fit that layers under a shell.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Apparel,"running,layers,adult_size",TRUE,Size,XS,Colour,Grey,,,HR-MLST-GRY-XS,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,https://placehold.co/800x800/1a3050/f5f0e8/png?text=HR-MLST,1,Men's Long Sleeve Tech Tee,FALSE,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,S,Colour,Grey,,,HR-MLST-GRY-S,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,M,Colour,Grey,,,HR-MLST-GRY-M,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,L,Colour,Grey,,,HR-MLST-GRY-L,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,XL,Colour,Grey,,,HR-MLST-GRY-XL,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,XXL,Colour,Grey,,,HR-MLST-GRY-XXL,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,XS,Colour,Dark Brown,,,HR-MLST-BRN-XS,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,S,Colour,Dark Brown,,,HR-MLST-BRN-S,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,M,Colour,Dark Brown,,,HR-MLST-BRN-M,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,L,Colour,Dark Brown,,,HR-MLST-BRN-L,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,XL,Colour,Dark Brown,,,HR-MLST-BRN-XL,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-long-sleeve-tech-tee,,,,,,,,Size,XXL,Colour,Dark Brown,,,HR-MLST-BRN-XXL,170,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,Women's Long Sleeve Tech Tee,"<p>A soft long sleeve top for chilly starts. Thumb-friendly cuffs and a gently fitted body that sits well under a gilet.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Apparel,"running,layers,adult_size",TRUE,Size,XS,Colour,Grey,,,HR-WLST-GRY-XS,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,https://placehold.co/800x800/1a3050/f5f0e8/png?text=HR-WLST,1,Women's Long Sleeve Tech Tee,FALSE,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,,,,,,,,Size,S,Colour,Grey,,,HR-WLST-GRY-S,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,,,,,,,,Size,M,Colour,Grey,,,HR-WLST-GRY-M,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,,,,,,,,Size,L,Colour,Grey,,,HR-WLST-GRY-L,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,,,,,,,,Size,XL,Colour,Grey,,,HR-WLST-GRY-XL,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,,,,,,,,Size,XS,Colour,Cream,,,HR-WLST-CRM-XS,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,,,,,,,,Size,S,Colour,Cream,,,HR-WLST-CRM-S,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,,,,,,,,Size,M,Colour,Cream,,,HR-WLST-CRM-M,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,,,,,,,,Size,L,Colour,Cream,,,HR-WLST-CRM-L,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-long-sleeve-tech-tee,,,,,,,,Size,XL,Colour,Cream,,,HR-WLST-CRM-XL,160,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,Men's Tempo Top,"<p>Brushed-back half-zip for winter tempo sessions. Warm on the inside, smooth on the outside, with a zipped chest pocket for a key or gel.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Apparel,"layers,running,wx_aware,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MTT-BLK-XS,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-MTT,1,Men's Tempo Top,FALSE,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,S,Colour,Black,,,HR-MTT-BLK-S,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,M,Colour,Black,,,HR-MTT-BLK-M,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,L,Colour,Black,,,HR-MTT-BLK-L,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,XL,Colour,Black,,,HR-MTT-BLK-XL,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,XXL,Colour,Black,,,HR-MTT-BLK-XXL,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,XS,Colour,Dark Brown,,,HR-MTT-BRN-XS,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,S,Colour,Dark Brown,,,HR-MTT-BRN-S,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,M,Colour,Dark Brown,,,HR-MTT-BRN-M,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,L,Colour,Dark Brown,,,HR-MTT-BRN-L,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,XL,Colour,Dark Brown,,,HR-MTT-BRN-XL,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-tempo-top,,,,,,,,Size,XXL,Colour,Dark Brown,,,HR-MTT-BRN-XXL,230,shopify,50,deny,manual,210.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,Men's L/S Merino & Silk Base Layer,"<p>Long sleeve base layer in a merino and silk blend. Naturally warm, odour-resistant and smooth against the skin on cold long runs.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Base Layers,"layers,wx_aware,running,adult_size",TRUE,Size,XS,Colour,Grey,,,HR-MMBL-GRY-XS,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,https://placehold.co/800x800/37465a/f5f0e8/png?text=HR-MMBL,1,Men's L/S Merino & Silk Base Layer,FALSE,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,S,Colour,Grey,,,HR-MMBL-GRY-S,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,M,Colour,Grey,,,HR-MMBL-GRY-M,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,L,Colour,Grey,,,HR-MMBL-GRY-L,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,XL,Colour,Grey,,,HR-MMBL-GRY-XL,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,XXL,Colour,Grey,,,HR-MMBL-GRY-XXL,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,XS,Colour,Forest Night,,,HR-MMBL-FOR-XS,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,S,Colour,Forest Night,,,HR-MMBL-FOR-S,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,M,Colour,Forest Night,,,HR-MMBL-FOR-M,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,L,Colour,Forest Night,,,HR-MMBL-FOR-L,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,XL,Colour,Forest Night,,,HR-MMBL-FOR-XL,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-merino-silk-base-layer-ls,,,,,,,,Size,XXL,Colour,Forest Night,,,HR-MMBL-FOR-XXL,170,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,Women's L/S Merino & Silk Base Layer,"<p>Merino and silk long sleeve base layer for winter training. Fine, warm and breathable, worn alone or under a jacket.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Base Layers,"layers,wx_aware,running,adult_size",TRUE,Size,XS,Colour,Grey,,,HR-WMBL-GRY-XS,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,https://placehold.co/800x800/37465a/f5f0e8/png?text=HR-WMBL,1,Women's L/S Merino & Silk Base Layer,FALSE,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,,,,,,,,Size,S,Colour,Grey,,,HR-WMBL-GRY-S,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,,,,,,,,Size,M,Colour,Grey,,,HR-WMBL-GRY-M,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,,,,,,,,Size,L,Colour,Grey,,,HR-WMBL-GRY-L,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,,,,,,,,Size,XL,Colour,Grey,,,HR-WMBL-GRY-XL,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,,,,,,,,Size,XS,Colour,Blue Iris,,,HR-WMBL-BIR-XS,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,,,,,,,,Size,S,Colour,Blue Iris,,,HR-WMBL-BIR-S,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,,,,,,,,Size,M,Colour,Blue Iris,,,HR-WMBL-BIR-M,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,,,,,,,,Size,L,Colour,Blue Iris,,,HR-WMBL-BIR-L,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-silk-base-layer-ls,,,,,,,,Size,XL,Colour,Blue Iris,,,HR-WMBL-BIR-XL,160,shopify,50,deny,manual,95.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-thermal-top,Men's Thermal Top,"<p>Grid-fleece thermal top that traps warmth without bulk. A go-to for frosty parkruns and January club runs.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Base Layers,"layers,wx_aware,adult_size",TRUE,Size,XS,Colour,Blue Grey,,,HR-MTH-BGY-XS,240,shopify,50,deny,manual,140.00,,TRUE,TRUE,,https://placehold.co/800x800/37465a/f5f0e8/png?text=HR-MTH,1,Men's Thermal Top,FALSE,,,,,,,,,,g,,,active
+mens-thermal-top,,,,,,,,Size,S,Colour,Blue Grey,,,HR-MTH-BGY-S,240,shopify,50,deny,manual,140.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-thermal-top,,,,,,,,Size,M,Colour,Blue Grey,,,HR-MTH-BGY-M,240,shopify,50,deny,manual,140.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-thermal-top,,,,,,,,Size,L,Colour,Blue Grey,,,HR-MTH-BGY-L,240,shopify,50,deny,manual,140.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-thermal-top,,,,,,,,Size,XL,Colour,Blue Grey,,,HR-MTH-BGY-XL,240,shopify,50,deny,manual,140.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-thermal-top,,,,,,,,Size,XXL,Colour,Blue Grey,,,HR-MTH-BGY-XXL,240,shopify,50,deny,manual,140.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-all-weather-jacket,Men's All Weather Jacket,"<p>Fully waterproof, taped-seam running jacket for the worst of a British winter. Adjustable hood, stretch panels and reflective details.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Outerwear,"waterproof,shell,wx_aware,wet_weather,outerwear,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MAWJ-BLK-XS,380,shopify,50,deny,manual,370.00,,TRUE,TRUE,,https://placehold.co/800x800/37465a/f5f0e8/png?text=HR-MAWJ,1,Men's All Weather Jacket,FALSE,,,,,,,,,,g,,,active
+mens-all-weather-jacket,,,,,,,,Size,S,Colour,Black,,,HR-MAWJ-BLK-S,380,shopify,50,deny,manual,370.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-all-weather-jacket,,,,,,,,Size,M,Colour,Black,,,HR-MAWJ-BLK-M,380,shopify,50,deny,manual,370.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-all-weather-jacket,,,,,,,,Size,L,Colour,Black,,,HR-MAWJ-BLK-L,380,shopify,50,deny,manual,370.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-all-weather-jacket,,,,,,,,Size,XL,Colour,Black,,,HR-MAWJ-BLK-XL,380,shopify,50,deny,manual,370.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-all-weather-jacket,,,,,,,,Size,XXL,Colour,Black,,,HR-MAWJ-BLK-XXL,380,shopify,50,deny,manual,370.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,Men's Packable Rain Shell,"<p>Lightweight waterproof shell that stuffs into its own pocket. Bright colourway for dark evenings and a hood that stays put in the wind.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Outerwear,"waterproof,shell,wx_aware,wet_weather,outerwear,adult_size",TRUE,Size,XS,Colour,Orange,,,HR-MPRS-ORG-XS,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,https://placehold.co/800x800/37465a/f5f0e8/png?text=HR-MPRS,1,Men's Packable Rain Shell,FALSE,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,S,Colour,Orange,,,HR-MPRS-ORG-S,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,M,Colour,Orange,,,HR-MPRS-ORG-M,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,L,Colour,Orange,,,HR-MPRS-ORG-L,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,XL,Colour,Orange,,,HR-MPRS-ORG-XL,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,XXL,Colour,Orange,,,HR-MPRS-ORG-XXL,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,XS,Colour,Black,,,HR-MPRS-BLK-XS,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,S,Colour,Black,,,HR-MPRS-BLK-S,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,M,Colour,Black,,,HR-MPRS-BLK-M,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,L,Colour,Black,,,HR-MPRS-BLK-L,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,XL,Colour,Black,,,HR-MPRS-BLK-XL,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-packable-rain-shell,,,,,,,,Size,XXL,Colour,Black,,,HR-MPRS-BLK-XXL,180,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-packable-rain-shell,Women's Packable Rain Shell,"<p>A featherweight waterproof shell that packs to fist size. Hooded, taped and cut to move freely at pace.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Outerwear,"waterproof,shell,wx_aware,wet_weather,outerwear,adult_size",TRUE,Size,XS,Colour,Orange,,,HR-WPRS-ORG-XS,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,https://placehold.co/800x800/37465a/f5f0e8/png?text=HR-WPRS,1,Women's Packable Rain Shell,FALSE,,,,,,,,,,g,,,active
+womens-packable-rain-shell,,,,,,,,Size,S,Colour,Orange,,,HR-WPRS-ORG-S,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-packable-rain-shell,,,,,,,,Size,M,Colour,Orange,,,HR-WPRS-ORG-M,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-packable-rain-shell,,,,,,,,Size,L,Colour,Orange,,,HR-WPRS-ORG-L,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-packable-rain-shell,,,,,,,,Size,XL,Colour,Orange,,,HR-WPRS-ORG-XL,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-packable-rain-shell,,,,,,,,Size,XS,Colour,Black,,,HR-WPRS-BLK-XS,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-packable-rain-shell,,,,,,,,Size,S,Colour,Black,,,HR-WPRS-BLK-S,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-packable-rain-shell,,,,,,,,Size,M,Colour,Black,,,HR-WPRS-BLK-M,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-packable-rain-shell,,,,,,,,Size,L,Colour,Black,,,HR-WPRS-BLK-L,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-packable-rain-shell,,,,,,,,Size,XL,Colour,Black,,,HR-WPRS-BLK-XL,170,shopify,50,deny,manual,220.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,Men's Windbreaker,"<p>Wind-resistant running jacket for blustery seafront and park loops. Showerproof finish, not waterproof — pair with a shell for proper rain.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Jackets,"windproof,layers,wx_aware,adult_size",TRUE,Size,XS,Colour,Navy,,,HR-MWB-NAV-XS,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-MWB,1,Men's Windbreaker,FALSE,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,S,Colour,Navy,,,HR-MWB-NAV-S,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,M,Colour,Navy,,,HR-MWB-NAV-M,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,L,Colour,Navy,,,HR-MWB-NAV-L,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,XL,Colour,Navy,,,HR-MWB-NAV-XL,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,XXL,Colour,Navy,,,HR-MWB-NAV-XXL,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,XS,Colour,Black,,,HR-MWB-BLK-XS,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,S,Colour,Black,,,HR-MWB-BLK-S,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,M,Colour,Black,,,HR-MWB-BLK-M,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,L,Colour,Black,,,HR-MWB-BLK-L,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,XL,Colour,Black,,,HR-MWB-BLK-XL,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-windbreaker,,,,,,,,Size,XXL,Colour,Black,,,HR-MWB-BLK-XXL,150,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-windbreaker,Women's Windbreaker,"<p>Light, wind-cheating jacket that packs down small. Showerproof for passing drizzle; reach for a waterproof shell in heavy rain.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Jackets,"windproof,layers,wx_aware,adult_size",TRUE,Size,XS,Colour,Opal Grey,,,HR-WWB-OPL-XS,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-WWB,1,Women's Windbreaker,FALSE,,,,,,,,,,g,,,active
+womens-windbreaker,,,,,,,,Size,S,Colour,Opal Grey,,,HR-WWB-OPL-S,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-windbreaker,,,,,,,,Size,M,Colour,Opal Grey,,,HR-WWB-OPL-M,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-windbreaker,,,,,,,,Size,L,Colour,Opal Grey,,,HR-WWB-OPL-L,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-windbreaker,,,,,,,,Size,XL,Colour,Opal Grey,,,HR-WWB-OPL-XL,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-windbreaker,,,,,,,,Size,XS,Colour,Black,,,HR-WWB-BLK-XS,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-windbreaker,,,,,,,,Size,S,Colour,Black,,,HR-WWB-BLK-S,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-windbreaker,,,,,,,,Size,M,Colour,Black,,,HR-WWB-BLK-M,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-windbreaker,,,,,,,,Size,L,Colour,Black,,,HR-WWB-BLK-L,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-windbreaker,,,,,,,,Size,XL,Colour,Black,,,HR-WWB-BLK-XL,140,shopify,50,deny,manual,245.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,Men's Showerproof Gilet,"<p>Sleeveless showerproof gilet that keeps the chill off your core on changeable days. Breathable back panel and zipped pockets.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Jackets,"wet_weather,windproof,layers,wx_aware,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MGL-BLK-XS,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-MGL,1,Men's Showerproof Gilet,FALSE,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,S,Colour,Black,,,HR-MGL-BLK-S,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,M,Colour,Black,,,HR-MGL-BLK-M,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,L,Colour,Black,,,HR-MGL-BLK-L,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,XL,Colour,Black,,,HR-MGL-BLK-XL,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,XXL,Colour,Black,,,HR-MGL-BLK-XXL,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,XS,Colour,Ecru,,,HR-MGL-ECR-XS,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,S,Colour,Ecru,,,HR-MGL-ECR-S,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,M,Colour,Ecru,,,HR-MGL-ECR-M,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,L,Colour,Ecru,,,HR-MGL-ECR-L,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,XL,Colour,Ecru,,,HR-MGL-ECR-XL,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-showerproof-gilet,,,,,,,,Size,XXL,Colour,Ecru,,,HR-MGL-ECR-XXL,160,shopify,50,deny,manual,190.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-insulated-run-jacket,Men's Insulated Run Jacket,"<p>Lightly insulated jacket for the coldest runs and post-race cool-downs. Warm without overheating, with a windproof front.</p>
+<p><strong>Size guide</strong> — chest XS 34&quot; · S 36&quot; · M 38–40&quot; · L 42&quot; · XL 44&quot; · XXL 46&quot;.</p>",Harbour Run,,Jackets,"layers,windproof,wx_aware,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MIJ-BLK-XS,320,shopify,50,deny,manual,375.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-MIJ,1,Men's Insulated Run Jacket,FALSE,,,,,,,,,,g,,,active
+mens-insulated-run-jacket,,,,,,,,Size,S,Colour,Black,,,HR-MIJ-BLK-S,320,shopify,50,deny,manual,375.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-insulated-run-jacket,,,,,,,,Size,M,Colour,Black,,,HR-MIJ-BLK-M,320,shopify,50,deny,manual,375.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-insulated-run-jacket,,,,,,,,Size,L,Colour,Black,,,HR-MIJ-BLK-L,320,shopify,50,deny,manual,375.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-insulated-run-jacket,,,,,,,,Size,XL,Colour,Black,,,HR-MIJ-BLK-XL,320,shopify,50,deny,manual,375.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-insulated-run-jacket,,,,,,,,Size,XXL,Colour,Black,,,HR-MIJ-BLK-XXL,320,shopify,50,deny,manual,375.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,Men's Marathon Shorts,"<p>Race shorts with a wraparound gel belt that carries a full marathon's fuel without bounce. Split hem and built-in liner.</p>
+<p><strong>Size guide</strong> — waist XS 28&quot; · S 30&quot; · M 32&quot; · L 34&quot; · XL 36&quot; · XXL 38&quot;.</p>",Harbour Run,,Shorts,"race_day,race_kit,shorts,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MMS-BLK-XS,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,https://placehold.co/800x800/142850/f5f0e8/png?text=HR-MMS,1,Men's Marathon Shorts,FALSE,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,S,Colour,Black,,,HR-MMS-BLK-S,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,M,Colour,Black,,,HR-MMS-BLK-M,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,L,Colour,Black,,,HR-MMS-BLK-L,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,XL,Colour,Black,,,HR-MMS-BLK-XL,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,XXL,Colour,Black,,,HR-MMS-BLK-XXL,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,XS,Colour,Silver,,,HR-MMS-SLV-XS,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,S,Colour,Silver,,,HR-MMS-SLV-S,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,M,Colour,Silver,,,HR-MMS-SLV-M,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,L,Colour,Silver,,,HR-MMS-SLV-L,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,XL,Colour,Silver,,,HR-MMS-SLV-XL,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-marathon-shorts,,,,,,,,Size,XXL,Colour,Silver,,,HR-MMS-SLV-XXL,140,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-marathon-shorts,Women's Marathon Shorts,"<p>Marathon shorts with generous stretch pockets around the waistband for gels and a phone. Soft liner and a flattering split leg.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Shorts,"race_day,race_kit,shorts,adult_size",TRUE,Size,XS,Colour,Black,,,HR-WMS-BLK-XS,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,https://placehold.co/800x800/142850/f5f0e8/png?text=HR-WMS,1,Women's Marathon Shorts,FALSE,,,,,,,,,,g,,,active
+womens-marathon-shorts,,,,,,,,Size,S,Colour,Black,,,HR-WMS-BLK-S,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-marathon-shorts,,,,,,,,Size,M,Colour,Black,,,HR-WMS-BLK-M,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-marathon-shorts,,,,,,,,Size,L,Colour,Black,,,HR-WMS-BLK-L,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-marathon-shorts,,,,,,,,Size,XL,Colour,Black,,,HR-WMS-BLK-XL,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-marathon-shorts,,,,,,,,Size,XS,Colour,Silver,,,HR-WMS-SLV-XS,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-marathon-shorts,,,,,,,,Size,S,Colour,Silver,,,HR-WMS-SLV-S,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-marathon-shorts,,,,,,,,Size,M,Colour,Silver,,,HR-WMS-SLV-M,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-marathon-shorts,,,,,,,,Size,L,Colour,Silver,,,HR-WMS-SLV-L,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-marathon-shorts,,,,,,,,Size,XL,Colour,Silver,,,HR-WMS-SLV-XL,130,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,Men's Run Shorts,"<p>Everyday running shorts with a 5-inch leg, soft liner and a zipped back pocket. The pair you reach for most days of the week.</p>
+<p><strong>Size guide</strong> — waist XS 28&quot; · S 30&quot; · M 32&quot; · L 34&quot; · XL 36&quot; · XXL 38&quot;.</p>",Harbour Run,,Shorts,"running,shorts,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MRUN-BLK-XS,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,https://placehold.co/800x800/142850/f5f0e8/png?text=HR-MRUN,1,Men's Run Shorts,FALSE,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,S,Colour,Black,,,HR-MRUN-BLK-S,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,M,Colour,Black,,,HR-MRUN-BLK-M,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,L,Colour,Black,,,HR-MRUN-BLK-L,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,XL,Colour,Black,,,HR-MRUN-BLK-XL,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,XXL,Colour,Black,,,HR-MRUN-BLK-XXL,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,XS,Colour,Burgundy,,,HR-MRUN-BUR-XS,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,S,Colour,Burgundy,,,HR-MRUN-BUR-S,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,M,Colour,Burgundy,,,HR-MRUN-BUR-M,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,L,Colour,Burgundy,,,HR-MRUN-BUR-L,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,XL,Colour,Burgundy,,,HR-MRUN-BUR-XL,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-shorts,,,,,,,,Size,XXL,Colour,Burgundy,,,HR-MRUN-BUR-XXL,120,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,Men's Split Shorts,"<p>Short, split-leg shorts for tempo days and races. Light woven shell with a comfortable brief liner.</p>
+<p><strong>Size guide</strong> — waist XS 28&quot; · S 30&quot; · M 32&quot; · L 34&quot; · XL 36&quot; · XXL 38&quot;.</p>",Harbour Run,,Shorts,"race_day,running,shorts,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MSS-BLK-XS,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,https://placehold.co/800x800/142850/f5f0e8/png?text=HR-MSS,1,Men's Split Shorts,FALSE,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,S,Colour,Black,,,HR-MSS-BLK-S,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,M,Colour,Black,,,HR-MSS-BLK-M,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,L,Colour,Black,,,HR-MSS-BLK-L,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,XL,Colour,Black,,,HR-MSS-BLK-XL,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,XXL,Colour,Black,,,HR-MSS-BLK-XXL,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,XS,Colour,Tan,,,HR-MSS-TAN-XS,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,S,Colour,Tan,,,HR-MSS-TAN-S,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,M,Colour,Tan,,,HR-MSS-TAN-M,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,L,Colour,Tan,,,HR-MSS-TAN-L,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,XL,Colour,Tan,,,HR-MSS-TAN-XL,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-split-shorts,,,,,,,,Size,XXL,Colour,Tan,,,HR-MSS-TAN-XXL,110,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-split-shorts,Women's Split Shorts,"<p>Lightweight split shorts with a high side cut for full stride. Soft liner and a small key pocket.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Shorts,"race_day,running,shorts,adult_size",TRUE,Size,XS,Colour,Black,,,HR-WSS-BLK-XS,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,https://placehold.co/800x800/142850/f5f0e8/png?text=HR-WSS,1,Women's Split Shorts,FALSE,,,,,,,,,,g,,,active
+womens-split-shorts,,,,,,,,Size,S,Colour,Black,,,HR-WSS-BLK-S,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-split-shorts,,,,,,,,Size,M,Colour,Black,,,HR-WSS-BLK-M,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-split-shorts,,,,,,,,Size,L,Colour,Black,,,HR-WSS-BLK-L,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-split-shorts,,,,,,,,Size,XL,Colour,Black,,,HR-WSS-BLK-XL,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-split-shorts,,,,,,,,Size,XS,Colour,Burgundy,,,HR-WSS-BUR-XS,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-split-shorts,,,,,,,,Size,S,Colour,Burgundy,,,HR-WSS-BUR-S,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-split-shorts,,,,,,,,Size,M,Colour,Burgundy,,,HR-WSS-BUR-M,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-split-shorts,,,,,,,,Size,L,Colour,Burgundy,,,HR-WSS-BUR-L,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-split-shorts,,,,,,,,Size,XL,Colour,Burgundy,,,HR-WSS-BUR-XL,100,shopify,50,deny,manual,100.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-speed-shorts,Women's Speed Shorts,"<p>Close-fitting speed shorts for intervals and race day. Compressive feel with side pockets for gels.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Shorts,"race_day,race_kit,shorts,adult_size",TRUE,Size,XS,Colour,Black,,,HR-WSP-BLK-XS,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,https://placehold.co/800x800/142850/f5f0e8/png?text=HR-WSP,1,Women's Speed Shorts,FALSE,,,,,,,,,,g,,,active
+womens-speed-shorts,,,,,,,,Size,S,Colour,Black,,,HR-WSP-BLK-S,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-speed-shorts,,,,,,,,Size,M,Colour,Black,,,HR-WSP-BLK-M,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-speed-shorts,,,,,,,,Size,L,Colour,Black,,,HR-WSP-BLK-L,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-speed-shorts,,,,,,,,Size,XL,Colour,Black,,,HR-WSP-BLK-XL,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-speed-shorts,,,,,,,,Size,XS,Colour,Navy,,,HR-WSP-NAV-XS,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-speed-shorts,,,,,,,,Size,S,Colour,Navy,,,HR-WSP-NAV-S,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-speed-shorts,,,,,,,,Size,M,Colour,Navy,,,HR-WSP-NAV-M,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-speed-shorts,,,,,,,,Size,L,Colour,Navy,,,HR-WSP-NAV-L,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-speed-shorts,,,,,,,,Size,XL,Colour,Navy,,,HR-WSP-NAV-XL,100,shopify,50,deny,manual,110.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,Men's Trail Shorts,"<p>Durable trail shorts with a tough stretch shell and plenty of pocket space for long days off-road.</p>
+<p><strong>Size guide</strong> — waist XS 28&quot; · S 30&quot; · M 32&quot; · L 34&quot; · XL 36&quot; · XXL 38&quot;.</p>",Harbour Run,,Shorts,"running,shorts,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MTS-BLK-XS,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-MTS,1,Men's Trail Shorts,FALSE,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,S,Colour,Black,,,HR-MTS-BLK-S,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,M,Colour,Black,,,HR-MTS-BLK-M,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,L,Colour,Black,,,HR-MTS-BLK-L,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,XL,Colour,Black,,,HR-MTS-BLK-XL,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,XXL,Colour,Black,,,HR-MTS-BLK-XXL,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,XS,Colour,Grey/Dark Grey,,,HR-MTS-GDG-XS,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,S,Colour,Grey/Dark Grey,,,HR-MTS-GDG-S,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,M,Colour,Grey/Dark Grey,,,HR-MTS-GDG-M,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,L,Colour,Grey/Dark Grey,,,HR-MTS-GDG-L,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,XL,Colour,Grey/Dark Grey,,,HR-MTS-GDG-XL,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-trail-shorts,,,,,,,,Size,XXL,Colour,Grey/Dark Grey,,,HR-MTS-GDG-XXL,150,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-trail-shorts,Women's Trail Shorts,"<p>Hard-wearing trail shorts with a secure waistband and stash pockets for poles, gels and a buff.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Shorts,"running,shorts,adult_size",TRUE,Size,XS,Colour,Black,,,HR-WTS-BLK-XS,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-WTS,1,Women's Trail Shorts,FALSE,,,,,,,,,,g,,,active
+womens-trail-shorts,,,,,,,,Size,S,Colour,Black,,,HR-WTS-BLK-S,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-trail-shorts,,,,,,,,Size,M,Colour,Black,,,HR-WTS-BLK-M,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-trail-shorts,,,,,,,,Size,L,Colour,Black,,,HR-WTS-BLK-L,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-trail-shorts,,,,,,,,Size,XL,Colour,Black,,,HR-WTS-BLK-XL,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-trail-shorts,,,,,,,,Size,XS,Colour,Grey/Dark Grey,,,HR-WTS-GDG-XS,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-trail-shorts,,,,,,,,Size,S,Colour,Grey/Dark Grey,,,HR-WTS-GDG-S,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-trail-shorts,,,,,,,,Size,M,Colour,Grey/Dark Grey,,,HR-WTS-GDG-M,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-trail-shorts,,,,,,,,Size,L,Colour,Grey/Dark Grey,,,HR-WTS-GDG-L,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-trail-shorts,,,,,,,,Size,XL,Colour,Grey/Dark Grey,,,HR-WTS-GDG-XL,140,shopify,50,deny,manual,170.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,Men's Half Tights,"<p>Supportive half tights with a mid-thigh length and phone pocket. Chafe-free on long runs and fast on race day.</p>
+<p><strong>Size guide</strong> — waist XS 28&quot; · S 30&quot; · M 32&quot; · L 34&quot; · XL 36&quot; · XXL 38&quot;.</p>",Harbour Run,,Tights,"running,race_day,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MHT-BLK-XS,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-MHT,1,Men's Half Tights,FALSE,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,S,Colour,Black,,,HR-MHT-BLK-S,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,M,Colour,Black,,,HR-MHT-BLK-M,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,L,Colour,Black,,,HR-MHT-BLK-L,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,XL,Colour,Black,,,HR-MHT-BLK-XL,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,XXL,Colour,Black,,,HR-MHT-BLK-XXL,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,XS,Colour,Navy,,,HR-MHT-NAV-XS,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,S,Colour,Navy,,,HR-MHT-NAV-S,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,M,Colour,Navy,,,HR-MHT-NAV-M,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,L,Colour,Navy,,,HR-MHT-NAV-L,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,XL,Colour,Navy,,,HR-MHT-NAV-XL,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-half-tights,,,,,,,,Size,XXL,Colour,Navy,,,HR-MHT-NAV-XXL,150,shopify,50,deny,manual,115.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-half-tights,Women's Merino Half Tights,"<p>Merino-blend half tights for cool-weather running. Warm, soft and naturally odour-resistant.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Tights,"running,layers,wx_aware,adult_size",TRUE,Size,XS,Colour,Black,,,HR-WHT-BLK-XS,150,shopify,50,deny,manual,150.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-WHT,1,Women's Merino Half Tights,FALSE,,,,,,,,,,g,,,active
+womens-merino-half-tights,,,,,,,,Size,S,Colour,Black,,,HR-WHT-BLK-S,150,shopify,50,deny,manual,150.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-half-tights,,,,,,,,Size,M,Colour,Black,,,HR-WHT-BLK-M,150,shopify,50,deny,manual,150.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-half-tights,,,,,,,,Size,L,Colour,Black,,,HR-WHT-BLK-L,150,shopify,50,deny,manual,150.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-merino-half-tights,,,,,,,,Size,XL,Colour,Black,,,HR-WHT-BLK-XL,150,shopify,50,deny,manual,150.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-session-tights,Men's Session Tights,"<p>Full-length training tights for winter sessions. Brushed inside, ankle zips and a rear zip pocket.</p>
+<p><strong>Size guide</strong> — waist XS 28&quot; · S 30&quot; · M 32&quot; · L 34&quot; · XL 36&quot; · XXL 38&quot;.</p>",Harbour Run,,Tights,"running,layers,wx_aware,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MST-BLK-XS,220,shopify,50,deny,manual,160.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-MST,1,Men's Session Tights,FALSE,,,,,,,,,,g,,,active
+mens-session-tights,,,,,,,,Size,S,Colour,Black,,,HR-MST-BLK-S,220,shopify,50,deny,manual,160.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-session-tights,,,,,,,,Size,M,Colour,Black,,,HR-MST-BLK-M,220,shopify,50,deny,manual,160.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-session-tights,,,,,,,,Size,L,Colour,Black,,,HR-MST-BLK-L,220,shopify,50,deny,manual,160.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-session-tights,,,,,,,,Size,XL,Colour,Black,,,HR-MST-BLK-XL,220,shopify,50,deny,manual,160.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-session-tights,,,,,,,,Size,XXL,Colour,Black,,,HR-MST-BLK-XXL,220,shopify,50,deny,manual,160.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-run-tights,Women's Run Tights,"<p>High-rise running tights with a supportive waistband and side pockets. Warm enough for winter, breathable enough for tempo.</p>
+<p><strong>Size guide</strong> — UK XS 6 · S 8 · M 10–12 · L 14 · XL 16.</p>",Harbour Run,,Tights,"running,layers,wx_aware,adult_size",TRUE,Size,XS,Colour,Black,,,HR-WRTI-BLK-XS,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-WRTI,1,Women's Run Tights,FALSE,,,,,,,,,,g,,,active
+womens-run-tights,,,,,,,,Size,S,Colour,Black,,,HR-WRTI-BLK-S,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-run-tights,,,,,,,,Size,M,Colour,Black,,,HR-WRTI-BLK-M,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-run-tights,,,,,,,,Size,L,Colour,Black,,,HR-WRTI-BLK-L,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-run-tights,,,,,,,,Size,XL,Colour,Black,,,HR-WRTI-BLK-XL,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-run-tights,,,,,,,,Size,XS,Colour,Dark Grey,,,HR-WRTI-DGY-XS,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-run-tights,,,,,,,,Size,S,Colour,Dark Grey,,,HR-WRTI-DGY-S,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-run-tights,,,,,,,,Size,M,Colour,Dark Grey,,,HR-WRTI-DGY-M,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-run-tights,,,,,,,,Size,L,Colour,Dark Grey,,,HR-WRTI-DGY-L,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+womens-run-tights,,,,,,,,Size,XL,Colour,Dark Grey,,,HR-WRTI-DGY-XL,210,shopify,50,deny,manual,175.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-trousers,Men's Run Trousers,"<p>Tapered stretch trousers for commuting on foot, warm-ups and post-run coffee. Water-repellent finish and zipped pockets.</p>
+<p><strong>Size guide</strong> — waist XS 28&quot; · S 30&quot; · M 32&quot; · L 34&quot; · XL 36&quot; · XXL 38&quot;.</p>",Harbour Run,,Apparel,"running,recovery,athleisure,club_social,adult_size",TRUE,Size,XS,Colour,Black,,,HR-MRTR-BLK-XS,300,shopify,50,deny,manual,180.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-MRTR,1,Men's Run Trousers,FALSE,,,,,,,,,,g,,,active
+mens-run-trousers,,,,,,,,Size,S,Colour,Black,,,HR-MRTR-BLK-S,300,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-trousers,,,,,,,,Size,M,Colour,Black,,,HR-MRTR-BLK-M,300,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-trousers,,,,,,,,Size,L,Colour,Black,,,HR-MRTR-BLK-L,300,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-trousers,,,,,,,,Size,XL,Colour,Black,,,HR-MRTR-BLK-XL,300,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+mens-run-trousers,,,,,,,,Size,XXL,Colour,Black,,,HR-MRTR-BLK-XXL,300,shopify,50,deny,manual,180.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+race-socks,Race Socks,"<p>Thin, snug race socks with targeted cushioning and a seamless toe. Built to stay blister-free over marathon distance.</p>
+<p><strong>Size note:</strong> S UK 3–5 · M UK 6–8 · L UK 9–12.</p>",Harbour Run,,Accessories,"race_day,race_kit,socks,adult_size",TRUE,Size,S,Colour,White/Fluro Yellow,,,HR-RSK-WFY-S,45,shopify,50,deny,manual,24.00,,TRUE,TRUE,,https://placehold.co/800x800/c4b8a8/f5f0e8/png?text=HR-RSK,1,Race Socks,FALSE,,,,,,,,,,g,,,active
+race-socks,,,,,,,,Size,M,Colour,White/Fluro Yellow,,,HR-RSK-WFY-M,45,shopify,50,deny,manual,24.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+race-socks,,,,,,,,Size,L,Colour,White/Fluro Yellow,,,HR-RSK-WFY-L,45,shopify,50,deny,manual,24.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+race-socks,,,,,,,,Size,S,Colour,Navy/Red,,,HR-RSK-NRD-S,45,shopify,50,deny,manual,24.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+race-socks,,,,,,,,Size,M,Colour,Navy/Red,,,HR-RSK-NRD-M,45,shopify,50,deny,manual,24.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+race-socks,,,,,,,,Size,L,Colour,Navy/Red,,,HR-RSK-NRD-L,45,shopify,50,deny,manual,24.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+merino-crew-socks,Merino Crew Socks,"<p>Merino-blend crew socks for cold, wet miles. Warm when damp and kind on the feet.</p>
+<p><strong>Size note:</strong> S UK 3–5 · M UK 6–8 · L UK 9–12.</p>",Harbour Run,,Accessories,"socks,wx_aware,running,adult_size",TRUE,Size,S,Colour,Charcoal,,,HR-MCS-CHA-S,55,shopify,50,deny,manual,26.00,,TRUE,TRUE,,https://placehold.co/800x800/c4b8a8/f5f0e8/png?text=HR-MCS,1,Merino Crew Socks,FALSE,,,,,,,,,,g,,,active
+merino-crew-socks,,,,,,,,Size,M,Colour,Charcoal,,,HR-MCS-CHA-M,55,shopify,50,deny,manual,26.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+merino-crew-socks,,,,,,,,Size,L,Colour,Charcoal,,,HR-MCS-CHA-L,55,shopify,50,deny,manual,26.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+merino-crew-socks,,,,,,,,Size,S,Colour,Cream/Grey,,,HR-MCS-CRG-S,55,shopify,50,deny,manual,26.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+merino-crew-socks,,,,,,,,Size,M,Colour,Cream/Grey,,,HR-MCS-CRG-M,55,shopify,50,deny,manual,26.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+merino-crew-socks,,,,,,,,Size,L,Colour,Cream/Grey,,,HR-MCS-CRG-L,55,shopify,50,deny,manual,26.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+ankle-socks,Ankle Socks,"<p>Low-cut everyday running socks with a light cushion and heel tab.</p>
+<p><strong>Size note:</strong> S UK 3–5 · M UK 6–8 · L UK 9–12.</p>",Harbour Run,,Accessories,"socks,running,adult_size",TRUE,Size,S,Colour,Black,,,HR-ASK-BLK-S,40,shopify,50,deny,manual,20.00,,TRUE,TRUE,,https://placehold.co/800x800/c4b8a8/f5f0e8/png?text=HR-ASK,1,Ankle Socks,FALSE,,,,,,,,,,g,,,active
+ankle-socks,,,,,,,,Size,M,Colour,Black,,,HR-ASK-BLK-M,40,shopify,50,deny,manual,20.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+ankle-socks,,,,,,,,Size,L,Colour,Black,,,HR-ASK-BLK-L,40,shopify,50,deny,manual,20.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+ankle-socks,,,,,,,,Size,S,Colour,White,,,HR-ASK-WHT-S,40,shopify,50,deny,manual,20.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+ankle-socks,,,,,,,,Size,M,Colour,White,,,HR-ASK-WHT-M,40,shopify,50,deny,manual,20.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+ankle-socks,,,,,,,,Size,L,Colour,White,,,HR-ASK-WHT-L,40,shopify,50,deny,manual,20.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+run-cap,Run Cap,"<p>Unstructured running cap with a soft peak and a quick-drying sweatband. Packs flat into a pocket.</p>
+<p><strong>Size note:</strong> adjustable 54–61 cm.</p>",Harbour Run,,Accessories,"cap,race_day,club_social,adult_size",TRUE,Size,One size,Colour,Black/White,,,HR-RCP-BKW-OS,55,shopify,50,deny,manual,55.00,,TRUE,TRUE,,https://placehold.co/800x800/0f2040/f5f0e8/png?text=HR-RCP,1,Run Cap,FALSE,,,,,,,,,,g,,,active
+run-cap,,,,,,,,Size,One size,Colour,Slate,,,HR-RCP-SLT-OS,55,shopify,50,deny,manual,55.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+merino-silk-beanie,Merino Silk Beanie,"<p>Fine-knit merino and silk beanie that keeps ears warm without overheating. Thin enough to wear under a hood.</p>
+<p><strong>Size note:</strong> one size, stretch fit.</p>",Harbour Run,,Accessories,"layers,wx_aware,adult_size",TRUE,Size,One size,Colour,Grey,,,HR-BNE-GRY-OS,50,shopify,50,deny,manual,45.00,,TRUE,TRUE,,https://placehold.co/800x800/37465a/f5f0e8/png?text=HR-BNE,1,Merino Silk Beanie,FALSE,,,,,,,,,,g,,,active
+merino-silk-beanie,,,,,,,,Size,One size,Colour,Forest Night,,,HR-BNE-FOR-OS,50,shopify,50,deny,manual,45.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+merino-silk-neck-warmer,Merino Silk Neck Warmer,"<p>Soft merino and silk neck tube. Wear as a snood on frosty mornings or pull up over the ears.</p>
+<p><strong>Size note:</strong> one size, stretch fit.</p>",Harbour Run,,Accessories,"layers,wx_aware,adult_size",TRUE,Size,One size,Colour,Grey,,,HR-NWM-GRY-OS,40,shopify,50,deny,manual,45.00,,TRUE,TRUE,,https://placehold.co/800x800/37465a/f5f0e8/png?text=HR-NWM,1,Merino Silk Neck Warmer,FALSE,,,,,,,,,,g,,,active
+arm-sleeves,Arm Sleeves,"<p>Roll-down arm sleeves for cold race starts that warm up fast. Easy to push down or stash mid-race.</p>
+<p><strong>Size note:</strong> S bicep 23–27 cm · M 27–31 cm · L 31–35 cm.</p>",Harbour Run,,Accessories,"layers,race_day,wx_aware,adult_size",TRUE,Size,S,Colour,Black,,,HR-ARM-BLK-S,60,shopify,50,deny,manual,65.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-ARM,1,Arm Sleeves,FALSE,,,,,,,,,,g,,,active
+arm-sleeves,,,,,,,,Size,M,Colour,Black,,,HR-ARM-BLK-M,60,shopify,50,deny,manual,65.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+arm-sleeves,,,,,,,,Size,L,Colour,Black,,,HR-ARM-BLK-L,60,shopify,50,deny,manual,65.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+winter-gloves,Winter Running Gloves,"<p>Warm, touchscreen-friendly running gloves with a wind-resistant back and reflective trim.</p>
+<p><strong>Size note:</strong> S palm 7–8&quot; · M 8–9&quot; · L 9–10&quot;.</p>",Harbour Run,,Accessories,"layers,wx_aware,adult_size",TRUE,Size,S,Colour,Black,,,HR-GLV-BLK-S,70,shopify,50,deny,manual,50.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-GLV,1,Winter Running Gloves,FALSE,,,,,,,,,,g,,,active
+winter-gloves,,,,,,,,Size,M,Colour,Black,,,HR-GLV-BLK-M,70,shopify,50,deny,manual,50.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+winter-gloves,,,,,,,,Size,L,Colour,Black,,,HR-GLV-BLK-L,70,shopify,50,deny,manual,50.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+headband,Running Headband,"<p>Soft stretch headband that covers the ears on cold mornings and soaks up sweat on warmer ones.</p>
+<p><strong>Size note:</strong> one size, stretch fit.</p>",Harbour Run,,Accessories,"running,wx_aware,adult_size",TRUE,Size,One size,Colour,Black,,,HR-HBD-BLK-OS,25,shopify,50,deny,manual,25.00,,TRUE,TRUE,,https://placehold.co/800x800/2a3a4a/f5f0e8/png?text=HR-HBD,1,Running Headband,FALSE,,,,,,,,,,g,,,active
+trail-race-pack,Trail Race Pack,"<p>Vest-style race pack for ultras and long trail days. Front flask pockets, a stretch rear compartment and room for mandatory kit.</p>
+<p><strong>Size guide</strong> — chest XS/S 32–36&quot; · M/L 36–42&quot; · XL/XXL 42–48&quot;.</p>",Harbour Run,,Hydration,"hydration,race_day,running,adult_size",TRUE,Size,XS/S,Colour,Black,,,HR-TRP-BLK-XSS,300,shopify,50,deny,manual,260.00,,TRUE,TRUE,,https://placehold.co/800x800/4a6a8a/f5f0e8/png?text=HR-TRP,1,Trail Race Pack,FALSE,,,,,,,,,,g,,,active
+trail-race-pack,,,,,,,,Size,M/L,Colour,Black,,,HR-TRP-BLK-ML,300,shopify,50,deny,manual,260.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+trail-race-pack,,,,,,,,Size,XL/XXL,Colour,Black,,,HR-TRP-BLK-XLXXL,300,shopify,50,deny,manual,260.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+trail-race-pack,,,,,,,,Size,XS/S,Colour,White,,,HR-TRP-WHT-XSS,300,shopify,50,deny,manual,260.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+trail-race-pack,,,,,,,,Size,M/L,Colour,White,,,HR-TRP-WHT-ML,300,shopify,50,deny,manual,260.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active
+trail-race-pack,,,,,,,,Size,XL/XXL,Colour,White,,,HR-TRP-WHT-XLXXL,300,shopify,50,deny,manual,260.00,,TRUE,TRUE,,,,,,,,,,,,,,,g,,,active

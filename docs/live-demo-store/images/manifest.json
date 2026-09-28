@@ -1,0 +1,858 @@
+{
+  "version": "hr-img-v1",
+  "size": 1200,
+  "products": {
+    "race-tee-unisex": {
+      "title": "Race Tee — Unisex",
+      "template": "tee-race",
+      "option": null,
+      "images": [
+        {
+          "colour": null,
+          "file": "race-tee-unisex/main.png",
+          "alt": "Race Tee — Unisex"
+        }
+      ]
+    },
+    "running-shorts": {
+      "title": "Running Shorts",
+      "template": "shorts-split",
+      "option": null,
+      "images": [
+        {
+          "colour": null,
+          "file": "running-shorts/main.png",
+          "alt": "Running Shorts"
+        }
+      ]
+    },
+    "waterproof-shell-jacket": {
+      "title": "Waterproof Shell Jacket",
+      "template": "shell-jacket",
+      "option": null,
+      "images": [
+        {
+          "colour": null,
+          "file": "waterproof-shell-jacket/main.png",
+          "alt": "Waterproof Shell Jacket"
+        }
+      ]
+    },
+    "half-zip-midlayer": {
+      "title": "Half-Zip Midlayer",
+      "template": "half-zip",
+      "option": null,
+      "images": [
+        {
+          "colour": null,
+          "file": "half-zip-midlayer/main.png",
+          "alt": "Half-Zip Midlayer"
+        }
+      ]
+    },
+    "performance-socks": {
+      "title": "Performance Socks",
+      "template": "socks-crew",
+      "option": null,
+      "images": [
+        {
+          "colour": null,
+          "file": "performance-socks/main.png",
+          "alt": "Performance Socks"
+        }
+      ]
+    },
+    "recovery-joggers": {
+      "title": "Recovery Joggers",
+      "template": "joggers",
+      "option": null,
+      "images": [
+        {
+          "colour": null,
+          "file": "recovery-joggers/main.png",
+          "alt": "Recovery Joggers"
+        }
+      ]
+    },
+    "trail-or-road-cap": {
+      "title": "Trail / Road Cap",
+      "template": "cap",
+      "option": null,
+      "images": [
+        {
+          "colour": null,
+          "file": "trail-or-road-cap/main.png",
+          "alt": "Trail / Road Cap"
+        }
+      ]
+    },
+    "soft-flask": {
+      "title": "Soft Flask 500 ml",
+      "template": "soft-flask",
+      "option": null,
+      "images": [
+        {
+          "colour": null,
+          "file": "soft-flask/main.png",
+          "alt": "Soft Flask 500 ml"
+        }
+      ]
+    },
+    "kids-youth-run-tee": {
+      "title": "Kids / Youth Run Tee",
+      "template": "kids-tee",
+      "option": null,
+      "images": [
+        {
+          "colour": null,
+          "file": "kids-youth-run-tee/main.png",
+          "alt": "Kids / Youth Run Tee"
+        }
+      ]
+    },
+    "mens-race-tee": {
+      "title": "Men's Race Tee",
+      "template": "tee-race",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-race-tee/black.png",
+          "alt": "Men's Race Tee — Black"
+        },
+        {
+          "colour": "Silver",
+          "file": "mens-race-tee/silver.png",
+          "alt": "Men's Race Tee — Silver"
+        }
+      ]
+    },
+    "womens-race-tee": {
+      "title": "Women's Race Tee",
+      "template": "tee-race",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "womens-race-tee/black.png",
+          "alt": "Women's Race Tee — Black"
+        },
+        {
+          "colour": "Silver",
+          "file": "womens-race-tee/silver.png",
+          "alt": "Women's Race Tee — Silver"
+        }
+      ]
+    },
+    "mens-eco-tech-tee": {
+      "title": "Men's Eco Tech Tee",
+      "template": "tee",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Grey",
+          "file": "mens-eco-tech-tee/grey.png",
+          "alt": "Men's Eco Tech Tee — Grey"
+        },
+        {
+          "colour": "Yellow",
+          "file": "mens-eco-tech-tee/yellow.png",
+          "alt": "Men's Eco Tech Tee — Yellow"
+        }
+      ]
+    },
+    "womens-eco-tech-tee": {
+      "title": "Women's Eco Tech Tee",
+      "template": "tee-fitted",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Grey",
+          "file": "womens-eco-tech-tee/grey.png",
+          "alt": "Women's Eco Tech Tee — Grey"
+        },
+        {
+          "colour": "Cream",
+          "file": "womens-eco-tech-tee/cream.png",
+          "alt": "Women's Eco Tech Tee — Cream"
+        }
+      ]
+    },
+    "mens-hot-weather-tee": {
+      "title": "Men's Hot Weather Tee",
+      "template": "tee-hot",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "White/Blue Stripe",
+          "file": "mens-hot-weather-tee/white-blue-stripe.png",
+          "alt": "Men's Hot Weather Tee — White/Blue Stripe"
+        },
+        {
+          "colour": "Grey/Navy Stripe",
+          "file": "mens-hot-weather-tee/grey-navy-stripe.png",
+          "alt": "Men's Hot Weather Tee — Grey/Navy Stripe"
+        }
+      ]
+    },
+    "womens-hot-weather-tee": {
+      "title": "Women's Hot Weather Tee",
+      "template": "tee-hot",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "White/Blue Stripe",
+          "file": "womens-hot-weather-tee/white-blue-stripe.png",
+          "alt": "Women's Hot Weather Tee — White/Blue Stripe"
+        },
+        {
+          "colour": "Warm Grey/Yellow",
+          "file": "womens-hot-weather-tee/warm-grey-yellow.png",
+          "alt": "Women's Hot Weather Tee — Warm Grey/Yellow"
+        }
+      ]
+    },
+    "mens-race-vest-2": {
+      "title": "Men's Race Vest 2.0",
+      "template": "vest",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "White",
+          "file": "mens-race-vest-2/white.png",
+          "alt": "Men's Race Vest 2.0 — White"
+        },
+        {
+          "colour": "Black",
+          "file": "mens-race-vest-2/black.png",
+          "alt": "Men's Race Vest 2.0 — Black"
+        },
+        {
+          "colour": "Bright Green",
+          "file": "mens-race-vest-2/bright-green.png",
+          "alt": "Men's Race Vest 2.0 — Bright Green"
+        }
+      ]
+    },
+    "womens-race-vest": {
+      "title": "Women's Race Vest",
+      "template": "vest",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "womens-race-vest/black.png",
+          "alt": "Women's Race Vest — Black"
+        },
+        {
+          "colour": "White",
+          "file": "womens-race-vest/white.png",
+          "alt": "Women's Race Vest — White"
+        }
+      ]
+    },
+    "womens-crop-race-vest": {
+      "title": "Women's Crop Race Vest",
+      "template": "crop-vest",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "womens-crop-race-vest/black.png",
+          "alt": "Women's Crop Race Vest — Black"
+        }
+      ]
+    },
+    "mens-training-singlet": {
+      "title": "Men's Training Singlet",
+      "template": "singlet",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "White/Blue Stripe",
+          "file": "mens-training-singlet/white-blue-stripe.png",
+          "alt": "Men's Training Singlet — White/Blue Stripe"
+        },
+        {
+          "colour": "Grey/Navy Stripe",
+          "file": "mens-training-singlet/grey-navy-stripe.png",
+          "alt": "Men's Training Singlet — Grey/Navy Stripe"
+        }
+      ]
+    },
+    "mens-elite-race-vest": {
+      "title": "Men's Elite Race Vest",
+      "template": "elite-vest",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Fluro/Light Blue",
+          "file": "mens-elite-race-vest/fluro-light-blue.png",
+          "alt": "Men's Elite Race Vest — Fluro/Light Blue"
+        }
+      ]
+    },
+    "mens-long-sleeve-tech-tee": {
+      "title": "Men's Long Sleeve Tech Tee",
+      "template": "long-sleeve",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Grey",
+          "file": "mens-long-sleeve-tech-tee/grey.png",
+          "alt": "Men's Long Sleeve Tech Tee — Grey"
+        },
+        {
+          "colour": "Dark Brown",
+          "file": "mens-long-sleeve-tech-tee/dark-brown.png",
+          "alt": "Men's Long Sleeve Tech Tee — Dark Brown"
+        }
+      ]
+    },
+    "womens-long-sleeve-tech-tee": {
+      "title": "Women's Long Sleeve Tech Tee",
+      "template": "long-sleeve",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Grey",
+          "file": "womens-long-sleeve-tech-tee/grey.png",
+          "alt": "Women's Long Sleeve Tech Tee — Grey"
+        },
+        {
+          "colour": "Cream",
+          "file": "womens-long-sleeve-tech-tee/cream.png",
+          "alt": "Women's Long Sleeve Tech Tee — Cream"
+        }
+      ]
+    },
+    "mens-tempo-top": {
+      "title": "Men's Tempo Top",
+      "template": "tempo-top",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-tempo-top/black.png",
+          "alt": "Men's Tempo Top — Black"
+        },
+        {
+          "colour": "Dark Brown",
+          "file": "mens-tempo-top/dark-brown.png",
+          "alt": "Men's Tempo Top — Dark Brown"
+        }
+      ]
+    },
+    "mens-merino-silk-base-layer-ls": {
+      "title": "Men's L/S Merino & Silk Base Layer",
+      "template": "base-layer",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Grey",
+          "file": "mens-merino-silk-base-layer-ls/grey.png",
+          "alt": "Men's L/S Merino & Silk Base Layer — Grey"
+        },
+        {
+          "colour": "Forest Night",
+          "file": "mens-merino-silk-base-layer-ls/forest-night.png",
+          "alt": "Men's L/S Merino & Silk Base Layer — Forest Night"
+        }
+      ]
+    },
+    "womens-merino-silk-base-layer-ls": {
+      "title": "Women's L/S Merino & Silk Base Layer",
+      "template": "base-layer",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Grey",
+          "file": "womens-merino-silk-base-layer-ls/grey.png",
+          "alt": "Women's L/S Merino & Silk Base Layer — Grey"
+        },
+        {
+          "colour": "Blue Iris",
+          "file": "womens-merino-silk-base-layer-ls/blue-iris.png",
+          "alt": "Women's L/S Merino & Silk Base Layer — Blue Iris"
+        }
+      ]
+    },
+    "mens-thermal-top": {
+      "title": "Men's Thermal Top",
+      "template": "thermal-top",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Blue Grey",
+          "file": "mens-thermal-top/blue-grey.png",
+          "alt": "Men's Thermal Top — Blue Grey"
+        }
+      ]
+    },
+    "mens-all-weather-jacket": {
+      "title": "Men's All Weather Jacket",
+      "template": "shell-jacket",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-all-weather-jacket/black.png",
+          "alt": "Men's All Weather Jacket — Black"
+        }
+      ]
+    },
+    "mens-packable-rain-shell": {
+      "title": "Men's Packable Rain Shell",
+      "template": "shell-jacket",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Orange",
+          "file": "mens-packable-rain-shell/orange.png",
+          "alt": "Men's Packable Rain Shell — Orange"
+        },
+        {
+          "colour": "Black",
+          "file": "mens-packable-rain-shell/black.png",
+          "alt": "Men's Packable Rain Shell — Black"
+        }
+      ]
+    },
+    "womens-packable-rain-shell": {
+      "title": "Women's Packable Rain Shell",
+      "template": "shell-jacket",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Orange",
+          "file": "womens-packable-rain-shell/orange.png",
+          "alt": "Women's Packable Rain Shell — Orange"
+        },
+        {
+          "colour": "Black",
+          "file": "womens-packable-rain-shell/black.png",
+          "alt": "Women's Packable Rain Shell — Black"
+        }
+      ]
+    },
+    "mens-windbreaker": {
+      "title": "Men's Windbreaker",
+      "template": "windbreaker",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Navy",
+          "file": "mens-windbreaker/navy.png",
+          "alt": "Men's Windbreaker — Navy"
+        },
+        {
+          "colour": "Black",
+          "file": "mens-windbreaker/black.png",
+          "alt": "Men's Windbreaker — Black"
+        }
+      ]
+    },
+    "womens-windbreaker": {
+      "title": "Women's Windbreaker",
+      "template": "windbreaker",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Opal Grey",
+          "file": "womens-windbreaker/opal-grey.png",
+          "alt": "Women's Windbreaker — Opal Grey"
+        },
+        {
+          "colour": "Black",
+          "file": "womens-windbreaker/black.png",
+          "alt": "Women's Windbreaker — Black"
+        }
+      ]
+    },
+    "mens-showerproof-gilet": {
+      "title": "Men's Showerproof Gilet",
+      "template": "gilet",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-showerproof-gilet/black.png",
+          "alt": "Men's Showerproof Gilet — Black"
+        },
+        {
+          "colour": "Ecru",
+          "file": "mens-showerproof-gilet/ecru.png",
+          "alt": "Men's Showerproof Gilet — Ecru"
+        }
+      ]
+    },
+    "mens-insulated-run-jacket": {
+      "title": "Men's Insulated Run Jacket",
+      "template": "insulated-jacket",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-insulated-run-jacket/black.png",
+          "alt": "Men's Insulated Run Jacket — Black"
+        }
+      ]
+    },
+    "mens-marathon-shorts": {
+      "title": "Men's Marathon Shorts",
+      "template": "shorts-marathon",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-marathon-shorts/black.png",
+          "alt": "Men's Marathon Shorts — Black"
+        },
+        {
+          "colour": "Silver",
+          "file": "mens-marathon-shorts/silver.png",
+          "alt": "Men's Marathon Shorts — Silver"
+        }
+      ]
+    },
+    "womens-marathon-shorts": {
+      "title": "Women's Marathon Shorts",
+      "template": "shorts-marathon",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "womens-marathon-shorts/black.png",
+          "alt": "Women's Marathon Shorts — Black"
+        },
+        {
+          "colour": "Silver",
+          "file": "womens-marathon-shorts/silver.png",
+          "alt": "Women's Marathon Shorts — Silver"
+        }
+      ]
+    },
+    "mens-run-shorts": {
+      "title": "Men's Run Shorts",
+      "template": "shorts-7in",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-run-shorts/black.png",
+          "alt": "Men's Run Shorts — Black"
+        },
+        {
+          "colour": "Burgundy",
+          "file": "mens-run-shorts/burgundy.png",
+          "alt": "Men's Run Shorts — Burgundy"
+        }
+      ]
+    },
+    "mens-split-shorts": {
+      "title": "Men's Split Shorts",
+      "template": "shorts-split",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-split-shorts/black.png",
+          "alt": "Men's Split Shorts — Black"
+        },
+        {
+          "colour": "Tan",
+          "file": "mens-split-shorts/tan.png",
+          "alt": "Men's Split Shorts — Tan"
+        }
+      ]
+    },
+    "womens-split-shorts": {
+      "title": "Women's Split Shorts",
+      "template": "shorts-split",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "womens-split-shorts/black.png",
+          "alt": "Women's Split Shorts — Black"
+        },
+        {
+          "colour": "Burgundy",
+          "file": "womens-split-shorts/burgundy.png",
+          "alt": "Women's Split Shorts — Burgundy"
+        }
+      ]
+    },
+    "womens-speed-shorts": {
+      "title": "Women's Speed Shorts",
+      "template": "shorts-5in",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "womens-speed-shorts/black.png",
+          "alt": "Women's Speed Shorts — Black"
+        },
+        {
+          "colour": "Navy",
+          "file": "womens-speed-shorts/navy.png",
+          "alt": "Women's Speed Shorts — Navy"
+        }
+      ]
+    },
+    "mens-trail-shorts": {
+      "title": "Men's Trail Shorts",
+      "template": "shorts-trail",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-trail-shorts/black.png",
+          "alt": "Men's Trail Shorts — Black"
+        },
+        {
+          "colour": "Grey/Dark Grey",
+          "file": "mens-trail-shorts/grey-dark-grey.png",
+          "alt": "Men's Trail Shorts — Grey/Dark Grey"
+        }
+      ]
+    },
+    "womens-trail-shorts": {
+      "title": "Women's Trail Shorts",
+      "template": "shorts-trail",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "womens-trail-shorts/black.png",
+          "alt": "Women's Trail Shorts — Black"
+        },
+        {
+          "colour": "Grey/Dark Grey",
+          "file": "womens-trail-shorts/grey-dark-grey.png",
+          "alt": "Women's Trail Shorts — Grey/Dark Grey"
+        }
+      ]
+    },
+    "mens-half-tights": {
+      "title": "Men's Half Tights",
+      "template": "half-tights",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-half-tights/black.png",
+          "alt": "Men's Half Tights — Black"
+        },
+        {
+          "colour": "Navy",
+          "file": "mens-half-tights/navy.png",
+          "alt": "Men's Half Tights — Navy"
+        }
+      ]
+    },
+    "womens-merino-half-tights": {
+      "title": "Women's Merino Half Tights",
+      "template": "half-tights",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "womens-merino-half-tights/black.png",
+          "alt": "Women's Merino Half Tights — Black"
+        }
+      ]
+    },
+    "mens-session-tights": {
+      "title": "Men's Session Tights",
+      "template": "tights",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-session-tights/black.png",
+          "alt": "Men's Session Tights — Black"
+        }
+      ]
+    },
+    "womens-run-tights": {
+      "title": "Women's Run Tights",
+      "template": "tights",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "womens-run-tights/black.png",
+          "alt": "Women's Run Tights — Black"
+        },
+        {
+          "colour": "Dark Grey",
+          "file": "womens-run-tights/dark-grey.png",
+          "alt": "Women's Run Tights — Dark Grey"
+        }
+      ]
+    },
+    "mens-run-trousers": {
+      "title": "Men's Run Trousers",
+      "template": "trousers",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "mens-run-trousers/black.png",
+          "alt": "Men's Run Trousers — Black"
+        }
+      ]
+    },
+    "race-socks": {
+      "title": "Race Socks",
+      "template": "socks-race",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "White/Fluro Yellow",
+          "file": "race-socks/white-fluro-yellow.png",
+          "alt": "Race Socks — White/Fluro Yellow"
+        },
+        {
+          "colour": "Navy/Red",
+          "file": "race-socks/navy-red.png",
+          "alt": "Race Socks — Navy/Red"
+        }
+      ]
+    },
+    "merino-crew-socks": {
+      "title": "Merino Crew Socks",
+      "template": "socks-merino",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Charcoal",
+          "file": "merino-crew-socks/charcoal.png",
+          "alt": "Merino Crew Socks — Charcoal"
+        },
+        {
+          "colour": "Cream/Grey",
+          "file": "merino-crew-socks/cream-grey.png",
+          "alt": "Merino Crew Socks — Cream/Grey"
+        }
+      ]
+    },
+    "ankle-socks": {
+      "title": "Ankle Socks",
+      "template": "socks-ankle",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "ankle-socks/black.png",
+          "alt": "Ankle Socks — Black"
+        },
+        {
+          "colour": "White",
+          "file": "ankle-socks/white.png",
+          "alt": "Ankle Socks — White"
+        }
+      ]
+    },
+    "run-cap": {
+      "title": "Run Cap",
+      "template": "cap",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black/White",
+          "file": "run-cap/black-white.png",
+          "alt": "Run Cap — Black/White"
+        },
+        {
+          "colour": "Slate",
+          "file": "run-cap/slate.png",
+          "alt": "Run Cap — Slate"
+        }
+      ]
+    },
+    "merino-silk-beanie": {
+      "title": "Merino Silk Beanie",
+      "template": "beanie",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Grey",
+          "file": "merino-silk-beanie/grey.png",
+          "alt": "Merino Silk Beanie — Grey"
+        },
+        {
+          "colour": "Forest Night",
+          "file": "merino-silk-beanie/forest-night.png",
+          "alt": "Merino Silk Beanie — Forest Night"
+        }
+      ]
+    },
+    "merino-silk-neck-warmer": {
+      "title": "Merino Silk Neck Warmer",
+      "template": "neck-warmer",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Grey",
+          "file": "merino-silk-neck-warmer/grey.png",
+          "alt": "Merino Silk Neck Warmer — Grey"
+        }
+      ]
+    },
+    "arm-sleeves": {
+      "title": "Arm Sleeves",
+      "template": "arm-sleeves",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "arm-sleeves/black.png",
+          "alt": "Arm Sleeves — Black"
+        }
+      ]
+    },
+    "winter-gloves": {
+      "title": "Winter Running Gloves",
+      "template": "gloves",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "winter-gloves/black.png",
+          "alt": "Winter Running Gloves — Black"
+        }
+      ]
+    },
+    "headband": {
+      "title": "Running Headband",
+      "template": "headband",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "headband/black.png",
+          "alt": "Running Headband — Black"
+        }
+      ]
+    },
+    "trail-race-pack": {
+      "title": "Trail Race Pack",
+      "template": "race-pack",
+      "option": "Colour",
+      "images": [
+        {
+          "colour": "Black",
+          "file": "trail-race-pack/black.png",
+          "alt": "Trail Race Pack — Black"
+        },
+        {
+          "colour": "White",
+          "file": "trail-race-pack/white.png",
+          "alt": "Trail Race Pack — White"
+        }
+      ]
+    }
+  }
+}

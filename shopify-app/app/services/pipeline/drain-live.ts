@@ -75,7 +75,7 @@ export async function drainLivePipeline(prisma: PrismaClient, pipelineRunId: str
     try {
       const ingest = await ingestShopifyFull(prisma, run.shopId, {
         pipelineRunId,
-        maxOrders: 500,
+        maxOrders: 2500,
       });
       liveOrders = ingest.ordersUpserted;
     } catch (error) {
