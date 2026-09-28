@@ -3,6 +3,9 @@
 **Syndicate is occasion-commerce intelligence for Shopify Admin** — it connects why shoppers buy this weekend to whether the storefront is ready, with labelled signals, derived personas, and agents that shop the site and stop before payment.
 
 ![Syndicate Overview — top occasion, confidence, and shopper workflow](docs/images/syndicate-overview.jpg)
+<img width="1800" height="1169" alt="Screenshot 2026-09-27 at 13 48 54" src="https://github.com/user-attachments/assets/7be97195-a46d-4383-8de5-81232214ed97" />
+<img width="1800" height="1169" alt="Screenshot 2026-09-27 at 13 48 41" src="https://github.com/user-attachments/assets/58c9d233-53c0-4264-8269-c0c17fbf47ce" />
+
 
 Syndicate is a Shopify Admin app that answers a simple merchant question: *what real-world occasions are driving demand in my shop right now, and what should I do about them?* Built over a hackathon weekend for the **Harbour Run** demo brand (running / race kit), it joins the last ~60 days of orders to an occasion calendar, scores each candidate with labelled evidence, and surfaces a clear “top occasion” with confidence — for example *Race weekend — London 10K* at 84% from orders in the window joined to the race calendar.
 
